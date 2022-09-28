@@ -1,0 +1,74 @@
+/* FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+
+/* HEADER */
+
+
+
+
+
+/*  BODY  */
+
+body {
+    margin: 0;
+    background-color: #C6D5FF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.intro{
+    display: flex;
+    width: 100%;
+    margin: 5% auto;
+    padding: 0;
+    justify-content: center;
+}
+.cuidad{
+    display: flex;
+    width: 20%;
+    margin: 1%;
+    border-radius: 10px;
+    border-style: none;
+    padding: 0.7%;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+}
+.inputciudad{
+    display: flex;
+    border-radius: 10px;
+    border-style: none;
+    padding: 0.7%;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+
+}
+
+.entrada{
+    display: flex;
+    width: 10%;
+    margin: 1%;
+    border-radius: 10px;
+    border-style: none;
+    padding: 0.7%;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+}
+
+.salida{
+    display: flex;
+    width: 10%;
+    margin: 1%;
+    border-radius: 10px;
+    border-style: none;
+    padding: 0.7%;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+}
+
+.personas{
+    display: flex;
+    width: 5%;
+    margin: 1%;
+    border-radius: 10px;
+    border-style: none;
+    padding: 0.7%;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+}
