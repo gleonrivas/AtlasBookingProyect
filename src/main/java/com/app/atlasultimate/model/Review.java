@@ -26,8 +26,10 @@ public class Review {
     @Column(name = "id_hotel")
     private Integer id_hotel;
     @ManyToOne
+    @JoinColumn(name = "usuario")
     private Usuario usuario= new Usuario();
     @ManyToOne
+    @JoinColumn(name = "usuario")
     private Hotel hotel= new Hotel();
 
 }
