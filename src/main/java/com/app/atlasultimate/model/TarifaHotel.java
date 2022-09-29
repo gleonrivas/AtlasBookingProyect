@@ -8,9 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "tarifa_hotel")
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Cliente extends Usuario{
+public class TarifaHotel {
 }
