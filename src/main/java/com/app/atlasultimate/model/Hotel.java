@@ -23,11 +23,11 @@ public class Hotel extends Usuario{
     private String ciudad;
     @Column(name = "num_habitaciones")
     private Integer numHabitaciones;
-    @Column(name = "fechaDisponibilidad")
+    @Column(name = "disponibilidad")
     private LocalDate FechaDisponible;
     @Column(name = "ubicacion")
     private String ubicacion;
-    @Column(name = "pagina_web")
+    @Column(name = "web")
     private String pagWeb;
     @Column(name = "terraza")
     private Boolean terraza;

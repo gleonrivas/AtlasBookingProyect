@@ -24,13 +24,16 @@ public class Usuario {
     @Column(name = "apellidos")
     private String apellidos;
 
-    @Column(name = "dni_Cif")
+    @Column(name = "dni")
     private String DNICIF;
 
-    @Column(name = "contraseña")
+    @Column(name = "contrasena")
     private String contrasena;
 
     @Column(name = "email")
     private String Email;
+
+    @Column(name = "es_hotel")
+    private Boolean esHotel;
 
 }
