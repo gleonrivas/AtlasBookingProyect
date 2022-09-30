@@ -25,10 +25,10 @@ public class Review {
     @Column(name = "id_hotel")
     private Integer id_hotel;
     @ManyToOne
-    @JoinColumn(name = "usuario")
+    @JoinColumn(name = "id_cliente")
     private Cliente usuario= new Cliente();
     @ManyToOne
-    @JoinColumn(name = "hotel")
+    @JoinColumn(name = "id_hotel")
     private Hotel hotel= new Hotel();
 
 }
