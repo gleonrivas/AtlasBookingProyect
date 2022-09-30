@@ -7,32 +7,11 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "cliente")
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Cliente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+public class Cliente extends Usuario {
 
-    @Column(name = "nombre")
-    private String nombre;
-
-    @Column(name = "apellidos")
-    private String apellidos;
-
-    @Column(name = "dni")
-    private String dni;
-
-    @Column(name = "contrasena")
-    private String contrasena;
-
-    @Column(name = "num_telefono")
-    private String NumTelefono;
-
-    @Column(name = "email")
-    private String Email;
 
 }
