@@ -1,0 +1,27 @@
+#totalpagina{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 3%;
+}
+.parte1{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 50%;
+}
+#confirmacion{
+    display: none;
+}
+.titulo{
+    font-size: 150%;
+    text-align: center;
+}
+.formulario{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center
+}
+.parform{
+    width: 49%;
+}
+.boton{width: 40%}
+h2{text-align: center;}
