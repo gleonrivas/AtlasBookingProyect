@@ -11,7 +11,7 @@
 
 body {
     margin: 0;
-    background-color: #C6D5FF;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,55 +20,127 @@ body {
 
 .intro{
     display: flex;
-    width: 100%;
-    margin: 5% auto;
-    padding: 0;
+    width: auto;
+    margin: 12% auto;
     justify-content: center;
+    padding: 1% 4%;
+    font-size: 12px;
+    background-color: white;
+
+
 }
-.cuidad{
+.ciudad{
     display: flex;
-    width: 20%;
-    margin: 1%;
-    border-radius: 10px;
-    border-style: none;
-    padding: 0.7%;
-    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+    flex-direction: column;
+    width: available;
+    align-items: center;
 }
+
+.fentrada{
+    display: flex;
+    flex-direction: column;
+    width: available;
+    align-items: center;
+}
+.fsalida{
+    display: flex;
+    flex-direction: column;
+    width: available;
+    align-items: center;
+}
+.nadultos{
+    display: flex;
+    flex-direction: column;
+    width: available;
+    align-items: center;
+}
+.nniños{
+    display: flex;
+    flex-direction: column;
+    width: available;
+    align-items: center;
+}
+.nhabitaciones{
+    display: flex;
+    flex-direction: column;
+    width: available;
+    align-items: center;
+}
+
 .inputciudad{
-    display: flex;
-    border-radius: 10px;
-    border-style: none;
-    padding: 0.7%;
-    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+    border-radius: 15px 0 0 15px;
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding: 10%;
+    width: 150px;
+    height: 50px;
+}
+
+.inputfentrada{
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding: 10%;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
 
 }
 
-.entrada{
-    display: flex;
-    width: 10%;
-    margin: 1%;
-    border-radius: 10px;
-    border-style: none;
-    padding: 0.7%;
-    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+.inputfsalida{
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding: 10%;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+
 }
 
-.salida{
-    display: flex;
-    width: 10%;
-    margin: 1%;
-    border-radius: 10px;
-    border-style: none;
-    padding: 0.7%;
-    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+.inputnadultos{
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding: 10%;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+
 }
 
-.personas{
-    display: flex;
-    width: 5%;
-    margin: 1%;
-    border-radius: 10px;
-    border-style: none;
-    padding: 0.7%;
-    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.46);
+.inputniños{
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding: 10%;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+
+}
+
+.inputnhabitaciones{ /*  */
+    border-radius: 0 15px 15px 0;
+    border-left-style: none;
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding: 10%;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+
+}
+
+.buscar{ /* BOTON SUBMIT BUSCAR */
+    width: auto;
+    height: 50%;
+    margin: auto 5%;
 }
