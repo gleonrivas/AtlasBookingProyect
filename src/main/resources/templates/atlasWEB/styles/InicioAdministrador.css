@@ -9,4 +9,39 @@ h1{
     margin:auto;
     justify-content: space-between;
     padding-top:3% ;
+    padding-bottom: 3%;
+}
+button{
+
+    width: 20%;
+    border-radius: 5px;
+
+}
+.marcohotel {
+    width: 90%;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: white;
+    border: black 2px;
+    padding: 1% 1% 1% 1%;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 56%);
+    justify-content: space-around;
+    align-items: flex-start;
+    margin:auto;
+}
+.botones{
+    width: 90%;
+    margin: auto;
+}
+#contenedor2{
+    display: flex;
+    flex-flow:row;
+    width: 100%;
+}
+.listas{width: 50%}
+.conjunto{
+    width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
 }

@@ -45,7 +45,16 @@ hr{
 .parte1{
     display: flex;
     flex-flow: column nowrap;
-    width: 45%;
+    width: 50%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+}
+.parte2{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 50%;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -56,21 +65,35 @@ hr{
 .titulo{
     font-size: 150%;
     text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: black;
+    letter-spacing: 4px;
+    text-shadow: 1px 1px grey;
 }
 .formulario{
     display: flex;
     flex-flow: row wrap;
-    justify-content: center
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
 }
 .parform{
     width: 90%;
     text-align: center;
 }
 .boton{
+    margin-top: 5%;
     width: 40%;
-    margin-top: 3%;
+    border-radius: 5px;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 h2{text-align: center;}
 #instruccion{
     font-size: 70%;
+}
+input{
+    width: 80%;
+    border-radius: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
