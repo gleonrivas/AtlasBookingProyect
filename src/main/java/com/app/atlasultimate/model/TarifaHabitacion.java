@@ -24,7 +24,7 @@ public class TarifaHabitacion {
     private boolean vistas;
     @Column(name = "capacidad")
     private boolean capacidad;
-    @OneToMany
-    @JoinColumn(name = "habitacion")
+    @ManyToOne
+    @JoinColumn(name = "id_habitacion")
     private Habitacion habitacion= new Habitacion();
 }
