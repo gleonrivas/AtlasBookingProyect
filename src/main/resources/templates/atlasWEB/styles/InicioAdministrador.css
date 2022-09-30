@@ -1,0 +1,12 @@
+h1{
+    font-size: 200%;
+
+}
+#tituloyboton{
+    display: flex;
+    flex-flow: row nowrap;
+    width: 80%;
+    margin:auto;
+    justify-content: space-between;
+    padding-top:3% ;
+}
