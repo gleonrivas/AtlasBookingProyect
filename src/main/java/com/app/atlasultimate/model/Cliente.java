@@ -24,7 +24,7 @@ public class Cliente {
     private String apellidos;
 
     @Column(name = "dni")
-    private String DNICIF;
+    private String dni;
 
     @Column(name = "contrasena")
     private String contrasena;
