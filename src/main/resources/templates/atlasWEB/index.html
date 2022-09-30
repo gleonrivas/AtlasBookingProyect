@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="styles/header.css">
   <title>Atlas Booking</title>
 </head>
-<body>
+<body style="overflow: hidden;">
 
 <header class="mainh">
 
@@ -35,25 +35,53 @@
 
 </header>
 
-<label class="intro">
+<label class="intro" style="z-index: 1">
   <div class="ciudad">
-    <p>Escribe una ciudad:</p>
-    <input type="text" value="Escribe una ciudad" class="inputciudad">
+    <p>Elige una ciudad</p>
+    <input type="text" value="Próximo destino..." class="inputciudad">
   </div>
-  <div class="ciudad">
-    <p>Escribe una ciudad:</p>
-    <input type="text" value="Escribe una ciudad" class="inputciudad">
+  <div class="fentrada">
+    <p>Fecha de entrada</p>
+    <input type="date" value="" class="inputfentrada">
   </div>
-  <div class="ciudad">
-    <p>Escribe una ciudad:</p>
-    <input type="text" value="Escribe una ciudad" class="inputciudad">
+  <div class="fsalida">
+    <p>Fecha de salida</p>
+    <input type="date" value="" class="inputfsalida">
   </div>
-  <div class="ciudad">
-    <p>Escribe una ciudad:</p>
-    <input type="text" value="Escribe una ciudad" class="inputciudad">
+  <div class="nadultos">
+    <p>¿Cuántos adultos?</p>
+    <input type="number" value="0" class="inputnadultos">
+  </div>
+  <div class="nniños">
+    <p>¿Hay niños?</p>
+    <input type="number" value="0" class="inputniños">
+  </div>
+  <div class="nhabitaciones">
+    <p>¿Cuántas habitaciones?</p>
+    <input type="number" value="0" class="inputnhabitaciones">
   </div>
 
+  <input type="submit" class="buscar" value="Buscar">
+
 </label>
+
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style="z-index: 0; position: absolute; margin-top: 20%">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/nyk-wallpaper.jpeg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/rio-wallpaper.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/venecia.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item active">
+      <img src="img/paris.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
 
 <footer>
 
