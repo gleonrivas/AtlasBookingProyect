@@ -1,9 +1,10 @@
 package com.app.atlasultimate.model;
 
+import com.sun.istack.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.hibernate.annotations.NotFound;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Usuario {
+public class Administrador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -31,7 +32,7 @@ public class Usuario {
     private String contrasena;
 
     @Column(name = "email")
-    private String Email;
+    private String email;
 
     @Column(name = "es_hotel")
     private boolean es_hotel;

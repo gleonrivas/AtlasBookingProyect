@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "review")
@@ -27,9 +26,9 @@ public class Review {
     private Integer id_hotel;
     @ManyToOne
     @JoinColumn(name = "usuario")
-    private Usuario usuario= new Usuario();
+    private Cliente usuario= new Cliente();
     @ManyToOne
-    @JoinColumn(name = "usuario")
+    @JoinColumn(name = "hotel")
     private Hotel hotel= new Hotel();
 
 }

@@ -6,15 +6,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "hotel")
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Hotel extends Usuario{
+public class Hotel extends Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
