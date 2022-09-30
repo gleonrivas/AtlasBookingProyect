@@ -15,52 +15,60 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .intro{
+
     display: flex;
     width: auto;
     margin: 12% auto;
     justify-content: center;
     padding: 1% 4%;
     font-size: 12px;
-    background-color: white;
-
-
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 50px rgba(255, 255, 255, 0.91);
+    border-radius: 20px;
 }
 .ciudad{
+    z-index: 3;
     display: flex;
     flex-direction: column;
     width: available;
     align-items: center;
+    filter: none;
+
 }
 
 .fentrada{
+    z-index: 3;
     display: flex;
     flex-direction: column;
     width: available;
     align-items: center;
 }
 .fsalida{
+    z-index: 3;
     display: flex;
     flex-direction: column;
     width: available;
     align-items: center;
 }
 .nadultos{
+    z-index: 3;
     display: flex;
     flex-direction: column;
     width: available;
     align-items: center;
 }
 .nniños{
+    z-index: 3;
     display: flex;
     flex-direction: column;
     width: available;
     align-items: center;
 }
 .nhabitaciones{
+    z-index: 3;
     display: flex;
     flex-direction: column;
     width: available;
@@ -140,7 +148,11 @@ body {
 }
 
 .buscar{ /* BOTON SUBMIT BUSCAR */
-    width: auto;
-    height: 50%;
-    margin: auto 5%;
+    width: 50px;
+    height: 50px;
+    margin: auto 3%;
+    border-radius: 50px;
+    border-style: none;
+    padding: 10px;
+    background-color: black;
 }
