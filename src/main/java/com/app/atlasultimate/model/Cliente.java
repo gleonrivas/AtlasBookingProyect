@@ -35,6 +35,4 @@ public class Cliente {
     @Column(name = "es_hotel")
     private boolean es_hotel;
 
-
-
 }
