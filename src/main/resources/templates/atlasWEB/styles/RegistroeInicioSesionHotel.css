@@ -1,12 +1,54 @@
+.barra{
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    background-color: black;
+    width: 80%;
+    height: 120px;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    color: azure;
+    letter-spacing: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+
+}
+
+.colunm-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+hr{
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: 1px solid;
+    opacity: 1;
+}
 #totalpagina{
     display: flex;
     flex-flow: row nowrap;
-    margin-top: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1%;
+    background-color: white;
+    border: black 2px;
+    width: 80%;
+    height: 500px;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    justify-content: space-around;
 }
 .parte1{
     display: flex;
     flex-flow: column nowrap;
-    width: 50%;
+    width: 45%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 #confirmacion{
     display: none;
@@ -21,7 +63,14 @@
     justify-content: center
 }
 .parform{
-    width: 49%;
+    width: 90%;
+    text-align: center;
 }
-.boton{width: 40%}
+.boton{
+    width: 40%;
+    margin-top: 3%;
+}
 h2{text-align: center;}
+#instruccion{
+    font-size: 70%;
+}
