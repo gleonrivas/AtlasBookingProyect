@@ -3,7 +3,6 @@ package com.app.atlasultimate.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 
@@ -12,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Usuario {
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
