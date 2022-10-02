@@ -6,10 +6,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
+
 
 @Getter
 @Setter
 @EqualsAndHashCode
+@MappedSuperclass
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

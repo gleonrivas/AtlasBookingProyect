@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="styles/RegistroeInicioSesionHotel.css">
+    <html xmlns:th="http://www.thymeleaf.org">
     <title>registroHotel</title>
 </head>
 <body>
@@ -28,7 +29,7 @@
         <h1 class="titulo">Inicia sesión para gestionar tu alojamiento</h1>
 
 
-        <form class="formulario" action="" method="post">
+        <form class="formulario" th:action="@{/registeradmin}" method="post" th:object="${Aministrador}">
             <label class="parform" for="correo1">Email</label>
             <input class="parform" type="text" id="correo1" name="correo" />
             <label class="parform" for="contrasena1">Contraseña</label>

@@ -6,13 +6,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
-@Entity
+@Entity (name="hotel")
 @Table(name = "hotel")
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Hotel extends Cliente {
+public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -61,6 +62,12 @@ public class Hotel extends Cliente {
     private String listaIdiomas;
     @Column(name = "mascotas")
     private Boolean mascotas;
+
+    @ManyToOne()
+    @JoinColumn(name="id_administrador")
+    private Administrador administrador;
+
+
 
 
 }
