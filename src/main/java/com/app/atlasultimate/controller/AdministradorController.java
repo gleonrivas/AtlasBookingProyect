@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 @RestController
 public class AdministradorController {
-    @GetMapping("/registeradmin")
+    @GetMapping("/index")
     public String showForm(Model model) {
         Administrador nuevo = new Administrador();
-        model.addAttribute("Administrador", nuevo);
+        model.addAttribute("nuevo", nuevo);
 
 
         return "RegistroInicioSesionHotel";

@@ -29,7 +29,7 @@
         <h1 class="titulo">Inicia sesión para gestionar tu alojamiento</h1>
 
 
-        <form class="formulario" th:action="@{/registeradmin}" method="post" th:object="${Aministrador}">
+        <form class="formulario" th:action="@{index.html}" method="post" th:object="${Administrador}">
             <label class="parform" for="correo1">Email</label>
             <input class="parform" type="text" id="correo1" name="correo" />
             <label class="parform" for="contrasena1">Contraseña</label>
@@ -42,7 +42,7 @@
     <div class="parte2">
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
 
-        <form class="formulario" action="" method="post">
+        <form class="formulario" action="#" th:action="@{index.html}"  method="post" th:object="${nuevo}">
             <label class="parform" for="nombre">Nombre</label>
             <input class="parform" type="text" id="nombre" name="correo" />
             <label class="parform" for="apellido">Apellidos</label>

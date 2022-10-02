@@ -9,6 +9,7 @@ public class AtlasUltimateApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AtlasUltimateApplication.class, args);
+
     }
 
 }
