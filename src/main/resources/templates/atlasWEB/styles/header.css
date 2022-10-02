@@ -15,6 +15,7 @@
 }
 
 .cheader{ /* Este es la etiqueta del LOGO clase nombrada como 'mainh'*/
+    z-index: 2;
     margin: 0 3% 0 3%;
     padding: 0;
     display: grid;
@@ -26,6 +27,7 @@
 }
 
 .cheader > h1{
+    z-index: 2;
     text-align: center;
     padding: 0;
     margin: 0;
@@ -46,6 +48,7 @@
     padding: 0;
     color: azure;
 }
+
 .lheader > a{
     color: azure;
     text-decoration: none;
