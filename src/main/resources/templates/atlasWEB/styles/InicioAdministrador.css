@@ -29,6 +29,7 @@ button{
     justify-content: space-around;
     align-items: flex-start;
     margin:auto;
+    margin-bottom: 3%;
 }
 .botones{
     width: 90%;
