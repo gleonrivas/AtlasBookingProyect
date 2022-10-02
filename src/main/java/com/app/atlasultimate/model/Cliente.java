@@ -14,10 +14,13 @@ import java.util.Set;
 @EqualsAndHashCode
 public class Cliente extends Usuario {
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-            @JoinTable(name="reserva", joinColumns = {@JoinColumn(name = "id_cliente")},
-                    inverseJoinColumns = {@JoinColumn(name = "id_habitacion")})
-    private Set<Habitacion> habitaciones;
+    @OneToMany(mappedBy = "cliente")
+    private Set<Reserva> reservas;
+
+    @OneToMany(mappedBy = "cliente")
+    private Set<Review> reviews;
+
+
 
 
 }

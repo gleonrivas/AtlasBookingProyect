@@ -67,7 +67,12 @@ public class Hotel {
     @JoinColumn(name="id_administrador")
     private Administrador administrador;
 
+    @OneToMany(mappedBy = "hotel")
+    private Set<Review> reservas;
 
+
+    @OneToMany(mappedBy = "hotel")
+    private Set<Habitacion> habitaciones;
 
 
 }

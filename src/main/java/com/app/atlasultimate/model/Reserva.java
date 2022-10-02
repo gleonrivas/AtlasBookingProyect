@@ -17,13 +17,23 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "hora_llegada")
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_habitacion")
+    Habitacion habitacion;
+
+    @Column(name = "dia_hora_llegada")
     private LocalDate diayHoraLlegada;
-    @Column(name = "hora_salida")
+    @Column(name = "dia_hora_salida")
     private LocalDate diayHoraSalida;
     @Column(name = "num_adultos")
     private Integer numAdultos;
     @Column(name = "num_ninos")
     private Integer numNinos;
+
 
 }

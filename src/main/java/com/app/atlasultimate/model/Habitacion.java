@@ -18,7 +18,12 @@ public class Habitacion {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToMany(mappedBy = "habitaciones")
-    private Set<Cliente> clientes;
+
+    @OneToMany (mappedBy = "habitacion")
+    private Set<Reserva> reservas;
+
+    @ManyToOne
+    @JoinColumn(name = "id_hotel")
+    private Hotel hotel;
 
 }
