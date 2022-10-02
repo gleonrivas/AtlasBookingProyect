@@ -1,4 +1,6 @@
 .mainh{ /* Este es la etiqueta principal 'header' con clase nombrada como 'mainh'*/
+    z-index: 1;
+    position: relative;
     width: 100%;
     margin: 0;
     padding: 1% 0 0.5% 0;
@@ -13,6 +15,7 @@
 }
 
 .cheader{ /* Este es la etiqueta del LOGO clase nombrada como 'mainh'*/
+    z-index: 2;
     margin: 0 3% 0 3%;
     padding: 0;
     display: grid;
@@ -24,6 +27,7 @@
 }
 
 .cheader > h1{
+    z-index: 2;
     text-align: center;
     padding: 0;
     margin: 0;
@@ -44,6 +48,7 @@
     padding: 0;
     color: azure;
 }
+
 .lheader > a{
     color: azure;
     text-decoration: none;
@@ -70,5 +75,5 @@
 .login-singup > a{
     color: azure;
     text-decoration: none;
-    margin: auto;
+    margin: 5% auto;
 }
