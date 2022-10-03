@@ -1,0 +1,99 @@
+.barra{
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    background-color: black;
+    width: 80%;
+    height: 120px;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    color: azure;
+    letter-spacing: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+
+}
+
+.colunm-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+hr{
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: 1px solid;
+    opacity: 1;
+}
+#totalpagina{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1%;
+    background-color: white;
+    border: black 2px;
+    width: 80%;
+    height: 500px;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    justify-content: space-around;
+}
+.parte1{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 50%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+}
+.parte2{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 50%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+#confirmacion{
+    display: none;
+}
+.titulo{
+    font-size: 150%;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: black;
+    letter-spacing: 4px;
+    text-shadow: 1px 1px grey;
+}
+.formulario{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+}
+.parform{
+    width: 90%;
+    text-align: center;
+}
+.boton{
+    margin-top: 5%;
+    width: 40%;
+    border-radius: 5px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+h2{text-align: center;}
+#instruccion{
+    font-size: 70%;
+}
+input{
+    width: 80%;
+    border-radius: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}

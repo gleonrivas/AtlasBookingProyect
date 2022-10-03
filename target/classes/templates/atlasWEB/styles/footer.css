@@ -1,0 +1,74 @@
+footer{
+    padding: 1%;
+    display: flex;
+    z-index: 3;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.56);
+}
+.lasth{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: black;
+}
+
+.middle-footer{
+    display: grid;
+    grid-column: 1;
+    grid-gap: 10px;
+}
+.middle-footer > p{
+    color: rgba(240, 255, 255, 0.44);
+    text-decoration: none;
+    font-size: 70%;
+}
+.nets{
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+    justify-content: space-evenly;
+}
+.nets > img{
+    width: 15%;
+}
+
+.promote_hotel{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.promote_hotel > p{
+    font-family: Arial, sans-serif;
+    color: azure;
+}
+.promote_hotel > button{
+    width: 220px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: azure;
+    padding: 2%;
+    color: black;
+}
+#registra{
+    width: 220px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: azure;
+    padding: 2%;
+    color: black;
+}
+
+.footer-links{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footer-links > a{
+    color: azure;
+    text-decoration: none;
+}
