@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7e5c8db7-7e78-494d-b2e8-0e4178ff8917" name="Changes" comment="localhost index" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="celia" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2FMVOfLxZLDVrUnLCfiYx4zPwd9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mariadb" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.35632184" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\resources" />
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\static" />
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\resources\templates\atlasWEB" />
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\resources\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\resources\templates" />
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\resources\static" />
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\resources" />
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\static" />
+      <recent name="C:\Users\celim\IdeaProjects\atlasUltimate\src\main\resources\templates\atlasWEB" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AtlasUltimateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="atlasUltimate" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.app.atlasultimate.AtlasUltimateApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7e5c8db7-7e78-494d-b2e8-0e4178ff8917" name="Changes" comment="" />
+      <created>1664301912134</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664301912134</updated>
+      <workItem from="1664301913402" duration="411000" />
+      <workItem from="1664302353950" duration="9538000" />
+      <workItem from="1664383372249" duration="595000" />
+      <workItem from="1664388965691" duration="2615000" />
+      <workItem from="1664439848533" duration="4202000" />
+      <workItem from="1664462210858" duration="23199000" />
+      <workItem from="1664708363579" duration="20554000" />
+      <workItem from="1664742908334" duration="728000" />
+      <workItem from="1664784734363" duration="11266000" />
+      <workItem from="1664816615466" duration="481000" />
+      <workItem from="1664817125109" duration="273000" />
+    </task>
+    <task id="LOCAL-00001" summary="properties">
+      <created>1664302532213</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664302532213</updated>
+    </task>
+    <task id="LOCAL-00002" summary="controlador+modelo+repositorio+clase Usuario, hotel, cliente (sin relaciones)">
+      <created>1664361604182</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664361604182</updated>
+    </task>
+    <task id="LOCAL-00003" summary="comienzo html de registro e inicio de hoteles">
+      <created>1664391593522</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664391593522</updated>
+    </task>
+    <task id="LOCAL-00004" summary="revision hotel, cliente y usuario">
+      <created>1664441125474</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1664441125474</updated>
+    </task>
+    <task id="LOCAL-00005" summary="revision hotel, cliente y usuario II">
+      <created>1664443838845</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1664443838845</updated>
+    </task>
+    <task id="LOCAL-00006" summary="revision hotel, cliente y usuario II">
+      <created>1664443983693</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1664443983693</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Administrador controler, repository">
+      <created>1664463680082</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1664463680082</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Estilo registro e iniciosesion administrador">
+      <created>1664547572608</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1664547572608</updated>
+    </task>
+    <task id="LOCAL-00009" summary="merge con luis">
+      <created>1664548289413</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1664548289413</updated>
+    </task>
+    <task id="LOCAL-00010" summary="mejora estilo Registroiniciosesion hotel">
+      <created>1664550326423</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1664550326423</updated>
+    </task>
+    <task id="LOCAL-00011" summary="más estilos">
+      <created>1664558340985</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1664558340985</updated>
+    </task>
+    <task id="LOCAL-00012" summary="viernes 30/9 20.15 con usuario">
+      <created>1664561718257</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1664561718257</updated>
+    </task>
+    <task id="LOCAL-00013" summary="reserva y relaciones habitacion reserva cliente//administrador hotel">
+      <created>1664715213854</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1664715213854</updated>
+    </task>
+    <task id="LOCAL-00014" summary="footer en todas paginas del admin">
+      <created>1664716471408</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1664716471408</updated>
+    </task>
+    <task id="LOCAL-00015" summary="relaciones administrador-hotel, reserva-cliente-habitacion, cliente-review-hotel y hotel-habitacion">
+      <created>1664731949279</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1664731949279</updated>
+    </task>
+    <task id="LOCAL-00016" summary="inclusion footer en admin">
+      <created>1664738564399</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1664738564399</updated>
+    </task>
+    <task id="LOCAL-00017" summary="localhost index">
+      <created>1664816763677</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1664816763677</updated>
+    </task>
+    <task id="LOCAL-00018" summary="localhost index">
+      <created>1664816844725</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1664816844725</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="properties" />
+    <MESSAGE value="controlador+modelo+repositorio+clase Usuario, hotel, cliente (sin relaciones)" />
+    <MESSAGE value="comienzo html de registro e inicio de hoteles" />
+    <MESSAGE value="revision hotel, cliente y usuario" />
+    <MESSAGE value="revision hotel, cliente y usuario II" />
+    <MESSAGE value="Administrador controler, repository" />
+    <MESSAGE value="Estilo registro e iniciosesion administrador" />
+    <MESSAGE value="merge con luis" />
+    <MESSAGE value="mejora estilo Registroiniciosesion hotel" />
+    <MESSAGE value="más estilos" />
+    <MESSAGE value="viernes 30/9 20.15 con usuario" />
+    <MESSAGE value="reserva y relaciones habitacion reserva cliente//administrador hotel" />
+    <MESSAGE value="footer en todas paginas del admin" />
+    <MESSAGE value="relaciones administrador-hotel, reserva-cliente-habitacion, cliente-review-hotel y hotel-habitacion" />
+    <MESSAGE value="inclusion footer en admin" />
+    <MESSAGE value="localhost index" />
+    <option name="LAST_COMMIT_MESSAGE" value="localhost index" />
+  </component>
+</project>
