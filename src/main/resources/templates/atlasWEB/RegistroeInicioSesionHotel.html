@@ -42,8 +42,8 @@
     <div class="parte2">
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
 
-        <form class="formulario" action="#" th:action="@{index.html}"  method="post" th:object="${nuevo}">
-            <label class="parform" for="nombre">Nombre</label>
+        <form class="formulario" action="/RegistroAdministrador" th:action="@{/admin/create}"  method="post" th:object="${administrador}">
+            <label class="parform" for="nombre" th:text="#{RegistroAministrador.admin.nombe}">Nombre</label>
             <input class="parform" type="text" id="nombre" name="correo" />
             <label class="parform" for="apellido">Apellidos</label>
             <input class="parform" type="text" id="apellido" name="correo" />
@@ -58,7 +58,7 @@
             <input class="parform"type="text" id="contrasena" name="correo" />
             <label class="parform"for="contrasena2">Confirma tu contraseña</label>
             <input class="parform"type="text" id="contrasena2" name="correo" />
-            <button class="boton" type ="submit" form="correo" form="contrasena" text="Siguiente">siguiente</button>
+            <button class="submit" type ="submit" form="correo" form="contrasena" text="Siguiente">siguiente</button>
         </form>
 
         <div id="confirmacion">
