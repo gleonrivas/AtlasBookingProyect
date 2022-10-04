@@ -28,12 +28,13 @@
         <h1 class="titulo">Inicia sesión para gestionar tu alojamiento</h1>
 
 
-        <form class="formulario" >
+        <form class="formulario">
             <label class="parform" for="correo1">Email</label>
             <input class="parform" type="text" id="correo1" name="correo" />
             <label class="parform" for="contrasena1">Contraseña</label>
             <input class="parform" type="text" id="contrasena1" name="correo" />
-            <button class="boton" type ="submit" form="correo" form="contrasena" text="Siguiente">siguiente</button></form>
+            <button class="boton" type ="submit" text="Siguiente">siguiente</button>
+        </form>
 
 
     </div>
@@ -41,23 +42,23 @@
     <div class="parte2">
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
 
-        <form class="formulario" action="/RegistroAdministrador" >
-            <label class="parform" for="nombre" >Nombre</label>
-            <input class="parform" type="text" id="nombre" name="correo" />
-            <label class="parform" for="apellido">Apellidos</label>
-            <input class="parform" type="text" id="apellido" name="correo" />
-            <label class="parform" type="tel">Número de teléfono</label>
-            <input class="parform" type="tel" id="tel" name="correo" />
-            <label class="parform" for="correo">Email</label>
-            <input class="parform" type="text" id="correo" name="correo" />
+        <form class="formulario" th:action="@{/Admin/Registro}" th:object="${administrador}" method="post">
+            <label class="parform" for="nombre" th:text="#{Registro.administrador.nombre}" >Nombre</label>
+            <input class="parform" type="text" id="nombre" name="correo" th:field="*{nombre}"/>
+            <label class="parform" for="apellido" th:text="#{Registro.administrador.apellidos}">Apellidos</label>
+            <input class="parform" type="text" id="apellido" name="correo" th:field="*{apellidos}" />
+            <label class="parform" type="tel" th:text="#{Registro.administrador.NumTelefono}">Número de teléfono</label>
+            <input class="parform" type="tel" id="tel" name="correo" th:field="*{num_telefono}"/>
+            <label class="parform" for="correo" th:text="#{Registro.administrador.Email}">Email</label>
+            <input class="parform" type="text" id="correo" name="correo" th:field="*{email}"/>
             <div class="parform">
                 <p id="instruccion">Usa al menos 10 caracteres, que contengan al menos una letra mayúscula y una minúscula</p>
-                <label for="contrasena">Introduce tu contraseña</label>
+                <label for="contrasena" th:text="#{Registro.administrador.contrasena}">Introduce tu contraseña</label>
             </div>
-            <input class="parform"type="text" id="contrasena" name="correo" />
-            <label class="parform"for="contrasena2">Confirma tu contraseña</label>
-            <input class="parform"type="text" id="contrasena2" name="correo" />
-            <button class="submit" type ="submit" form="correo" form="contrasena" text="Siguiente">siguiente</button>
+            <input class="parform"type="text" id="contrasena" name="correo" th:field="*{contrasena}" />
+            <label class="parform"for="contrasena2" th:text="#{Registro.administrador.contrasena}">Confirma tu contraseña</label>
+            <input class="parform"type="text" id="contrasena2" name="correo" th:field="*{contrasena}"/>
+            <button class="submit" type ="submit"  text="Siguiente">siguiente</button>
         </form>
 
         <div id="confirmacion">
