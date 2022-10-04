@@ -7,9 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="styles/RegistroeInicioSesionHotel.css">
-    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="/styles/RegistroeInicioSesionHotel.css">
+    <link rel="stylesheet" href="/styles/footer.css">
     <title>registroHotel</title>
 </head>
 <body>
@@ -29,7 +28,7 @@
         <h1 class="titulo">Inicia sesión para gestionar tu alojamiento</h1>
 
 
-        <form class="formulario" th:action="@{index.html}" method="post" th:object="${Administrador}">
+        <form class="formulario" >
             <label class="parform" for="correo1">Email</label>
             <input class="parform" type="text" id="correo1" name="correo" />
             <label class="parform" for="contrasena1">Contraseña</label>
@@ -42,8 +41,8 @@
     <div class="parte2">
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
 
-        <form class="formulario" action="/RegistroAdministrador" th:action="@{/admin/create}"  method="post" th:object="${administrador}">
-            <label class="parform" for="nombre" th:text="#{RegistroAministrador.admin.nombe}">Nombre</label>
+        <form class="formulario" action="/RegistroAdministrador" >
+            <label class="parform" for="nombre" >Nombre</label>
             <input class="parform" type="text" id="nombre" name="correo" />
             <label class="parform" for="apellido">Apellidos</label>
             <input class="parform" type="text" id="apellido" name="correo" />
@@ -62,7 +61,7 @@
         </form>
 
         <div id="confirmacion">
-            <p>Te hemos enviado un e-mail a</p><p th:text="  ${}"/><p>con un enlace de verificación.</p>
+            <p>Te hemos enviado un e-mail a</p><p>con un enlace de verificación.</p>
             <p> Para verificar la cuenta, haz clic en el enlace del e-mail que te acabamos de enviar.</p>
         </div>
     </div>
