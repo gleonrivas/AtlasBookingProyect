@@ -28,7 +28,7 @@ public class Review {
     @JoinColumn(name = "id_cliente")
     private Cliente cliente= new Cliente();
     @ManyToOne
-    @JoinColumn(name = "id_hotel")
+    @JoinColumn(name = "hotel")
     private Hotel hotel= new Hotel();
 
 }

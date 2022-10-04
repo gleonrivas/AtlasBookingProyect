@@ -8,3 +8,7 @@
 /.idea/codeStyles/Project.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
+/target/classes/templates/atlasWEB/ofertas_servicios_admin.html
+/target/classes/templates/atlasWEB/registro_admin.html
+/.idea/
+/target/
