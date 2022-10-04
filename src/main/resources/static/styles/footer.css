@@ -53,6 +53,14 @@ footer{
     padding: 2%;
     color: black;
 }
+#registra{
+    width: 220px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: azure;
+    padding: 2%;
+    color: black;
+}
 
 .footer-links{
     width: 20%;

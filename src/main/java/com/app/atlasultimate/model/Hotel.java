@@ -4,30 +4,31 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
-@Entity
+@Entity (name="hotel")
 @Table(name = "hotel")
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Hotel extends Usuario{
+public class Hotel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
     @Column(name = "pais")
     private String pais;
     @Column(name = "ciudad")
     private String ciudad;
     @Column(name = "num_habitaciones")
     private Integer numHabitaciones;
-    @Column(name = "fechaDisponibilidad")
+    @Column(name = "disponibilidad")
     private LocalDate FechaDisponible;
     @Column(name = "ubicacion")
     private String ubicacion;
-    @Column(name = "pagina_web")
+    @Column(name = "web")
     private String pagWeb;
     @Column(name = "terraza")
     private Boolean terraza;
@@ -61,6 +62,17 @@ public class Hotel extends Usuario{
     private String listaIdiomas;
     @Column(name = "mascotas")
     private Boolean mascotas;
+
+    @ManyToOne()
+    @JoinColumn(name="id_administrador")
+    private Administrador administrador;
+
+    @OneToMany(mappedBy = "hotel")
+    private Set<Review> reservas;
+
+
+    @OneToMany(mappedBy = "hotel")
+    private Set<Habitacion> habitaciones;
 
 
 }

@@ -3,15 +3,16 @@ package com.app.atlasultimate.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "usuario")
+import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
+
+
 @Getter
 @Setter
 @EqualsAndHashCode
+@MappedSuperclass
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +25,15 @@ public class Usuario {
     @Column(name = "apellidos")
     private String apellidos;
 
-    @Column(name = "dni_Cif")
-    private String DNICIF;
+    @Column(name = "dni")
+    private String dni;
 
-    @Column(name = "contraseña")
+    @Column(name = "contrasena")
     private String contrasena;
+
+    @Column(name = "num_telefono")
+    private String NumTelefono;
 
     @Column(name = "email")
     private String Email;
-
 }
