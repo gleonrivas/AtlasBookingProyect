@@ -5,8 +5,11 @@
 body {
     z-index: 0;
     margin: 0;
-    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-image: url("/static/img/rio-wallpaper.jpg");
+    background-size: cover;
+    transition: background 1s linear;
+    animation: fade 4s infinite;
 }
