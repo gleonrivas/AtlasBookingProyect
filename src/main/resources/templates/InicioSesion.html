@@ -24,8 +24,6 @@
             <div class="row-content">
                 <form th:action="@{/registro}" method="post" th:object="${cliente}" class="colunm-registro">
                     <h2 class="titulo">Regístrate para gestionar tu alojamiento</h2>
-                    <label class="label" for="ID">ID</label>
-                    <input class="imput" type="number" id="ID" th:field="*{id}" required autofocus="autofocus"/>
                     <label class="label" for="nombre">Nombre</label>
                     <input class="imput" type="text" id="nombre" th:field="*{nombre}" required autofocus="autofocus"/>
                     <label class="label" for="apellido">Apellidos</label>
