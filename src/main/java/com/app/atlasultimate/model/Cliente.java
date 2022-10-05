@@ -3,6 +3,7 @@ package com.app.atlasultimate.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConstructorBinding;
 
 import javax.persistence.*;
 
@@ -26,13 +27,26 @@ public class Cliente {
     @Column(name = "dni")
     private String dni;
 
-    @Column(name = "contraseña")
+    @Column(name = "contrasena")
     private String contrasena;
 
+    @Column(name = "telefono")
+    private String telefono;
+
     @Column(name = "email")
-    private String Email;
+    private String email;
 
-    @Column(name = "es_hotel")
-    private boolean es_hotel;
+    public Cliente(Integer id, String nombre, String apellidos, String dni, String contrasena, String telefono, String email) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.contrasena = contrasena;
+        this.telefono = telefono;
+        this.email = email;
+    }
 
+    public Cliente() {
+
+    }
 }

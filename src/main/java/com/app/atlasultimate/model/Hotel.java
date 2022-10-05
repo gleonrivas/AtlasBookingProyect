@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Hotel extends Cliente {
+public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

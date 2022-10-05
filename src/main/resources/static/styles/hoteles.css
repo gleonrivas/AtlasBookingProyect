@@ -111,20 +111,17 @@
 
 
 }
-
-.icono{
-    width: 75px;
-    height: 75px;
-    margin-right: 10%;
-
-
-}
-
 .icono-div{
     display: flex;
     justify-content: center;
     flex-direction: row;
 
+}
+
+.icono{
+    width: 75px;
+    height: 75px;
+    margin-right: 10%;
 
 }
 

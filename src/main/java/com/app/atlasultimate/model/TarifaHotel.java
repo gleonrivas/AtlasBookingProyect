@@ -38,7 +38,7 @@ public class TarifaHotel {
     private boolean servicio_limpieza;
     @Column(name = "servicio_habitaciones")
     private boolean servicio_habitaciones;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "hotel")
     private Hotel hotel= new Hotel();
 
