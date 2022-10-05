@@ -14,4 +14,9 @@ function sleep(milliseconds) {
 }
 
 
+while (1>0){
+    sleep(1000);
+    document.body.style.backgroundImage = imagenes.next().values();
+}
+
 //document.body.style.backgroundImage = "url('https://sebhastian.com/img/default.png')";
