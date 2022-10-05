@@ -12,4 +12,6 @@ function sleep(milliseconds) {
         }
     }
 }
-document.body.style.backgroundImage = "url('https://sebhastian.com/img/default.png')";
+
+
+//document.body.style.backgroundImage = "url('https://sebhastian.com/img/default.png')";
