@@ -1,0 +1,130 @@
+
+.contenedor-padre{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+}
+
+.contenedor-hijo{
+    display: flex;
+    margin: 5%;
+    height: 400px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.91);
+
+}
+
+.izquierda{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    width: 100%;
+    height: 400px;
+    border-bottom-left-radius: 20px ;
+    border-top-left-radius: 20px ;
+
+
+}
+
+.centro{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: white;
+    width: 100%;
+    height: 400px;
+}
+
+.derecha{
+    display: flex;
+    text-align: center;
+    background-color: white;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+    border-bottom-right-radius: 20px ;
+    border-top-right-radius: 20px ;
+    background-color: rgba(240, 255, 255, 1);
+}
+
+.imagen{
+    background-size: cover;
+    width: 100%;
+    border-bottom-left-radius: 20px ;
+    border-top-left-radius: 20px ;
+
+}
+
+.row-title{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(240, 255, 255, 1);
+    color: black;
+    justify-content: center;
+}
+
+.row-text{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    background-color: rgba(240, 255, 255, 1);
+    color: black;
+    justify-content: center;
+}
+
+.estrella{
+    height: 50px;
+    width: 50px;
+    margin-top: 10px;
+    margin-left: 1%;
+
+}
+
+.textos{
+    font-family: "Book Antiqua";
+    font-size: larger;
+
+}
+.title{
+    font-family: "Book Antiqua";
+    text-shadow: 1px 1px grey;
+
+
+}
+
+.boton{
+    border-radius: 20px;
+    height: 50px;
+    margin-top: 5%;
+    width: 50%;
+}
+
+.iconos-flex{
+    display: flex;
+    flex-direction: column;
+
+
+}
+.icono-div{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+}
+
+.icono{
+    width: 75px;
+    height: 75px;
+    margin-right: 10%;
+
+}
+
+
+
+
