@@ -34,7 +34,6 @@ public class RegistroClienteControlador {
     @PostMapping
     public String registrarCuentaCliente(@ModelAttribute("cliente") ClienteRegistroDTO registroDTO){
         clienteServicio.GuardarCliente(registroDTO);
-
         return "redirect:/registro?exito";
     }
 
