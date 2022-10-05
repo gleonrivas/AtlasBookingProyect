@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "cliente")
@@ -12,6 +13,8 @@ import javax.persistence.*;
 @Setter
 @EqualsAndHashCode
 public class Cliente extends Usuario {
+    @Column(name = "id")
+    private Integer id;
 
     @Column(name = "nombre")
     private String nombre;
@@ -43,8 +46,7 @@ public class Cliente extends Usuario {
     @OneToMany(mappedBy = "cliente")
     private Set<Reserva> reservas;
 
-    @OneToMany(mappedBy = "cliente")
-    private Set<Review> reviews;
+
     public Cliente() {
 
     }

@@ -20,10 +20,7 @@ public class Review {
     private Integer estrellas;
     @Column(name = "comentario")
     private String cometario;
-    @Column(name = "id_usuario")
-    private Integer id_usuario;
-    @Column(name = "id_hotel")
-    private Integer id_hotel;
+   
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente usuario= new Cliente();

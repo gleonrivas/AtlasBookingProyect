@@ -1,7 +1,8 @@
 footer{
-    padding: 1%;
+    top: 100%;
+    position: sticky;
+    padding: 1% 0;
     display: flex;
-    z-index: 3;
     box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.56);
 }
 .lasth{
@@ -20,19 +21,18 @@ footer{
 .middle-footer > p{
     color: rgba(240, 255, 255, 0.44);
     text-decoration: none;
-    font-size: 70%;
+    font-size: 11px;
 }
 .nets{
     display: flex;
     flex-direction: row;
-    padding: 2%;
     justify-content: space-evenly;
 }
 .nets > img{
     width: 15%;
 }
 
-.promote_hotel{
+.promote-hotel{
     width: 20%;
     display: flex;
     flex-direction: column;
@@ -40,17 +40,19 @@ footer{
     justify-content: center;
     align-items: center;
 }
-.promote_hotel > p{
-    font-family: Arial, sans-serif;
+.promote-hotel > p{
     color: azure;
 }
-.promote_hotel > button{
-    width: 220px;
+
+#registra{
+    align-content: center;
+    width: 190px;
     border-radius: 10px;
     border-style: none;
     background-color: azure;
-    padding: 2%;
+    padding: 5%;
     color: black;
+    font-size: 14px;
 }
 
 .footer-links{
@@ -59,8 +61,11 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 14px;
 }
 .footer-links > a{
     color: azure;
     text-decoration: none;
+    padding-top: 2%;
+
 }
