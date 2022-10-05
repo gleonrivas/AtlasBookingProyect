@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/styles/index.css">
+
+    <link rel="stylesheet" href="/styles/FacturasAdmin.css">
+    <link rel="stylesheet" href="/styles/finder.css">
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <title>Atlas Booking</title>
@@ -37,7 +37,34 @@
 
 </header>
 
+<h1>Facturas</h1>
 
+<label class="intro">
+    <div class="entry-group">
+        <p>Elige un Hotel</p>
+        <select type="text" value="Nombre del hotel" list="value" class="inputciudad">
+            <option value="HotelA">HotelA</option>
+            <option value="HotelB">HotelB</option>
+            <option value="-">Other</option>
+        </select>
+    </div>
+    <div class="entry-group">
+        <p>Número de reserva</p>
+        <input type="text" value="" class="inputfentrada">
+    </div>
+    <button class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
+
+</label>
+<div class="marcohotel">
+    <div class="nombreyestrellas">
+        <p>Nombre: </p>
+        <div>Estrellas:</div>
+    </div>
+    <div class="comentario">
+        <p>Loreipsum...........................................................</p>
+    </div>
+
+</div>
 
 <footer class="lasth">
 

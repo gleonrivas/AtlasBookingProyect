@@ -20,7 +20,7 @@ button{
 .marcohotel {
     width: 90%;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column;
     background-color: white;
     border: black 2px;
     padding: 1% 1% 1% 1%;
@@ -31,17 +31,23 @@ button{
     margin:auto;
     margin-bottom: 3%;
 }
-.botones{
-    width: 90%;
-    margin: auto;
-}
-#contenedor2{
+#nombreypuntuacion{
+    width: 100%;
     display: flex;
-    flex-flow:row;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+.contenedores{
+    flex-flow: column;
     width: 100%;
 }
+
 .listas{width: 50%}
 
 .fecha{
     font-size: 80%;
+}
+#nombre{
+    color: white;
+    margin: auto;
 }
