@@ -5,14 +5,14 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <link rel="stylesheet" href="/styles/index.css">
-  <link rel="stylesheet" href="/styles/finder.css">
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/footer.css">
   <title>Atlas Booking</title>
 </head>
 <body class="images-container">
+<script src="/scripts/backimage.js"></script>
+
 
 <header class="mainh">
 
@@ -32,33 +32,161 @@
 
 </header>
 
-<label class="intro">
-  <div class="entry-group">
+<label style="
+    display: flex;
+    width: 80%;
+    margin: 12% auto;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 1%;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    color: white;
+    border-radius: 5px;
+">
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+">
     <p>Elige una ciudad</p>
-    <input type="text" value="Próximo destino..." class="inputciudad">
+    <input type="text" value="Próximo destino..." style="
+    border-radius: 10px 0 0 10px;
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+">
   </div>
-  <div class="entry-group">
-    <p>Fecha de entrada</p>
-    <input type="date" value="" class="inputfentrada">
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+">
+    <p style="
+    width: available;
+    justify-content: center;
+    align-content: center;
+    filter: drop-shadow(0 0 10px #000000);
+">Fecha de entrada</p>
+    <input type="date" value="" style="
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+">
   </div>
-  <div class="entry-group">
-    <p>Fecha de salida</p>
-    <input type="date" value="" class="inputfsalida">
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+">
+    <p style="
+    width: available;
+    justify-content: center;
+    align-content: center;
+    filter: drop-shadow(0 0 10px #000000);
+">Fecha de salida</p>
+    <input type="date" value="" style="
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+">
   </div>
-  <div class="entry-group">
-    <p>¿Cuántos adultos?</p>
-    <input type="number" value="0" class="inputnadultos">
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+">
+    <p style="
+    width: available;
+    justify-content: center;
+    align-content: center;
+    filter: drop-shadow(0 0 10px #000000);
+">¿Cuántos adultos?</p>
+    <input type="number" value="0" style="
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+">
   </div>
-  <div class="entry-group">
-    <p>¿Hay niños?</p>
-    <input type="number" value="0" class="inputniños">
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+">
+    <p style="
+    width: available;
+    justify-content: center;
+    align-content: center;
+    filter: drop-shadow(0 0 10px #000000);
+">¿Hay niños?</p>
+    <input type="number" value="0" style="
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+">
   </div>
-  <div class="entry-group">
-    <p>¿Cuántas habitaciones?</p>
-    <input type="number" value="0" class="inputnhabitaciones">
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+">
+    <p style="
+    width: available;
+    justify-content: center;
+    align-content: center;
+    filter: drop-shadow(0 0 10px #000000);
+">¿Cuántas habitaciones?</p>
+    <input type="number" value="0" style="
+    border-radius: 0 10px 10px 0;
+    border-left-style: none;
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+">
   </div>
 
-  <button class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
+  <button style="
+    width: 56px;
+    height: 56px;
+    margin: auto 0 0 2%;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    background-position: center;
+"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 
 </label>
 
@@ -93,6 +221,6 @@
   </div>
   
 </footer>
-<script src="/scripts/backimage.js"></script>
+
 </body>
 </html>
