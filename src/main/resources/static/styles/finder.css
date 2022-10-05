@@ -34,15 +34,13 @@ input{
 }
 
 .inputciudad{
-    border-radius: 5px 0 0 5px;
+    border-radius: 10px 0 0 10px;
     border-left-style: solid;
     border-right-style: none;
     border-top-style: solid;
     border-bottom-style: solid;
     width: 150px;
     height: 50px;
-    padding-left: 10%;
-    padding-right: 10%;
 }
 
 .inputfentrada{
@@ -90,7 +88,7 @@ input{
 }
 
 .inputnhabitaciones{ /*  */
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 10px 10px 0;
     border-left-style: none;
     border-right-style: solid;
     border-top-style: solid;
@@ -107,7 +105,7 @@ input{
     margin: auto 0 0 2%;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     background-color: #ffffff;
     background-position: center;
