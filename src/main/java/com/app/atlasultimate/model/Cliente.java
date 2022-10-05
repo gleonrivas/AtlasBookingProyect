@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "cliente")
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -27,11 +27,11 @@ public class Cliente {
     @Column(name = "dni")
     private String dni;
 
-    @Column(name = "contrasena")
-    private String contrasena;
-
     @Column(name = "telefono")
     private String telefono;
+
+    @Column(name = "contrasena")
+    private String contrasena;
 
     @Column(name = "email")
     private String email;

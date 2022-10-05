@@ -15,7 +15,7 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Cliente GuardarCliente(ClienteRegistroDTO registroDTO) {
-        Cliente cliente = new Cliente(registroDTO.getId(), registroDTO.getNombre(), registroDTO.getApellidos(), registroDTO.getDni(),registroDTO.getContrasena(),registroDTO.getTelefono(),registroDTO.getEmail());
+        Cliente cliente = new Cliente(registroDTO.getId(), registroDTO.getNombre(), registroDTO.getApellidos(), registroDTO.getDni(),registroDTO.getTelefono(),registroDTO.getContrasena(),registroDTO.getEmail());
         return clienteRepository.save(cliente);
     }
 }
