@@ -31,9 +31,13 @@ public class Usuario {
     @Column(name = "contrasena")
     private String contrasena;
 
-    @Column(name = "num_telefono")
+    @Column(name = "telefono")
     private String NumTelefono;
 
     @Column(name = "email")
     private String Email;
+
+
+
+
 }

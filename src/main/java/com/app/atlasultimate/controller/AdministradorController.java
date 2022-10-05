@@ -39,10 +39,11 @@ public class AdministradorController {
         return "/registro_admin.html";
     }
 
-    @RequestMapping(value="/crear", method= RequestMethod.POST)
-    public ModelAndView form(Administrador administrador){
+    @RequestMapping(value="crear", method= RequestMethod.POST)
+    public ModelAndView form(Administrador administrador, BindingResult result){
         ModelAndView model = new ModelAndView();
         model.addObject("administrador", administrador);
+        model.setViewName(result.hasErrors() ? "userForm" : "userReady");
         return model;
 
     }
