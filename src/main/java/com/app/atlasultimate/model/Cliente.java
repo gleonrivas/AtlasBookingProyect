@@ -12,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode
+
 public class Cliente extends Usuario {
     @Column(name = "id")
     private Integer id;
