@@ -62,6 +62,10 @@ hr{
 #confirmacion{
     display: none;
 }
+.exito{
+    border-radius: 5%;
+    background-color: rgba(81, 131, 70, 0.82);
+}
 .titulo{
     font-size: 150%;
     text-align: center;

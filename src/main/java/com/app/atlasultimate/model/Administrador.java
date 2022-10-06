@@ -1,17 +1,17 @@
 package com.app.atlasultimate.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "administrador")
+@Table(name = "administrador", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @Getter
 @Setter
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Administrador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +37,13 @@ public class Administrador {
     private String Email;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "administrador")
     public Set<Hotel> Hoteles;
+
+    public Administrador(String nombre, String apellidos, String dni, String contrasena, String numTelefono, String email) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.contrasena = contrasena;
+        NumTelefono = numTelefono;
+        Email = email;
+    }
 }
