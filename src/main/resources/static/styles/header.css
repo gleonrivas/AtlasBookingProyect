@@ -1,4 +1,4 @@
-.mainh{ /* Este es la etiqueta principal 'header' con clase nombrada como 'mainh'*/
+.mainh{
     width: 100%;
     margin: 0;
     padding: 1% 0 0.5% 0;
@@ -10,8 +10,7 @@
     background-color: #000000;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
 }
-
-.cheader{ /* Este es la etiqueta del LOGO clase nombrada como 'mainh'*/
+.cheader{
     margin: 0 3% 0 3%;
     padding: 0;
     display: grid;
@@ -21,13 +20,11 @@
     color: azure;
     letter-spacing: 10px;
 }
-
 .cheader > h1{
     text-align: center;
     padding: 0;
     margin: 0;
 }
-
 .cheader > p{
     margin-top: 5px;
     text-align: center;
@@ -35,21 +32,18 @@
     font-size: 12px;
     padding: 0;
 }
-
 .lheader{
     display: flex;
     width: 65%;
     padding: 0;
     color: azure;
 }
-
 .lheader > a{
     color: azure;
     text-decoration: none;
     margin: auto;
     font-size: 14px;
 }
-
 .login-singup{
     width: 20%;
     display: grid;
@@ -58,7 +52,6 @@
     justify-content: center;
     margin: auto;
 }
-
 .link-buttom{
     width: 120px;
     border-radius: 10px;
