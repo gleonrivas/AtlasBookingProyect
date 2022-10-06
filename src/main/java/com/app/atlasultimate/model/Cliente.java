@@ -3,17 +3,18 @@ package com.app.atlasultimate.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConstructorBinding;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "cliente")
 @Getter
 @Setter
 @EqualsAndHashCode
-
-public class Cliente  {
+public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -26,7 +27,7 @@ public class Cliente  {
     @Column(name = "dni")
     private String dni;
 
-    @Column(name = "contraseña")
+    @Column(name = "contrasena")
     private String contrasena;
 
     @Column(name = "telefono")
@@ -35,7 +36,7 @@ public class Cliente  {
     @Column(name = "email")
     private String email;
 
-    public Cliente(Integer id, String nombre, String apellidos, String dni, String contrasena, String telefono, String email) {
+    public Cliente(String nombre, String apellidos, String dni, String contrasena, String telefono, String email) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;

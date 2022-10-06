@@ -11,12 +11,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ClienteRegistroDTO {
 
-    private Integer id;
     private String nombre;
     private String apellidos;
     private String dni;
-    private String contrasena;
     private String telefono;
+    private String contrasena;
     private String email;
 
 
