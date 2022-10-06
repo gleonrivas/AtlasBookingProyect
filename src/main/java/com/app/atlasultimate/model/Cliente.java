@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConstructorBinding;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "cliente")
@@ -46,9 +47,10 @@ public class Cliente {
         this.email = email;
     }
     @OneToMany(mappedBy = "cliente")
+
     private Set<Reserva> reservas;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany()
     private Set<Review> reviews;
 
 
