@@ -13,7 +13,7 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode
 
-public class Cliente extends Usuario {
+public class Cliente  {
     @Column(name = "id")
     private Integer id;
 
@@ -46,6 +46,9 @@ public class Cliente extends Usuario {
     }
     @OneToMany(mappedBy = "cliente")
     private Set<Reserva> reservas;
+
+    @OneToMany(mappedBy = "cliente")
+    private Set<Review> reviews;
 
 
     public Cliente() {

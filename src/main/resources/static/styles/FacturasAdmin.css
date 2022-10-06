@@ -1,0 +1,14 @@
+.marcohotel {
+    width: 90%;
+    display: flex;
+    flex-flow: row ;
+    background-color: white;
+    border: black 2px;
+    padding: 1% 1% 1% 1%;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 56%);
+    justify-content: space-around;
+    align-items: flex-start;
+    margin:auto;
+    margin-bottom: 3%;
+}

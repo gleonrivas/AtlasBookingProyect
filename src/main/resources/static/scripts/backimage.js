@@ -1,7 +1,7 @@
 const imagenes = [
-    "/templates/atlasWEB/img/nyk-wallpaper.jpeg",
-    "/templates/atlasWEB/img/venecia.jpg",
-    "/templates/atlasWEB/img/paris.jpg"
+    "red",
+    "blue",
+    "green"
     ];
 
 function sleep(milliseconds) {
@@ -15,8 +15,7 @@ function sleep(milliseconds) {
 
 
 while (1>0){
-    sleep(1000);
-    document.body.style.backgroundImage = imagenes.next().values();
+    sleep(1000)
+    document.body.style.backgroundColor = imagenes.next().values();
 }
 
-//document.body.style.backgroundImage = "url('https://sebhastian.com/img/default.png')";
