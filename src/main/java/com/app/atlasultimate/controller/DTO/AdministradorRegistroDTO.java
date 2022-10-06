@@ -1,5 +1,6 @@
 package com.app.atlasultimate.controller.DTO;
 
+import com.app.atlasultimate.model.Administrador;
 import com.app.atlasultimate.model.Hotel;
 
 import javax.persistence.Column;
@@ -11,28 +12,30 @@ public class AdministradorRegistroDTO {
 
     private String nombre;
     private String apellidos;
+    private String dni;
+    private String numTelefono;
+    private String email;
     private String contrasena;
-    private String NumTelefono;
-    private String Email;
+
 
 
 
     public AdministradorRegistroDTO(String email) {
-        Email = email;
+        email = email;
     }
 
     public AdministradorRegistroDTO() {
     }
 
-    public AdministradorRegistroDTO( String nombre, String apellidos, String contrasena, String numTelefono, String email) {
+    public AdministradorRegistroDTO( String nombre, String apellidos, String dni, String contrasena, String numTelefono, String email) {
 
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.dni=dni;
         this.contrasena = contrasena;
-        NumTelefono = numTelefono;
-        Email = email;
+        this.numTelefono = numTelefono;
+        this.email = email;
     }
-
 
     public String getNombre() {
         return nombre;
@@ -50,6 +53,13 @@ public class AdministradorRegistroDTO {
         this.apellidos = apellidos;
     }
 
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
 
     public String getContrasena() {
         return contrasena;
@@ -60,19 +70,31 @@ public class AdministradorRegistroDTO {
     }
 
     public String getNumTelefono() {
-        return NumTelefono;
+        return numTelefono;
     }
 
     public void setNumTelefono(String numTelefono) {
-        NumTelefono = numTelefono;
+        this.numTelefono = numTelefono;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
+    }
+
+    public Administrador convertir(AdministradorRegistroDTO administradorRegistroDTO){
+        Administrador administrador = new Administrador();
+        administrador.setNombre(administradorRegistroDTO.getNombre());
+        administrador.setApellidos(administradorRegistroDTO.getApellidos());
+        administrador.setDni(administradorRegistroDTO.getDni());
+        administrador.setNumTelefono(administradorRegistroDTO.getNumTelefono());
+        administrador.setEmail(administradorRegistroDTO.getEmail());
+        administrador.setContrasena(administradorRegistroDTO.getContrasena());
+
+        return administrador;
     }
 
 

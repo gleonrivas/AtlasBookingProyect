@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "administrador", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "administrador")
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -27,23 +27,27 @@ public class Administrador {
     @Column(name = "dni")
     private String dni;
 
+    @Column(name = "num_telefono")
+    private String numTelefono;
+
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "contrasena")
     private String contrasena;
 
-    @Column(name = "telefono")
-    private String NumTelefono;
 
-    @Column(name = "email")
-    private String Email;
+
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "administrador")
-    public Set<Hotel> Hoteles;
+    public Set<Hotel> hoteles;
 
-    public Administrador(String nombre, String apellidos, String dni, String contrasena, String numTelefono, String email) {
+    public Administrador(String nombre, String apellidos, String dni, String numTelefono, String email, String contrasena) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
+        this.numTelefono = numTelefono;
+        this.email = email;
         this.contrasena = contrasena;
-        NumTelefono = numTelefono;
-        Email = email;
     }
 }

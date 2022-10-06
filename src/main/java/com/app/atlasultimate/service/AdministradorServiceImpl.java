@@ -14,8 +14,8 @@ public class AdministradorServiceImpl implements AdministradorService{
 
     @Override
     public Administrador save(AdministradorRegistroDTO resitroDTO) {
-        Administrador admin= new Administrador(resitroDTO.getNombre(),resitroDTO.getApellidos(),resitroDTO.getNumTelefono(),
-                resitroDTO.getEmail(),resitroDTO.getContrasena());
+        Administrador admin= new Administrador(resitroDTO.getNombre(), resitroDTO.getApellidos(), resitroDTO.getDni(),
+                resitroDTO.getNumTelefono(), resitroDTO.getEmail(),resitroDTO.getContrasena());
         return usuarioRepositorio.save(admin);
     }
 }
