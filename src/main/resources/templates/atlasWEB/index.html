@@ -2,17 +2,267 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/styles/index.css">
-  <link rel="stylesheet" href="/styles/header.css">
-  <link rel="stylesheet" href="/styles/footer.css">
   <title>Atlas Booking</title>
 </head>
 <body class="images-container">
-<script src="/scripts/backimage.js"></script>
 
+
+
+
+<style>
+  /*FUENTES EXTERNAS*/
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+
+  /* COMIENZA HEADER ------------------------------------------*/
+  .mainh{
+    width: 100%;
+    margin: 0;
+    padding: 1% 0 0.5% 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #000000;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+  }
+  .cheader{
+    margin: 0 3% 0 3%;
+    padding: 0;
+    display: grid;
+    grid-column: 1;
+    font-family: 'Playfair Display', serif;
+    width: auto;
+    color: azure;
+    letter-spacing: 10px;
+  }
+  .cheader > h1{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  .cheader > p{
+    margin-top: 5px;
+    text-align: center;
+    letter-spacing: 10px;
+    font-size: 12px;
+    padding: 0;
+  }
+  .lheader{
+    display: flex;
+    width: 65%;
+    padding: 0;
+    color: azure;
+  }
+  .lheader > a{
+    color: azure;
+    text-decoration: none;
+    margin: auto;
+    font-size: 14px;
+  }
+  .link-buttom{
+    width: 120px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: azure;
+    padding: 2%;
+    color: black;
+    font-size: 14px;
+    margin: auto;
+
+  }
+  .login-singup > a{
+    color: azure;
+    text-decoration: none;
+    margin: 5% auto;
+  }
+  /* FINALIZA HEADER ------------------------------------------*/
+  /* COMIENZA BODY --------------------------------------------*/
+  body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: background 1s linear;
+    animation: fade 4s infinite;
+    font-family: Arial, sans-serif;
+  }
+  /* FINALIZA BODY --------------------------------------------*/
+  /* COMIENZA FINDER ------------------------------------------*/
+  .intro{
+    display: flex;
+    width: 80%;
+    margin: 12% auto;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 1%;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    color: white;
+    border-radius: 10px;
+  }
+  .entry-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .entry-group > p{
+    width: available;
+    justify-content: center;
+    align-content: center;
+    filter: drop-shadow(0 0 10px #000000);
+  }
+  input{
+    border-color: rgba(0, 0, 0, 0.8);
+    font-size: 13px;
+  }
+  .inputciudad{
+    border-radius: 10px 0 0 10px;
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+  }
+  .inputfentrada{
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+
+  }
+  .inputfsalida{
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+
+  }
+  .inputnadultos{
+    border-left-style: solid;
+    border-right-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+
+  }
+  .inputniños{
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+  }
+  .inputnhabitaciones{
+    border-radius: 0 10px 10px 0;
+    border-left-style: none;
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+  }
+  .buscar{
+    width: 56px;
+    height: 56px;
+    margin: auto 0 0 2%;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    background-position: center;
+  }
+  /* FINALIZA FINDER ------------------------------------------*/
+  /* COMINEZA FOOTER ------------------------------------------*/
+  .lasth{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: black;
+    padding-top: 1%;
+  }
+  .middle-footer{
+    display: grid;
+    grid-column: 1;
+    grid-gap: 10px;
+  }
+  .middle-footer > p{
+    color: rgba(240, 255, 255, 0.44);
+    text-decoration: none;
+    font-size: 11px;
+  }
+  .nets{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .nets > img{
+    width: 15%;
+  }
+  .promote-hotel{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .promote-hotel > p{
+    color: azure;
+  }
+  .registra{
+    align-content: center;
+    width: 190px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: azure;
+    padding: 5%;
+    color: black;
+    font-size: 14px;
+  }
+  .footer-links{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
+  .footer-links > a{
+    color: azure;
+    text-decoration: none;
+    padding-top: 2%;
+
+  }
+  /* FINALIZA FOOTER ------------------------------------------*/
+
+
+</style>
 
 <header class="mainh">
 
@@ -32,161 +282,33 @@
 
 </header>
 
-<label style="
-    display: flex;
-    width: 80%;
-    margin: 12% auto;
-    justify-content: center;
-    align-items: center;
-    padding: 2% 1%;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    color: white;
-    border-radius: 5px;
-">
-  <div style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-">
+<label class="intro">
+  <div class="entry-group">
     <p>Elige una ciudad</p>
-    <input type="text" value="Próximo destino..." style="
-    border-radius: 10px 0 0 10px;
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-">
+    <input type="text" value="Próximo destino..." class="inputciudad">
   </div>
-  <div style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-">
-    <p style="
-    width: available;
-    justify-content: center;
-    align-content: center;
-    filter: drop-shadow(0 0 10px #000000);
-">Fecha de entrada</p>
-    <input type="date" value="" style="
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
-">
+  <div class="entry-group">
+    <p>Fecha de entrada</p>
+    <input type="date" value="" class="inputfentrada">
   </div>
-  <div style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-">
-    <p style="
-    width: available;
-    justify-content: center;
-    align-content: center;
-    filter: drop-shadow(0 0 10px #000000);
-">Fecha de salida</p>
-    <input type="date" value="" style="
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
-">
+  <div class="entry-group">
+    <p>Fecha de salida</p>
+    <input type="date" value="" class="inputfsalida">
   </div>
-  <div style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-">
-    <p style="
-    width: available;
-    justify-content: center;
-    align-content: center;
-    filter: drop-shadow(0 0 10px #000000);
-">¿Cuántos adultos?</p>
-    <input type="number" value="0" style="
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
-">
+  <div class="entry-group">
+    <p>¿Cuántos adultos?</p>
+    <input type="number" value="0" class="inputnadultos">
   </div>
-  <div style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-">
-    <p style="
-    width: available;
-    justify-content: center;
-    align-content: center;
-    filter: drop-shadow(0 0 10px #000000);
-">¿Hay niños?</p>
-    <input type="number" value="0" style="
-    border-left-style: solid;
-    border-right-style: solid;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
-">
+  <div class="entry-group">
+    <p>¿Hay niños?</p>
+    <input type="number" value="0" class="inputniños">
   </div>
-  <div style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-">
-    <p style="
-    width: available;
-    justify-content: center;
-    align-content: center;
-    filter: drop-shadow(0 0 10px #000000);
-">¿Cuántas habitaciones?</p>
-    <input type="number" value="0" style="
-    border-radius: 0 10px 10px 0;
-    border-left-style: none;
-    border-right-style: solid;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
-">
+  <div class="entry-group">
+    <p>¿Cuántas habitaciones?</p>
+    <input type="number" value="0" class="inputnhabitaciones">
   </div>
 
-  <button style="
-    width: 56px;
-    height: 56px;
-    margin: auto 0 0 2%;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #ffffff;
-    background-position: center;
-"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
+  <button class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 
 </label>
 
@@ -195,7 +317,7 @@
   <div class="promote-hotel">
     <p>Forma parte de nosotros</p>
     <form method="get" action="registro_admin.html">
-    <button id="registra" >Registra tus alojamientos</button>
+    <button class="registra" >Registra tus alojamientos</button>
     </form>
   </div>
 
@@ -221,6 +343,9 @@
   </div>
   
 </footer>
-
+<script>
+  document.body.style.backgroundImage = "url('/img/venecia.jpg')";
+</script>
 </body>
+
 </html>
