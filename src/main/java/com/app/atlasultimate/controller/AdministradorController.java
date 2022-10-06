@@ -48,7 +48,7 @@ public class AdministradorController {
     public String regis(){
         return "/registro_admin.html";
     }
-    @PostMapping
+    @PostMapping("Registro")
     public String registrarCuentaAdmin(@ModelAttribute("administrador") AdministradorRegistroDTO adminDTO){
         adminService.save(adminDTO);
         return "redirect:/Registro?exito";
