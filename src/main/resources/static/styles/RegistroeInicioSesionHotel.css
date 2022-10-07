@@ -60,12 +60,19 @@ hr{
     align-items: center;
 }
 #confirmacion{
-    display: none;
-}
-.exito{
     border-radius: 5%;
-    background-color: rgba(81, 131, 70, 0.82);
+    background-color: rgba(81, 131, 70);
+    padding: 2%;
+    width: 30%;
+    position: absolute;
+    top: 60%;
+
 }
+.cerrar:hover > #confirmacion{
+    display: none;
+
+}
+
 .titulo{
     font-size: 150%;
     text-align: center;

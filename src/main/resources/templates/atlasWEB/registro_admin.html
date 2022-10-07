@@ -38,9 +38,6 @@
     </div>
 
     <div class="parte2">
-        <div class="exito"  th:if="${param.exito}">
-            Se ha registrado a la aplicación
-        </div>
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
 
         <form class="formulario" name="form" th:action="@{/Admin/Registro}" th:object="${administrador}" method="post">
@@ -58,13 +55,13 @@
                 <p id="instruccion">Usa al menos 10 caracteres, que contengan al menos una letra mayúscula y una minúscula</p>
                 <label for="contrasena" >Introduce tu contraseña</label>
             </div>
-            <input class="parform"type="text" id="contrasena" name="correo" th:field="*{contrasena}" />
+            <input class="parform"type="password" id="contrasena" name="correo" th:field="*{contrasena}" />
             <button class="submit" type ="submit"  text="Siguiente">Siguiente</button>
         </form>
 
-        <div id="confirmacion">
-            <p>Te hemos enviado un e-mail a</p><p>con un enlace de verificación.</p>
-            <p> Para verificar la cuenta, haz clic en el enlace del e-mail que te acabamos de enviar.</p>
+        <div id="confirmacion" th:if="${param.exito}">
+            <p th:text="'Te hemos enviado un e-mail a ... con un enlace de verificación. Para verificar la cuenta, haz clic en el enlace del e-mail que te acabamos de enviar.'">
+
         </div>
     </div>
 
