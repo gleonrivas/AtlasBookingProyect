@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -38,25 +38,28 @@
     </div>
 
     <div class="parte2">
+        <div class="exito"  th:if="${param.exito}">
+            Se ha registrado a la aplicación
+        </div>
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
 
-        <form class="formulario" th:action="@{/Admin/Registro}" th:object="${administrador}" method="post">
-            <label class="parform" for="nombre" th:text="#{Registro.administrador.nombre}" >Nombre</label>
+        <form class="formulario" name="form" th:action="@{/Admin/Registro}" th:object="${administrador}" method="post">
+            <label class="parform" for="nombre"  >Nombre</label>
             <input class="parform" type="text" id="nombre" name="correo" th:field="*{nombre}"/>
-            <label class="parform" for="apellido" th:text="#{Registro.administrador.apellidos}">Apellidos</label>
+            <label class="parform" for="apellido" >Apellidos</label>
             <input class="parform" type="text" id="apellido" name="correo" th:field="*{apellidos}" />
-            <label class="parform" type="tel" th:text="#{Registro.administrador.NumTelefono}">Número de teléfono</label>
-            <input class="parform" type="tel" id="tel" name="correo" th:field="*{num_telefono}"/>
-            <label class="parform" for="correo" th:text="#{Registro.administrador.Email}">Email</label>
-            <input class="parform" type="text" id="correo" name="correo" th:field="*{email}"/>
+            <label class="parform" for="dni" >DNI</label>
+            <input class="parform" type="text" id="dni" name="correo" th:field="*{dni}" />
+            <label class="parform" for="tel" type="tel" >Número de teléfono</label>
+            <input class="parform" type="tel" id="tel" name="correo" th:field="*{numTelefono}"/>
+            <label class="parform" for="correo" >Email</label>
+            <input class="parform" type="email" id="correo" name="correo" th:field="*{email}"/>
             <div class="parform">
                 <p id="instruccion">Usa al menos 10 caracteres, que contengan al menos una letra mayúscula y una minúscula</p>
-                <label for="contrasena" th:text="#{Registro.administrador.contrasena}">Introduce tu contraseña</label>
+                <label for="contrasena" >Introduce tu contraseña</label>
             </div>
             <input class="parform"type="text" id="contrasena" name="correo" th:field="*{contrasena}" />
-            <label class="parform"for="contrasena2" th:text="#{Registro.administrador.contrasena}">Confirma tu contraseña</label>
-            <input class="parform"type="text" id="contrasena2" name="correo" th:field="*{contrasena}"/>
-            <button class="submit" type ="submit"  text="Siguiente">siguiente</button>
+            <button class="submit" type ="submit"  text="Siguiente">Siguiente</button>
         </form>
 
         <div id="confirmacion">
