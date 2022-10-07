@@ -240,7 +240,7 @@
 
 
         </div>-->
-    
+
     <div class="registro-box">
 
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
@@ -270,21 +270,21 @@
             </div>
             <div class="componente-registro">
                 <label for="contrasena" >Contraseña</label>
-                <input class="parform"type="text" id="contrasena" name="correo" th:field="*{contrasena}" />
+                <input class="parform"type="password" id="contrasena" name="correo" th:field="*{contrasena}" />
             </div>
             <div class="password-error">
                 <p id="instruccion">Usa al menos 10 caracteres, que contengan al menos una letra mayúscula y una minúscula.</p>
             </div>
             <button class="submit" type ="submit"  text="Siguiente">Siguiente</button>
-            <div id="confirmacion">
-                <p>Te hemos enviado un e-mail con un enlace de verificación.</p>
-                <p> Para verificar la cuenta, haz clic en el enlace del e-mail que te acabamos de enviar.</p>
-            </div>
         </form>
-    
 
+        <div id="confirmacion" th:if="${param.exito}">
+            <p th:text="'Te hemos enviado un e-mail a ... con un enlace de verificación. Para verificar la cuenta, haz clic en el enlace del e-mail que te acabamos de enviar.'">
+
+        </div>
     </div>
 
+    </div>
 
 <footer class="lasth">
 
