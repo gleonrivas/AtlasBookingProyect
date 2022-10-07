@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas Booking</title>
+    <link rel="stylesheet" href="/styles/sesion.css">
+</head>
+<body>
+
+<div class="colunm-content">
+    <div class="barra">
+        <div class="colunm-content">
+            <h1>Atlas</h1>
+            <p style="margin: 0 auto">BOOKING</p>
+        </div>
+    </div>
+    <div class="contenedor">
+        <div class="row-content">
+            <form th:action="@{/login}" method="post" class="colunm-registro">
+                <h2 class="titulo">Inicia Sesión</h2>
+                <label class="label" for="correo">Email</label>
+                <input class="imput" type="text" name="email" id="correo" th:field="*{email}" required autofocus="autofocus"/>
+                <label for="contrasena">Introduce tu contraseña</label>
+                <input class="imput" type="password" name="contrasena" id="contrasena" th:field="*{contrasena}" required autofocus="autofocus"/>
+                <button class="boton" type ="submit" >siguiente</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
