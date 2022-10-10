@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Hotel</title>
+    <link rel="stylesheet" href="/styles/FacturasAdmin.css">
+    <link rel="stylesheet" href="/styles/finder.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+</head>
+<body>
+
+<header class="mainh">
+
+    <div class="cheader">
+        <h1>Atlas</h1>
+        <p>BOOKING</p>
+    </div>
+
+    <div class="lheader">
+        <a href="InicioAdministrador.html">Inicio</a>
+        <a href="ComentariosAdmin.html">Comentarios</a>
+        <a href="FacturasAdmin.html">Administración</a>
+        <a href="ofertas_servicios_admin.html">Ofertas y Servicios</a>
+        <a href="InformesAdmin.html">Informes</a>
+        <div class="login-singup">
+            <button href="index.html">Hola Paco</button>
+            <a href="index.html">Crear cuenta</a>
+        </div>
+    </div>
+
+
+
+</header>
+
+<h1>¡Hola ...ADMIN!</h1>
+<div>
+
+    <form class="formulario" name="form" th:action="@{}"  method="post"> <! ––th:object="${}" ––>
+
+        <h2>Habitación</h2>
+        <label class="parform" for="idioma" type="ciudad" >Tipo de habitación</label>
+        <select class="parform" type="text" id="idioma" name="Idiomas" /> <! ––th:field="*{}" ––>
+        <option>Individual</option>
+        <option>Doble</option>
+        <option>Suite</option>
+
+        <label class="parform" for="num">Número de habitación</label>
+        <input class="parform" type="number" id="num" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="num2">Número de habitaciones iguales</label>
+        <input class="parform" type="number" id="num2" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="th">Tamaño de habitación</label>
+        <input class="parform" type="number" id="th" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="precio">Precio base/noche</label>
+        <input class="parform" type="number" id="precio" name="correo" /> <! ––th:field="*{}" ––>
+
+        <label class="parform" for="acc" >Baño</label>
+        <input class="parform" type="checkbox" id="acc" name="correo" /> <! ––th:field="*{}" ––>
+
+        <label class="parform" for="esp" >Wifi</label>
+        <input class="parform" type="checkbox" id="esp" name="correo" /> <! ––th:field="*{}" ––>
+
+        <label class="parform" for="des" >Vistas</label>
+        <input class="parform" type="checkbox" id="des" name="correo" /> <! ––th:field="*{}" ––>
+
+
+
+        <button class="submit" type ="submit"  text="Siguiente">Siguiente</button>
+    </form>
+
+    <footer class="lasth">
+
+        <div class="promote-hotel">
+            <p>Forma parte de nosotros</p>
+            <button>Registra tus alojamientos</button>
+        </div>
+
+        <div class="middle-footer">
+            <div class="cheader">
+                <h1>Atlas</h1>
+                <p>BOOKING</p>
+            </div>
+            <div class="nets">
+                <img src="img/face.svg" alt="">
+                <img src="img/insta.svg" alt="">
+                <img src="img/twitter.svg" alt="">
+            </div>
+            <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Sobre nosotros.</a>
+            <a href="index.html">Comunidad.</a>
+            <a href="index.html">Uso de cookies.</a>
+            <a href="index.html">Politica de privacidad.</a>
+            <a href="index.html">Condiciones de uso.</a>
+        </div>
+
+    </footer>
+</div>
+</body>
+</html>

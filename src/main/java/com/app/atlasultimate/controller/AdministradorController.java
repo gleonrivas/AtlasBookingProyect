@@ -1,13 +1,14 @@
 package com.app.atlasultimate.controller;
 
+import com.app.atlasultimate.controller.DTO.AdministradorRegistroDTO;
 import com.app.atlasultimate.model.Administrador;
+import com.app.atlasultimate.service.AdministradorService;
+import com.app.atlasultimate.service.AdministradorServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,18 +34,24 @@ public class AdministradorController {
         return "/FacturasAdmin.html";
     }
 
+
+    @Autowired
+    private AdministradorServiceImpl adminService;
+
+
+    @ModelAttribute("administrador")
+    public AdministradorRegistroDTO retornarNuevoAdmin (){
+            return new AdministradorRegistroDTO();
+    }
+
     @GetMapping("Registro")
-    public String regis(Model model){
-        model.addAttribute("administrador", new Administrador());
+    public String regis(){
         return "/registro_admin.html";
     }
-
-    @RequestMapping(value="crear", method= RequestMethod.POST)
-    public ModelAndView form(Administrador administrador, BindingResult result){
-        ModelAndView model = new ModelAndView();
-        model.addObject("administrador", administrador);
-        model.setViewName(result.hasErrors() ? "userForm" : "userReady");
-        return model;
-
+    @PostMapping("Registro")
+    public String registrarCuentaAdmin(@ModelAttribute("administrador") AdministradorRegistroDTO adminDTO){
+        adminService.save(adminDTO);
+        return "redirect:/Admin/Registro?exito";
     }
+
     }
