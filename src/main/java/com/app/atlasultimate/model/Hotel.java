@@ -19,18 +19,22 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "nombre")
+    private Integer nombre;
     @Column(name = "pais")
     private String pais;
     @Column(name = "ciudad")
     private String ciudad;
     @Column(name = "num_habitaciones")
     private Integer numHabitaciones;
-    @Column(name = "disponibilidad")
-    private LocalDate FechaDisponible;
     @Column(name = "ubicacion")
     private String ubicacion;
-    @Column(name = "web")
-    private String pagWeb;
+    @Column(name = "estrellas")
+    private Integer estrellas;
+    @Column(name = "accesibilidad")
+    private Boolean accesibilidad;
+    @Column(name = "idiomas")
+    private String listaIdiomas;
     @Column(name = "terraza")
     private Boolean terraza;
     @Column(name = "piscina")
@@ -49,20 +53,23 @@ public class Hotel {
     private Boolean servicioTransporte;
     @Column(name = "recepcion")
     private Boolean recepcion;
-    @Column(name = "estrellas")
-    private Integer estrellas;
-    @Column(name = "valoracion_media")
-    private Double valoracionMedia;
     @Column(name = "servicio_limpieza")
     private Boolean servicioLimpieza;
     @Column(name = "servicio_habitaciones")
     private Boolean servicioHabitaciones;
-    @Column(name = "accesibilidad")
-    private Boolean accesibilidad;
-    @Column(name = "idiomas")
-    private String listaIdiomas;
     @Column(name = "mascotas")
     private Boolean mascotas;
+    @Column(name = "valoracion_media")
+    private Double valoracionMedia;
+    @Column(name = "disponibilidad")
+    private Double disponibilidad;
+    @Column(name = "pagina_web")
+    private String web;
+    @Column(name = "num_telefono")
+    private String telefono;
+    @Column(name = "codigo_postal")
+    private Integer codigo_postal;
+
 
     @ManyToOne()
     @JoinColumn(name="id_administrador")
