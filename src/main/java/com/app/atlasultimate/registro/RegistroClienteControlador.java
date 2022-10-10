@@ -28,7 +28,7 @@ public class RegistroClienteControlador {
 
     @GetMapping
     public String mostrarFormularioRegistro(){
-        return "InicioSesion";
+        return "/InicioSesion.html";
     }
 
     @PostMapping
