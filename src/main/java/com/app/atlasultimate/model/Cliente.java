@@ -57,4 +57,10 @@ public class Cliente {
     public Cliente() {
 
     }
+
+    public Cliente(String email, String contrasena) {
+    }
+
+    public Cliente(Integer id, String nombre, String apellidos, String dni, String telefono, String contrasena, String email) {
+    }
 }
