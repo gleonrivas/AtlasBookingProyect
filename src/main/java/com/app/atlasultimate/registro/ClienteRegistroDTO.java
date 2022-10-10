@@ -14,8 +14,8 @@ public class ClienteRegistroDTO {
     private String nombre;
     private String apellidos;
     private String dni;
-    private String telefono;
     private String contrasena;
+    private String telefono;
     private String email;
 
 
