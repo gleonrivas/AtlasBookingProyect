@@ -1,0 +1,52 @@
+.center-container{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.column-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel {
+    width:80%;
+    margin-top: 10%;
+    margin-bottom: 1%;
+    margin-left: 10%;
+}
+
+.navegacion{
+    justify-content: center;
+    display: flex;
+    width: 80%;
+    height: 100px;
+    background-color: black;
+    margin-left: 10%;
+    border-radius: 20px;
+    margin-bottom: 1%;
+    font-family: Arial, serif;
+
+}
+
+.navegacion a{
+
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 25px;
+    color: white;
+    transition: color 0.8s linear 0.2s;
+}
+
+.navegacion a:hover{
+    margin-top: 2%;
+    font-size: 30px;
+    color: cornflowerblue;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+
+
+
