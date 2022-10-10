@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity (name="hotel")
@@ -74,5 +75,7 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel")
     private Set<Habitacion> habitaciones;
 
+    @ManyToMany(mappedBy = "hoteles")
+    private List<TipoPension> books;
 
 }

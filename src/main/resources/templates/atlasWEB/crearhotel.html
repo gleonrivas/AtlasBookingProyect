@@ -30,149 +30,147 @@
     </div>
 
 
-
 </header>
 
 <h1>¡Hola ...ADMIN!</h1>
 <div>
 
-    <form class="formulario" name="form" th:action="@{}"  method="post"> <! ––th:object="${}" ––>
+    <form class="formulario" name="form" method="post">
         <h2>Información de alojamiento</h2>
         <label class="parform" for="nombre">¿Cómo se llama tu hotel?</label>
-        <input class="parform" type="text" id="nombre" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="apellido" >¿Cuántas estrellas tiene tu hotel?</label>
-        <input class="parform" type="number" id="apellido" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="web" >Web de tu alojamiento</label>
-        <input class="parform" type="text" id="web" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="tel" type="tel" >Número de teléfono</label>
-        <input class="parform" type="tel" id="tel" name="correo" /> <! ––th:field="*{}" ––>
+        <input class="parform" type="text" id="nombre" name="correo"/>
+        <label class="parform" for="apellido">¿Cuántas estrellas tiene tu hotel?</label>
+        <input class="parform" type="number" id="apellido" name="correo"/>
+        <label class="parform" for="web">Web de tu alojamiento</label>
+        <input class="parform" type="text" id="web" name="correo"/>
+        <label class="parform" for="tel" type="tel">Número de teléfono</label>
+        <input class="parform" type="tel" id="tel" name="correo"/>
 
         <h2>Ubicación</h2>
         <label class="parform" for="direccion">Dirección</label>
-        <input class="parform" type="text" id="direccion" name="correo" /> <! ––th:field="*{}"*/ ––>
-        <label class="parform" for="pais" >País</label>
-        <select class="parform" type="text" id="pais" name="Países"  /> <! ––th:field="*{}" ––>
-        <option>España</option>
-        <option>Francia</option>
-        <option>Hungría</option>
-        <option>Italia</option>
-        <option>Alemania</option>
-        <select class="parform" for="tel" type="ciudad" >Ciudad</select>
-        <select class="parform" type="text" id="ciudad" name="Ciudades" /> <! ––th:field="*{}" ––>
-        <option>Córdoba</option>
-        <option>Sevilla</option>
-        <option>Madrid</option>
-        <label class="parform" for="cp" >Código Postal</label>
-        <input class="parform" type="number" id="cp" name="correo"  /> <! ––th:field="*{}" ––>
-
+        <input class="parform" type="text" id="direccion" name="correo"/>
+        <label class="parform" for="pais">País</label>
+        <select class="parform" type="text" id="pais" name="Países">
+            <option>España</option>
+            <option>Francia</option>
+            <option>Hungría</option>
+            <option>Italia</option>
+            <option>Alemania</option>
+        </select>
+        <select class="parform" for="tel" type="ciudad">Ciudad</select>
+        <select class="parform" type="text" id="ciudad" name="Ciudades">
+            <option>Córdoba</option>
+            <option>Sevilla</option>
+            <option>Madrid</option>
+        </select>
+        <label class="parform" for="cp">Código Postal</label>
+        <input class="parform" type="number" id="cp" name="correo"/>
 
         <h2>Instalaciones y servicios</h2>
-        <label class="parform" for="idioma" type="ciudad" >Idiomas</label>
-        <select class="parform" type="text" id="idioma" name="Idiomas" /> <! ––th:field="*{}" ––>
-        <option>Inglés</option>
-        <option>Español</option>
-        <option>Italiano</option>
+        <label class="parform" for="idioma" type="ciudad">Idiomas</label>
+        <select class="parform" type="text" id="idioma" name="Idiomas">
+            <option>Inglés</option>
+            <option>Español</option>
+            <option>Italiano</option>
+        </select>
+        <label class="parform" for="acc">Accesibilidad para silla de ruedas</label>
+        <input class="parform" type="checkbox" id="acc" name="correo"/>
 
-        <label class="parform" for="acc" >Accesibilidad para silla de ruedas</label>
-        <input class="parform" type="checkbox" id="acc" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="esp">Espectáculos</label>
+        <input class="parform" type="checkbox" id="esp" name="correo"/>
 
-        <label class="parform" for="esp" >Espectáculos</label>
-        <input class="parform" type="checkbox" id="esp" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="des">Desayuno</label>
+        <input class="parform" type="checkbox" id="des" name="correo"/>
 
-        <label class="parform" for="des" >Desayuno</label>
-        <input class="parform" type="checkbox" id="des" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="pisc">Piscina</label>
+        <input class="parform" type="checkbox" id="pisc" name="correo"/>
 
-        <label class="parform" for="pisc" >Piscina</label>
-        <input class="parform" type="checkbox" id="pisc" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="pat">Patio</label>
+        <input class="parform" type="checkbox" id="pat" name="correo"/>
 
-        <label class="parform" for="pat" >Patio</label>
-        <input class="parform" type="checkbox" id="pat" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="tour">Tours</label>
+        <input class="parform" type="checkbox" id="tour" name="correo"/>
 
-        <label class="parform" for="tour" >Tours</label>
-        <input class="parform" type="checkbox" id="tour" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="sl">Servicio Limpieza</label>
+        <input class="parform" type="checkbox" id="sl" name="correo"/>
 
-        <label class="parform" for="sl" >Servicio Limpieza</label>
-        <input class="parform" type="checkbox" id="sl" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="wi">Wifi</label>
+        <input class="parform" type="checkbox" id="wi" name="correo"/>
 
-        <label class="parform" for="wi" >Wifi</label>
-        <input class="parform" type="checkbox" id="wi" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="rest">Restaurante</label>
+        <input class="parform" type="checkbox" id="rest" name="correo"/>
 
-        <label class="parform" for="rest" >Restaurante</label>
-        <input class="parform" type="checkbox" id="rest" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="shab">Servicio de habitaciones</label>
+        <input class="parform" type="checkbox" id="shab" name="correo"/>
 
-        <label class="parform" for="shab" >Servicio de habitaciones</label>
-        <input class="parform" type="checkbox" id="shab" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="com">Comedor</label>
+        <input class="parform" type="checkbox" id="com" name="correo"/>
 
-        <label class="parform" for="com" >Comedor</label>
-        <input class="parform" type="checkbox" id="com" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="rec">Recepción</label>
+        <input class="parform" type="checkbox" id="rec" name="correo"/>
 
-        <label class="parform" for="rec" >Recepción</label>
-        <input class="parform" type="checkbox" id="rec" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="terr">Terraza</label>
+        <input class="parform" type="checkbox" id="terr" name="correo"/>
 
-        <label class="parform" for="terr" >Terraza</label>
-        <input class="parform" type="checkbox" id="terr" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="trans">Servicio de transporte</label>
+        <input class="parform" type="checkbox" id="trans" name="correo"/>
 
-        <label class="parform" for="trans" >Servicio de transporte</label>
-        <input class="parform" type="checkbox" id="trans" name="correo" /> <! ––th:field="*{}" ––>
-
-        <label class="parform" for="mas" >Mascotas</label>
-        <input class="parform" type="checkbox" id="mas" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="mas">Mascotas</label>
+        <input class="parform" type="checkbox" id="mas" name="correo"/>
 
         <h2>Fecha de cierre</h2>
-        <label class="parform" for="desde" >Desde</label>
-        <input class="parform" type="date" id="desde" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="hasta" >Hasta</label>
-        <input class="parform" type="date" id="hasta" name="correo" /> <! ––th:field="*{}" ––>
-
+        <label class="parform" for="desde">Desde</label>
+        <input class="parform" type="date" id="desde" name="correo"/>
+        <label class="parform" for="hasta">Hasta</label>
+        <input class="parform" type="date" id="hasta" name="correo"/>
 
         <h2>Imágenes del alojamiento</h2>
 
         <h2>Condiciones</h2>
-        <label class="parform" for="cg" >Cancelación gratuita</label>
-        <input class="parform" type="checkbox" id="cg" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="he" >Hora de entrada</label>
-        <input class="parform" type="time" id="he" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="hs" >Hora de salida</label>
-        <input class="parform" type="time" id="hs" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="pago" type="ciudad" >Escoge la preferencia de pago</label>
-        <select class="parform" type="text" id="pago" name="correo" /> <! ––th:field="*{}" ––>
-        <option>En Recepción</option>
-        <option>By Atlas</option>
-
-
-
-        <button class="submit" type ="submit"  text="Siguiente">Siguiente</button>
+        <label class="parform" for="cg">Cancelación gratuita</label>
+        <input class="parform" type="checkbox" id="cg" name="correo"/>
+        <label class="parform" for="he">Hora de entrada</label>
+        <input class="parform" type="time" id="he" name="correo"/>
+        <label class="parform" for="hs">Hora de salida</label>
+        <input class="parform" type="time" id="hs" name="correo"/>
+        <label class="parform" for="pago" type="ciudad">Escoge la preferencia de pago</label>
+        <select class="parform" type="text" id="pago" name="correo">
+            <option>En Recepción</option>
+            <option>By Atlas</option>
+        </select>
+        <button class="submit">Guardar</button>
     </form>
 
-    <footer class="lasth">
-
-        <div class="promote-hotel">
-            <p>Forma parte de nosotros</p>
-            <button>Registra tus alojamientos</button>
-        </div>
-
-        <div class="middle-footer">
-            <div class="cheader">
-                <h1>Atlas</h1>
-                <p>BOOKING</p>
-            </div>
-            <div class="nets">
-                <img src="img/face.svg" alt="">
-                <img src="img/insta.svg" alt="">
-                <img src="img/twitter.svg" alt="">
-            </div>
-            <p>Copyrigth © 2022 Atlas Booking S.L.</p>
-        </div>
-
-        <div class="footer-links">
-            <a href="index.html">Sobre nosotros.</a>
-            <a href="index.html">Comunidad.</a>
-            <a href="index.html">Uso de cookies.</a>
-            <a href="index.html">Politica de privacidad.</a>
-            <a href="index.html">Condiciones de uso.</a>
-        </div>
-
-    </footer>
 </div>
+<footer class="lasth">
+
+    <div class="promote-hotel">
+        <p>Forma parte de nosotros</p>
+        <button>Registra tus alojamientos</button>
+    </div>
+
+    <div class="middle-footer">
+        <div class="cheader">
+            <h1>Atlas</h1>
+            <p>BOOKING</p>
+        </div>
+        <div class="nets">
+            <img src="img/face.svg" alt="">
+            <img src="img/insta.svg" alt="">
+            <img src="img/twitter.svg" alt="">
+        </div>
+        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="index.html">Sobre nosotros.</a>
+        <a href="index.html">Comunidad.</a>
+        <a href="index.html">Uso de cookies.</a>
+        <a href="index.html">Politica de privacidad.</a>
+        <a href="index.html">Condiciones de uso.</a>
+    </div>
+
+</footer>
+
 </body>
 </html>
