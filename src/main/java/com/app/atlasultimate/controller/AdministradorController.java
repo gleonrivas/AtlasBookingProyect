@@ -12,26 +12,30 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("Admin")
+@RequestMapping("admin")
 public class AdministradorController {
 
-    @GetMapping("Inicio")
+    @GetMapping("inicio")
     public String inicio(){
         return "/InicioAdministrador.html";
     }
 
-    @GetMapping("Servicios")
+    @GetMapping("servicios")
     public String servs(){
         return "/ofertas_servicios_admin.html";
     }
 
-    @GetMapping("Informes")
+    @GetMapping("informes")
     public String informes(){
         return "/InformesAdmin.html";
     }
-    @GetMapping("Facturas")
+    @GetMapping("facturas")
     public String facturas(){
         return "/FacturasAdmin.html";
+    }
+    @GetMapping("crearhotel")
+    public String crearHotel(){
+        return "/crearhotel.html";
     }
 
 
@@ -44,14 +48,16 @@ public class AdministradorController {
             return new AdministradorRegistroDTO();
     }
 
-    @GetMapping("Registro")
+    @GetMapping("registro")
     public String regis(){
         return "/registro_admin.html";
     }
-    @PostMapping("Registro")
+    @PostMapping("registro")
     public String registrarCuentaAdmin(@ModelAttribute("administrador") AdministradorRegistroDTO adminDTO){
         adminService.save(adminDTO);
-        return "redirect:/Admin/Registro?exito";
+        return "redirect:/admin/registro?exito";
     }
+
+
 
     }
