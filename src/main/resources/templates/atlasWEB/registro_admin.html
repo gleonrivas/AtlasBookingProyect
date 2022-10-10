@@ -266,30 +266,30 @@
     <div class="registro-box">
 
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
-        <form class="formulario" name="form" th:action="@{/Admin/Registro}" th:object="${administrador}" method="post">
+        <form class="formulario" name="form" th:action="@{/admin/registro}" th:object="${administrador}" method="post">
             <div class="componente-registro">
                 <label class="parform" for="nombre"  >Nombre</label>
-                <input class="parform" type="text" id="nombre" name="correo" th:field="*{nombre}"/>
+                <input class="parform" type="text" id="nombre"  th:field="*{nombre}"/>
             </div>
             <div class="componente-registro">
                 <label class="parform" for="apellido" >Apellidos</label>
-                <input class="parform" type="text" id="apellido" name="correo" th:field="*{apellidos}" />
+                <input class="parform" type="text" id="apellido"  th:field="*{apellidos}" />
             </div>
             <div class="componente-registro">
                 <label class="parform" for="dni" >DNI</label>
-                <input class="parform" type="text" id="dni" name="correo" th:field="*{dni}" />
+                <input class="parform" type="text" id="dni"  th:field="*{dni}" />
             </div>
             <div class="componente-registro">
                 <label class="parform" for="tel" type="tel" >Teléfono</label>
-                <input class="parform" type="tel" id="tel" name="correo" th:field="*{numTelefono}"/>
+                <input class="parform" type="tel" id="tel"  th:field="*{numTelefono}"/>
             </div>
             <div class="componente-registro">
                 <label class="parform" for="correo" >Email</label>
-                <input class="parform" type="email" id="correo" name="correo" th:field="*{email}"/>
+                <input class="parform" type="email" id="correo"  th:field="*{email}"/>
             </div>
             <div class="componente-registro">
                 <label for="contrasena" >Contraseña</label>
-                <input class="parform" type="password" id="contrasena" name="correo" th:field="*{contrasena}"/>
+                <input class="parform" type="password" id="contrasena"  th:field="*{contrasena}"/>
             </div>
             <div class="password-error">
                 <p id="instruccion">Usa al menos 10 caracteres, que contengan al menos una letra mayúscula y una minúscula.</p>
