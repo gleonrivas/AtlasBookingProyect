@@ -167,6 +167,8 @@
         padding: 3% 1%;
         border-radius: 20px;
         -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.73);
     }
     .titulo{
         width: 100%;
@@ -199,11 +201,14 @@
         font-size: 13px;
     }
     #confirmacion{
-        width: 100%;
-        padding: 3%;
-        color: green;
-        text-align: justify;
+        background-color: green;
+        width: auto;
+        margin: auto;
+        padding: 1.5% 5%;
+        color: white;
+        text-align: center;
         font-size: 13px;
+        border-radius: 20px;
     }
 
     .submit{
@@ -265,6 +270,11 @@
 
     <div class="registro-box">
 
+
+        <div id="confirmacion" th:if="${param.exito}">
+            Registro exitoso. Ya puedes iniciar sesión
+        </div>
+
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
         <form class="formulario" name="form" th:action="@{/admin/registro}" th:object="${administrador}" method="post">
             <div class="componente-registro">
@@ -297,8 +307,6 @@
             <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
         </form>
 
-        <div id="confirmacion" th:if="${param.exito}">
-            Te hemos enviado un e-mail con un enlace de verificación. Para verificar la cuenta, haz clic en el enlace del e-mail que te acabamos de enviar.        </div>
     </div>
 
 
