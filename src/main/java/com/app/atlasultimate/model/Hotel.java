@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +25,10 @@ public class Hotel {
     private Integer nombre;
     @Column(name = "pais")
     private String pais;
+    @Column(name = "fecha_cierre")
+    private Date fecha_cierre;
+    @Column(name = "fecha_apertura")
+    private Date fecha_apertura;
     @Column(name = "ciudad")
     private String ciudad;
     @Column(name = "num_habitaciones")
@@ -62,15 +67,12 @@ public class Hotel {
     private Boolean mascotas;
     @Column(name = "valoracion_media")
     private Double valoracionMedia;
-    @Column(name = "disponibilidad")
-    private Double disponibilidad;
     @Column(name = "pagina_web")
     private String web;
     @Column(name = "num_telefono")
     private String telefono;
     @Column(name = "codigo_postal")
     private Integer codigo_postal;
-
 
     @ManyToOne()
     @JoinColumn(name="id_administrador")
