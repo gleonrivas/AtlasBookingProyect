@@ -1,5 +1,6 @@
 package com.app.atlasultimate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,11 +47,12 @@ public class Cliente {
         this.telefono = telefono;
         this.email = email;
     }
-    @OneToMany(mappedBy = "cliente")
+    @JsonBackReference
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 
     private Set<Reserva> reservas;
-
-    @OneToMany()
+    @JsonBackReference
+    @OneToMany( fetch = FetchType.LAZY)
     private Set<Review> reviews;
 
 

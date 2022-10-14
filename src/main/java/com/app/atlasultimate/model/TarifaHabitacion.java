@@ -1,5 +1,6 @@
 package com.app.atlasultimate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,9 @@ public class TarifaHabitacion {
     private boolean vistas;
     @Column(name = "capacidad")
     private boolean capacidad;
-    @OneToOne
+
+    @JsonBackReference
+    @OneToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "id_habitacion")
     private Habitacion habitacion= new Habitacion();
 }

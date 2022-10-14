@@ -1,5 +1,6 @@
 package com.app.atlasultimate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,7 +39,7 @@ public class Administrador {
 
 
 
-
+    @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "administrador")
     public Set<Hotel> hoteles;
 
@@ -49,5 +50,9 @@ public class Administrador {
         this.numTelefono = numTelefono;
         this.email = email;
         this.contrasena = contrasena;
+    }
+
+    public Administrador(Integer id) {
+        this.id = id;
     }
 }

@@ -1,10 +1,12 @@
 package com.app.atlasultimate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Entity(name="reserva")
@@ -18,18 +20,20 @@ public class Reserva {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente")
     Cliente cliente;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "id_habitacion")
     Habitacion habitacion;
 
     @Column(name = "dia_hora_llegada")
-    private LocalDate diayHoraLlegada;
+    private Timestamp diayHoraLlegada;
     @Column(name = "dia_hora_salida")
-    private LocalDate diayHoraSalida;
+    private Timestamp diayHoraSalida;
     @Column(name = "num_adultos")
     private Integer numAdultos;
     @Column(name = "num_ninos")

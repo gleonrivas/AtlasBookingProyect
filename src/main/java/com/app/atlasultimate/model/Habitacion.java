@@ -1,5 +1,6 @@
 package com.app.atlasultimate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,11 +9,12 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "habitacion")
 @Getter
 @Setter
 @EqualsAndHashCode
 public class Habitacion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -22,7 +24,7 @@ public class Habitacion {
     private Boolean disponible;
 
     @Column(name = "tipo_habitacion")
-    private tipo_habitacion tipo_habitacion;
+    private String tipo_habitacion;
 
     @Column(name = "num_habitacion")
     private Integer num_habitacion;
@@ -31,9 +33,9 @@ public class Habitacion {
     private Integer num_camas;
 
     @Column(name = "tipo_cama")
-    private tipo_cama tipo_cama;
+    private String tipo_cama;
 
-    @Column(name = "baño")
+    @Column(name = "bano")
     private Boolean bano;
 
     @Column(name = "wifi")
@@ -46,11 +48,12 @@ public class Habitacion {
     private Boolean vistas;
 
 
-
-    @OneToMany (mappedBy = "habitacion")
+    @JsonBackReference
+    @OneToMany (mappedBy = "habitacion" , fetch = FetchType.LAZY)
     private Set<Reserva> reservas;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne( optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hotel")
     private Hotel hotel;
 

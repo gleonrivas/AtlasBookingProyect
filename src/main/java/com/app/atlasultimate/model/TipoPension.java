@@ -1,5 +1,6 @@
 package com.app.atlasultimate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,11 +30,12 @@ public class TipoPension {
     @Column(name = "todo_incluido")
     private Integer todoIncluido;
 
+    @JsonBackReference
     @JoinTable(
             name = "hotel_tipo_pension",
             joinColumns = @JoinColumn(name = "tipo_pension", nullable = false),
             inverseJoinColumns = @JoinColumn(name="hotel", nullable = false)
     )
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     private List<Hotel> hoteles;
 }
