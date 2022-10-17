@@ -88,7 +88,7 @@ public class Hotel {
     @Column(name = "servicio_limpieza" , nullable=true, columnDefinition = "boolean default false")
     private Boolean servicioLimpieza;
 
-    @ColumnDefault("false")
+    @ColumnDefault("false" )
     @Column(name = "servicio_habitaciones" , nullable=true, columnDefinition = "boolean default false")
     private Boolean servicioHabitaciones;
 
@@ -177,5 +177,9 @@ public class Hotel {
         this.reservas = reservas;
         this.habitaciones = habitaciones;
         this.tipoPensiones = tipoPensiones;
+    }
+
+    public Hotel(Integer id) {
+        this.id = id;
     }
 }

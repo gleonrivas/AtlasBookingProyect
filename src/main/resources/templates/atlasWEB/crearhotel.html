@@ -32,6 +32,19 @@
 
 </header>
 
+<script>
+    function cambiar_false(id_checkbox){
+        var checkbox = document.getElementById(id_checkbox);
+        console.log(id_checkbox)
+
+        if(checkbox.checked = false){
+            checkbox.value = false;
+        }
+    }
+
+
+</script>
+
 <h1>¡Hola ...ADMIN!</h1>
 <div>
 
@@ -76,46 +89,46 @@
             <option value="Italiano">Italiano</option>
         </select>
         <label class="parform" for="accesibilidad">Accesibilidad para silla de ruedas</label>
-        <input class="parform"  type="checkbox" id="accesibilidad" name="accesibilidad" th:checked="*{accesibilidad}"/>
+        <input class="parform"  type="checkbox" id="accesibilidad" name="accesibilidad"  th:checked="*{accesibilidad} ? true : false "/>
 
         <label class="parform" for="espectaculos">Espectáculos</label>
-        <input class="parform"   type="checkbox" id="espectaculos" name="espectaculos" th:checked="*{espectaculos}"/>
+        <input class="parform"   type="checkbox" id="espectaculos" name="espectaculos" th:checked="*{espectaculos}" onclick="cambiar_false(espectaculos)"/>
 
         <label class="parform" for="piscina">Piscina</label>
-        <input class="parform"    type="checkbox" id="piscina" name="piscina" th:checked="*{piscina}"/>
+        <input class="parform"    type="checkbox" id="piscina" name="piscina" th:checked="*{piscina}" onclick="cambiar_false(piscina)"/>
 
         <label class="parform" for="patioInterior">Patio</label>
-        <input class="parform"    type="checkbox" id="patioInterior" name="patioInterior" th:checked="*{patioInterior}"/>
+        <input class="parform"    type="checkbox" id="patioInterior" name="patioInterior" th:checked="*{patioInterior}" onclick="cambiar_false(patioInterior)"/>
 
         <label class="parform" for="tours">Tours</label>
-        <input class="parform"    type="checkbox" id="tours" name="tours" th:checked="*{tours}"/>
+        <input class="parform"    type="checkbox" id="tours" name="tours" th:checked="*{tours}" onclick="cambiar_false(tours)"/>
 
         <label class="parform" for="servicioLimpieza">Servicio Limpieza</label>
-        <input class="parform"    type="checkbox" id="servicioLimpieza" name="servicioLimpieza" th:checked="*{servicioLimpieza}"/>
+        <input class="parform"    type="checkbox" id="servicioLimpieza" name="servicioLimpieza" th:checked="*{servicioLimpieza}" onclick="cambiar_false(servicioLimpieza)"/>
 
         <label class="parform" for="wifi">Wifi</label>
-        <input class="parform"  type="checkbox" id="wifi" name="wifi" th:checked="*{wifi}"/>
+        <input class="parform"  type="checkbox" id="wifi" name="wifi" th:checked="*{wifi}" onclick="cambiar_false(wifi)"/>
 
         <label class="parform" for="servicioHabitaciones">Servicio de habitaciones</label>
-        <input class="parform"   type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:checked="*{servicioHabitaciones}"/>
+        <input class="parform"   type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:checked="*{servicioHabitaciones}" onclick="cambiar_false(servicioHabitaciones)"/>
 
         <label class="parform" for="comedor">Comedor</label>
-        <input class="parform"    type="checkbox" id="comedor" name="comedor" th:checked="*{comedor}"/>
+        <input class="parform"    type="checkbox" id="comedor" name="comedor" th:checked="*{comedor}" onclick="cambiar_false(comedor)"/>
 
         <label class="parform" for="recepcion">Recepción</label>
-        <input class="parform"   type="checkbox" id="recepcion" name="rec" th:checked="*{recepcion}"/>
+        <input class="parform"   type="checkbox" id="recepcion" name="recepcion" th:checked="*{recepcion}" onclick="cambiar_false(recepcion)"/>
 
         <label class="parform" for="terraza">Terraza</label>
-        <input class="parform"   type="checkbox" id="terraza" name="terraza" th:checked="*{terraza}"/>
+        <input class="parform"   type="checkbox" id="terraza" name="terraza" th:checked="*{terraza}" onclick="cambiar_false(terraza)"/>
 
         <label class="parform" for="servicioTransporte">Servicio de transporte</label>
-        <input class="parform"    type="checkbox" id="servicioTransporte" name="servicioTransporte" th:checked="*{servicioTransporte}"/>
+        <input class="parform"    type="checkbox" id="servicioTransporte" name="servicioTransporte" th:checked="*{servicioTransporte}" onclick="cambiar_false(servicioTransporte)"/>
 
         <label class="parform" for="aparcamiento">Parking</label>
-        <input class="parform"   type="checkbox" id="aparcamiento" name="aparcamiento" th:checked="*{aparcamiento}"/>
+        <input class="parform"   type="checkbox" id="aparcamiento" name="aparcamiento" th:checked="*{aparcamiento}" onclick="cambiar_false(aparcamiento)"/>
 
         <label class="parform" for="mascotas">Mascotas</label>
-        <input class="parform"   type="checkbox" id="mascotas" name="mascotas" th:checked="*{mascotas}"/>
+        <input class="parform"   type="checkbox" id="mascotas" name="mascotas" th:checked="*{mascotas}" onclick="cambiar_false(mascotas)"/>
 
         <!–– <h2>Fecha de cierre</h2>
         <label class="parform" for="desde">Desde</label>
@@ -127,14 +140,18 @@
 
         <h2>Condiciones</h2>
         <label class="parform" for="cancelacionGratuita">Cancelación gratuita</label>
-        <input class="parform" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita" th:checked="*{cancelacionGratuita}"/>
+        <input class="parform" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita" th:checked="*{cancelacionGratuita}" onclick="cambiar_false(cancelacionGratuita)"/>
         <label class="parform" for="pago" type="ciudad">Escoge la preferencia de pago</label>
         <select class="parform" type="text" id="pago" name="prefPago" th:field="*{preferenciaPago}">
             <option value="Recepcion">En Recepción</option>
             <option value="Atlas">By Atlas</option>
         </select>
         <button type="submit">Guardar</button>
+
     </form>
+    <a href="admin/inicio">
+        <button>Volver</button>
+    </a>
     <div id="confirmacion" th:if="${param.exito}">
         Ha registrado su hotel correctamente. </div>
 

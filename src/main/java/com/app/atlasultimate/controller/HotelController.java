@@ -2,16 +2,12 @@ package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
-import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import com.app.atlasultimate.service.HotelServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Date;
-import java.sql.Time;
 
 @Controller
 @RequestMapping("hotel")
@@ -23,9 +19,12 @@ public class HotelController {
     @Autowired
     private HotelServiceImp servicioHotel;
 
+    @Autowired
+    private HabitacionController habcontroller;
+
 
     @GetMapping("habitacion")
-    public String inicio(Model model){
+    public String leerHabitaciones(Model model){
         model.addAttribute("habitaciones", servicio.listarHabitacion());
         return "/AdminHabitaciones.html";
     }
@@ -36,17 +35,18 @@ public class HotelController {
         modelo.addAttribute("hotel", hotel);
         return "/crearhotel.html";
     }
-
+    //crear hoteles
     @PostMapping("nuevo")
     public String guardarHotel(@ModelAttribute("hotel") Hotel hotel){
+        chequearBoolean(hotel);
         servicioHotel.guardarHotel(hotel);
         return "redirect:/hotel/nuevo?exito";
     }
+
     //cargar hotel en formulario para editarlo
     @GetMapping("/editar/{id}")
     public String editarHotel(@PathVariable Integer id, Model model) {
         model.addAttribute("hotel", servicioHotel.obtenerHotelporId(id));
-
         return"/editarHotel.html";}
 
     //Peticionpost para enviar la info cambiada del hotel
@@ -83,6 +83,7 @@ public class HotelController {
     hotelexistente.setCancelacionGratuita(hotel.getCancelacionGratuita());
     hotelexistente.setPreferenciaPago(hotel.getPreferenciaPago());
     servicioHotel.actualizarHotel(hotelexistente);
+    chequearBoolean(hotelexistente);
     return "redirect:/admin/inicio";
 
     }
@@ -103,7 +104,6 @@ public class HotelController {
         habitacionexistente.setId(id);
         habitacionexistente.setDisponible(hab.getDisponible());
         habitacionexistente.setTipo_habitacion(hab.getTipo_habitacion());
-        habitacionexistente.setNum_habitacion(hab.getNum_habitacion());
         habitacionexistente.setNum_camas(hab.getNum_camas());
         habitacionexistente.setNum_camas(hab.getNum_camas());
         habitacionexistente.setTipo_cama(hab.getTipo_cama());
@@ -111,6 +111,7 @@ public class HotelController {
         habitacionexistente.setWifi(hab.getWifi());
         habitacionexistente.setPrecio_base(hab.getPrecio_base());
         habitacionexistente.setVistas(hab.getVistas());
+        habcontroller.chequearBooleanHabitacion(habitacionexistente);
         servicio.actualizarHabitacion(habitacionexistente);
 
         return "redirect:/hotel/habitacion";
@@ -120,7 +121,26 @@ public class HotelController {
     @GetMapping("/habitacion/{id}")
     public String eliminarHab(@PathVariable Integer id){
         servicio.eliminarHabitacion(id);
-        return "redirect:/habitacion";
+        return "redirect:/hotel/habitacion";
+    }
+
+    //convertir boolean en true o false
+    private void chequearBoolean(Hotel h){
+        h.setTerraza(h.getTerraza()==null? false:true);
+        h.setPiscina(h.getPiscina()==null? false:true);
+        h.setPatioInterior(h.getPatioInterior()==null? false:true);
+        h.setEspectaculos(h.getEspectaculos()==null? false:true);
+        h.setComedor(h.getComedor()==null? false:true);
+        h.setTours(h.getTours()==null? false:true);
+        h.setAparcamiento(h.getAparcamiento()==null? false:true);
+        h.setServicioTransporte(h.getServicioTransporte()==null? false:true);
+        h.setRecepcion(h.getRecepcion()==null? false:true);
+        h.setServicioLimpieza(h.getServicioLimpieza()==null? false:true);
+        h.setServicioHabitaciones(h.getServicioHabitaciones()==null? false:true);
+        h.setMascotas(h.getMascotas()==null? false:true);
+        h.setAccesibilidad(h.getAccesibilidad()==null? false:true);
+        h.setWifi(h.getWifi()==null? false:true);
+        h.setCancelacionGratuita(h.getCancelacionGratuita()==null? false:true);
     }
 
 }

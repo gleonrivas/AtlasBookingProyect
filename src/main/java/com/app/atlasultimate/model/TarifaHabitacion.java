@@ -29,5 +29,5 @@ public class TarifaHabitacion {
     @JsonBackReference
     @OneToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "id_habitacion")
-    private Habitacion habitacion= new Habitacion();
+    Habitacion habitacion= new Habitacion();
 }

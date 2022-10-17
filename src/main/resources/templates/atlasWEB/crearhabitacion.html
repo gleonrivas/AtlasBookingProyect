@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Crear Hotel</title>
@@ -36,36 +36,43 @@
 <h1>¡Hola ...ADMIN!</h1>
 <div>
 
-    <form class="formulario" name="form" th:action="@{}"  method="post"> <! ––th:object="${}" ––>
+    <form class="formulario" name="form" th:action="@{/habitacion/nueva}" th:object="${habitacion}" method="post"> <! ––th:object="${}" ––>
 
         <h2>Habitación</h2>
-        <label class="parform" for="idioma" type="ciudad" >Tipo de habitación</label>
-        <select class="parform" type="text" id="idioma" name="Idiomas" /> <! ––th:field="*{}" ––>
-        <option>Individual</option>
-        <option>Doble</option>
-        <option>Suite</option>
 
-        <label class="parform" for="num">Número de habitación</label>
-        <input class="parform" type="number" id="num" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="num2">Número de habitaciones iguales</label>
-        <input class="parform" type="number" id="num2" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="th">Tamaño de habitación</label>
-        <input class="parform" type="number" id="th" name="correo" /> <! ––th:field="*{}" ––>
-        <label class="parform" for="precio">Precio base/noche</label>
-        <input class="parform" type="number" id="precio" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="num_habitaciones_iguales">Número de habitaciones iguales</label>
+        <input class="parform" type="number" id="num_habitaciones_iguales" name="num_habitaciones_iguales" th:field="*{num_habitaciones_iguales}" />
 
-        <label class="parform" for="acc" >Baño</label>
-        <input class="parform" type="checkbox" id="acc" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="tipo_habitacion">Tipo de Habitación</label>
+        <select class="parform" type="text" id="tipo_habitacion" name="tipo_habitacion" th:field="*{tipo_habitacion}">
+        <option value="Doble">Doble</option>
+        <option value="Individual">Individual</option>
+        <option value="Suite">Suite</option>
+        </select>
+        <label class="parform" for="tipo_cama">Tipo de cama</label>
+        <select class="parform" type="text" id="tipo_cama" name="tipo_cama" th:field="*{tipo_cama}">
+            <option value="Doble">Doble</option>
+            <option value="Individual">Individual</option>
+        </select>
+        <label class="parform" for="num_camas" >Numero de camas</label>
+        <input class="parform" type="number" id="num_camas" name="correo" th:field="*{num_camas}" />
 
-        <label class="parform" for="esp" >Wifi</label>
-        <input class="parform" type="checkbox" id="esp" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="bano" >Baño</label>
+        <input class="parform" type="checkbox" id="bano" name="bano" th:checked="*{bano}"/>
 
-        <label class="parform" for="des" >Vistas</label>
-        <input class="parform" type="checkbox" id="des" name="correo" /> <! ––th:field="*{}" ––>
+        <label class="parform" for="wifi" >Wifi</label>
+        <input class="parform" type="checkbox" id="wifi" name="wifi" th:checked="*{wifi}"/>
 
+        <label class="parform" for="vistas" >Vistas</label>
+        <input class="parform" type="checkbox" id="vistas" name="vistas" th:checked="*{vistas}"/>
 
+        <label class="parform" for="precio_base" >Precio Base</label>
+        <input class="parform" type="number" id="precio_base" name="precio_base" th:field="*{precio_base}"/>
 
         <button class="submit" type ="submit"  text="Siguiente">Siguiente</button>
+        <a href="hotel/habitacion">
+            <button>Volver</button>
+        </a>
     </form>
 
     <footer class="lasth">

@@ -41,7 +41,7 @@
 
 <div id="tituloyboton">
 <h1>Tus alojamientos</h1>
-    <a href="/hotel/nuevo">
+    <a th:href="@{/hotel/nuevo}">
         <button type="button">Añadir alojamiento</button></a>
 </div>
 <div class="marcohotel" th:each=" hotel : ${hoteles}">
@@ -131,8 +131,8 @@
 
         </div>
         <div class="botones">
-            <a href="/hotel/editar"><button type="submit">Editar</button></a>
-            <button type="submit">Eliminar</button>
+            <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}"><button type="submit">Editar</button></a>
+            <a th:href="@{/admin/inicio/{id}(id=${hotel.id})}"> <button type="submit">Eliminar</button></a>
             <a href="/hotel/habitacion"><button type="submit">Ver habitaciones</button></a>
         </div>
     </div>

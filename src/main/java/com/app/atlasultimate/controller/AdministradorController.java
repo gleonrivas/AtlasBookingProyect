@@ -63,7 +63,7 @@ public class AdministradorController {
     @GetMapping("/inicio/{id}")
     public String eliminarHotel (@PathVariable Integer id){
         servicio.eliminarHotel(id);
-        return "redirect:/inicio";
+        return "redirect:/admin/inicio";
     }
 
 
