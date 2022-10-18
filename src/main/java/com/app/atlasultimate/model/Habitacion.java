@@ -22,18 +22,15 @@ public class Habitacion {
     private Boolean disponible;
 
     @Column(name = "tipo_habitacion")
-    private tipo_habitacion tipo_habitacion;
-
-    @Column(name = "num_habitacion")
-    private Integer num_habitacion;
+    private String tipo_habitacion;
 
     @Column(name = "num_camas")
     private Integer num_camas;
 
     @Column(name = "tipo_cama")
-    private tipo_cama tipo_cama;
+    private String tipo_cama;
 
-    @Column(name = "baño")
+    @Column(name = "bano")
     private Boolean bano;
 
     @Column(name = "wifi")
@@ -45,10 +42,6 @@ public class Habitacion {
     @Column(name = "vistas")
     private Boolean vistas;
 
-
-
-    @OneToMany (mappedBy = "habitacion")
-    private Set<Reserva> reservas;
 
     @ManyToOne
     @JoinColumn(name = "id_hotel")

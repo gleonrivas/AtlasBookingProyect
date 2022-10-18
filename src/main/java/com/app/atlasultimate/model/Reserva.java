@@ -5,9 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
-@Entity(name="reserva")
+@Entity
 @Table(name = "reserva")
 @Getter
 @Setter
@@ -21,15 +22,14 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     Cliente cliente;
-
     @ManyToOne
     @JoinColumn(name = "id_habitacion")
     Habitacion habitacion;
 
     @Column(name = "dia_hora_llegada")
-    private LocalDate diayHoraLlegada;
+    private Timestamp diayHoraLlegada;
     @Column(name = "dia_hora_salida")
-    private LocalDate diayHoraSalida;
+    private Timestamp diayHoraSalida;
     @Column(name = "num_adultos")
     private Integer numAdultos;
     @Column(name = "num_ninos")

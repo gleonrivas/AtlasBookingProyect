@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-@Entity (name="hotel")
-@Table(name = "hotel")
+@Entity
+@Table(name = "usuario")
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -21,7 +21,7 @@ public class Hotel {
     @Column(name = "id")
     private Integer id;
     @Column(name = "nombre")
-    private Integer nombre;
+    private String nombre;
     @Column(name = "pais")
     private String pais;
     @Column(name = "fecha_cierre")
@@ -77,9 +77,8 @@ public class Hotel {
     @JoinColumn(name="id_administrador")
     private Administrador administrador;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Review> reservas;
-
 
     @OneToMany(mappedBy = "hotel")
     private Set<Habitacion> habitaciones;
