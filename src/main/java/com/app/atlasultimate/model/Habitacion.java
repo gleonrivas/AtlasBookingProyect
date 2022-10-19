@@ -14,7 +14,6 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode
 public class Habitacion {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
