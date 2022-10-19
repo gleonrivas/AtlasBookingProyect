@@ -25,6 +25,7 @@ public class HabitacionController {
     public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
-        return "/hotel.html";
+        return "/hotel.html" ;
+
     }
 }
