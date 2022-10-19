@@ -13,8 +13,21 @@ public class HabitacionService {
     @Autowired
     private HabitacionRepository habitacionRepository;
 
-    public List<Habitacion> obtenerHabitaciones(){
+    public List<Habitacion> listarHabitacion(){
+
         return habitacionRepository.findAll();
+    }
+    public Habitacion guardarhab (Habitacion h){
+        return habitacionRepository.save(h);
+    }
+    public Habitacion obtenerHabitacionporId (Integer id){
+        return habitacionRepository.findById(id).get();
+    }
+    public Habitacion actualizarHabitacion(Habitacion hab){
+        return habitacionRepository.save(hab);
+    }
+    public void eliminarHabitacion(Integer id){
+        habitacionRepository.deleteById(id);
     }
 
 }

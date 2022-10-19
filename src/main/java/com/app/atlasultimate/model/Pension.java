@@ -9,31 +9,33 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "tipo_pension")
+@Table(name = "pension")
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 
-public class TipoPension {
+public class Pension {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "desayuno")
-    private Integer desayuno;
-    @Column(name = "media_pension")
-    private Integer mediaPension;
-    @Column(name = "pension_completa")
-    private Integer pensionCompleta;
-    @Column(name = "todo_incluido")
-    private Integer todoIncluido;
+    @Column(name = "id", length = 10)
+    private Double id;
+
+    @Column(name = "sa")
+    private Double sa;
+    @Column(name = "ad")
+    private Double ad;
+    @Column(name = "mp")
+    private Double mp;
+    @Column(name = "pc")
+    private Double pc;
 
     @JoinTable(
-            name = "hotel_tipo_pension",
+            name = "hotel_pension",
             joinColumns = @JoinColumn(name = "tipo_pension", nullable = false),
             inverseJoinColumns = @JoinColumn(name="hotel", nullable = false)
     )
+
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Hotel> hoteles;
+    private List<Hotel> hotel;
 }

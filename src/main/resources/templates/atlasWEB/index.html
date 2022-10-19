@@ -97,16 +97,16 @@
   }
   /* FINALIZA BODY --------------------------------------------*/
   /* COMIENZA FINDER ------------------------------------------*/
-  .intro{
+  .finder{
     display: flex;
-    width: 80%;
+    width: auto;
+    padding: 2% 5%;
     margin: 15% auto;
     justify-content: center;
     align-items: center;
-    padding: 2% 1%;
     font-size: 14px;
     background-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.60);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     color: white;
@@ -134,8 +134,9 @@
     border-right-style: none;
     border-top-style: solid;
     border-bottom-style: solid;
-    width: 150px;
+    width: 130px;
     height: 50px;
+    padding-left: 20px;
   }
   .inputfentrada{
     border-left-style: solid;
@@ -157,34 +158,26 @@
     justify-content: center;
 
   }
-  .inputnadultos{
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
-
-  }
-  .inputniños{
+  .inputCindividuales{
     border-left-style: solid;
     border-right-style: solid;
     border-top-style: solid;
     border-bottom-style: solid;
-    width: 150px;
+    width: 80px;
     height: 50px;
     justify-content: center;
+    padding-left: 70px;
   }
-  .inputnhabitaciones{
+  .inputCdobles{
     border-radius: 0 10px 10px 0;
     border-left-style: none;
     border-right-style: solid;
     border-top-style: solid;
     border-bottom-style: solid;
-    width: 150px;
+    width: 80px;
     height: 50px;
     justify-content: center;
+    padding-left: 70px;
   }
   .buscar{
     width: 56px;
@@ -192,9 +185,12 @@
     margin: auto 0 0 2%;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
+    border-radius: 40px;
     padding: 10px;
+    color: transparent;
     background-color: #ffffff;
+    background-image: url("/img/buscarLogo.svg");
+    background-repeat: no-repeat;
     background-position: center;
   }
   /* FINALIZA FINDER ------------------------------------------*/
@@ -283,9 +279,9 @@
 
 </header>
 
-<label class="intro">
+<label class="finder">
   <div class="entry-group">
-    <p>Elige una ciudad</p>
+    <p>Escribe una ciudad</p>
     <input type="text" value="Próximo destino..." class="inputciudad">
   </div>
   <div class="entry-group">
@@ -297,19 +293,15 @@
     <input type="date" value="" class="inputfsalida">
   </div>
   <div class="entry-group">
-    <p>¿Cuántos adultos?</p>
-    <input type="number" value="0" class="inputnadultos">
+    <p>Camas individuales:</p>
+    <input type="number" value="0" class="inputCindividuales">
   </div>
   <div class="entry-group">
-    <p>¿Hay niños?</p>
-    <input type="number" value="0" class="inputniños">
-  </div>
-  <div class="entry-group">
-    <p>¿Cuántas habitaciones?</p>
-    <input type="number" value="0" class="inputnhabitaciones">
+    <p>Camas dobles:</p>
+    <input type="number" value="0" class="inputCdobles">
   </div>
 
-  <button class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
+  <input class="buscar" value="holaa" type="submit">
 
 </label>
 
@@ -317,7 +309,7 @@
 
   <div class="promote-hotel">
     <p>Forma parte de nosotros</p>
-    <form method="get" action="registro_admin.html">
+    <form method="get" action="registroUsuario.html">
       <button class="registra" >Registra tus alojamientos</button>
     </form>
   </div>

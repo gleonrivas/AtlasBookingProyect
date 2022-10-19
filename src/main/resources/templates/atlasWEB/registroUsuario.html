@@ -252,23 +252,7 @@
 
 </header>
 
-
-    <!--    <div class="parte1">
-            <h1 class="titulo">Inicia sesión para gestionar tu alojamiento</h1>
-
-
-            <form class="formulario">
-                <label class="parform" for="correo1">Email</label>
-                <input class="parform" type="text" id="correo1" name="correo" />
-                <label class="parform" for="contrasena1">Contraseña</label>
-                <input class="parform" type="text" id="contrasena1" name="correo" />
-                <button class="boton" type ="submit" text="Siguiente">siguiente</button>
-            </form>
-
-
-        </div>-->
-
-    <div class="registro-box">
+     <div class="registro-box">
 
 
         <div id="confirmacion" th:if="${param.exito}">
@@ -276,29 +260,33 @@
         </div>
 
         <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
-        <form class="formulario" name="form" th:action="@{/admin/registro}" th:object="${administrador}" method="post">
+        <form class="formulario" name="form" th:action="@{/usuario/registro}" th:object="${usuario}" method="post">
             <div class="componente-registro">
-                <label class="parform" for="nombre"  >Nombre</label>
+                <label class="parform" for="nombre">Nombre</label>
                 <input class="parform" type="text" id="nombre"  th:field="*{nombre}"/>
             </div>
             <div class="componente-registro">
-                <label class="parform" for="apellido" >Apellidos</label>
-                <input class="parform" type="text" id="apellido"  th:field="*{apellidos}" />
+                <label class="parform" for="apellido">Apellidos</label>
+                <input class="parform" type="text" id="apellido"  th:field="*{apellido}" />
             </div>
             <div class="componente-registro">
-                <label class="parform" for="dni" >DNI</label>
+                <label class="parform" for="dni">DNI</label>
                 <input class="parform" type="text" id="dni"  th:field="*{dni}" />
             </div>
             <div class="componente-registro">
-                <label class="parform" for="tel" type="tel" >Teléfono</label>
-                <input class="parform" type="tel" id="tel"  th:field="*{numTelefono}"/>
+                <label class="parform" for="rol">Rol</label>
+                <input class="parform" value="estandar" type="text" id="rol"  th:field="*{rol}"/>
             </div>
             <div class="componente-registro">
-                <label class="parform" for="correo" >Email</label>
+                <label class="parform" for="tel" type="tel">Teléfono</label>
+                <input class="parform" type="tel" id="tel"  th:field="*{telefono}"/>
+            </div>
+            <div class="componente-registro">
+                <label class="parform" for="correo">Email</label>
                 <input class="parform" type="email" id="correo"  th:field="*{email}"/>
             </div>
             <div class="componente-registro">
-                <label for="contrasena" >Contraseña</label>
+                <label for="contrasena">Contraseña</label>
                 <input class="parform" type="password" id="contrasena"  th:field="*{contrasena}"/>
             </div>
             <div class="password-error">
@@ -314,7 +302,7 @@
 
     <div class="promote-hotel">
         <p>Forma parte de nosotros</p>
-        <form method="get" action="registro_admin.html">
+        <form method="get" action="registroUsuario.html">
             <button class="registra" >Registra tus alojamientos</button>
         </form>
     </div>

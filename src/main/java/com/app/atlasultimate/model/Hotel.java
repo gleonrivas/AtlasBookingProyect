@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -17,65 +18,89 @@ import java.util.Set;
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id" , length = 10)
     private Integer id;
-    @Column(name = "pais")
+    @Column(name = "nombre", length = 150)
+    private String nombre;
+    @Column(name = "pais", length = 150)
     private String pais;
-    @Column(name = "ciudad")
-    private String ciudad;
-    @Column(name = "num_habitaciones")
-    private Integer numHabitaciones;
-    @Column(name = "disponibilidad")
-    private LocalDate FechaDisponible;
-    @Column(name = "ubicacion")
-    private String ubicacion;
-    @Column(name = "web")
-    private String pagWeb;
-    @Column(name = "terraza")
-    private Boolean terraza;
-    @Column(name = "piscina")
-    private  Boolean piscina;
-    @Column(name = "patio")
-    private Boolean patioInterior;
-    @Column(name = "espectaculos")
-    private Boolean espectaculos;
-    @Column(name = "comedor")
-    private Boolean comedor;
-    @Column(name = "tours")
-    private Boolean tours;
-    @Column(name = "aparcamiento")
-    private Boolean aparcamiento;
-    @Column(name = "servicio_transporte")
-    private Boolean servicioTransporte;
-    @Column(name = "recepcion")
-    private Boolean recepcion;
-    @Column(name = "estrellas")
+    @Column(name = "direccion", length = 150)
+    private String direccion;
+    @Column(name = "estrellas", length = 1)
     private Integer estrellas;
-    @Column(name = "valoracion_media")
-    private Double valoracionMedia;
-    @Column(name = "servicio_limpieza")
-    private Boolean servicioLimpieza;
-    @Column(name = "servicio_habitaciones")
-    private Boolean servicioHabitaciones;
-    @Column(name = "accesibilidad")
-    private Boolean accesibilidad;
-    @Column(name = "idiomas")
-    private String listaIdiomas;
+    @Column(name = "telefono", length = 150)
+    private Integer telefono;
+    @Column(name = "email", length = 150)
+    private String email;
+    @Column(name = "cancelacion_g")
+    private Boolean cancelacion_g;
+
+    @Column(name = "wifi")
+    private Boolean wifi;
+
     @Column(name = "mascotas")
     private Boolean mascotas;
 
-    @ManyToOne()
-    @JoinColumn(name="id_administrador")
-    private Administrador administrador;
+    @Column(name = "multilengua")
+    private Boolean multilengua;
+
+    @Column(name = "accesibilidad")
+    private Boolean accesibilidad;
+
+    @Column(name = "s_habitacion")
+    private Boolean s_habitacion;
+
+    @Column(name = "hc_recepcion")
+    private Time hc_recepcion;
+
+    @Column(name = "hf_recepcion")
+    private Time hf_recepcion;
+
+    @Column(name = "s_transporte")
+    private Boolean s_transporte;
+
+    @Column(name = "tours")
+    private Boolean tours;
+
+    @Column(name = "comedor")
+    private Boolean comedor;
+
+    @Column(name = "espectaculos")
+    private Boolean espectaculos;
+
+    @Column(name = "patio")
+    private Boolean patio;
+
+    @Column(name = "piscina")
+    private Boolean piscina;
+
+    @Column(name = "terraza")
+    private Boolean terraza;
+
+    @Column(name = "parking")
+    private Boolean parking;
+
+
+    @ManyToOne
+    @JoinColumn(name = "usuario")
+    private Usuario id_usuario;
+
 
     @OneToMany(mappedBy = "hotel")
-    private Set<Review> reservas;
-
-
+    private Set<Review> review;
+    
     @OneToMany(mappedBy = "hotel")
-    private Set<Habitacion> habitaciones;
+    private Set<Habitacion> habiacion;
 
-    @ManyToMany(mappedBy = "hoteles")
-    private List<TipoPension> books;
+    @ManyToMany(mappedBy = "hotel")
+    private List<Pension> pension;
 
+
+    public Hotel(Integer id) {
+        this.id = id;
+    }
+
+    public Hotel() {
+
+    }
 }
