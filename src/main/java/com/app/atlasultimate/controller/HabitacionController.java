@@ -1,7 +1,7 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.model.Habitacion;
-import com.app.atlasultimate.service.HabitacionService;
+import com.app.atlasultimate.service.HabitacionServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("habitacion")
 public class HabitacionController {
     @Autowired
-    private HabitacionService servicio;
+    private HabitacionServiceImp servicio;
 
+    //MUESTRA FORMULARIO CREACION DE HABITACION
     @GetMapping("nueva")
     public String crearHabitacion(Model model) {
         Habitacion hab = new Habitacion();
@@ -23,7 +24,7 @@ public class HabitacionController {
         return "/crearhabitacion.html";
     }
 
-    //crear habitacion
+    //GUARDAR DATOS HABITACION EN BBDD
     @PostMapping("nueva")
     public String guardarHabitacion(@ModelAttribute("habitacion") Habitacion hab) {
         chequearBooleanHabitacion(hab);

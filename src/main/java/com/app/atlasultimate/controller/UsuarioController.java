@@ -1,21 +1,25 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
-import com.app.atlasultimate.service.HotelService;
-import com.app.atlasultimate.service.UsuarioServiceImpl;
+import com.app.atlasultimate.service.HotelServiceImp;
+import com.app.atlasultimate.service.UsuarioServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("usuario")
 public class UsuarioController {
 
+//INYECTA SERVICIO HOTEL:
     @Autowired
-    private HotelService servicio;
+    private HotelServiceImp servicio;
 
+//PAGINA INICIO ROL ADMIN
     @GetMapping("inicio")
-    public String inicio(){
+    public String inicio(Model modelo){
+        modelo.addAttribute("hoteles", servicio.listarHoteles());
         return "/InicioAdministrador.html";
     }
 
@@ -28,10 +32,12 @@ public class UsuarioController {
     public String informes(){
         return "/InformesAdmin.html";
     }
+
     @GetMapping("facturas")
     public String facturas(){
         return "/FacturasAdmin.html";
     }
+
     @GetMapping("crearhotel")
     public String crearHotel(){
         return "/crearhotel.html";
@@ -39,7 +45,7 @@ public class UsuarioController {
 
 
     @Autowired
-    private UsuarioServiceImpl usuarioService;
+    private UsuarioServiceImp usuarioService;
 
     @ModelAttribute("usuario")
     public UsuarioRegistroDTO retornarNuevoUsuario(){

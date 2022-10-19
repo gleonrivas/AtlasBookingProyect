@@ -24,6 +24,8 @@ public class Hotel {
     private String nombre;
     @Column(name = "pais", length = 150)
     private String pais;
+    @Column(name = "ciudad", length = 150)
+    private String ciudad;
     @Column(name = "direccion", length = 150)
     private String direccion;
     @Column(name = "estrellas", length = 1)
