@@ -1,7 +1,6 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.HotelBusquedaDTO;
-import com.app.atlasultimate.model.Administrador;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;

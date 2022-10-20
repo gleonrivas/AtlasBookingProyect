@@ -1,6 +1,6 @@
 package com.app.atlasultimate.controller.DTO;
 
-import com.app.atlasultimate.model.Administrador;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

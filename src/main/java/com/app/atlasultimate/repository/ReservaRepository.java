@@ -1,14 +1,14 @@
 package com.app.atlasultimate.repository;
 
 import com.app.atlasultimate.model.Habitacion;
-import com.app.atlasultimate.model.Reserva;
+import com.app.atlasultimate.model.Registro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReservaRepository  extends JpaRepository<Reserva,Integer> {
+public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
 
     @Query(value="SELECT h2.nombre, h2.preferencia_pago, htp.tipo_pension, " +
             "h2.cancelacion_grat, h.tipo_habitacion\n" +
