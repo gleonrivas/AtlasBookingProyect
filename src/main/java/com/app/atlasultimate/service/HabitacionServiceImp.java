@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class HabitacionServiceImp {
+public class HabitacionServiceImp implements HabitacionServicio {
 
     @Autowired
     private HabitacionRepository habitacionRepository;
@@ -29,5 +29,6 @@ public class HabitacionServiceImp {
     public void eliminarHabitacion(Integer id){
         habitacionRepository.deleteById(id);
     }
+
 
 }

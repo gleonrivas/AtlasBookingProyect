@@ -1,6 +1,5 @@
 package com.app.atlasultimate.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +31,8 @@ public class Habitacion {
     @Column(name = "num_habitaciones_iguales", length = 10)
     private Integer num_habitaciones_iguales;
 
+    @OneToMany (mappedBy = "habitacion")
+    private Set<Reserva> reservas;
 
     @JsonBackReference
     @ManyToOne( optional = true, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
@@ -43,4 +44,21 @@ public class Habitacion {
     private Set<Registro> registro;
 
 
+    public Habitacion(Integer id,Boolean disponible, String tipo_habitacion, Integer num_habitaciones_iguales, Integer num_camas, String tipo_cama, Boolean bano, Boolean wifi, Double precio_base, Boolean vistas, Set<Reserva> reservas, Hotel hotel) {
+        this.id = id;
+        this.disponible = disponible;
+        this.tipo_habitacion = tipo_habitacion;
+        this.num_habitaciones_iguales = num_habitaciones_iguales;
+        this.num_camas = num_camas;
+        this.tipo_cama = tipo_cama;
+        this.bano = bano;
+        this.wifi = wifi;
+        this.precio_base = precio_base;
+        this.vistas = vistas;
+        this.reservas = reservas;
+        this.hotel = hotel;
+    }
+
+    public Habitacion() {
+    }
 }

@@ -9,6 +9,12 @@
     flex-direction: column;
 }
 
+.row-container{
+    display: flex;
+    flex-direction: row;
+}
+
+
 .carousel {
     width:80%;
     margin-top: 10%;
@@ -36,17 +42,50 @@
     margin-right: 5%;
     font-size: 25px;
     color: white;
-    transition: color 0.8s linear 0.2s;
+
 }
 
 .navegacion a:hover{
-    margin-top: 2%;
-    font-size: 30px;
+
     color: cornflowerblue;
     text-decoration: none;
-    transition: all 0.3s;
+
 }
 
 
 
+.column-container{
+    display: flex;
+    flex-direction: column;
 
+}
+
+.row-container-barra{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 1200px;
+}
+
+.row-container{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+}
+
+.tarjeta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: beige;
+    border-radius: 5px;
+    height: 400px;
+    position: static;
+    width: 500px;
+    margin: 10px;
+}

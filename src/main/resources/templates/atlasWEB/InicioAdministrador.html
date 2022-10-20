@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -22,7 +22,7 @@
         <p>BOOKING</p>
     </div>
 
-    <div class="lheader">
+    <div class="lheader" >
         <a href="InicioAdministrador.html">Inicio</a>
         <a href="ComentariosAdmin.html">Comentarios</a>
         <a href="FacturasAdmin.html">Administración</a>
@@ -41,38 +41,99 @@
 
 <div id="tituloyboton">
 <h1>Tus alojamientos</h1>
-    <a href="crearhotel.html">
+    <a th:href="@{/hotel/nuevo}">
         <button type="button">Añadir alojamiento</button></a>
 </div>
-<div class="marcohotel">
+<div class="marcohotel" th:each=" hotel : ${hoteles}">
     <div class="conjunto">
         <div class="contenedores">
-            <h2>Nombre del hotel</h2>
-            <p>Estrellas:</p>
-            <p>Ubicación:</p>
+            <h2 th:text="${hotel.nombre} ">Nombre del hotel</h2>
+            <p>Estrellas: </p>
+            <p th:text="${hotel.estrellas} "></p>
+            <p>Ubicación: </p>
+            <p th:text="${hotel.ubicacion} "></p>
+            <p>Código Postal: </p>
+            <p th:text="${hotel.codigo_postal} "></p>
+            <p>Web:  </p>
+            <p th:text="${hotel.web} "></p>
+            <p>Teléfono: </p>
+            <p th:text="${hotel.telefono} ">Teléfono</p>
         </div>
         <div class="contenedores" id="contenedor2">
             <div class="listas">
                 <p>lista de comodidades activas</p>
                 <ul>
-                    <li>comodidad</li>
-                    <li>comodidad</li>
-                    <li>comodidad</li>
+                    <li>
+                    <p >Accesibilidad:</p>
+                    <input type="checkbox" th:checked="${hotel.accesibilidad} ">
+                    </li>
+                    <li>
+                    <p>Terraza:</p>
+                    <input type="checkbox" th:checked="${hotel.terraza} ">
+                    </li>
+                    <li>
+                        <p>Patio: </p>
+                    <input type="checkbox" th:checked="${hotel.patioInterior} ">
+                    </li>
+                    <li>
+                        <p>Parking: </p>
+                    <input type="checkbox" th:checked="${hotel.aparcamiento} ">
+                    </li>
+                    <li>
+                    <p>Recepción: </p>
+                    <input type="checkbox" th:checked="${hotel.recepcion}">
+                    </li>
+                    <li>
+                    <p>Mascotas: </p>
+                    <input type="checkbox" th:checked="${hotel.mascotas}">
+                    </li>
+                    <li>
+                        <p>Wifi: </p>
+                    <input type="checkbox" th:checked="${hotel.wifi}">
+                    </li>
                 </ul>
             </div>
             <div class="listas">
                 <p>lista de servicios activos</p>
+
+
                 <ul>
-                    <li>servicio</li>
-                    <li>servicio</li>
-                    <li>servicio</li>
+                    <li>
+                        <p>Piscina: </p>
+                    <input type="checkbox" th:checked="${hotel.piscina} ">
+                    </li>
+                    <li>
+                        <p>Servicio de limpieza: </p>
+                    <input type="checkbox" th:checked="${hotel.servicioLimpieza} ">
+                    </li>
+                    <li>
+                        <p>Servicio de habitaciones: </p>
+                    <input type="checkbox" th:checked="${hotel.servicioHabitaciones} ">
+                    </li>
+                    <li>
+                        <p>Servicio de transporte: </p>
+                    <input type="checkbox" th:checked="${hotel.servicioTransporte} ">
+                    </li>
+                    <li>
+                        <p>Tours: </p>
+                    <input type="checkbox" th:checked="${hotel.tours} ">
+                    </li>
+                    <li>
+                        <p>Espectáculos: </p>
+                    <input type="checkbox" th:checked="${hotel.espectaculos} ">
+                    </li>
+                    <li>
+                        <p>Comedor: </p>
+                    <input type="checkbox" th:checked="${hotel.comedor} ">
+                    </li>
                 </ul>
             </div>
 
         </div>
         <div class="botones">
-            <button type="submit">Editar</button>
-            <button type="submit">Eliminar</button>
+            <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}"><button type="submit">Editar</button></a>
+            <a th:href="@{/admin/inicio/{id}(id=${hotel.id})}"> <button type="submit">Eliminar</button></a>
+            <a href="/hotel/habitacion"><button type="submit">Ver habitaciones</button></a>
         </div>
     </div>
 
