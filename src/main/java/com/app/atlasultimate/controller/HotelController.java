@@ -3,6 +3,7 @@ package com.app.atlasultimate.controller;
 import com.app.atlasultimate.controller.DTO.HotelBusquedaDTO;
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
+import com.app.atlasultimate.registro.ClienteRegistroDTO;
 import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import com.app.atlasultimate.service.HotelService;
@@ -94,6 +95,9 @@ public class HotelController {
     chequearBoolean(hotelexistente);
     return "redirect:/admin/inicio";
 
+    @GetMapping("")
+    public String index() {
+        return "/index.html";
     }
 
 
