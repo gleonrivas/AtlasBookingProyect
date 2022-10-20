@@ -1,16 +1,18 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.model.Habitacion;
-<<<<<<< HEAD
+
 import com.app.atlasultimate.model.Hotel;
+import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
 
 @Controller
 @RequestMapping("habitacion")
@@ -40,19 +42,18 @@ public class HabitacionController {
         h.setDisponible(h.getDisponible() == null ? true : false);
         h.setBano(h.getBano() == null ? false : true);
         h.setVistas(h.getVistas() == null ? false : true);
-        h.setWifi(h.getWifi() == null ? false : true);
+        h.setWifi(h.getWifi() == null ? false : true);}
 
 
 
-    @Autowired
-    private HabitacionRepository repository;
+        @Autowired
+        private HabitacionRepository repository;
 
 
-    @RequestMapping("/hotel/{id}")
-    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
-        List<Habitacion> habitaciones = repository.findAllById(id);
-        model.addAttribute("habitaciones", habitaciones);
-        return "/hotel.html";
-
-    }
+        @GetMapping("/hotel/{id}")
+        public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
+            List<Habitacion> habitaciones = repository.findAllById(id);
+            model.addAttribute("habitaciones", habitaciones);
+            return "/hotel.html" ;
+        }
 }
