@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -283,35 +283,29 @@
 
 </header>
 
-<label class="intro">
+<form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
   <div class="entry-group">
-    <p>Elige una ciudad</p>
-    <input type="text" value="Próximo destino..." class="inputciudad">
+    <label for="fecha_inicio">Fecha de entrada</label>
+    <input type="datetime" id="fecha_inicio" th:field="*{fecha_inicio}" value="" class="inputfentrada">
   </div>
   <div class="entry-group">
-    <p>Fecha de entrada</p>
-    <input type="date" value="" class="inputfentrada">
+    <label for="fecha_fin">Fecha de salida</label>
+    <input type="datetime"  id="fecha_fin" th:field="*{fecha_fin}" value="" class="inputfsalida">
   </div>
   <div class="entry-group">
-    <p>Fecha de salida</p>
-    <input type="date" value="" class="inputfsalida">
+    <label for="ciudad">Elige una ciudad</label>
+    <input type="text" id="ciudad" th:field="*{ciudad}" value="Próximo destino..." class="inputciudad">
   </div>
   <div class="entry-group">
-    <p>¿Cuántos adultos?</p>
-    <input type="number" value="0" class="inputnadultos">
+    <label for="tipo_cama">¿Que tipo de cama?</label>
+    <input type="text" id="tipo_cama" th:field="*{tipo_cama}" value="Individual" class="inputnadultos">
   </div>
-  <div class="entry-group">
-    <p>¿Hay niños?</p>
-    <input type="number" value="0" class="inputniños">
-  </div>
-  <div class="entry-group">
-    <p>¿Cuántas habitaciones?</p>
-    <input type="number" value="0" class="inputnhabitaciones">
-  </div>
+  <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
+</form>
 
-  <button class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 
-</label>
+
+
 
 <footer class="lasth">
 

@@ -60,6 +60,16 @@
 
 }
 
+.row-container-barra{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 1200px;
+}
+
 .row-container{
     display: flex;
     flex-direction: row;
@@ -72,10 +82,10 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    border: 2px black;
     background-color: beige;
     border-radius: 5px;
-    height: 500px;
-    width: 300px;
-    margin: 2%;
+    height: 400px;
+    position: static;
+    width: 500px;
+    margin: 10px;
 }

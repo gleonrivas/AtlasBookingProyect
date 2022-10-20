@@ -30,7 +30,7 @@ public class Reserva {
     Habitacion habitacion;
 
     @Column(name = "dia_hora_llegada")
-    private Timestamp diayHoraLlegada;
+        private Timestamp diayHoraLlegada;
     @Column(name = "dia_hora_salida")
     private Timestamp diayHoraSalida;
     @Column(name = "num_adultos")

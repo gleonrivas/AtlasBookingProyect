@@ -6,10 +6,13 @@ import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 
@@ -17,6 +20,7 @@ import java.util.List;
 @Controller
 @RequestMapping("habitacion")
 public class HabitacionController {
+
     @Autowired
     private HabitacionServiceImp servicio;
 
@@ -50,10 +54,11 @@ public class HabitacionController {
         private HabitacionRepository repository;
 
 
-        @GetMapping("/hotel/{id}")
-        public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
-            List<Habitacion> habitaciones = repository.findAllById(id);
-            model.addAttribute("habitaciones", habitaciones);
-            return "/hotel.html" ;
-        }
+
+    @RequestMapping("/hotel/{id}")
+    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
+        List<Habitacion> habitaciones = repository.findAllById(id);
+        model.addAttribute("habitaciones", habitaciones);
+        return "/hotel.html";
+    }
 }
