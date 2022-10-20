@@ -27,5 +27,6 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
                                   @Param("tipo_cama") String tipo_cama);
 
 
-
+    @Query(value = "SELECT * FROM hotel h where id = :id", nativeQuery = true)
+    Hotel findHotelById(@Param("id")Integer id);
 }

@@ -22,10 +22,13 @@ public class HotelController {
         return new HotelBusquedaDTO();
     }
 
+
+
     @GetMapping("")
     public String index() {
         return "/index.html";
     }
+
 
     @PostMapping("")
     public String filtrarHotel(@ModelAttribute("hotel") HotelBusquedaDTO busquedaDTO, Model model) {
@@ -35,7 +38,6 @@ public class HotelController {
         return "/hotelesBusqueda.html";
 
     }
-
 
 
 }
