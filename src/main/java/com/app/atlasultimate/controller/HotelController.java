@@ -4,6 +4,7 @@ import com.app.atlasultimate.controller.DTO.HotelBusquedaDTO;
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.registro.ClienteRegistroDTO;
+import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import com.app.atlasultimate.service.HotelService;
@@ -93,7 +94,7 @@ public class HotelController {
     hotelexistente.setPreferenciaPago(hotel.getPreferenciaPago());
     servicioHotel.actualizarHotel(hotelexistente);
     chequearBoolean(hotelexistente);
-    return "redirect:/admin/inicio";
+    return "redirect:/admin/inicio";}
 
     @GetMapping("")
     public String index() {
@@ -154,5 +155,26 @@ public class HotelController {
         h.setWifi(h.getWifi()==null? false:true);
         h.setCancelacionGratuita(h.getCancelacionGratuita()==null? false:true);
     }
+    @Autowired
+    private HabitacionRepository repository;
 
+    @Autowired
+    private HotelRepository hotelRepository;
+
+
+    @GetMapping("/{id}")
+    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
+        List<Habitacion> habitaciones = repository.findAllById(id);
+        model.addAttribute("habitaciones", habitaciones);
+        return "/hotel.html";
+    }
+
+    @PostMapping("/{id}")
+    public String filtrarHotel(@PathVariable(value = "id") Integer id, Model model) {
+
+        Hotel hotel = hotelRepository.findHotelById(id);
+        model.addAttribute("hotel", hotel);
+        return "/hotelesBusqueda.html";
+
+    }
 }
