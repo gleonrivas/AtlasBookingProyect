@@ -31,6 +31,8 @@ public class Habitacion {
     private Boolean vistas;
     @Column(name = "num_habitaciones_iguales", length = 10)
     private Integer num_habitaciones_iguales;
+    @Column(name = "n_max_personas", length = 10)
+    private Integer n_max_personas;
 
 
     @JsonBackReference
@@ -42,7 +44,8 @@ public class Habitacion {
     @OneToMany(mappedBy = "habitacion",fetch = FetchType.LAZY)
     private Set<Registro> registro;
 
-    public Habitacion(Integer id, Integer c_individual, Integer c_doble, Double precio_base, Boolean bano, Boolean vistas, Integer num_habitaciones_iguales, Hotel hotel, Set<Registro> registro) {
+    public Habitacion(Integer id, Integer c_individual, Integer c_doble, Double precio_base, Boolean bano, Boolean vistas,
+                      Integer num_habitaciones_iguales, Hotel hotel, Set<Registro> registro, Integer n_max_personas) {
         this.id = id;
         this.c_individual = c_individual;
         this.c_doble = c_doble;
@@ -52,6 +55,20 @@ public class Habitacion {
         this.num_habitaciones_iguales = num_habitaciones_iguales;
         this.hotel = hotel;
         this.registro = registro;
+        this.n_max_personas= n_max_personas;
+    }
+
+    public Habitacion(Habitacion hab) {
+        this.id = null;
+        this.c_individual = hab.c_individual;
+        this.c_doble = hab.c_doble;
+        this.precio_base = hab.precio_base;
+        this.bano = hab.bano;
+        this.vistas = hab.vistas;
+        this.num_habitaciones_iguales = hab.num_habitaciones_iguales;
+        this.hotel = hab.hotel;
+        this.registro =hab.registro;
+        this.n_max_personas= hab.n_max_personas;
     }
 
     public Habitacion() {

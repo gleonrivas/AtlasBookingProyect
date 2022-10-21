@@ -28,9 +28,7 @@ public class HabitacionController {
     @PostMapping("nueva")
     public String guardarHabitacion(@ModelAttribute("habitacion") Habitacion hab) {
         chequearBooleanHabitacion(hab);
-        for (int i = 0; i <= hab.getNum_habitaciones_iguales(); i++) {
-            servicio.guardarhab(hab);
-        }
+        servicio.guardarHabMultiple(hab.getNum_habitaciones_iguales(), hab);
         return "redirect:/hotel/habitacion";
     }
 
