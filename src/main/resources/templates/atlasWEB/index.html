@@ -286,11 +286,11 @@
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
   <div class="entry-group">
     <label for="fecha_inicio">Fecha de entrada</label>
-    <input type="text" id="fecha_inicio" th:field="*{fecha_inicio}" placeholder="YYYY/MM/DD" class="inputfentrada">
+    <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="inputfentrada">
   </div>
   <div class="entry-group">
     <label for="fecha_fin">Fecha de salida</label>
-    <input type="text"  id="fecha_fin" th:field="*{fecha_fin}" placeholder="YYYY/MM/DD"  class="inputfsalida">
+    <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="inputfsalida">
   </div>
   <div class="entry-group">
     <label for="ciudad">Elige una ciudad</label>

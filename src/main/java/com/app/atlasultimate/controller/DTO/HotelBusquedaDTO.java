@@ -15,9 +15,9 @@ import java.util.Objects;
 public class HotelBusquedaDTO {
 
 
-    private Date fecha_inicio;
+    private String fecha_inicio;
 
-    private Date fecha_fin;
+    private String fecha_fin;
 
     private String ciudad;
 
@@ -29,7 +29,7 @@ public class HotelBusquedaDTO {
 
     }
 
-    public HotelBusquedaDTO(Date fecha_inicio, Date fecha_fin, String ciudad, Integer n_max_personas) {
+    public HotelBusquedaDTO(String fecha_inicio, String fecha_fin, String ciudad, Integer n_max_personas) {
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.ciudad = ciudad;
