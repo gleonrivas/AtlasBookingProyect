@@ -64,16 +64,16 @@
     <div class="row-container-barra">
         <div class="tarjeta" th:each="h : ${habitaciones}">
             <div class="row-container">
-                <p>tipo de cama:  </p>
-                <p th:text="${h.tipo_cama}"></p>
+                <p>Camas dobles:  </p>
+                <p th:text="${h.c_doble}"></p>
             </div>
             <div class="row-container">
-                <p>tipo de habitacion:  </p>
-                <p th:text="${h.tipo_habitacion}"></p>
+                <p>Camas individuales:  </p>
+                <p th:text="${h.c_individual}"></p>
             </div>
             <div class="row-container">
-                <p>numero de camas:  </p>
-                <p th:text="${h.num_camas}"></p>
+                <p>Numero de personas:  </p>
+                <p th:text="${h.n_max_personas}"></p>
             </div>
             <div class="row-container">
                 <p>precio:  </p>

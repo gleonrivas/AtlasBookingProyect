@@ -3,6 +3,7 @@ package com.app.atlasultimate.controller.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
@@ -11,17 +12,16 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class HotelBusquedaDTO {
 
 
-    private Timestamp fecha_inicio;
+    private Date fecha_inicio;
 
-    private Timestamp fecha_fin;
+    private Date fecha_fin;
 
     private String ciudad;
 
-    private String tipo_cama;
+    private Integer n_max_personas;
 
 
 
@@ -29,4 +29,10 @@ public class HotelBusquedaDTO {
 
     }
 
+    public HotelBusquedaDTO(Date fecha_inicio, Date fecha_fin, String ciudad, Integer n_max_personas) {
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.ciudad = ciudad;
+        this.n_max_personas = n_max_personas;
+    }
 }
