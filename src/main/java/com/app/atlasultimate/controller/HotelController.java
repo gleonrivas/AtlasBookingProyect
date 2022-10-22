@@ -27,9 +27,10 @@ public class HotelController {
     private HabitacionController habcontroller;
 
 
-    @GetMapping("habitacion")
-    public String leerHabitaciones(Model model){
-        model.addAttribute("habitaciones", servicio.listarHabitacion());
+    @GetMapping("/habitacion/{id}")
+    public String leerHabitaciones(@PathVariable Integer id,Model model, Model model2){
+        model.addAttribute("habitaciones", servicio.listarHabitacionbyIdHotel(id));
+        model2.addAttribute("hotel", servicioHotel.obtenerHotelporId(id));
         return "/AdminHabitaciones.html";
     }
 
@@ -82,7 +83,7 @@ public class HotelController {
         hotelexistente.setCancelacion_g(hotel.getCancelacion_g());
         servicioHotel.actualizarHotel(hotelexistente);
         chequearBoolean(hotelexistente);
-        return "redirect:/admin/inicio";
+        return "redirect:/usuario/inicio";
 
     }
 
@@ -101,6 +102,36 @@ public class HotelController {
         h.setWifi(h.getWifi()==null? false:true);
         h.setCancelacion_g(h.getCancelacion_g()==null? false:true);
         h.setMultilengua(h.getMultilengua()==null? false:true);
+    }
+    //cargar habitacion en formulario para editarla
+
+    @GetMapping("/editarhabitacion/{id}")
+    public String editarHabitacion(@PathVariable Integer id, Model model) {
+        model.addAttribute("habitacion", servicio.obtenerHabitacionporId(id));
+
+        return"/editarHabitacion.html";}
+
+    //Peticionpost para enviar la info cambiada de la habitacion
+    @PostMapping("/editarhabitacion/{id}")
+    public String actualizarHabitacion (@PathVariable Integer id, @ModelAttribute("habitacion") Habitacion hab, Model modelo){
+        Habitacion habitacionexistente = servicio.obtenerHabitacionporId(id);
+        habitacionexistente.setId(id);
+        habitacionexistente.setC_individual(hab.getC_individual());
+        habitacionexistente.setC_doble(hab.getC_doble());
+        habitacionexistente.setPrecio_base(hab.getPrecio_base());
+        habitacionexistente.setBano(hab.getBano());
+        habitacionexistente.setVistas(hab.getVistas());
+        habcontroller.chequearBooleanHabitacion(habitacionexistente);
+        servicio.actualizarHabitacion(habitacionexistente);
+
+        return "redirect:/hotel/habitacion";
+    }
+
+    //Eliminar habitacion
+    @DeleteMapping("/habitacion/{id}")
+    public String eliminarHab(@PathVariable Integer id){
+        servicio.eliminarHabitacion(id);
+        return "redirect:/hotel/habitacion";
     }
 
     @Autowired

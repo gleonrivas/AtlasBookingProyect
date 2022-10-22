@@ -62,6 +62,7 @@
             <p th:text="${hotel.email} ">Email</p>
 
 
+
         </div>
         <div class="contenedores" id="contenedor2">
             <div class="listas">
@@ -137,8 +138,8 @@
         </div>
         <div class="botones">
             <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}"><button type="submit">Editar</button></a>
-            <a th:href="@{/admin/inicio/{id}(id=${hotel.id})}"> <button type="submit">Eliminar</button></a>
-            <a href="/hotel/habitacion"><button type="submit">Ver habitaciones</button></a>
+            <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}"> <button type="submit">Eliminar</button></a>
+            <a th:href= "@{/hotel/habitacion/{id}(id=${hotel.id})}"><button type="submit">Ver habitaciones</button></a>
         </div>
     </div>
 

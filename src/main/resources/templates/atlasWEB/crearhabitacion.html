@@ -37,7 +37,7 @@
 <h1>¡Hola ...ADMIN!</h1>
 <div style="width: 90%; margin: auto">
 
-    <form  class="card" style="padding:2%"  name="form" th:action="@{/habitacion/nueva}" th:object="${habitacion}" method="post">
+    <form  class="card" style="padding:2%"  name="form" th:action="@{/habitacion/nueva/{id}(id=${hotel.id})}" th:object="${habitacion}" method="post">
 
 
         <h2>Habitación</h2>
@@ -45,6 +45,9 @@
         <label class="form-label" for="num_habitaciones_iguales">Número de habitaciones iguales</label>
         <input class="form-control" type="number" id="num_habitaciones_iguales" name="num_habitaciones_iguales"
                th:field="*{num_habitaciones_iguales}"/>
+        <label class="form-label" for="num_max">Aforo máximo de la habitación:</label>
+        <input class="form-control" type="number" id="num_max" name="num_max"
+               th:field="*{n_max_personas}"/>
 
         <br>
         <label class="form-label" for="cama_individual">Número de camas individuales</label>
@@ -66,7 +69,7 @@
     </form>
     <br>
     <div style="margin: auto; width: 30%;">
-        <a href="hotel/habitacion">
+        <a href="/hotel/habitacion">
             <button class="btn btn-success" style=" width: 100%;">Volver</button>
         </a>
     </div>

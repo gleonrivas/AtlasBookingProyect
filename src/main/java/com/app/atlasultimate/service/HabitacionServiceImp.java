@@ -18,6 +18,10 @@ public class HabitacionServiceImp implements HabitacionServicio {
 
         return habitacionRepository.findAll();
     }
+    public List<Habitacion> listarHabitacionbyIdHotel(Integer id) {
+
+        return habitacionRepository.findAllById(id);
+    }
 
     public Habitacion guardarhab(Habitacion h) {
         return habitacionRepository.save(h);

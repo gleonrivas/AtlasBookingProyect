@@ -41,7 +41,7 @@
 
 <div id="tituloyboton">
     <h1>Tus habitaciones</h1>
-    <a th:href="@{/habitacion/nueva}">
+    <a th:href="@{/habitacion/nueva/{id}(id=${hotel.id})}">
         <button type="button">Añadir habitación</button>
     </a>
 </div>
@@ -49,6 +49,8 @@
     <div class="conjunto">
         <div class="contenedores">
             <h2>Habitación</h2>
+            <p> Aforo máximo: </p>
+            <p th:text="${habitacion.n_max_personas}"></p>
             <p> Camas individuales: </p>
             <p th:text="${habitacion.c_individual}"></p>
             <p> Camas dobles: </p>

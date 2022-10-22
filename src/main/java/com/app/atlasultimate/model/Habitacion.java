@@ -38,7 +38,7 @@ public class Habitacion {
     @JsonBackReference
     @ManyToOne( optional = true, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hotel")
-    private Hotel hotel = new Hotel(1);
+    private Hotel hotel;
 
     @JsonBackReference
     @OneToMany(mappedBy = "habitacion",fetch = FetchType.LAZY)
