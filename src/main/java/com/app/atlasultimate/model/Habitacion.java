@@ -29,10 +29,10 @@ public class Habitacion {
     private Boolean bano;
     @Column(name = "vistas")
     private Boolean vistas;
+    @Column(name = "n_max_personas")
+    private Integer n_max_personas;
     @Column(name = "num_habitaciones_iguales", length = 10)
     private Integer num_habitaciones_iguales;
-    @Column(name = "n_max_personas", length = 10)
-    private Integer n_max_personas;
 
 
     @JsonBackReference

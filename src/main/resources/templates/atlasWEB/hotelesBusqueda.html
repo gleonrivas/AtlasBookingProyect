@@ -290,28 +290,28 @@
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
     <div class="entry-group">
         <label for="fecha_inicio">Fecha de entrada</label>
-        <input type="datetime" id="fecha_inicio" th:field="*{fecha_inicio}" value="" class="inputfentrada">
+        <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="inputfentrada">
     </div>
     <div class="entry-group">
         <label for="fecha_fin">Fecha de salida</label>
-        <input type="datetime"  id="fecha_fin" th:field="*{fecha_fin}" value="" class="inputfsalida">
+        <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="inputfsalida">
     </div>
     <div class="entry-group">
         <label for="ciudad">Elige una ciudad</label>
         <input type="text" id="ciudad" th:field="*{ciudad}" value="Próximo destino..." class="inputciudad">
     </div>
     <div class="entry-group">
-        <label for="tipo_cama">¿Que tipo de cama?</label>
-        <input type="text" id="tipo_cama" th:field="*{tipo_cama}" value="Individual" class="inputnadultos">
+        <label for="tipo_cama">¿Cuantas personas?</label>
+        <input type="number" id="tipo_cama" th:field="*{n_max_personas}" value="Individual" class="inputnadultos">
     </div>
     <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
 
 <div class="card" th:each="h : ${hoteles}" style="width: 18rem;">
-    <img src="" class="card-img-top" alt="...">
+    <img src="/img/hotel.jpg" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title" th:text="${h.nombre}"></h5>
-        <p class="card-text" th:text="${h.pais}"></p>
+        <p class="card-text" th:text="${h.ciudad}"></p>
         <a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}" class="btn btn-primary">Visitar</a>
     </div>
 </div>
