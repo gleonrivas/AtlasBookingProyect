@@ -11,7 +11,7 @@
 
 
 <style>
-  /FUENTES EXTERNAS/
+  /*FUENTES EXTERNAS*/
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
 
   /* COMIENZA HEADER ------------------------------------------*/
@@ -101,12 +101,12 @@
     display: flex;
     width: 80%;
     margin: 15% auto;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     padding: 2% 1%;
     font-size: 14px;
     background-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.66);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     color: white;
@@ -129,63 +129,30 @@
     font-size: 13px;
   }
   .inputciudad{
-    border-radius: 10px 0 0 10px;
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
+    border-radius: 15px;
     width: 150px;
     height: 50px;
+    margin-top: 10%;
+    border: none;
+
   }
   .inputfentrada{
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
     width: 150px;
     height: 50px;
     justify-content: center;
 
   }
-  .inputfsalida{
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
+  .fecha{
+    margin-top: 10%;
+    border: none;
     width: 150px;
     height: 50px;
     justify-content: center;
+    border-radius: 15px;
 
   }
-  .inputnadultos{
-    border-left-style: solid;
-    border-right-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
 
-  }
-  .inputniños{
-    border-left-style: solid;
-    border-right-style: solid;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
-  }
-  .inputnhabitaciones{
-    border-radius: 0 10px 10px 0;
-    border-left-style: none;
-    border-right-style: solid;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    width: 150px;
-    height: 50px;
-    justify-content: center;
-  }
+
   .buscar{
     width: 56px;
     height: 56px;
@@ -286,19 +253,19 @@
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
   <div class="entry-group">
     <label for="fecha_inicio">Fecha de entrada</label>
-    <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="inputfentrada">
+    <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="fecha">
   </div>
   <div class="entry-group">
     <label for="fecha_fin">Fecha de salida</label>
-    <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="inputfsalida">
+    <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="fecha">
   </div>
   <div class="entry-group">
-    <label for="ciudad">Elige una ciudad</label>
+    <label for="ciudad">Escribe una ciudad</label>
     <input type="text" id="ciudad" th:field="*{ciudad}" value="Próximo destino..." class="inputciudad">
   </div>
   <div class="entry-group">
     <label for="tipo_cama">¿Cuantas personas?</label>
-    <input type="number" id="tipo_cama" th:field="*{n_max_personas}" value="Individual" class="inputnadultos">
+    <input type="number" id="tipo_cama" th:field="*{n_max_personas}" value="Individual" class="inputn_personas">
   </div>
   <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
@@ -339,7 +306,7 @@
 
 </footer>
 <script>
-  document.body.style.backgroundImage = "url('/img/venecia.jpg')";
+  document.body.style.backgroundImage = "url('/../../static/img/venecia.jpg')";
 </script>
 </body>
 
