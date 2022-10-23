@@ -140,19 +140,22 @@ public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
 
+    @Autowired
+    private HabitacionServiceImp servicioHab;
 
     @GetMapping("/{id}")
     public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
+
         return "/hotel.html";
     }
 
-    @PostMapping("/{id}")
-    public String filtrarHotel(@PathVariable(value = "id") Integer id, Model model) {
+    @PostMapping("/{id_hab}")
+    public String filtrarHotel(@PathVariable(value = "id_hab") Integer id_hab, Model modelo) {
+        Habitacion h = servicioHab.obtenerHabitacionporId(id_hab);
+        modelo.addAttribute("h", h);
 
-        Hotel hotel = hotelRepository.findHotelById(id);
-        model.addAttribute("hotel", hotel);
         return "/hotelesBusqueda.html";
 
     }

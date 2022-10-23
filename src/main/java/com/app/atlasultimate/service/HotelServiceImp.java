@@ -35,5 +35,7 @@ public class HotelServiceImp {
         repositorio.deleteById(id);
     }
 
-
+    public Integer obtenerIdHotel(Integer id){
+        return repositorio.findHotelByIdHab(id);
+    }
 }
