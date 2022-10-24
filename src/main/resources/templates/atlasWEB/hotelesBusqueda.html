@@ -378,16 +378,6 @@
 </form>
 
 
-<!--
-<div class="card" th:each="h : ${hoteles}" style="width: 18rem;">
-    <img src="/img/hotel.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title" th:text="${h.nombre}"></h5>
-        <p class="card-text" th:text="${h.ciudad}"></p>
-        <a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}" class="btn btn-primary">Visitar</a>
-    </div>
-</div>
--->
 
 <div class="nombreCiudad" th:each="h : ${hoteles}" th:text="${h.ciudad}"></div>
 
@@ -399,57 +389,6 @@
         <p class="ubicacionHotel" th:text="${h.direccion}"></p>
         <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>
     </div>
-    <!--
-    <div class="hotelCard">
-        <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
-        <p class="estrellasHotel">5 Estrellas</p>
-        <p class="nombreHotel">Alfonso XIII</p>
-        <p class="ubicacionHotel">Calle Pascual de Rivera</p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
-    </div>
-    <div class="hotelCard">
-        <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
-        <p class="estrellasHotel">5 Estrellas</p>
-        <p class="nombreHotel">Alfonso XIII</p>
-        <p class="ubicacionHotel">Calle Pascual de Rivera</p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
-    </div>
-    <div class="hotelCard">
-        <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
-        <p class="estrellasHotel">5 Estrellas</p>
-        <p class="nombreHotel">Alfonso XIII</p>
-        <p class="ubicacionHotel">Calle Pascual de Rivera</p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
-    </div>
-    <div class="hotelCard">
-        <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
-        <p class="estrellasHotel">5 Estrellas</p>
-        <p class="nombreHotel">Alfonso XIII</p>
-        <p class="ubicacionHotel">Calle Pascual de Rivera</p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
-    </div>
-    <div class="hotelCard">
-        <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
-        <p class="estrellasHotel">5 Estrellas</p>
-        <p class="nombreHotel">Alfonso XIII</p>
-        <p class="ubicacionHotel">Calle Pascual de Rivera</p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
-    </div>
-    <div class="hotelCard">
-        <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
-        <p class="estrellasHotel">5 Estrellas</p>
-        <p class="nombreHotel">Alfonso XIII</p>
-        <p class="ubicacionHotel">Calle Pascual de Rivera</p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
-    </div>
-    <div class="hotelCard">
-        <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
-        <p class="estrellasHotel">5 Estrellas</p>
-        <p class="nombreHotel">Alfonso XIII</p>
-        <p class="ubicacionHotel">Calle Pascual de Rivera</p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
-    </div>
-    -->
 
 </div>
 

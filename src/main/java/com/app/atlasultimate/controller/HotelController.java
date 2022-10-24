@@ -5,7 +5,6 @@ import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
-import com.app.atlasultimate.service.HotelServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
