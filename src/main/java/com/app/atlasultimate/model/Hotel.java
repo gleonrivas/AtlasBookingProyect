@@ -39,6 +39,8 @@ public class Hotel {
     private String email;
     @Column(name = "cancelacion_g")
     private Boolean cancelacion_g;
+    @Column(name = "img", length = 1000)
+    private String img;
 
     @Column(name = "wifi")
     private Boolean wifi;
