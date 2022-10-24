@@ -35,10 +35,14 @@ public class MyController {
         return "/index.html";
     }
     @PostMapping("")
-    public String filtrarHotel(@ModelAttribute("hotel") HotelBusquedaDTO busquedaDTO, Model model) {
+    public String filtrarHotel(@ModelAttribute("hotel") HotelBusquedaDTO busquedaDTO, Model model, Model hotelciudad) {
 
         List<Hotel> hoteles = hotelRepository.findAllByReservas(busquedaDTO.getFecha_inicio(), busquedaDTO.getFecha_fin(),busquedaDTO.getCiudad(),busquedaDTO.getN_max_personas());
         model.addAttribute("hoteles", hoteles);
+
+        model.addAttribute("ciudadhotel", hoteles.get(0));
+
+
         return "/hotelesBusqueda.html";
 
     }
