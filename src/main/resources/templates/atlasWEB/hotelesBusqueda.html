@@ -100,7 +100,7 @@
         border: solid 2px rgba(255, 255, 255, 0.2);
         display: flex;
         width: 60%;
-        margin: 16% auto;
+        margin: 5% auto;
         justify-content: space-evenly;
         align-items: center;
         padding: 2% 3%;
@@ -111,6 +111,15 @@
         backdrop-filter: blur(10px);
         color: black;
         border-radius: 20px;
+        animation: busqueda2 2s ease-in-out;
+    }
+    @keyframes busqueda2 {
+        from {
+            margin: 16% auto;
+        }
+        to {
+            margin: 5% auto;
+        }
     }
     .entry-group{
         display: flex;
@@ -137,7 +146,6 @@
         margin-top: 10%;
 
     }
-
     .fecha{
         border: solid 2px rgba(255, 255, 255, 0.2);
         margin-top: 10%;
@@ -146,7 +154,6 @@
         justify-content: center;
         border-radius: 15px;
     }
-
     .inputn_personas{
         border: solid 2px rgba(255, 255, 255, 0.2);
         border-radius: 15px;
@@ -156,7 +163,6 @@
         justify-content: center;
         padding-left: 70px;
     }
-
     .buscar{
         width: 56px;
         height: 56px;
@@ -234,14 +240,17 @@
 
     /* COMINZA MUESTRA DE HOTEL ---------------------------------*/
     .nombreCiudad{
-        margin: 3% auto 1% auto;
+        margin: 1% auto;
         font-family: Georgia, sans-serif;
         font-size: 170px;
         text-align: center;
         color: white;
-        text-shadow: 0 30px 40px rgba(0, 0, 0, 0.6);
+        text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
         position: relative;
-        animation: nciudad 3s ease-in-out;
+        animation: nciudad 2s ease-in-out;
+    }
+    .nombreCiudad:first-letter{
+        text-transform: uppercase;
     }
     @keyframes nciudad {
         from {
@@ -251,8 +260,8 @@
         }
         to {
             font-size: 170px;
-            text-shadow: 0 30px 40px rgba(0, 0, 0, 0.6);
-            margin: 3% auto 1% auto;
+            text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
+            margin: 1% auto;
         }
     }
 
@@ -262,17 +271,10 @@
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: space-evenly;
-        margin: auto 0 0 0;
-        animation: mymove 5s ease;
+        margin: 2% auto 0 auto;
+        width: 80%;
     }
-    @keyframes mymove {
-        from {
-            display: none;
-        }
-        to {
-            display: flex;
-        }
-    }
+
     .hotelCard{
         display: flex;
         flex-wrap: nowrap;
@@ -330,6 +332,10 @@
         border: none;
         font-size: 12px;
     }
+    .hotelCard > button > a{
+        color: white;
+        text-decoration: none;
+    }
     /* FINALIZA MUESTRA DE HOTEL ---------------------------------*/
 
 </style>
@@ -351,7 +357,6 @@
     </div>
 
 </header>
-<!--
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
     <div class="entry-group">
         <label for="fecha_inicio">Fecha de entrada</label>
@@ -372,7 +377,6 @@
     <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
 
--->
 
 <!--
 <div class="card" th:each="h : ${hoteles}" style="width: 18rem;">
@@ -385,9 +389,17 @@
 </div>
 -->
 
-<div class="nombreCiudad">Sevilla</div>
+<div class="nombreCiudad" th:each="h : ${hoteles}" th:text="${h.ciudad}"></div>
 
 <div class="hotelSlider">
+    <div class="hotelCard" th:each="h : ${hoteles}">
+        <img th:src="${h.img}" alt="">
+        <p class="estrellasHotel" th:text="${h.estrellas} + ' Estrellas'"></p>
+        <p class="nombreHotel" th:text="${h.nombre}"></p>
+        <p class="ubicacionHotel" th:text="${h.direccion}"></p>
+        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>
+    </div>
+    <!--
     <div class="hotelCard">
         <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
         <p class="estrellasHotel">5 Estrellas</p>
@@ -437,13 +449,7 @@
         <p class="ubicacionHotel">Calle Pascual de Rivera</p>
         <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
     </div>
-    <div class="hotelCard">
-        <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2022/05/24/L_184219_ag-querencia-sevilla-fachada-web.jpg" alt="">
-        <p class="estrellasHotel">5 Estrellas</p>
-        <p class="nombreHotel">Alfonso XIII</p>
-        <p class="ubicacionHotel">Calle Pascual de Rivera</p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver disponibilidad</a></button>
-    </div>
+    -->
 
 </div>
 
@@ -480,7 +486,7 @@
 
 </footer>
 <script>
-    document.body.style.backgroundImage = "url('/../../static/img/sevillaWall.jpeg')";
+    document.body.style.backgroundImage = "url('/img/venecia.jpg')";
 </script>
 </body>
 
