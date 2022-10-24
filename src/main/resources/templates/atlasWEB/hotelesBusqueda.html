@@ -4,16 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles/hotelesBusqueda.css">
     <title>Atlas Booking</title>
 </head>
 <body class="images-container">
-
-
 
 <style>
     /*FUENTES EXTERNAS*/
@@ -96,26 +89,37 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        transition: background 1s linear;
-        animation: fade 4s infinite;
+        transition: body 3s ease-in-out;
+        animation: fade 4s ease-in-out;
         font-family: Arial, sans-serif;
     }
+
     /* FINALIZA BODY --------------------------------------------*/
     /* COMIENZA FINDER ------------------------------------------*/
     .intro{
+        border: solid 2px rgba(255, 255, 255, 0.2);
         display: flex;
-        width: 80%;
-        margin: 15% auto;
-        justify-content: center;
+        width: 60%;
+        margin: 5% auto;
+        justify-content: space-evenly;
         align-items: center;
-        padding: 2% 1%;
+        padding: 2% 3%;
         font-size: 14px;
         background-color: rgba(255, 255, 255, 0.4);
-        box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(5px);
-        color: white;
-        border-radius: 10px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.66);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        color: black;
+        border-radius: 20px;
+        animation: busqueda2 2s ease-in-out;
+    }
+    @keyframes busqueda2 {
+        from {
+            margin: 16% auto;
+        }
+        to {
+            margin: 5% auto;
+        }
     }
     .entry-group{
         display: flex;
@@ -123,81 +127,48 @@
         align-items: center;
         justify-content: center;
     }
-    .entry-group > p{
+    .entry-group > label{
         width: available;
         justify-content: center;
         align-content: center;
-        filter: drop-shadow(0 0 10px #000000);
+        text-shadow: 0 0 20px #ffffff;
     }
     input{
         border-color: rgba(0, 0, 0, 0.8);
         font-size: 13px;
     }
     .inputciudad{
-        border-radius: 10px 0 0 10px;
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        width: 130px;
         height: 50px;
-    }
-    .inputfentrada{
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
+        padding-left: 20px;
+        margin-top: 10%;
 
     }
-    .inputfsalida{
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
+    .fecha{
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        margin-top: 10%;
         width: 150px;
         height: 50px;
         justify-content: center;
-
+        border-radius: 15px;
     }
-    .inputnadultos{
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
+    .inputn_personas{
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        margin-top: 10%;
+        width: 80px;
         height: 50px;
         justify-content: center;
-
-    }
-    .inputniños{
-        border-left-style: solid;
-        border-right-style: solid;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-    }
-    .inputnhabitaciones{
-        border-radius: 0 10px 10px 0;
-        border-left-style: none;
-        border-right-style: solid;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
+        padding-left: 70px;
     }
     .buscar{
         width: 56px;
         height: 56px;
         margin: auto 0 0 2%;
-        border-style: solid;
-        border-color: rgba(0, 0, 0, 0.8);
-        border-radius: 10px;
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
         padding: 10px;
         background-color: #ffffff;
         background-position: center;
@@ -267,6 +238,105 @@
     }
     /* FINALIZA FOOTER ------------------------------------------*/
 
+    /* COMINZA MUESTRA DE HOTEL ---------------------------------*/
+    .nombreCiudad{
+        margin: 1% auto;
+        font-family: Georgia, sans-serif;
+        font-size: 170px;
+        text-align: center;
+        color: white;
+        text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
+        position: relative;
+        animation: nciudad 2s ease-in-out;
+    }
+    .nombreCiudad:first-letter{
+        text-transform: uppercase;
+    }
+    @keyframes nciudad {
+        from {
+            font-size: 100px;
+            text-shadow: none;
+            margin: 22%;
+        }
+        to {
+            font-size: 170px;
+            text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
+            margin: 1% auto;
+        }
+    }
+
+    .hotelSlider{
+        overflow-x: scroll;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 2% auto 0 auto;
+        width: 80%;
+    }
+
+    .hotelCard{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 0 2% 0;
+        width: 250px;
+        height: 350px;
+        margin: 0 2% 10% 2%;
+        background-color: rgba(255, 255, 255, 0.64);
+        border-radius: 30px;
+        border: none 2px rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .hotelCard > img{
+        margin:  0;
+        object-fit: cover;
+        width: 100%;
+        height: 200px;
+        border-radius: 30px;
+    }
+
+    .nombreHotel{
+        margin: 15px 44px 0 0;
+        font-family: Futura,serif;
+        font-size: 30px;
+        font-weight: bold;
+        width: 189px;
+        padding-left: 17.5px;
+    }
+    .ubicacionHotel{
+        margin: 1% auto 4% 0;
+        padding-left: 7%;
+    }
+    .estrellasHotel{
+        z-index: 2;
+        margin: -5% auto 0 auto;
+        padding: 2% 5%;
+        background-color: yellow;
+        border-radius: 20px;
+        font-size: 13px;
+        width: fit-content;
+        box-shadow:0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hotelCard > button{
+        margin: 7% auto 0 auto;
+        padding: 4% 6%;
+        width: 131px;
+        background-color: #2a6bff;
+        border-radius: 10px;
+        color: white;
+        border: none;
+        font-size: 12px;
+    }
+    .hotelCard > button > a{
+        color: white;
+        text-decoration: none;
+    }
+    /* FINALIZA MUESTRA DE HOTEL ---------------------------------*/
 
 </style>
 
@@ -287,34 +357,45 @@
     </div>
 
 </header>
-
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
     <div class="entry-group">
         <label for="fecha_inicio">Fecha de entrada</label>
-        <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="inputfentrada">
+        <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="fecha">
     </div>
     <div class="entry-group">
         <label for="fecha_fin">Fecha de salida</label>
-        <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="inputfsalida">
+        <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="fecha">
     </div>
     <div class="entry-group">
-        <label for="ciudad">Elige una ciudad</label>
+        <label for="ciudad">Escribe una ciudad</label>
         <input type="text" id="ciudad" th:field="*{ciudad}" value="Próximo destino..." class="inputciudad">
     </div>
     <div class="entry-group">
-        <label for="tipo_cama">¿Cuantas personas?</label>
-        <input type="number" id="tipo_cama" th:field="*{n_max_personas}" value="Individual" class="inputnadultos">
+        <label for="n_personas">¿Cuantas personas?</label>
+        <input type="number" id="n_personas" th:field="*{n_max_personas}" value="0" class="inputn_personas">
     </div>
     <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
 
-<div class="card" th:each="h : ${hoteles}" style="width: 18rem;">
-    <img src="/img/hotel.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title" th:text="${h.nombre}"></h5>
-        <p class="card-text" th:text="${h.ciudad}"></p>
-        <a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}" class="btn btn-primary">Visitar</a>
+<div class="nombreCiudad" th:text="${ciudadhotel.ciudad}"></div>
+
+<div class="hotelSlider">
+
+    <div class="hotelCard" th:each="h : ${hoteles}">
+        <img th:src="${h.img}" alt="">
+        <div class="estrellasHotel">
+            <p th:if="${h.estrellas} == 1">★</p>
+            <p th:if="${h.estrellas} == 2">★★</p>
+            <p th:if="${h.estrellas} == 3">★★★</p>
+            <p th:if="${h.estrellas} == 4">★★★★</p>
+            <p th:if="${h.estrellas} == 5">★★★★★</p>
+
+        </div>
+        <p class="nombreHotel" th:text="${h.nombre}"></p>
+        <p class="ubicacionHotel" th:text="${h.direccion}"></p>
+        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>
     </div>
+
 </div>
 
 
