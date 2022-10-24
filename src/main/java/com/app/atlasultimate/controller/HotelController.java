@@ -112,17 +112,15 @@ public class HotelController {
 
     @GetMapping("/{id}")
     public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
-        List<Habitacion> habitaciones = repository.findAllById(id);
-        model.addAttribute("habitaciones", habitaciones);
-        return "/hotel.html";
-    }
-
-    @PostMapping("/{id}")
-    public String filtrarHotel(@PathVariable(value = "id") Integer id, Model model) {
 
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
-        return "/hotelesBusqueda.html";
+
+        List<Habitacion> habitaciones = repository.findAllById(id);
+        model.addAttribute("habitaciones", habitaciones);
+
+        return "/hotel.html";
 
     }
+
 }
