@@ -394,7 +394,14 @@
 <div class="hotelSlider">
     <div class="hotelCard" th:each="h : ${hoteles}">
         <img th:src="${h.img}" alt="">
-        <p class="estrellasHotel" th:text="${h.estrellas} + ' Estrellas'"></p>
+        <div class="estrellasHotel">
+            <p th:if="${h.estrellas} == 1">★</p>
+            <p th:if="${h.estrellas} == 2">★★</p>
+            <p th:if="${h.estrellas} == 3">★★★</p>
+            <p th:if="${h.estrellas} == 4">★★★★</p>
+            <p th:if="${h.estrellas} == 5">★★★★★</p>
+
+        </div>
         <p class="nombreHotel" th:text="${h.nombre}"></p>
         <p class="ubicacionHotel" th:text="${h.direccion}"></p>
         <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>

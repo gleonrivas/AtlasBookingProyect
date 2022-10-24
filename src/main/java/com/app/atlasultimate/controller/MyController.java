@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller("")
@@ -30,6 +31,7 @@ public class MyController {
 
     @GetMapping("")
     public String index() {
+
         return "/index.html";
     }
     @PostMapping("")
