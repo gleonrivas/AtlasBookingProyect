@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -377,14 +377,20 @@
     <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
 
-
-
-<div class="nombreCiudad" th:each="h : ${hoteles}" th:text="${h.ciudad}"></div>
+<div class="nombreCiudad" th:text="${ciudadhotel.ciudad}"></div>
 
 <div class="hotelSlider">
+
     <div class="hotelCard" th:each="h : ${hoteles}">
         <img th:src="${h.img}" alt="">
-        <p class="estrellasHotel" th:text="${h.estrellas} + ' Estrellas'"></p>
+        <div class="estrellasHotel">
+            <p th:if="${h.estrellas} == 1">★</p>
+            <p th:if="${h.estrellas} == 2">★★</p>
+            <p th:if="${h.estrellas} == 3">★★★</p>
+            <p th:if="${h.estrellas} == 4">★★★★</p>
+            <p th:if="${h.estrellas} == 5">★★★★★</p>
+
+        </div>
         <p class="nombreHotel" th:text="${h.nombre}"></p>
         <p class="ubicacionHotel" th:text="${h.direccion}"></p>
         <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>

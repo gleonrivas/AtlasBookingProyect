@@ -9,9 +9,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PensionRepository extends JpaRepository<Pension, Integer> {
-    @Query(value="select p.id ,p.ad ,p.mp ,p.pc ,p.sa  from pension p join hotel_pension hp ON hp.tipo_pension = p.id\n" +
+    @Query(value="select p.id from pension p join hotel_pension hp ON hp.tipo_pension = p.id\n" +
             "    join hotel h on hp.hotel = h.id where h.id = :id", nativeQuery = true)
-    Pension pensionPorIdHotel(@Param("id_habitacion") Integer id);
+    Integer pensionPorIdHotel(@Param("id") Integer id);
+
+    @Query(value="select * from pension p  where p.id = :id", nativeQuery = true)
+    Pension pensionPorId(@Param("id") Integer id);
 
 
 }

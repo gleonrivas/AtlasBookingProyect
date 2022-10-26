@@ -20,15 +20,34 @@ public class Pension {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", length = 10)
     private Double id;
-
+    //solo alojamiento
     @Column(name = "sa")
     private Double sa;
+
+    @Column(name= "boolean_sa")
+    private Boolean booleanSa;
+
+    //almuerzo+desayuno
     @Column(name = "ad")
     private Double ad;
+
+    @Column(name= "boolean_ad")
+    private Boolean booleanAd;
+
+
+    //media pension alumerzo+cena
     @Column(name = "mp")
     private Double mp;
+
+    @Column(name= "boolean_mp")
+    private Boolean booleanMp;
+
+    //pension completa
     @Column(name = "pc")
     private Double pc;
+
+    @Column(name= "boolean_pc")
+    private Boolean booleanPc;
 
     @JoinTable(
             name = "hotel_pension",

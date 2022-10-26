@@ -5,6 +5,7 @@ import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
+import com.app.atlasultimate.service.HotelServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -144,8 +145,14 @@ public class HotelController {
 
     @GetMapping("/{id}")
     public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
+
+        Hotel hotel = hotelRepository.findHotelById(id);
+        model.addAttribute("hotel", hotel);
+
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
+
+
 
         return "/hotel.html";
     }

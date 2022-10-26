@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("reserva")
 public class ReservaController {
@@ -27,16 +30,21 @@ public class ReservaController {
 
 
     @GetMapping("datos/{id_hab}")
-    public String registroreserva(@PathVariable (value = "id_hab") Integer idHab,
-                                  Model modelHo, Model modelhab, Model modelPension){
+    public String registroreserva(@PathVariable(value = "id_hab") Integer idHab,
+                                  Model modelHo, Model modelhab, Model modelPension) {
         Integer idHotel = servicioHotel.obtenerIdHotel(idHab);
         Hotel hotel = servicioHotel.obtenerHotelporId(idHotel);
+        Integer id_pension = servicioPension.pensionporIdHotel(hotel.getId());
+        Pension pension = servicioPension.pensionporId(id_pension);
         Habitacion habitacion = servicioHab.obtenerHabitacionporId(idHab);
-        Pension pension = servicioPension.pensionporIdHotel(hotel.getId());
-        modelHo.addAttribute("hotel",hotel);
+
+        modelHo.addAttribute("hotel", hotel);
         modelhab.addAttribute("habitacion", habitacion);
-        modelPension.addAttribute("pension",pension);
+        modelPension.addAttribute("pension", pension);
+
 
         return "/reservas.html";
     }
+
+
 }

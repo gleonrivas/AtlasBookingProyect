@@ -60,6 +60,35 @@
         </div>
     </div>
 </div>
+<div class="row-container">
+    <div class="column-container" >
+        <h1>Datos del hotel</h1>
+        <p th:text="${hotel.nombre}"></p>
+        <p th:text="${hotel.ciudad}"></p>
+        <p th:text="${hotel.direccion}"></p>
+        <p th:text="${hotel.telefono}"></p>
+        <p th:text="${hotel.email}"></p>
+
+    </div>
+
+    <div class="column-container" >
+        <h1>Servicios</h1>
+        <div th:if="${hotel.wifi} == true"><p>Wifi disponible</p></div>
+        <div th:if="${hotel.mascotas} == true"><p>Permitimos la entrada a mascotas</p></div>
+        <div th:if="${hotel.multilengua} == true"><p>Hablamos varios idiomas</p></div>
+        <div th:if="${hotel.accesibilidad} == true"><p>Accesible para todo el mundo</p></div>
+        <div th:if="${hotel.s_habitacion} == true"><p>Disponible el servicio de habitaciones</p></div>
+        <div th:if="${hotel.s_transporte} == true"><p>Disponible servicio de transporte</p></div>
+        <div th:if="${hotel.tours} == true"><p>Tours disponibles</p></div>
+        <div th:if="${hotel.comedor} == true"><p>Comedor para todo el mundo</p></div>
+        <div th:if="${hotel.espectaculos} == true"><p>Disfruta nuestros espectaculos</p></div>
+        <div th:if="${hotel.patio} == true"><p>Relajate en el patio</p></div>
+        <div th:if="${hotel.piscina} == true"><p>Date un chapuzón en nuestra piscina</p></div>
+        <div th:if="${hotel.terraza} == true"><p>Relajate en nuestra terraza</p></div>
+        <div th:if="${hotel.parking} == true"><p>Aparca donde quieras con nuestro parking</p></div>
+    </div>
+</div>
+
 <div class="center-container">
     <div class="row-container-barra">
         <div class="tarjeta" th:each="h : ${habitaciones}">
@@ -86,6 +115,7 @@
             </a>
         </div>
     </div>
+
 </div>
 
 

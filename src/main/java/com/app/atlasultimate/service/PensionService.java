@@ -11,7 +11,11 @@ public class PensionService {
     @Autowired
     private PensionRepository repositorio;
 
-    public Pension pensionporIdHotel(Integer id){
+    public Integer pensionporIdHotel(Integer id){
         return repositorio.pensionPorIdHotel(id);
+    }
+
+    public Pension pensionporId(Integer id){
+        return repositorio.pensionPorId(id);
     }
 }
