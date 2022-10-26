@@ -46,6 +46,7 @@ public class MyController {
         return "/hotelesBusqueda.html";
 
     }
+    
 
 }
 
