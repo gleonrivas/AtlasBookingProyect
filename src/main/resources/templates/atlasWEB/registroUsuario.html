@@ -10,7 +10,7 @@
 <body>
 <style>
     /*FUENTES EXTERNAS*/
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
 
     /* COMIENZA HEADER ------------------------------------------*/
     .mainh{
@@ -161,19 +161,21 @@
     .registro-box{
         display: flex;
         flex-direction: column;
-        width: 30%;
-        margin: 7% auto 7% auto;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 3% 1%;
+        width: 400px;
+        margin: 6% auto 8% auto;
+        background-color: rgba(255, 255, 255, 0.62);
+        padding: 3% 0;
         border-radius: 20px;
-        -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
-        box-shadow: 0 0 50px rgba(0, 0, 0, 0.73);
+        -webkit-backdrop-filter: blur(5px);
+        box-shadow: 0 20px 70px rgba(0, 0, 0, 0.73);
     }
     .titulo{
+        font-family: 'PT Sans', sans-serif;
         width: 100%;
         text-align: center;
-        font-size: 25px;
+        font-size: 35px;
+        margin-bottom: 0;
     }
     .formulario{
         width: 75%;
@@ -189,9 +191,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin-bottom: 10px;
     }
     .componente-registro > label{
-        margin-right: 10%;
+        margin: auto 10% auto 0;
     }
 
     .password-error{
@@ -200,11 +203,20 @@
         text-align: justify;
         font-size: 13px;
     }
-    #confirmacion{
+    .confirmacion{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 428px;
+        position: absolute;
+         margin-top: -15px;
+
+    }
+    .confirmacion > p{
         background-color: green;
-        width: auto;
-        margin: auto;
-        padding: 1.5% 5%;
+        width: 241px;
+        margin: auto 5px;
+        padding: 6.4px 21.3px;
         color: white;
         text-align: center;
         font-size: 13px;
@@ -212,18 +224,21 @@
     }
 
     .submit{
-        margin-top: 5%;
+        width: 40%;
+        height: 40px;
+        margin-top: 10%;
         padding: 3% 10%;
-        border-radius: 10px;
+        border-radius: 15px;
         border-style: none;
-        background-color: #3232ff;
-        font-size: 13px;
+        background-color: #000000;
+        font-size: 14px;
         color: azure;
     }
 
     .componente-registro > input{
+        height: 20px;
         padding: 1% 1% 1% 2%;
-        border-radius: 5px;
+        border-radius: 10px;
         border-style: solid;
         border-width: 1px;
         border-color: rgba(0, 0, 0, 0.44);
@@ -252,14 +267,13 @@
 
 </header>
 
-     <div class="registro-box">
+    <div class="registro-box">
 
-
-        <div id="confirmacion" th:if="${param.exito}">
-            Registro exitoso. Ya puedes iniciar sesión
+        <div class="confirmacion" th:if="${param.exito}">
+            <p>Registro exitoso. Ya puedes iniciar sesión</p>
         </div>
 
-        <h1 class="titulo">Regístrate para gestionar tu alojamiento</h1>
+        <h1 class="titulo">Regístrate</h1>
         <form class="formulario" name="form" th:action="@{/usuario/registro}" th:object="${usuario}" method="post">
             <div class="componente-registro">
                 <label class="parform" for="nombre">Nombre</label>
@@ -289,14 +303,11 @@
                 <label for="contrasena">Contraseña</label>
                 <input class="parform" type="password" id="contrasena"  th:field="*{contrasena}"/>
             </div>
-            <div class="password-error">
-                <p id="instruccion">Usa al menos 10 caracteres, que contengan al menos una letra mayúscula y una minúscula.</p>
-            </div>
+
             <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
         </form>
 
     </div>
-
 
 <footer class="lasth">
 

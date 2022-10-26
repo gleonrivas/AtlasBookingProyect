@@ -1,32 +1,285 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Atlas Booking</title>
-    <link rel="stylesheet" href="/styles/sesion.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inicio de sesión</title>
 </head>
 <body>
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
 
-<div class="colunm-content">
-    <div class="barra">
-        <div class="colunm-content">
-            <h1>Atlas</h1>
-            <p style="margin: 0 auto">BOOKING</p>
-        </div>
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 10px;
+        font-family: Arial, serif;
+        font-size: 12px;
+        padding: 0;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 2%;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-position: center;
+        background-size: cover;
+        background-image: url("/img/nyk-wallpaper.jpeg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        transition: background 1s linear;
+        animation: fade 4s infinite;
+        font-family: Arial, sans-serif;
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* LOGIN-BOX Y HEREDEROS ------------------------*/
+    .colunm-registro{
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        margin: 10% auto;
+        justify-content: center;
+        align-items: center;
+        padding: 29px;
+        background-color: rgba(255, 255, 255, 0.62);
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        box-shadow: 0 20px 70px rgba(0, 0, 0, 0.73);
+
+    }
+    .box-input{
+        display: flex;
+        flex-wrap: wrap;
+        width: 250px;
+        flex-direction: column;
+        margin: auto auto 30px auto;
+    }
+    .box-input > label{
+        width: auto;
+        margin-bottom: 5px;
+    }
+    .titulo{
+        margin: 20px;
+        font-family: 'PT Sans', sans-serif;
+        font-size: 40px;
+    }
+    input{
+        width: 240px;
+        height: 30px;
+        margin: 0;
+        padding: 0 2% 0 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 15px;
+    }
+    .boton{
+        width: 40%;
+        height: 40px;
+        border-radius: 15px;
+        border-style: none;
+        padding: 2%;
+        font-size: 14px;
+        margin: auto  20px ;
+        background-color: #000000;
+        color: white;
+    }
+    /* LOGIN-BOX Y HEREDEROS ------------------------*/
+
+</style>
+
+<header class="mainh">
+
+    <div class="lheader">
+        <a href="Descubre">Descubre</a>
+        <a href="Descubre">Descubre</a>
     </div>
-    <div class="contenedor">
-        <div class="row-content">
-            <form th:action="@{/log}" method="post" class="colunm-registro">
-                <h2 class="titulo">Inicia Sesión</h2>
-                <label class="label" for="correo">Email</label>
-                <input class="imput" type="text" name="email" id="correo" th:field="*{email}" required autofocus="autofocus"/>
-                <label for="contrasena">Introduce tu contraseña</label>
-                <input class="imput" type="password" name="contrasena" id="contrasena" th:field="*{contrasena}" required autofocus="autofocus"/>
-                <button class="boton" type ="submit" >siguiente</button>
-            </form>
-        </div>
+    <div class="cheader">
+        <h1>Atlas</h1>
+        <p>BOOKING</p>
     </div>
+
+    <div class="lheader">
+        <a href="Descubre">Descubre</a>
+        <button class="link-buttom" href="index.html">Identifícate</button>
+    </div>
+
+</header>
+<div class="contenedor">
+    <form th:action="@{/log}" method="post" class="colunm-registro">
+        <h2 class="titulo">Inicia Sesión</h2>
+        <div class="box-input">
+            <label class="label" for="correo">Email</label>
+            <input type="text" name="email" id="correo" th:field="*{email}" required autofocus="autofocus"/>
+        </div>
+        <div class="box-input">
+            <label for="contrasena">Introduce tu contraseña</label>
+            <input type="password" name="contrasena" id="contrasena" th:field="*{contrasena}" required autofocus="autofocus"/>
+        </div>
+        <button class="boton" type ="submit" >Entrar</button>
+    </form>
 </div>
+
+<footer class="lasth">
+
+    <div class="promote-hotel">
+        <p>Forma parte de nosotros</p>
+        <form method="get" action="registroUsuario.html">
+            <button class="registra" >Registra tus alojamientos</button>
+        </form>
+    </div>
+
+    <div class="middle-footer">
+        <div class="cheader">
+            <h1>Atlas</h1>
+            <p>BOOKING</p>
+        </div>
+        <div class="nets">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
+        </div>
+        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="index.html">Comunidad.</a>
+        <a href="index.html">Sobre nosotros.</a>
+        <a href="index.html">Uso de cookies.</a>
+        <a href="index.html">Politica de privacidad.</a>
+        <a href="index.html">Condiciones de uso.</a>
+    </div>
+
+</footer>
+
 </body>
 </html>
