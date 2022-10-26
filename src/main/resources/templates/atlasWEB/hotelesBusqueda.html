@@ -378,10 +378,12 @@
     <div class="entry-group">
         <label for="fecha_inicio">Fecha de entrada</label>
         <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="fecha">
+        <input type="hidden" th:value="*{fecha_inicio}" id="fecha_inicio2" />
     </div>
     <div class="entry-group">
         <label for="fecha_fin">Fecha de salida</label>
         <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="fecha">
+        <input type="hidden" th:value="*{fecha_fin}" id="fecha_fin2" />
     </div>
     <div class="entry-group">
         <label for="ciudad">Escribe una ciudad</label>
@@ -411,6 +413,7 @@
         <p class="nombreHotel" th:text="${h.nombre}"></p>
         <p class="ubicacionHotel" th:text="${h.direccion}"></p>
         <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>
+
     </div>
 
 </div>

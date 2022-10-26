@@ -28,21 +28,28 @@ public class HotelController {
 
 
     @GetMapping("/habitacion/{id}")
-    public String leerHabitaciones(@PathVariable Integer id,Model model, Model model2){
-        model.addAttribute("habitaciones", servicio.listarHabitacionbyIdHotel(id));
+    public String leerHabitaciones(@PathVariable Integer id, Model model, Model model2) {
+        List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id);
+        model.addAttribute("habitaciones", listadeHabitacion);
         model2.addAttribute("hotel", servicioHotel.obtenerHotelporId(id));
+
+
         return "/AdminHabitaciones.html";
+
+
+
     }
 
     @GetMapping("nuevo")
-    public String nuevoHotel(Model modelo){
-        Hotel hotel= new Hotel();
+    public String nuevoHotel(Model modelo) {
+        Hotel hotel = new Hotel();
         modelo.addAttribute("hotel", hotel);
         return "/crearhotel.html";
     }
+
     //crear hoteles
     @PostMapping("nuevo")
-    public String guardarHotel(@ModelAttribute("hotel") Hotel hotel){
+    public String guardarHotel(@ModelAttribute("hotel") Hotel hotel) {
         chequearBoolean(hotel);
         servicioHotel.guardarHotel(hotel);
         return "redirect:/hotel/nuevo?exito";
@@ -52,11 +59,12 @@ public class HotelController {
     @GetMapping("/editar/{id}")
     public String editarHotel(@PathVariable Integer id, Model model) {
         model.addAttribute("hotel", servicioHotel.obtenerHotelporId(id));
-        return"/editarHotel.html";}
+        return "/editarHotel.html";
+    }
 
     //Peticion post para enviar la info cambiada del hotel
     @PostMapping("/editar/{id}")
-    public String actualizarHotel(@PathVariable Integer id, @ModelAttribute("hotel") Hotel hotel, Model modelo){
+    public String actualizarHotel(@PathVariable Integer id, @ModelAttribute("hotel") Hotel hotel, Model modelo) {
         Hotel hotelexistente = servicioHotel.obtenerHotelporId(id);
         hotelexistente.setId(id);
         hotelexistente.setNombre(hotel.getNombre());
@@ -87,21 +95,21 @@ public class HotelController {
 
     }
 
-    private void chequearBoolean(Hotel h){
-        h.setTerraza(h.getTerraza()==null? false:true);
-        h.setPiscina(h.getPiscina()==null? false:true);
-        h.setPatio(h.getPatio()==null? false:true);
-        h.setEspectaculos(h.getEspectaculos()==null? false:true);
-        h.setComedor(h.getComedor()==null? false:true);
-        h.setTours(h.getTours()==null? false:true);
-        h.setParking(h.getParking()==null? false:true);
-        h.setS_transporte(h.getS_transporte()==null? false:true);
-        h.setS_habitacion(h.getS_habitacion()==null? false:true);
-        h.setMascotas(h.getMascotas()==null? false:true);
-        h.setAccesibilidad(h.getAccesibilidad()==null? false:true);
-        h.setWifi(h.getWifi()==null? false:true);
-        h.setCancelacion_g(h.getCancelacion_g()==null? false:true);
-        h.setMultilengua(h.getMultilengua()==null? false:true);
+    private void chequearBoolean(Hotel h) {
+        h.setTerraza(h.getTerraza() == null ? false : true);
+        h.setPiscina(h.getPiscina() == null ? false : true);
+        h.setPatio(h.getPatio() == null ? false : true);
+        h.setEspectaculos(h.getEspectaculos() == null ? false : true);
+        h.setComedor(h.getComedor() == null ? false : true);
+        h.setTours(h.getTours() == null ? false : true);
+        h.setParking(h.getParking() == null ? false : true);
+        h.setS_transporte(h.getS_transporte() == null ? false : true);
+        h.setS_habitacion(h.getS_habitacion() == null ? false : true);
+        h.setMascotas(h.getMascotas() == null ? false : true);
+        h.setAccesibilidad(h.getAccesibilidad() == null ? false : true);
+        h.setWifi(h.getWifi() == null ? false : true);
+        h.setCancelacion_g(h.getCancelacion_g() == null ? false : true);
+        h.setMultilengua(h.getMultilengua() == null ? false : true);
     }
     //cargar habitacion en formulario para editarla
 
@@ -109,11 +117,12 @@ public class HotelController {
     public String editarHabitacion(@PathVariable Integer id, Model model) {
         model.addAttribute("habitacion", servicio.obtenerHabitacionporId(id));
 
-        return"/editarHabitacion.html";}
+        return "/editarHabitacion.html";
+    }
 
     //Peticionpost para enviar la info cambiada de la habitacion
     @PostMapping("/editarhabitacion/{id}")
-    public String actualizarHabitacion (@PathVariable Integer id, @ModelAttribute("habitacion") Habitacion hab, Model modelo){
+    public String actualizarHabitacion(@PathVariable Integer id, @ModelAttribute("habitacion") Habitacion hab, Model modelo) {
         Habitacion habitacionexistente = servicio.obtenerHabitacionporId(id);
         habitacionexistente.setId(id);
         habitacionexistente.setC_individual(hab.getC_individual());
@@ -129,7 +138,7 @@ public class HotelController {
 
     //Eliminar habitacion
     @DeleteMapping("/habitacion/{id}")
-    public String eliminarHab(@PathVariable Integer id){
+    public String eliminarHab(@PathVariable Integer id) {
         servicio.eliminarHabitacion(id);
         return "redirect:/hotel/habitacion";
     }
@@ -144,14 +153,13 @@ public class HotelController {
     private HabitacionServiceImp servicioHab;
 
     @GetMapping("/{id}")
-    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
+    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model) {
 
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
 
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
-
 
 
         return "/hotel.html";

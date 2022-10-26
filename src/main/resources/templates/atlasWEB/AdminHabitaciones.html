@@ -45,6 +45,8 @@
         <button type="button">Añadir habitación</button>
     </a>
 </div>
+<div id="confirmacion" th:if="${param.noexiste}">
+   Este hotel no tiene actualmente habitaciones, por favor, cree su primera habitación. </div>
 <div class="marcohotel" th:each="habitacion : ${habitaciones}">
     <div class="conjunto">
         <div class="contenedores">
