@@ -39,8 +39,7 @@ public class MyController {
 
         List<Hotel> hoteles = hotelRepository.findAllByReservas(busquedaDTO.getFecha_inicio(), busquedaDTO.getFecha_fin(),busquedaDTO.getCiudad(),busquedaDTO.getN_max_personas());
         model.addAttribute("hoteles", hoteles);
-
-        model.addAttribute("ciudadhotel", hoteles.get(0));
+        model.addAttribute("ciudadhotel", hoteles.get(0).getCiudad());
 
 
         return "/hotelesBusqueda.html";

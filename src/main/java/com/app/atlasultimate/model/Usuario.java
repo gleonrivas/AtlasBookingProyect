@@ -29,7 +29,7 @@ public class Usuario {
     private String dni;
 
     @Column(name = "rol", length = 150)
-    private String rol;
+    private Rol rol;
 
     @Column(name = "telefono", length = 150)
     private String telefono;
@@ -53,7 +53,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY)
     private Set<Review> review;
 
-    public Usuario(String nombre, String apellido, String dni, String rol, String telefono, String email, String contrasena) {
+    public Usuario(String nombre, String apellido, String dni, Rol rol, String telefono, String email, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
