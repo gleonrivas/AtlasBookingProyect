@@ -11,8 +11,6 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +27,7 @@ public class Usuario {
     private String dni;
 
     @Column(name = "rol", length = 150)
+    @Enumerated(value = EnumType.STRING)
     private Rol rol;
 
     @Column(name = "telefono", length = 150)
@@ -61,5 +60,9 @@ public class Usuario {
         this.telefono = telefono;
         this.email = email;
         this.contrasena = contrasena;
+    }
+
+    public Usuario() {
+
     }
 }

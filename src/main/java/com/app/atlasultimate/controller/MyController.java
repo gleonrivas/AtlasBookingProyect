@@ -41,7 +41,6 @@ public class MyController {
         model.addAttribute("hoteles", hoteles);
         model.addAttribute("ciudadhotel", hoteles.get(0).getCiudad());
 
-
         return "/hotelesBusqueda.html";
 
     }

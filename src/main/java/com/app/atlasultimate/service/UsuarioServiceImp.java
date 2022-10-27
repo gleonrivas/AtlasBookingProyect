@@ -1,17 +1,15 @@
 package com.app.atlasultimate.service;
-
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
-import com.app.atlasultimate.model.Rol;
 import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -20,12 +18,14 @@ import java.util.Collections;
 public class UsuarioServiceImp implements UserDetailsService {
 
     @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
     private UsuarioRepository usuarioRepositorio;
 
+    public void guardar(UsuarioRegistroDTO usuarioRegistroDTO) {
 
-    public Usuario guardar(UsuarioRegistroDTO usuarioRegistroDTO) {
-
-        Usuario usuario = null;
+        Usuario usuario = new Usuario();
 
         try {
             usuario = new Usuario(
@@ -35,30 +35,29 @@ public class UsuarioServiceImp implements UserDetailsService {
                     usuarioRegistroDTO.getRol(),
                     usuarioRegistroDTO.getTelefono(),
                     usuarioRegistroDTO.getEmail(),
-                    usuarioRegistroDTO.getContrasena()
+                    passwordEncoder.encode(usuarioRegistroDTO.getContrasena())
             );
 
         } catch (Exception e) {
-            System.out.println("Error al registrar usuario" + e);
+            e.printStackTrace();
         }
 
-        return usuarioRepositorio.save(usuario);
+
+        usuarioRepositorio.save(usuario);
 
     }
 
-    @Override
+
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepositorio.findTopByName(username);
+        Usuario usuario = usuarioRepositorio.findTopByEmail(username);
         GrantedAuthority rol = new SimpleGrantedAuthority(usuario.getRol().toString());
-        UserDetails userDetails = new User(usuario.getNombre(), usuario.getContrasena(), Collections.singletonList(rol));
+        UserDetails userDetails = new User(usuario.getEmail(), usuario.getContrasena(), Collections.singletonList(rol));
         return userDetails;
     }
 
 
 
 
-    /*@Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }*/
+
 }

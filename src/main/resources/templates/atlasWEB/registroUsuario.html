@@ -212,6 +212,16 @@
          margin-top: -15px;
 
     }
+
+    .error{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 428px;
+        position: absolute;
+        margin-top: -15px;
+
+    }
     .confirmacion > p{
         background-color: green;
         width: 241px;
@@ -222,6 +232,19 @@
         font-size: 13px;
         border-radius: 20px;
     }
+
+    .error > p{
+        background-color: indianred;
+        width: 241px;
+        margin: auto 5px;
+        padding: 6.4px 21.3px;
+        color: white;
+        text-align: center;
+        font-size: 13px;
+        border-radius: 20px;
+    }
+
+
 
     .submit{
         width: 40%;
@@ -273,6 +296,10 @@
             <p>Registro exitoso. Ya puedes iniciar sesión</p>
         </div>
 
+        <div class="error" th:if="${param.fallo}">
+            <p>Registro fallido. Este usuario no esta disponible</p>
+        </div>
+
         <h1 class="titulo">Regístrate</h1>
         <form class="formulario" name="form" th:action="@{/usuario/registro}" th:object="${usuario}" method="post">
             <div class="componente-registro">
@@ -289,7 +316,7 @@
             </div>
             <div class="componente-registro">
                 <label class="parform" for="rol">Rol</label>
-                <input class="parform" value="estandar" type="text" id="rol"  th:field="*{rol}"/>
+                <input class="parform"  type="text" id="rol"  th:field="*{rol}"/>
             </div>
             <div class="componente-registro">
                 <label class="parform" for="tel" type="tel">Teléfono</label>

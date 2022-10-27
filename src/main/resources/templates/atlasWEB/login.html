@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -234,16 +234,22 @@
     </div>
 
 </header>
+
+<th:block th:if="${error}">
+    <div>Usuario o contraseña erroneos</div>
+</th:block>
+
+
 <div class="contenedor">
-    <form th:action="@{/log}" method="post" class="colunm-registro">
+    <form th:action="@{/login}" method="post" class="colunm-registro">
         <h2 class="titulo">Inicia Sesión</h2>
         <div class="box-input">
-            <label class="label" for="correo">Email</label>
-            <input type="text" name="email" id="correo" th:field="*{email}" required autofocus="autofocus"/>
+            <label class="label" for="username">Email</label>
+            <input type="text" name="username" id="username"  required autofocus="autofocus"/>
         </div>
         <div class="box-input">
             <label for="contrasena">Introduce tu contraseña</label>
-            <input type="password" name="contrasena" id="contrasena" th:field="*{contrasena}" required autofocus="autofocus"/>
+            <input type="password" name="contrasena" id="contrasena"  required autofocus="autofocus"/>
         </div>
         <button class="boton" type ="submit" >Entrar</button>
     </form>

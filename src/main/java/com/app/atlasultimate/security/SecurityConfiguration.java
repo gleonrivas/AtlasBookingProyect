@@ -1,5 +1,4 @@
 package com.app.atlasultimate.security;
-
 import com.app.atlasultimate.model.Rol;
 import com.app.atlasultimate.service.UsuarioServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +19,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UsuarioServiceImp usuarioServiceImp;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-    }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(usuarioServiceImp);
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
         return daoAuthenticationProvider;
     }
 
@@ -45,25 +40,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/usuario/inicio/**").hasRole(Rol.ADMINISTRADOR.toString())
-                .antMatchers("/hotel/habitacion/").hasRole(Rol.ADMINISTRADOR.toString())
-                .antMatchers("/hotel/nuevo").hasRole(Rol.ADMINISTRADOR.toString())
-                .antMatchers("/hotel/editar").hasRole(Rol.ADMINISTRADOR.toString())
-                .antMatchers("/hotel/nuevo").hasRole(Rol.ADMINISTRADOR.toString())
+                .antMatchers("/usuario/inicio/**").hasAuthority(Rol.administrador.toString())
+                .antMatchers("/hotel/habitacion/").hasAuthority(Rol.administrador.toString())
+                .antMatchers("/hotel/nuevo").hasAuthority(Rol.administrador.toString())
+                .antMatchers("/hotel/editar").hasAuthority(Rol.administrador.toString())
+                .antMatchers("/hotel/nuevo").hasAuthority(Rol.administrador.toString())
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registro").permitAll()
                 .antMatchers("/hotel/**").permitAll()
                 .and()
-                .formLogin().loginPage("/login.html")
+                .formLogin().loginPage("/login")
                 .failureUrl("/login?error=true")
+                .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
                 .logout().invalidateHttpSession(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login")
                 .permitAll();
-
     }
 
 

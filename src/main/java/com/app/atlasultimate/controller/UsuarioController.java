@@ -1,6 +1,8 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
+import com.app.atlasultimate.model.Usuario;
+import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.service.HotelServiceImp;
 import com.app.atlasultimate.service.UsuarioServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("usuario")
 public class UsuarioController {
 
-//INYECTA SERVICIO HOTEL:
     @Autowired
     private HotelServiceImp servicio;
 
-//PAGINA INICIO ROL ADMIN
     @GetMapping("inicio")
     public String inicio(Model modelo){
         modelo.addAttribute("hoteles", servicio.listarHoteles());
@@ -43,9 +43,11 @@ public class UsuarioController {
         return "/crearhotel.html";
     }
 
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @Autowired
-    private UsuarioServiceImp usuarioService;
+    private UsuarioServiceImp usuarioServiceImp;
 
     @ModelAttribute("usuario")
     public UsuarioRegistroDTO retornarNuevoUsuario(){
@@ -62,9 +64,16 @@ public class UsuarioController {
     //RECIBIR DATOS USUARIO DE FORMULARIO REGISTRO
     @PostMapping("registro")
     public String registrarCuentaUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO usuarioDTO){
-        usuarioService.guardar(usuarioDTO);
 
-        return "redirect:/usuario/registro?exito";
+
+        boolean existe = usuarioRepository.existsByEmail(usuarioDTO.getEmail());
+        if(existe){
+            return "redirect:/usuario/registro?fallo";
+        }else {
+            usuarioServiceImp.guardar(usuarioDTO);
+            return "redirect:/usuario/registro?exito";
+        }
+
     }
 
 
