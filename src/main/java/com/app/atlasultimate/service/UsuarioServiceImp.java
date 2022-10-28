@@ -1,5 +1,4 @@
 package com.app.atlasultimate.service;
-import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
 import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +8,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
 @Service
 public class UsuarioServiceImp implements UserDetailsService {
-
 
     @Autowired
     private UsuarioRepository usuarioRepositorio;

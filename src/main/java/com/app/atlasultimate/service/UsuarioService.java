@@ -1,5 +1,4 @@
 package com.app.atlasultimate.service;
-
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
 import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.UsuarioRepository;
@@ -12,7 +11,6 @@ public class UsuarioService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
 
     @Autowired
     private UsuarioRepository usuarioRepositorio;
