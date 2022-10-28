@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Atlas Booking</title>
@@ -109,6 +109,10 @@
                 <p th:text="${h.precio_base}"></p>
                 <p>€</p>
             </div>
+            <a  th:href="@{/reserva/datos/{id_hab}(id_hab=${h.id})}">
+
+                <button  type="button" class="btn btn-dark">Reservar</button>
+            </a>
         </div>
     </div>
 

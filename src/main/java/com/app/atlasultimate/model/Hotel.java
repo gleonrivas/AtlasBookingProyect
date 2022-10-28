@@ -3,6 +3,8 @@ package com.app.atlasultimate.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -15,6 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -106,5 +109,260 @@ public class Hotel {
 
     public Hotel() {
 
+    }
+
+    public Hotel(String nombre, String pais, String ciudad, String direccion,
+                 Integer estrellas, Integer telefono, String email, Boolean cancelacion_g, Boolean wifi,
+                 Boolean mascotas, Boolean multilengua, Boolean accesibilidad, Boolean s_habitacion,
+                 Time hc_recepcion, Time hf_recepcion, Boolean s_transporte, Boolean tours, Boolean comedor,
+                 Boolean espectaculos, Boolean patio, Boolean piscina, Boolean terraza, Boolean parking) {
+        this.nombre = nombre;
+        this.pais = pais;
+        this.ciudad = ciudad;
+        this.direccion = direccion;
+        this.estrellas = estrellas;
+        this.telefono = telefono;
+        this.email = email;
+        this.cancelacion_g = cancelacion_g;
+        this.wifi = wifi;
+        this.mascotas = mascotas;
+        this.multilengua = multilengua;
+        this.accesibilidad = accesibilidad;
+        this.s_habitacion = s_habitacion;
+        this.hc_recepcion = hc_recepcion;
+        this.hf_recepcion = hf_recepcion;
+        this.s_transporte = s_transporte;
+        this.tours = tours;
+        this.comedor = comedor;
+        this.espectaculos = espectaculos;
+        this.patio = patio;
+        this.piscina = piscina;
+        this.terraza = terraza;
+        this.parking = parking;
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Integer getEstrellas() {
+        return estrellas;
+    }
+
+    public void setEstrellas(Integer estrellas) {
+        this.estrellas = estrellas;
+    }
+
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getCancelacion_g() {
+        return cancelacion_g;
+    }
+
+    public void setCancelacion_g(Boolean cancelacion_g) {
+        this.cancelacion_g = cancelacion_g;
+    }
+
+    public Boolean getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(Boolean wifi) {
+        this.wifi = wifi;
+    }
+
+    public Boolean getMascotas() {
+        return mascotas;
+    }
+
+    public void setMascotas(Boolean mascotas) {
+        this.mascotas = mascotas;
+    }
+
+    public Boolean getMultilengua() {
+        return multilengua;
+    }
+
+    public void setMultilengua(Boolean multilengua) {
+        this.multilengua = multilengua;
+    }
+
+    public Boolean getAccesibilidad() {
+        return accesibilidad;
+    }
+
+    public void setAccesibilidad(Boolean accesibilidad) {
+        this.accesibilidad = accesibilidad;
+    }
+
+    public Boolean getS_habitacion() {
+        return s_habitacion;
+    }
+
+    public void setS_habitacion(Boolean s_habitacion) {
+        this.s_habitacion = s_habitacion;
+    }
+
+    public Time getHc_recepcion() {
+        return hc_recepcion;
+    }
+
+    public void setHc_recepcion(Time hc_recepcion) {
+        this.hc_recepcion = hc_recepcion;
+    }
+
+    public Time getHf_recepcion() {
+        return hf_recepcion;
+    }
+
+    public void setHf_recepcion(Time hf_recepcion) {
+        this.hf_recepcion = hf_recepcion;
+    }
+
+    public Boolean getS_transporte() {
+        return s_transporte;
+    }
+
+    public void setS_transporte(Boolean s_transporte) {
+        this.s_transporte = s_transporte;
+    }
+
+    public Boolean getTours() {
+        return tours;
+    }
+
+    public void setTours(Boolean tours) {
+        this.tours = tours;
+    }
+
+    public Boolean getComedor() {
+        return comedor;
+    }
+
+    public void setComedor(Boolean comedor) {
+        this.comedor = comedor;
+    }
+
+    public Boolean getEspectaculos() {
+        return espectaculos;
+    }
+
+    public void setEspectaculos(Boolean espectaculos) {
+        this.espectaculos = espectaculos;
+    }
+
+    public Boolean getPatio() {
+        return patio;
+    }
+
+    public void setPatio(Boolean patio) {
+        this.patio = patio;
+    }
+
+    public Boolean getPiscina() {
+        return piscina;
+    }
+
+    public void setPiscina(Boolean piscina) {
+        this.piscina = piscina;
+    }
+
+    public Boolean getTerraza() {
+        return terraza;
+    }
+
+    public void setTerraza(Boolean terraza) {
+        this.terraza = terraza;
+    }
+
+    public Boolean getParking() {
+        return parking;
+    }
+
+    public void setParking(Boolean parking) {
+        this.parking = parking;
+    }
+
+    public Usuario getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(Usuario id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+    public Set<Review> getReview() {
+        return review;
+    }
+
+    public void setReview(Set<Review> review) {
+        this.review = review;
+    }
+
+    public Set<Habitacion> getHabiacion() {
+        return habiacion;
+    }
+
+    public void setHabiacion(Set<Habitacion> habiacion) {
+        this.habiacion = habiacion;
+    }
+
+    public List<Pension> getPension() {
+        return pension;
+    }
+
+    public void setPension(List<Pension> pension) {
+        this.pension = pension;
     }
 }

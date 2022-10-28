@@ -17,7 +17,10 @@ public class HotelServiceImp {
         return repositorio.findAll();
     }
 
+    public Hotel buscarHotel(Integer id){
+        return repositorio.findHotelById(id);
 
+    }
     public Hotel guardarHotel (Hotel hotel){
         return repositorio.save(hotel);
     }
@@ -32,5 +35,7 @@ public class HotelServiceImp {
         repositorio.deleteById(id);
     }
 
-
+    public Integer obtenerIdHotel(Integer id){
+        return repositorio.findHotelByIdHab(id);
+    }
 }

@@ -323,7 +323,8 @@
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h4 class="card-title">Selección</h4>
-                <p class="card-text">Nombre de hotel</p>
+                <p class="card-text" th:text="${hotel.nombre}"></p>
+
                 <p class="card-text">Tipo de habitación</p>
                 <p class="card-text">Número de huéspedes</p>
             </div>
@@ -331,13 +332,13 @@
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h4 class="card-title">Precio</h4>
-                <p class="card-text">...</p>
+                <p class="card-text" th:text="${habitacion.precio_base}"></p>
             </div>
         </div>
         <div class="card" style="width: 100%;">
             <div class="card-body">
-                <h4 class="card-title">Cancelación:</h4>
-
+                <h4 class="card-title">Cancelación gratuita:</h4>
+                <input type="checkbox" th:checked="*{hotel.cancelacion_g}" class="form-check-input" id="exampleCheck2">
             </div>
         </div>
     </div>
@@ -361,8 +362,10 @@
 
             <div class="mb-3 form-check">
                 <h6>Elige tu pensión:</h6>
+                <div th:each="p : ${hotel.pension}">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <label class="form-check-label" for="exampleCheck1" th:text="${p}">Check me out</label>
+                </div>
             </div>
             <div style="text-align: center;">
                 <h6>Preferencia de pago:</h6>

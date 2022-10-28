@@ -50,14 +50,19 @@
             <h2 th:text="${hotel.nombre} ">Nombre del hotel</h2>
             <p>Estrellas: </p>
             <p th:text="${hotel.estrellas} "></p>
-            <p>Ubicación: </p>
-            <p th:text="${hotel.ubicacion} "></p>
-            <p>Código Postal: </p>
-            <p th:text="${hotel.codigo_postal} "></p>
-            <p>Web:  </p>
-            <p th:text="${hotel.web} "></p>
+            <p>Dirección: </p>
+            <p th:text="${hotel.direccion} "></p>
+            <p>Ciudad: </p>
+            <p th:text="${hotel.ciudad} "></p>
+            <p>País: </p>
+            <p th:text="${hotel.pais} "></p>
             <p>Teléfono: </p>
             <p th:text="${hotel.telefono} ">Teléfono</p>
+            <p>Email: </p>
+            <p th:text="${hotel.email} ">Email</p>
+
+
+
         </div>
         <div class="contenedores" id="contenedor2">
             <div class="listas">
@@ -73,16 +78,13 @@
                     </li>
                     <li>
                         <p>Patio: </p>
-                    <input type="checkbox" th:checked="${hotel.patioInterior} ">
+                    <input type="checkbox" th:checked="${hotel.patio} ">
                     </li>
                     <li>
                         <p>Parking: </p>
-                    <input type="checkbox" th:checked="${hotel.aparcamiento} ">
+                    <input type="checkbox" th:checked="${hotel.parking} ">
                     </li>
                     <li>
-                    <p>Recepción: </p>
-                    <input type="checkbox" th:checked="${hotel.recepcion}">
-                    </li>
                     <li>
                     <p>Mascotas: </p>
                     <input type="checkbox" th:checked="${hotel.mascotas}">
@@ -90,6 +92,10 @@
                     <li>
                         <p>Wifi: </p>
                     <input type="checkbox" th:checked="${hotel.wifi}">
+                    </li>
+                    <li>
+                        <p>Multilengua: </p>
+                        <input type="checkbox" th:checked="${hotel.multilengua}">
                     </li>
                 </ul>
             </div>
@@ -103,16 +109,12 @@
                     <input type="checkbox" th:checked="${hotel.piscina} ">
                     </li>
                     <li>
-                        <p>Servicio de limpieza: </p>
-                    <input type="checkbox" th:checked="${hotel.servicioLimpieza} ">
-                    </li>
-                    <li>
                         <p>Servicio de habitaciones: </p>
-                    <input type="checkbox" th:checked="${hotel.servicioHabitaciones} ">
+                    <input type="checkbox" th:checked="${hotel.s_habitacion} ">
                     </li>
                     <li>
                         <p>Servicio de transporte: </p>
-                    <input type="checkbox" th:checked="${hotel.servicioTransporte} ">
+                    <input type="checkbox" th:checked="${hotel.s_transporte} ">
                     </li>
                     <li>
                         <p>Tours: </p>
@@ -126,14 +128,18 @@
                         <p>Comedor: </p>
                     <input type="checkbox" th:checked="${hotel.comedor} ">
                     </li>
+                    <li>
+                        <p>Cancelación gratuita </p>
+                        <input type="checkbox" th:checked="${hotel.cancelacion_g} ">
+                    </li>
                 </ul>
             </div>
 
         </div>
         <div class="botones">
             <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}"><button type="submit">Editar</button></a>
-            <a th:href="@{/admin/inicio/{id}(id=${hotel.id})}"> <button type="submit">Eliminar</button></a>
-            <a href="/hotel/habitacion"><button type="submit">Ver habitaciones</button></a>
+            <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}"> <button type="submit">Eliminar</button></a>
+            <a th:href= "@{/hotel/habitacion/{id}(id=${hotel.id})}"><button type="submit">Ver habitaciones</button></a>
         </div>
     </div>
 

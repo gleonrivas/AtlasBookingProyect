@@ -1,37 +1,40 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.model.Habitacion;
+import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.service.HabitacionServiceImp;
+import com.app.atlasultimate.service.HotelServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("habitacion")
 public class HabitacionController {
     @Autowired
     private HabitacionServiceImp servicio;
+    @Autowired
+    private HotelServiceImp hotelServicio;
 
     //MUESTRA FORMULARIO CREACION DE HABITACION
-    @GetMapping("nueva")
-    public String crearHabitacion(Model model) {
-        Habitacion hab = new Habitacion();
-        model.addAttribute("habitacion", hab);
+    @GetMapping("nueva/{id}")
+    public String crearHabitacion( @PathVariable Integer id, Model model, Model mod2) {
+        Habitacion habitacion = new Habitacion();
+        Hotel hotel = hotelServicio.buscarHotel(id);
+        model.addAttribute("habitacion", habitacion);
+        mod2.addAttribute("hotel", hotel);
+
         return "/crearhabitacion.html";
     }
 
     //GUARDAR DATOS HABITACION EN BBDD
-    @PostMapping("nueva")
-    public String guardarHabitacion(@ModelAttribute("habitacion") Habitacion hab) {
+    @PostMapping("nueva/{id}")
+    public String guardarHabitacion( @ModelAttribute("habitacion") Habitacion hab, @ModelAttribute("hotel") Hotel hot ) {
         chequearBooleanHabitacion(hab);
-        for (int i = 0; i <= hab.getNum_habitaciones_iguales(); i++) {
-            servicio.guardarhab(hab);
-        }
-        return "redirect:/hotel/habitacion";
+        hab.setHotel(hot);
+        servicio.guardarHabMultiple(hab.getNum_habitaciones_iguales(), hab);
+        return "redirect:/hotel/habitacion/{id}";
     }
 
     //convertir boolean en true o false
