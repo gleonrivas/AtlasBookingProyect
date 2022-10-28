@@ -6,5 +6,5 @@ import com.app.atlasultimate.model.Hotel;
 import java.util.List;
 
 public interface HabitacionServicio {
-    public List<Habitacion> listarHabitacion();
+    List<Habitacion> listarHabitacion();
 }

@@ -2,8 +2,11 @@ package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
+import com.app.atlasultimate.model.Review;
 import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.repository.HotelRepository;
+import com.app.atlasultimate.repository.ReviewRepository;
+import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import com.app.atlasultimate.service.HotelServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -104,10 +108,16 @@ public class HotelController {
     }
 
     @Autowired
-    private HabitacionRepository repository;
+    private HabitacionRepository habitacionRepository;
 
     @Autowired
     private HotelRepository hotelRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
 
     @GetMapping("/{id}")
@@ -116,8 +126,42 @@ public class HotelController {
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
 
-        List<Habitacion> habitaciones = repository.findAllById(id);
+        List<Habitacion> habitaciones = habitacionRepository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
+
+
+
+        List<Review> reviewList = reviewRepository.find10LastValues(id);
+        model.addAttribute("review", reviewList);
+
+        List<String> nombreUsuario = new ArrayList<>();
+        for (Review i : reviewList){
+            nombreUsuario.add(i.getUsuario().getNombre());
+        }
+        model.addAttribute("usuario", nombreUsuario);
+
+        /*Map<String, Review> mapReview = new HashMap<>();
+        int count = 0;
+
+        for (int i = 0; mapReview.size() <=10; i++){
+            mapReview.put(reviews.get(count).getUsuario().getNombre(), reviews.get(count));
+            count++;
+        }
+        model.addAttribute("review", mapReview);*/
+
+
+        /*model.addAttribute("review", review);
+
+        List<Usuario> usuario = null;
+        for (int i = 0; reviews.size() >=10; i++){
+            usuario.add(reviews.get(i).getUsuario());
+        }
+        model.addAttribute("usuario", usuario);*/
+
+
+        String fondo = hotelRepository.findHotelById(id).getImg();
+        model.addAttribute("hotelimagen", fondo);
+
 
         return "/hotel.html";
 
