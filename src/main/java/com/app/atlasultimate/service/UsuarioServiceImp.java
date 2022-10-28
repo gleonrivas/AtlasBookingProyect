@@ -17,38 +17,11 @@ import java.util.Collections;
 @Service
 public class UsuarioServiceImp implements UserDetailsService {
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private UsuarioRepository usuarioRepositorio;
 
-    public void guardar(UsuarioRegistroDTO usuarioRegistroDTO) {
-
-        Usuario usuario = new Usuario();
-
-        try {
-            usuario = new Usuario(
-                    usuarioRegistroDTO.getNombre(),
-                    usuarioRegistroDTO.getApellido(),
-                    usuarioRegistroDTO.getDni(),
-                    usuarioRegistroDTO.getRol(),
-                    usuarioRegistroDTO.getTelefono(),
-                    usuarioRegistroDTO.getEmail(),
-                    passwordEncoder.encode(usuarioRegistroDTO.getContrasena())
-            );
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        usuarioRepositorio.save(usuario);
-
-    }
-
-
-
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepositorio.findTopByEmail(username);
         GrantedAuthority rol = new SimpleGrantedAuthority(usuario.getRol().toString());

@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -19,17 +20,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UsuarioServiceImp usuarioServiceImp;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(usuarioServiceImp);
-        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -40,18 +44,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/usuario/inicio/**").hasAuthority(Rol.administrador.toString())
-                .antMatchers("/hotel/habitacion/").hasAuthority(Rol.administrador.toString())
-                .antMatchers("/hotel/nuevo").hasAuthority(Rol.administrador.toString())
-                .antMatchers("/hotel/editar").hasAuthority(Rol.administrador.toString())
-                .antMatchers("/hotel/nuevo").hasAuthority(Rol.administrador.toString())
+                .antMatchers("/usuario/inicio/**").permitAll()
+                .antMatchers("/hotel/habitacion/").permitAll()
+                .antMatchers("/hotel/nuevo").permitAll()
+                .antMatchers("/hotel/editar").permitAll()
+                .antMatchers("/hotel/nuevo").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registro").permitAll()
                 .antMatchers("/hotel/**").permitAll()
                 .and()
                 .formLogin().loginPage("/login")
+                .permitAll()
                 .failureUrl("/login?error=true")
+                .permitAll()
                 .defaultSuccessUrl("/")
                 .permitAll()
                 .and()

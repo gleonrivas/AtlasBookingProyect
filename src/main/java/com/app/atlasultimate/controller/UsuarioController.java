@@ -1,10 +1,8 @@
 package com.app.atlasultimate.controller;
-
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
-import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.service.HotelServiceImp;
-import com.app.atlasultimate.service.UsuarioServiceImp;
+import com.app.atlasultimate.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +45,7 @@ public class UsuarioController {
     UsuarioRepository usuarioRepository;
 
     @Autowired
-    private UsuarioServiceImp usuarioServiceImp;
+    private UsuarioService usuarioService;
 
     @ModelAttribute("usuario")
     public UsuarioRegistroDTO retornarNuevoUsuario(){
@@ -70,7 +68,7 @@ public class UsuarioController {
         if(existe){
             return "redirect:/usuario/registro?fallo";
         }else {
-            usuarioServiceImp.guardar(usuarioDTO);
+            usuarioService.guardar(usuarioDTO);
             return "redirect:/usuario/registro?exito";
         }
 

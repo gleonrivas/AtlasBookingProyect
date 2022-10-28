@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,11 @@ public class MyController {
     @ModelAttribute("hotel")
     public HotelBusquedaDTO devolverNuevoHotelDTO(){
         return new HotelBusquedaDTO();
+
     }
 
     @GetMapping("")
-    public String index() {
-
+    public String index(HttpSession session){
         return "/index.html";
     }
     @PostMapping("")
