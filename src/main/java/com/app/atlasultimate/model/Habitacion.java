@@ -44,6 +44,10 @@ public class Habitacion {
     @OneToMany(mappedBy = "habitacion",fetch = FetchType.LAZY)
     private Set<Registro> registro;
 
+
+
+
+
     public Habitacion(Integer id, Integer c_individual, Integer c_doble, Double precio_base, Boolean bano, Boolean vistas,
                       Integer num_habitaciones_iguales, Hotel hotel, Set<Registro> registro, Integer n_max_personas) {
         this.id = id;

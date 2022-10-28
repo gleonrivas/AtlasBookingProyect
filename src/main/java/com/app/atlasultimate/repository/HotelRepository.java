@@ -35,4 +35,6 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
     Integer findHotelByIdHab(@Param("id")Integer id);
 
 
+
+
 }

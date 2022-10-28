@@ -45,59 +45,62 @@
         <button type="button">Añadir habitación</button>
     </a>
 </div>
-<div id="confirmacion" th:if="${param.noexiste}">
-   Este hotel no tiene actualmente habitaciones, por favor, cree su primera habitación. </div>
-<div class="marcohotel" th:each="habitacion : ${habitaciones}">
-    <div class="conjunto">
-        <div class="contenedores">
-            <h2>Habitación</h2>
-            <p> Aforo máximo: </p>
-            <p th:text="${habitacion.n_max_personas}"></p>
-            <p> Camas individuales: </p>
-            <p th:text="${habitacion.c_individual}"></p>
-            <p> Camas dobles: </p>
-            <p th:text="${habitacion.c_doble}"></p>
-            <p> Precio Base: </p>
-            <p th:text="${habitacion.precio_base}"></p>
+<div id="confirmacion" th:if="${habitaciones.size == 0}">
+    <h2 style=" text-align: center">Este hotel no tiene actualmente habitaciones, por favor, cree su primera habitación.</h2>
+    <br>
+</div>
+<div id="confirmacion2" th:if="${habitaciones.size > 0}">
+    <div class="marcohotel" th:each="habitacion : ${habitaciones}">
+        <div class="conjunto">
+            <div class="contenedores">
+                <h2>Habitación</h2>
+                <p> Aforo máximo: </p>
+                <p th:text="${habitacion.n_max_personas}"></p>
+                <p> Camas individuales: </p>
+                <p th:text="${habitacion.c_individual}"></p>
+                <p> Camas dobles: </p>
+                <p th:text="${habitacion.c_doble}"></p>
+                <p> Precio Base: </p>
+                <p th:text="${habitacion.precio_base}"></p>
 
-        </div>
-        <div class="contenedores" id="contenedor2">
-            <div class="listas">
-                <p>lista de comodidades activas</p>
-                <ul>
-                    <li>
-                        <p> baño: </p>
-                        <input type="checkbox" th:checked="${habitacion.bano} ">
-                    </li>
-                    <li>
-                        <p> Vistas: </p>
-                        <input type="checkbox" th:checked="${habitacion.vistas} ">
-                    </li>
-
-                </ul>
             </div>
+            <div class="contenedores" id="contenedor2">
+                <div class="listas">
+                    <p>lista de comodidades activas</p>
+                    <ul>
+                        <li>
+                            <p> baño: </p>
+                            <input type="checkbox" th:checked="${habitacion.bano} ">
+                        </li>
+                        <li>
+                            <p> Vistas: </p>
+                            <input type="checkbox" th:checked="${habitacion.vistas} ">
+                        </li>
+
+                    </ul>
+                </div>
 
 
+            </div>
+            <div class="botones">
+                <a th:href="@{/hotel/editarhabitacion/{id}(id=${habitacion.id})}">
+                    <button type="submit">Editar</button>
+                </a>
+                <a th:href="@{/hotel/habitacion/{id}(id=${habitacion.id})}">
+                    <button type="submit">Eliminar</button>
+                </a>
+            </div>
         </div>
-        <div class="botones">
-            <a th:href="@{/hotel/editarhabitacion/{id}(id=${habitacion.id})}">
-                <button type="submit">Editar</button>
-            </a>
-            <a th:href="@{/hotel/habitacion/{id}(id=${habitacion.id})}">
-                <button type="submit">Eliminar</button>
-            </a>
+
+
+        <div class="imagenes">
+            <img src="">
+            <p>aqui van imagenes</p>
         </div>
-    </div>
 
-
-    <div class="imagenes">
-        <img src="">
-        <p>aqui van imagenes</p>
     </div>
 
 </div>
-
-
 <footer class="lasth">
 
     <div class="promote-hotel">

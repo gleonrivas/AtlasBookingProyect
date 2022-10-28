@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller("")
@@ -34,13 +35,22 @@ public class MyController {
         return "/index.html";
     }
     @PostMapping("")
-    public String filtrarHotel(@ModelAttribute("hotel") HotelBusquedaDTO busquedaDTO, Model model) {
+    public String filtrarHotel(@ModelAttribute("hotel") HotelBusquedaDTO busquedaDTO, Model model,
+                               @ModelAttribute("fecha_inicio") String fechaInicio,
+                               @ModelAttribute("fecha_fin") String fechaFin) {
 
+        String fecha1= fechaInicio;
+        String fecha2= fechaFin;
         List<Hotel> hoteles = hotelRepository.findAllByReservas(busquedaDTO.getFecha_inicio(),
                 busquedaDTO.getFecha_fin(),busquedaDTO.getCiudad(),busquedaDTO.getN_max_personas());
         model.addAttribute("hoteles", hoteles);
-
+        HotelBusquedaDTO hotelDTO= new HotelBusquedaDTO(busquedaDTO.getFecha_inicio(),
+                busquedaDTO.getFecha_fin(),busquedaDTO.getCiudad(),busquedaDTO.getN_max_personas());
+        model.addAttribute("hotelDTO", hotelDTO);
         model.addAttribute("ciudadhotel", hoteles.get(0));
+        model.addAttribute("fecha_inicio", busquedaDTO.getFecha_inicio());
+        model.addAttribute("fecha_fin", busquedaDTO.getFecha_fin());
+
 
 
         return "/hotelesBusqueda.html";

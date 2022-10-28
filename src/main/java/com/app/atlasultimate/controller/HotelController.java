@@ -1,5 +1,6 @@
 package com.app.atlasultimate.controller;
 
+import com.app.atlasultimate.controller.DTO.HotelBusquedaDTO;
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.repository.HabitacionRepository;
@@ -9,8 +10,11 @@ import com.app.atlasultimate.service.HotelServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -152,25 +156,39 @@ public class HotelController {
     @Autowired
     private HabitacionServiceImp servicioHab;
 
-    @GetMapping("/{id}")
-    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model) {
-
+    @GetMapping("/habitaciones")
+    public String filtrarHabitaciones(@RequestParam(value = "id") Integer id, Model model,
+                                      @RequestParam (value = "fecha_inicio", required = false) String fechaInicio,
+                                      @RequestParam(value = "fecha_fin", required = false) String fechaFin,
+                                      @RequestParam(value = "num_personas", required=false) Integer num_personas
+    ) {
+        String fecha1= fechaInicio;
+        String fecha2= fechaFin;
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
-
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
-
+        model.addAttribute("fecha_inicio",fechaInicio);
+        model.addAttribute("fecha_fin", fechaFin);
+        model.addAttribute("num_personas", num_personas);
 
         return "/hotel.html";
     }
 
-    @PostMapping("/{id_hab}")
-    public String filtrarHotel(@PathVariable(value = "id_hab") Integer id_hab, Model modelo) {
+    @PostMapping("/")
+    public String filtrarHotel(@ModelAttribute(value = "id_hab") Integer id_hab, Model modelo,
+                               @ModelAttribute(value = "fecha_inicio") String fechaInicio,
+                               @ModelAttribute(value = "fecha_fin") String fechaFin) {
+        String fecha1= fechaInicio;
+        String fecha2= fechaFin;
         Habitacion h = servicioHab.obtenerHabitacionporId(id_hab);
         modelo.addAttribute("h", h);
+        modelo.addAttribute("fecha_inicio",fecha1);
+        modelo.addAttribute("fecha_fin", fecha2);
 
-        return "/hotelesBusqueda.html";
+        return "/hotel.html";
 
     }
 }
+
+

@@ -328,7 +328,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Entrada</h5>
-                            <p class="card-text">Día de entrada</p>
+                            <p th:text="${fecha_inicio}" id="fecha_inicio"></p>
 
                         </div>
                     </div>
@@ -337,7 +337,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Salida</h5>
-                            <p class="card-text">Día de salida</p>
+                            <p th:text="${fecha_fin}" id="fecha_fin"></p>
 
                         </div>
                     </div>
@@ -346,23 +346,25 @@
             <div class="card" style="width: 100%;">
                 <div class="card-body">
                     <h4 class="card-title">Duración</h4>
-                    <p class="card-text">...</p>
+                    <p th:text="${duracion} + ' días'" id="duracion"></p>
                 </div>
             </div>
         </div>
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h4 class="card-title">Selección</h4>
-                <p class="card-text" th:text="${hotel.nombre}"></p>
-
+                <h5 class="card-text" th:text="${hotel.nombre}"></h5>
                 <p class="card-text">Tipo de habitación</p>
-                <p class="card-text">Número de huéspedes</p>
+                <div style="display: flex; flex-flow: row nowrap; justify-content: space-around;">
+                <p class="card-text">Número de huéspedes:</p>
+                <p class="card-text" th:text="${num_personas}">
+                </div>
             </div>
         </div>
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h4 class="card-title">Precio</h4>
-                <p class="card-text" th:text="${habitacion.precio_base} + '€/persona y día'"></p>
+                <p class="card-text" th:text="${precio} + '€/persona '"></p>
                 <small style="color:indianred !important" id="precio" class="form-text text-muted">* sujeto a las modificaciones de elección de pensión</small>
             </div>
         </div>

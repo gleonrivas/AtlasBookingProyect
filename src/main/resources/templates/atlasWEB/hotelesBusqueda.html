@@ -374,17 +374,18 @@
     </div>
 
 </header>
-<form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
+<form th:action="@{/}" method="" th:object="${hotel}" class="intro">
     <div class="entry-group">
         <label for="fecha_inicio">Fecha de entrada</label>
-        <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="fecha">
-        <input type="hidden" th:value="*{fecha_inicio}" id="fecha_inicio2" />
+        <input type="date" id="fecha_inicio"  th:field="*{fecha_inicio}" class="fecha">
+
     </div>
     <div class="entry-group">
         <label for="fecha_fin">Fecha de salida</label>
-        <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="fecha">
-        <input type="hidden" th:value="*{fecha_fin}" id="fecha_fin2" />
+        <input type="date"  id="fecha_fin" name="fecha_fin" th:field="*{fecha_fin}"  class="fecha">
+
     </div>
+
     <div class="entry-group">
         <label for="ciudad">Escribe una ciudad</label>
         <input type="text" id="ciudad" th:field="*{ciudad}" value="Próximo destino..." class="inputciudad">
@@ -393,15 +394,20 @@
         <label for="n_personas">¿Cuantas personas?</label>
         <input type="number" id="n_personas" th:field="*{n_max_personas}" value="0" class="inputn_personas">
     </div>
+
     <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
 
 <div class="nombreCiudad" th:text="${ciudadhotel.ciudad}"></div>
 
+
 <div class="hotelSlider">
 
+
     <div class="hotelCard" th:each="h : ${hoteles}">
-        <a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}" class="linkhotel"><img th:src="${h.img}" alt=""></a>
+
+        <a th:href="@{/hotel/{id}(id=${h.id})}" class="linkhotel">
+            <img th:src="${h.img}" alt=""></a>
         <div class="estrellasHotel">
             <p th:if="${h.estrellas} == 1">⭐</p>
             <p th:if="${h.estrellas} == 2">⭐⭐</p>
@@ -412,7 +418,10 @@
         </div>
         <p class="nombreHotel" th:text="${h.nombre}"></p>
         <p class="ubicacionHotel" th:text="${h.direccion}"></p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>
+
+        <button type="submit"><a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
+         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>
+
 
     </div>
 
