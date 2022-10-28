@@ -1,6 +1,5 @@
 package com.app.atlasultimate.controller;
 
-import com.app.atlasultimate.Utilidades.UtilidadesHabitacion;
 import com.app.atlasultimate.Utilidades.UtilidadesPrecio;
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
@@ -44,8 +43,6 @@ public class ReservaController {
                                   @RequestParam (value = "fecha_inicio", required = false) String fechaInicio,
                                   @RequestParam(value = "fecha_fin", required = false) String fechaFin,
                                   @RequestParam(value = "num_personas", required=false) Integer num_personas,
-                                  @RequestParam(value= "c_individual", required=false) Integer c_individual,
-                                  @RequestParam(value= "c_doble", required=false) Integer c_doble,
                                   Model modelo) {
         String fecha1= fechaInicio;
 
@@ -59,7 +56,6 @@ public class ReservaController {
         Temporada temporada = servicioReserva.temporadaporId(idHab);
         Double precio = UtilidadesPrecio.precioSemiFinal(LocalDate.parse(fecha1), LocalDate.parse(fecha2),
                 temporada, habitacion.getPrecio_base());
-        String tipoHabitacion = UtilidadesHabitacion.tipoHabitacion(c_individual, c_doble);
 
         modelo.addAttribute("hotel", hotel);
         modelo.addAttribute("habitacion", habitacion);
@@ -69,9 +65,6 @@ public class ReservaController {
         modelo.addAttribute("duracion", duracion);
         modelo.addAttribute("precio", precio);
         modelo.addAttribute("num_personas", num_personas);
-        modelo.addAttribute("c_individual", c_individual);
-        modelo.addAttribute("c_doble", c_doble);
-        modelo.addAttribute("tipo_habitacion", tipoHabitacion);
 
 
         return "/reservas.html";

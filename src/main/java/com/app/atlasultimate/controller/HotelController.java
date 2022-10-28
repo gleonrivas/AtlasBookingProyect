@@ -161,7 +161,6 @@ public class HotelController {
                                       @RequestParam (value = "fecha_inicio", required = false) String fechaInicio,
                                       @RequestParam(value = "fecha_fin", required = false) String fechaFin,
                                       @RequestParam(value = "num_personas", required=false) Integer num_personas
-
     ) {
         String fecha1= fechaInicio;
         String fecha2= fechaFin;
