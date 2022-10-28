@@ -292,10 +292,8 @@
 
 
     </style>
-<title>Reservas</title>
+    <title>Reservas</title>
 </head>
-
-
 
 
 <header class="mainh">
@@ -352,12 +350,17 @@
         </div>
         <div class="card" style="width: 100%;">
             <div class="card-body">
-                <h4 class="card-title">Selección</h4>
-                <h5 class="card-text" th:text="${hotel.nombre}"></h5>
-                <p class="card-text">Tipo de habitación</p>
-                <div style="display: flex; flex-flow: row nowrap; justify-content: space-around;">
-                <p class="card-text">Número de huéspedes:</p>
-                <p class="card-text" th:text="${num_personas}">
+                <div style="display: flex; flex-flow: row nowrap; justify-content: flex-start;">
+                    <h4 class="card-title">Selección  </h4>
+                    <h5 class="card-text" th:text=" '  '+${hotel.nombre}"></h5>
+                </div>
+                <div style="display: flex; flex-flow: row nowrap; justify-content: flex-start;">
+                    <h5 class="card-text">Tipo de habitación:  </h5>
+                    <p class="card-text" th:text=" '  '+ ${tipo_habitacion}">
+                </div>
+                <div style="display: flex; flex-flow: row nowrap; justify-content: flex-start;;">
+                    <h5 class="card-text">Número de huéspedes:  </h5>
+                    <p class="card-text" th:text="'  '+ ${num_personas}">
                 </div>
             </div>
         </div>
@@ -365,7 +368,8 @@
             <div class="card-body">
                 <h4 class="card-title">Precio</h4>
                 <p class="card-text" th:text="${precio} + '€/persona '"></p>
-                <small style="color:indianred !important" id="precio" class="form-text text-muted">* sujeto a las modificaciones de elección de pensión</small>
+                <small style="color:indianred !important" id="precio" class="form-text text-muted">* sujeto a las
+                    modificaciones de elección de pensión</small>
             </div>
         </div>
         <div class="card" style="width: 100%;">
@@ -396,50 +400,53 @@
             <div class="mb-3 form-check">
                 <h6>Elige tu pensión:</h6>
                 <div style="display: flex; flex-flow: row wrap; margin-bottom: 2%;">
-                        <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;" >
-                            <div th:if="${pension.booleanSa == true}" style="display: flex; flex-flow: column wrap;">
-                                <div style="display: inline-block">
-                                    <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
+                    <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;">
+                        <div th:if="${pension.booleanSa == true}" style="display: flex; flex-flow: column wrap;">
+                            <div style="display: inline-block">
+                                <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
 
-                                    <label class="form-check-label" for="ad">Solo alojamiento</label>
-                                </div>
-                                <small style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                                <label class="form-check-label" for="ad">Solo alojamiento</label>
+                            </div>
+                            <small style="color:indianred !important" id="adanuncio" class="form-text text-muted"
+                                   th:text="'El precio incrementará '+
                                 ${pension.sa}+ '€ por persona y día'"></small>
 
-                            </div>
-                            <div th:if="${pension.booleanSa == false}">
-                                <p>Elige alguna pensión.</p>
-                            </div>
-
+                        </div>
+                        <div th:if="${pension.booleanSa == false}">
+                            <p>Elige alguna pensión.</p>
                         </div>
 
+                    </div>
 
-                        <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;" >
-                            <div th:if="${pension.booleanAd == true}" style="display: flex; flex-flow: column wrap;">
-                                <div style="display: inline-block">
-                                    <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
 
-                                    <label class="form-check-label" for="ad">Almuerzo y Desayuno</label>
-                                </div>
-                                <small  style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                    <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;">
+                        <div th:if="${pension.booleanAd == true}" style="display: flex; flex-flow: column wrap;">
+                            <div style="display: inline-block">
+                                <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
+
+                                <label class="form-check-label" for="ad">Almuerzo y Desayuno</label>
+                            </div>
+                            <small style="color:indianred !important" id="adanuncio" class="form-text text-muted"
+                                   th:text="'El precio incrementará '+
                                 ${pension.ad}+ '€ por persona y día'"></small>
 
-                            </div>
-                            <div th:if="${pension.booleanAd == false}">
-                                <p>Este Hotel no oferta Almuerzo y Desayuno</p>
-                            </div>
-
+                        </div>
+                        <div th:if="${pension.booleanAd == false}">
+                            <p>Este Hotel no oferta Almuerzo y Desayuno</p>
                         </div>
 
+                    </div>
 
-                    <div scope="row" style="width: 50%; padding: 1%; margin-bottom: 2%;" >
+
+                    <div scope="row" style="width: 50%; padding: 1%; margin-bottom: 2%;">
                         <div th:if="${pension.booleanMp == true}" style="display: flex; flex-flow: column wrap;">
                             <div style="display: inline-block; ">
                                 <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
 
                                 <label class="form-check-label" for="ad">Media Pensión</label>
                             </div>
-                            <small  style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                            <small style="color:indianred !important" id="adanuncio" class="form-text text-muted"
+                                   th:text="'El precio incrementará '+
                             ${pension.mp}+ '€ por persona y día'"></small>
 
                         </div>
@@ -449,14 +456,15 @@
 
                     </div>
 
-                    <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;" >
+                    <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;">
                         <div th:if="${pension.booleanPc == true}" style="display: flex; flex-flow: column wrap;">
                             <div style="display: inline-block;">
                                 <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
 
                                 <label class="form-check-label" for="ad">Pensión completa</label>
                             </div>
-                            <small  style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                            <small style="color:indianred !important" id="adanuncio" class="form-text text-muted"
+                                   th:text="'El precio incrementará '+
                             ${pension.pc}+ '€ por persona y día'"></small>
 
                         </div>
@@ -468,11 +476,11 @@
                 </div>
 
 
-            <div style="text-align: center;">
-                <h6>Preferencia de pago:</h6>
-                <button type="button" class="btn btn-success">Recepción</button>
-                <button type="button" class="btn btn-success">By Atlas</button>
-            </div>
+                <div style="text-align: center;">
+                    <h6>Preferencia de pago:</h6>
+                    <button type="button" class="btn btn-success">Recepción</button>
+                    <button type="button" class="btn btn-success">By Atlas</button>
+                </div>
         </form>
     </div>
 </div>

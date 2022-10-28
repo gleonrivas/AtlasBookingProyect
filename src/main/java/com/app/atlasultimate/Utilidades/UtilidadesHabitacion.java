@@ -6,11 +6,15 @@ public class UtilidadesHabitacion {
         if (camaIndividual == 1 && camadoble == 0) {
             return "Habitación individual con cama individual";
         } else if (camaIndividual == 0 && camadoble == 1) {
-            return "Habitación doble con una cama doble";
+            return "Habitación con una cama doble";
         } else if(camaIndividual == 2 && camadoble == 0){
             return "Habitación doble con camas individuales";
-        } else (camaIndividual < 2 || camadoble<2){
+        } else if (camaIndividual < 2 || camadoble>2 ){
             return "Habitación múltiple";
+        } else if(camadoble>1 || camadoble == 2 && camaIndividual==0){
+            return "Habitación doble con dos camas de matrimonio";
+        }else{
+            return "Pregunte en recepción";
         }
     }
 }
