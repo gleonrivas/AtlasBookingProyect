@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Atlas Booking</title>
@@ -22,9 +22,8 @@
     </div>
     <div class="lheader">
         <a href="Descubre">Descubre</a>
-        <div class="login-singup">
-            <button class="link-buttom" href="index.html">Identifícate</button>
-        </div>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
     </div>
 </header>
 <body>
@@ -117,7 +116,27 @@
     </div>
 
 </div>
+<h1 th:text="${nombre}"></h1>
 
+<form class="formulario" sec:authorize="isAuthenticated()" th:action="@{/hotel/{id_hotel}(id_hotel=${hotel.id})}" th:object="${review}" method="post">
+    <div class="componente-registro">
+
+        <h2>Comenta algo,  <span th:text="${nombre}"></span></h2>
+        <label class="parform" for="nombre">Comentario</label>
+        <input class="parform" type="text" id="nombre"  th:field="*{comentario}"/>
+    </div>
+    <div class="componente-registro">
+        <label class="parform" for="apellido">Estrellas</label>
+        <input class="parform" type="number" id="apellido"  th:field="*{estrellas}" />
+    </div>
+    <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
+</form>
+
+<h1>Otras reviews:</h1>
+<div th:each="r : ${reviews}">
+    <p th:text="${r.comentario}"></p>
+    <p th:text="${r.estrellas}"></p>
+</div>
 
 
 <footer class="lasth">

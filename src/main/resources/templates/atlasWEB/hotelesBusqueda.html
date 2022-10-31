@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -370,7 +370,8 @@
 
     <div class="lheader">
         <a href="Descubre">Descubre</a>
-        <button class="link-buttom" href="index.html">Identifícate</button>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
     </div>
 </header>
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">

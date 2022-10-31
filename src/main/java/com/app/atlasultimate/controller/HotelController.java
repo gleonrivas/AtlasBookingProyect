@@ -1,21 +1,36 @@
 package com.app.atlasultimate.controller;
 
+import com.app.atlasultimate.controller.DTO.ReviewDTO;
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
+import com.app.atlasultimate.model.Review;
+import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.repository.HotelRepository;
+import com.app.atlasultimate.repository.ReviewRepository;
+import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import com.app.atlasultimate.service.HotelServiceImp;
+import com.app.atlasultimate.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("hotel")
 public class HotelController {
+
+    @ModelAttribute("usuario")
+    public Usuario usuario(){
+        return new Usuario();
+    }
 
     @Autowired
     private HabitacionServiceImp servicio;
@@ -141,13 +156,40 @@ public class HotelController {
     private HotelRepository hotelRepository;
 
     @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
     private HabitacionServiceImp servicioHab;
 
-    @GetMapping("/{id}")
-    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model){
+    @Autowired
+    private ReviewService reviewService;
 
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    @ModelAttribute("review")
+    public ReviewDTO reviewRegistroDTO(){
+        return new ReviewDTO();
+
+    }
+
+    @GetMapping("/{id}")
+    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model, @ModelAttribute("hotel") Hotel hot){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        model.addAttribute("usuario", usuario);
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
+
+
+        List<Review> reviews = new ArrayList<>();
+        reviews = reviewRepository.findAllByHotel(hot);
+        model.addAttribute("reviews", reviews);
+
+
+
+
 
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
@@ -155,11 +197,18 @@ public class HotelController {
     }
 
     @PostMapping("/{id}")
-    public String filtrarHotel(@PathVariable(value = "id") Integer id, Model model) {
+    public String guardarReview(@PathVariable(value = "id") Integer id, @ModelAttribute("review") ReviewDTO reviewDTO, @ModelAttribute("hotel") Hotel hot) {
 
-        Hotel hotel = hotelRepository.findHotelById(id);
-        model.addAttribute("hotel", hotel);
-        return "/hotelesBusqueda.html";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
 
+
+
+        reviewDTO.setId_usuario(usuario);
+        reviewDTO.setId_hotel(hot);
+        reviewService.guardarReview(reviewDTO);
+        return "redirect:/hotel/" + id;
     }
+
+
 }

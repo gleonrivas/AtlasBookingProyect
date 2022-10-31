@@ -20,7 +20,7 @@ public class Review {
     @Column(name = "estrellas", length = 1)
     private Integer estrellas;
     @Column(name = "comentario", length = 500)
-    private String cometario;
+    private String comentario;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,4 +32,22 @@ public class Review {
     @JoinColumn(name = "id_hotel")
     private Hotel hotel= new Hotel();
 
+    public Review(Integer estrellas, String comentario, Usuario usuario, Hotel hotel) {
+        this.estrellas = estrellas;
+        this.comentario = comentario;
+        this.usuario = usuario;
+        this.hotel = hotel;
+    }
+
+    public Review() {
+
+    }
+
+    public Review(Integer id, Integer estrellas, String comentario, Usuario usuario, Hotel hotel) {
+        this.id = id;
+        this.estrellas = estrellas;
+        this.comentario = comentario;
+        this.usuario = usuario;
+        this.hotel = hotel;
+    }
 }
