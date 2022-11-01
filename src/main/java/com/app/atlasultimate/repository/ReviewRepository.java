@@ -14,4 +14,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     List<Review> findAllByHotel(Hotel hotel);
+
 }

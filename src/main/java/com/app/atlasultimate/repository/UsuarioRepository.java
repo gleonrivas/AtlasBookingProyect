@@ -12,4 +12,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findTopByEmail(String username);
     boolean existsByEmail(String email);
 
+    @Query(value = "UPDATE usuario set nombre = :nombre, apellido = :apellido, dni = :dni, email = :email, telefono = :telefono, contrasena = :contrasena where id = :id", nativeQuery = true)
+    Usuario updateByID(@Param("nombre") String nombre,
+                       @Param("apellido") String apellido,
+                       @Param("dni") String dni,
+                       @Param("email") String email,
+                       @Param("telefono") String telefono,
+                       @Param("contrasena") String contrasena,
+                       @Param("id") Integer id);
+
 }

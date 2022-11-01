@@ -233,6 +233,7 @@
         <a href="Descubre">Descubre</a>
         <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><p class="link-buttom">Ver perfil</p></a>
     </div>
 
 </header>
@@ -256,6 +257,7 @@
         <button class="boton" type ="submit" >Entrar</button>
     </form>
 </div>
+<a th:href="@{/usuario/registro}">Registrate</a>
 
 <footer class="lasth">
 

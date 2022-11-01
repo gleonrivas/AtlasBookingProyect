@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas Booking</title>
+</head>
+<body>
+    <h1 class="titulo">Tu Perfil:</h1>
+    <form class="formulario" name="form" th:action="@{/usuario/perfil}" th:object="${usuario}" method="post">
+        <div class="componente-registro">
+            <label class="parform" for="nombre">Nombre</label>
+            <input class="parform" type="text" id="nombre" th:value="${usuario.nombre}" th:field="*{nombre}"/>
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="apellido">Apellidos</label>
+            <input class="parform" type="text" id="apellido" th:value="${usuario.apellido}"  th:field="*{apellido}" />
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="dni">DNI</label>
+            <input class="parform" type="text" id="dni" th:value="${usuario.dni}"  th:field="*{dni}" />
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="correo">Email</label>
+            <input class="parform" type="email" id="correo" th:value="${usuario.email}"  th:field="*{email}"/>
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="tel" type="tel">Teléfono</label>
+            <input class="parform" type="tel" id="tel"  th:value="${usuario.telefono}" th:field="*{telefono}"/>
+        </div>
+        <div class="componente-registro">
+            <label for="contrasena">Contraseña</label>
+            <input class="parform" type="password" id="contrasena" th:value="${usuario.contrasena}"  th:field="*{contrasena}"/>
+        </div>
+
+        <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
+    </form>
+</body>
+</html>

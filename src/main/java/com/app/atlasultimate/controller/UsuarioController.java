@@ -1,9 +1,13 @@
 package com.app.atlasultimate.controller;
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
+import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.service.HotelServiceImp;
 import com.app.atlasultimate.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -82,4 +86,37 @@ public class UsuarioController {
         return "redirect:/usuario/inicio";
     }
 
+
+    @GetMapping("perfil")
+    public String perfil(Model model){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        model.addAttribute("usuario", usuario);
+        return "/PerfilUsuario.html";
+    }
+
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    //RECIBIR DATOS USUARIO DE FORMULARIO REGISTRO
+    @PostMapping("perfil")
+    public String modificarUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO usuarioDTO){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+
+            usuarioRepository.updateByID(usuarioDTO.getNombre(),
+                    usuarioDTO.getApellido(),
+                    usuarioDTO.getDni(),
+                    usuarioDTO.getEmail(),
+                    usuarioDTO.getTelefono(),
+                    passwordEncoder.encode(usuarioDTO.getContrasena()),
+                    usuario.getId());
+
+            return "redirect:/usuario/perfil?exito";
+    }
+
 }
+
