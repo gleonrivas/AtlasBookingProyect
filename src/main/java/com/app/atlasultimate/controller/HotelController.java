@@ -231,8 +231,7 @@ public class HotelController {
             System.out.println(e);
         }
 
-        String fondo = hotelRepository.findHotelById(id).getImg();
-        model.addAttribute("hotelimagen", fondo);
+
 
         return "/hotel.html";
     }
@@ -263,6 +262,9 @@ public class HotelController {
         model.addAttribute("fecha_inicio", fechaInicio);
         model.addAttribute("fecha_fin", fechaFin);
         model.addAttribute("num_personas", num_personas);
+
+        String fondo = hotelRepository.findHotelById(id).getImg();
+        model.addAttribute("hotelimagen", fondo);
 
         return "/hotel.html";
     }
