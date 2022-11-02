@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 
@@ -182,17 +182,37 @@ public class HotelController {
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
 
-
-        List<Review> reviews = new ArrayList<>();
-        reviews = reviewRepository.findAllByHotel(hot);
-        model.addAttribute("reviews", reviews);
-
-
-
-
-
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
+
+        List<Review> review = reviewRepository.find10LastValues(id);
+        model.addAttribute("review", review);
+
+        Map<String, Review> mapa = new HashMap<>();
+        model.addAttribute("mapa", mapa);
+        try{
+            for (int i = 0; i<=10; i++){
+                mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+
+
+        /*model.addAttribute("review", review);
+
+        List<Usuario> usuario = null;
+        for (int i = 0; reviews.size() >=10; i++){
+            usuario.add(reviews.get(i).getUsuario());
+        }
+        model.addAttribute("usuario", usuario);*/
+
+
+        String fondo = hotelRepository.findHotelById(id).getImg();
+        model.addAttribute("hotelimagen", fondo);
+
+
         return "/hotel.html";
     }
 

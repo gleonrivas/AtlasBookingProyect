@@ -271,9 +271,18 @@
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: space-around;
-        margin: 2% auto 0 auto;
-        width: 80%;
-        padding: 2%;
+        margin: 0 auto;
+        width: 95%;
+        padding: 50px 0 0 0;
+    }
+    .hotelSlider::-webkit-scrollbar{
+        display: none;
+    }
+
+    .hotel-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
     }
 
     .hotelCard{
@@ -284,7 +293,7 @@
         padding: 0 0 2% 0;
         width: 250px;
         height: 350px;
-        margin: 0 2% 10% 2%;
+        margin: 2%;
         background-color: rgba(255, 255, 255, 0.64);
         border-radius: 30px;
         border: none 2px rgba(255, 255, 255, 0.5);
@@ -353,6 +362,8 @@
         border-radius: 30px;
         transition: all 0.2s ease-in-out;
     }
+
+
     /* FINALIZA MUESTRA DE HOTEL ---------------------------------*/
 
 </style>
@@ -398,22 +409,21 @@
 <div class="nombreCiudad" th:text="${ciudadhotel}"></div>
 
 <div class="hotelSlider">
-
-    <div class="hotelCard" th:each="h : ${hoteles}">
-        <a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}" class="linkhotel"><img th:src="${h.img}" alt=""></a>
-        <div class="estrellasHotel">
-            <p th:if="${h.estrellas} == 1">⭐</p>
-            <p th:if="${h.estrellas} == 2">⭐⭐</p>
-            <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
-            <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
-            <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
-
+    <div class="hotel-container">
+        <div class="hotelCard" th:each="h : ${hoteles}">
+            <a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}" class="linkhotel"><img th:src="${h.img}" alt=""></a>
+            <div class="estrellasHotel">
+                <p th:if="${h.estrellas} == 1">⭐</p>
+                <p th:if="${h.estrellas} == 2">⭐⭐</p>
+                <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
+                <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
+                <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+            </div>
+            <p class="nombreHotel" th:text="${h.nombre}"></p>
+            <p class="ubicacionHotel" th:text="${h.direccion}"></p>
+            <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>
         </div>
-        <p class="nombreHotel" th:text="${h.nombre}"></p>
-        <p class="ubicacionHotel" th:text="${h.direccion}"></p>
-        <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>
     </div>
-
 </div>
 
 

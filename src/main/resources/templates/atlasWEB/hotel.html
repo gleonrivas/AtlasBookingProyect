@@ -2,13 +2,338 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Atlas Booking</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/styles/hotel.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/footer.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inicio de sesión</title>
 </head>
+<body>
+<style th:inline="text">
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 10px;
+        font-family: Arial, serif;
+        font-size: 12px;
+        padding: 0;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 2%;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-position: center;
+        background-size: cover;
+        background-image: url([[${hotelimagen}]]);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        transition: background 1s linear;
+        animation: fade 4s infinite;
+        font-family: Arial, sans-serif;
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMIENZA HOTEL BOX ---------------------------------------*/
+
+    .hotel-container{
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        color: black;
+        margin: 5% 0;
+        padding: 50px;
+        justify-content: space-evenly;
+    }
+    .hotel-data{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+        padding: 2% 5% 2% 2%;
+        height: fit-content;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+    }
+    .hotel-data > p{
+        font-size: 15px;
+        margin: 5px 0;
+        font-weight: bold;
+    }
+
+    .firtsMayus{
+        text-transform: capitalize;
+    }
+
+
+    .titulo{
+        font-size: 35px;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .hotel-services{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 45%;
+        gap: 5px 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+        padding: 2%;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+    }
+
+    .hotel-services > h1{
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .hotel-services > p{
+        align-items: center;
+        margin: 0;
+        width: max-content;
+        height: fit-content;
+        background-color: black;
+        padding: 10px 15px;
+        border-radius: 25px;
+        color: white;
+        font-size: 13px;
+    }
+
+
+
+    .tarjeta{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1.5rem;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
+    }
+
+    .tarjeta > p{
+        width: 100%;
+        margin: 5px;
+    }
+
+    .comentario-slider{
+        overflow-x: scroll;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin: 0 auto;
+        width: 95%;
+        padding: 25px 0 50px 0;
+    }
+    .comentario-slider > h2{
+        width: max-content;
+    }
+
+    .comentario-slider::-webkit-scrollbar{
+        display: none;
+    }
+    .comentario-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .comentario-tarjeta{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1.5rem;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        width: 300px;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
+    }
+    .comentario-tarjeta > p{
+        margin: 0 auto 1rem auto;
+        color: rgba(0, 0, 0, 0.51);
+        font-weight: bold;
+    }
+
+    .get-comentario {
+        margin: 0 auto;
+    }
+    .get-comentario > p{
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .estrellas{
+        background-color: black;
+        font-size: 12px;
+        padding: 5px;
+        border-radius: 20px;
+        width: fit-content;
+        margin: 0 auto;
+    }
+    .estrellas > p{
+        margin: 0;
+    }
+
+    h2{
+        width: max-content;
+        margin: 0 50px;
+        padding: 12.5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
+    }
+
+
+
+
+    /* FINALIZA HOTEL BOX ---------------------------------------*/
+
+</style>
 
 <header class="mainh">
 
@@ -22,70 +347,71 @@
     </div>
     <div class="lheader">
         <a href="Descubre">Descubre</a>
-        <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><p class="link-buttom">Ver perfil</p></a>
+        <div class="login-singup">
+            <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><p class="link-buttom">Ver perfil</p></a>
+        </div>
     </div>
 </header>
-<body>
-<div class="center-container">
-    <div class="column-container">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/img/venecia.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="/img/venecia.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="/img/venecia.jpg" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <div class="navegacion">
-            <a href=""><i>Descripcion</i></a>
-            <a href=""><i>Habitaciones</i></a>
-            <a href=""><i>Ubicacion</i></a>
-            <a href=""><i>Servicios</i></a>
-            <a href=""><i>Reseñas</i></a>
-        </div>
-    </div>
-</div>
-<div class="row-container">
-    <div class="column-container" >
-        <h1>Datos del hotel</h1>
-        <p th:text="${hotel.nombre}"></p>
-        <p th:text="${hotel.ciudad}"></p>
-        <p th:text="${hotel.direccion}"></p>
+
+<div class="hotel-container">
+    <div class="hotel-data">
+        <h1 class="titulo" th:text="${hotel.nombre}"></h1>
+        <p class="firtsMayus" th:text="${hotel.ciudad}"></p>
+        <p class="firtsMayus" th:text="${hotel.direccion}"></p>
         <p th:text="${hotel.telefono}"></p>
         <p th:text="${hotel.email}"></p>
-
     </div>
 
-    <div class="column-container" >
-        <h1>Servicios</h1>
-        <div th:if="${hotel.wifi} == true"><p>Wifi disponible</p></div>
-        <div th:if="${hotel.mascotas} == true"><p>Permitimos la entrada a mascotas</p></div>
-        <div th:if="${hotel.multilengua} == true"><p>Hablamos varios idiomas</p></div>
-        <div th:if="${hotel.accesibilidad} == true"><p>Accesible para todo el mundo</p></div>
-        <div th:if="${hotel.s_habitacion} == true"><p>Disponible el servicio de habitaciones</p></div>
-        <div th:if="${hotel.s_transporte} == true"><p>Disponible servicio de transporte</p></div>
-        <div th:if="${hotel.tours} == true"><p>Tours disponibles</p></div>
-        <div th:if="${hotel.comedor} == true"><p>Comedor para todo el mundo</p></div>
-        <div th:if="${hotel.espectaculos} == true"><p>Disfruta nuestros espectaculos</p></div>
-        <div th:if="${hotel.patio} == true"><p>Relajate en el patio</p></div>
-        <div th:if="${hotel.piscina} == true"><p>Date un chapuzón en nuestra piscina</p></div>
-        <div th:if="${hotel.terraza} == true"><p>Relajate en nuestra terraza</p></div>
-        <div th:if="${hotel.parking} == true"><p>Aparca donde quieras con nuestro parking</p></div>
+    <div class="hotel-services">
+        <h1>Servicios disponibles</h1>
+        <p th:if="${hotel.wifi} == true">Wifi</p>
+        <p th:if="${hotel.mascotas} == true">Mascotas</p>
+        <p th:if="${hotel.piscina} == true">Piscina</p>
+        <p th:if="${hotel.terraza} == true">Terraza</p>
+        <p th:if="${hotel.parking} == true">Parking</p>
+        <p th:if="${hotel.multilengua} == true">Lengua local e ingles</p>
+        <p th:if="${hotel.accesibilidad} == true">Acceso para minuválidos</p>
+        <p th:if="${hotel.s_habitacion} == true">Servicio de habitaciones</p>
+        <p th:if="${hotel.s_transporte} == true">Servicio de transporte</p>
+        <p th:if="${hotel.tours} == true">Guias turisticos</p>
+        <p th:if="${hotel.comedor} == true">Restaurante</p>
+        <p th:if="${hotel.espectaculos} == true">Espectaculos</p>
+        <p th:if="${hotel.patio} == true">Patio</p>
+
+    </div>
+</div>
+<h2>Habitaciones disponibles para la fecha selecionada.</h2>
+
+<div class="comentario-slider">
+    <div class="comentario-container">
+        <div class="tarjeta" th:each="h : ${habitaciones}">
+            <p th:text="'Camas dobles: '+ ${h.c_doble}"></p>
+            <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
+            <p th:text="'Numero de personas: ' + ${h.n_max_personas}"></p>
+            <p th:text="'Precio/dia: ' + ${h.precio_base} + ' €'"></p>
+        </div>
+    </div>
+
+</div>
+<h2>Los 10 comentarios mas recientes.</h2>
+<div class="comentario-slider">
+
+    <div class="comentario-container">
+        <div class="comentario-tarjeta" th:each="m : ${mapa}">
+            <p th:text="${'@'+m.key}"></p>
+            <div class="get-comentario" th:each="v : ${m.value}">
+                <div class="estrellas">
+                    <p th:if="${v.estrellas} == 1">⭐</p>
+                    <p th:if="${v.estrellas} == 2">⭐⭐</p>
+                    <p th:if="${v.estrellas} == 3">⭐⭐⭐</p>
+                    <p th:if="${v.estrellas} == 4">⭐⭐⭐⭐</p>
+                    <p th:if="${v.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                </div>
+                <p th:text="${v.comentario}"></p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -133,18 +459,16 @@
     <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
 </form>
 
-<h1>Otras reviews:</h1>
-<div th:each="r : ${reviews}">
-    <p th:text="${r.comentario}"></p>
-    <p th:text="${r.estrellas}"></p>
 </div>
 
 
 <footer class="lasth">
 
-    <div class="promote_hotel">
+    <div class="promote-hotel">
         <p>Forma parte de nosotros</p>
-        <button>Registra tus alojamientos</button>
+        <form method="get" action="registroUsuario.html">
+            <button class="registra" >Registra tus alojamientos</button>
+        </form>
     </div>
 
     <div class="middle-footer">
@@ -153,16 +477,16 @@
             <p>BOOKING</p>
         </div>
         <div class="nets">
-            <img src="../../static/styles/img/face.svg" alt="">
-            <img src="../../static/styles/img/insta.svg" alt="">
-            <img src="../../static/styles/img/twitter.svg" alt="">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
         </div>
         <p>Copyrigth © 2022 Atlas Booking S.L.</p>
     </div>
 
     <div class="footer-links">
-        <a href="index.html">Sobre nosotros.</a>
         <a href="index.html">Comunidad.</a>
+        <a href="index.html">Sobre nosotros.</a>
         <a href="index.html">Uso de cookies.</a>
         <a href="index.html">Politica de privacidad.</a>
         <a href="index.html">Condiciones de uso.</a>
