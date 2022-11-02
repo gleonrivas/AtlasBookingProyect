@@ -4,7 +4,9 @@ import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
 import com.app.atlasultimate.service.HotelServiceImp;
 import com.app.atlasultimate.service.UsuarioServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 

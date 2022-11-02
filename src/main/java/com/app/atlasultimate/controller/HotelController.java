@@ -3,6 +3,7 @@ package com.app.atlasultimate.controller;
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.model.Review;
+import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.repository.ReviewRepository;
@@ -15,7 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("hotel")
@@ -129,25 +132,24 @@ public class HotelController {
         List<Habitacion> habitaciones = habitacionRepository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
 
+        List<Review> review = reviewRepository.find10LastValues(id);
+        model.addAttribute("review", review);
 
+        /*List<Usuario> usuarios = new ArrayList<>();
 
-        List<Review> reviewList = reviewRepository.find10LastValues(id);
-        model.addAttribute("review", reviewList);
-
-        List<String> nombreUsuario = new ArrayList<>();
-        for (Review i : reviewList){
-            nombreUsuario.add(i.getUsuario().getNombre());
+        for(Review i : review){
+            usuarios.add(i.getUsuario());
+        }*/
+        Map<String, Review> mapa = new HashMap<>();
+        model.addAttribute("mapa", mapa);
+        try{
+            for (int i = 0; i<=10; i++){
+                mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
+            }
+        } catch (Exception e){
+            System.out.println(e);
         }
-        model.addAttribute("usuario", nombreUsuario);
 
-        /*Map<String, Review> mapReview = new HashMap<>();
-        int count = 0;
-
-        for (int i = 0; mapReview.size() <=10; i++){
-            mapReview.put(reviews.get(count).getUsuario().getNombre(), reviews.get(count));
-            count++;
-        }
-        model.addAttribute("review", mapReview);*/
 
 
         /*model.addAttribute("review", review);

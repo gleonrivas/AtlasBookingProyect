@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -174,17 +174,18 @@
         flex-direction: column;
         width: auto;
         background-color: rgba(255, 255, 255, 0.5);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
         border-radius: 25px;
         box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
-        padding: 3% 6% 3% 3%;
+        padding: 2% 5% 2% 2%;
         height: fit-content;
-        border: solid 2px rgba(255, 255, 255, 0.5);
+        border: solid 2px rgba(255, 255, 255, 0.7);
     }
     .hotel-data > p{
         font-size: 15px;
-        margin: 10px 0;
+        margin: 5px 0;
+        font-weight: bold;
     }
 
     .firtsMayus{
@@ -203,14 +204,14 @@
         flex-direction: row;
         flex-wrap: wrap;
         width: 45%;
-        gap: 10px;
+        gap: 5px 10px;
         background-color: rgba(255, 255, 255, 0.5);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
         border-radius: 25px;
         box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
-        padding: 3%;
-        border: solid 2px rgba(255, 255, 255, 0.5);
+        padding: 2%;
+        border: solid 2px rgba(255, 255, 255, 0.7);
     }
 
     .hotel-services > h1{
@@ -231,33 +232,100 @@
     }
 
 
-    .row-container-barra{
-        width: 100%;
-        padding: 5% 0;
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        gap: 3%;
-    }
+
     .tarjeta{
         width: auto;
-        color: white;
         display: flex;
-        flex-wrap: nowrap;
         flex-direction: column;
-        padding: 2%;
         justify-content: center;
-        background-color: black;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
+        margin: 1.5rem;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
         border-radius: 25px;
-        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
     }
 
     .tarjeta > p{
         width: 100%;
+        margin: 5px;
+    }
+
+    .comentario-slider{
+        overflow-x: scroll;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin: 0 auto;
+        width: 95%;
+        padding: 25px 0 50px 0;
+    }
+    .comentario-slider > h2{
+        width: max-content;
+    }
+
+    .comentario-slider::-webkit-scrollbar{
+        display: none;
+    }
+    .comentario-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .comentario-tarjeta{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1.5rem;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        width: 300px;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
+    }
+    .comentario-tarjeta > p{
+        margin: 0 auto 1rem auto;
+        color: rgba(0, 0, 0, 0.51);
+        font-weight: bold;
+    }
+
+    .get-comentario {
+        margin: 0 auto;
+    }
+    .get-comentario > p{
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .estrellas{
+        background-color: black;
+        font-size: 12px;
+        padding: 5px;
+        border-radius: 20px;
+        width: fit-content;
+        margin: 0 auto;
+    }
+    .estrellas > p{
+        margin: 0;
+    }
+
+    h2{
+        width: max-content;
+        margin: 0 50px;
+        padding: 12.5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
     }
 
 
@@ -298,6 +366,9 @@
         <h1>Servicios disponibles</h1>
         <p th:if="${hotel.wifi} == true">Wifi</p>
         <p th:if="${hotel.mascotas} == true">Mascotas</p>
+        <p th:if="${hotel.piscina} == true">Piscina</p>
+        <p th:if="${hotel.terraza} == true">Terraza</p>
+        <p th:if="${hotel.parking} == true">Parking</p>
         <p th:if="${hotel.multilengua} == true">Lengua local e ingles</p>
         <p th:if="${hotel.accesibilidad} == true">Acceso para minuválidos</p>
         <p th:if="${hotel.s_habitacion} == true">Servicio de habitaciones</p>
@@ -306,18 +377,38 @@
         <p th:if="${hotel.comedor} == true">Restaurante</p>
         <p th:if="${hotel.espectaculos} == true">Espectaculos</p>
         <p th:if="${hotel.patio} == true">Patio</p>
-        <p th:if="${hotel.piscina} == true">Piscina</p>
-        <p th:if="${hotel.terraza} == true">Terraza</p>
-        <p th:if="${hotel.parking} == true">Parking</p>
+
     </div>
 </div>
+<h2>Habitaciones disponibles para la fecha selecionada.</h2>
 
-<div class="row-container-barra">
-    <div class="tarjeta" th:each="h : ${habitaciones}">
+<div class="comentario-slider">
+    <div class="comentario-container">
+        <div class="tarjeta" th:each="h : ${habitaciones}">
             <p th:text="'Camas dobles: '+ ${h.c_doble}"></p>
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
             <p th:text="'Numero de personas: ' + ${h.n_max_personas}"></p>
             <p th:text="'Precio/dia: ' + ${h.precio_base} + ' €'"></p>
+        </div>
+    </div>
+
+</div>
+<h2>Los 10 comentarios mas recientes.</h2>
+<div class="comentario-slider">
+
+    <div class="comentario-container">
+        <div class="comentario-tarjeta" th:each="m : ${mapa}">
+            <p th:text="${'@'+m.key}"></p>
+            <div class="get-comentario" th:each="v : ${m.value}">
+                <div class="estrellas">
+                    <p th:if="${v.estrellas} == 1">⭐</p>
+                    <p th:if="${v.estrellas} == 2">⭐⭐</p>
+                    <p th:if="${v.estrellas} == 3">⭐⭐⭐</p>
+                    <p th:if="${v.estrellas} == 4">⭐⭐⭐⭐</p>
+                    <p th:if="${v.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                </div>
+                <p th:text="${v.comentario}"></p>
+            </div>
         </div>
     </div>
 </div>
