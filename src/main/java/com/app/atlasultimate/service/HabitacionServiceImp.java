@@ -27,14 +27,14 @@ public class HabitacionServiceImp implements HabitacionServicio {
         return habitacionRepository.save(h);
     }
 
-    public List<Habitacion> guardarHabMultiple(Integer num, Habitacion hab) {
+    public void guardarHabMultiple(Integer num, Habitacion hab) {
         List<Habitacion> habs = new ArrayList<>();
 
         for (int i = 0; i < num; i++) {
             habs.add(new Habitacion(hab));
         }
 
-        return habitacionRepository.saveAll(habs);
+        habitacionRepository.saveAll(habs);
     }
 
     public Habitacion obtenerHabitacionporId(Integer id) {

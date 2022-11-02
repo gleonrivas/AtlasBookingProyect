@@ -239,10 +239,9 @@ public class HotelController {
 
     @PostMapping("/{id}")
     public String guardarReview(@PathVariable(value = "id") Integer id, @ModelAttribute("review") ReviewDTO reviewDTO, @ModelAttribute("hotel") Hotel hot) {
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
-
-
 
         reviewDTO.setId_usuario(usuario);
         reviewDTO.setId_hotel(hot);

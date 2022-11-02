@@ -2,6 +2,7 @@ package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
 import com.app.atlasultimate.model.Usuario;
+import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import com.app.atlasultimate.service.HotelService;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
 //INYECTA SERVICIO HOTEL:
+
+    @Autowired
+    private HotelRepository repository;
     @Autowired
     private HotelService servicio;
     @Autowired
@@ -27,7 +31,11 @@ public class UsuarioController {
 //PAGINA INICIO ROL ADMIN
     @GetMapping("inicio")
     public String inicio(Model modelo){
-        modelo.addAttribute("hoteles", servicio.listarHoteles());
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+
+        modelo.addAttribute("hoteles", repository.findHotelById_usuario(usuario.getId()));
         return "/InicioAdministrador.html";
     }
 

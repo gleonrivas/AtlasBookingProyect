@@ -3,6 +3,7 @@ package com.app.atlasultimate.repository;
 
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.model.Pension;
+import com.app.atlasultimate.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +15,10 @@ import java.util.List;
 
 @Repository
 public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
+
+
+    @Query(value = "SELECT * FROM hotel h where usuario = :id", nativeQuery = true)
+    List<Hotel> findHotelById_usuario(@Param("id")Integer id);
 
     @Query(value = "SELECT h2.*  FROM registro r \n" +
             "join habitacion h on r.id_habitacion = h.id\n" +
@@ -33,6 +38,7 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
 
     @Query(value = "SELECT id_hotel FROM habitacion h where id = :id", nativeQuery = true)
     Integer findHotelByIdHab(@Param("id")Integer id);
+
 
 
 

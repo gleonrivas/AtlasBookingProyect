@@ -13,9 +13,7 @@ public class HotelService {
     @Autowired
     private HotelRepository repositorio;
 
-    public List<Hotel> listarHoteles (){
-        return repositorio.findAll();
-    }
+    
 
     public Hotel buscarHotel(Integer id){
         return repositorio.findHotelById(id);
