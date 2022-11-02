@@ -1,272 +1,302 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <style>
+        /*FUENTES EXTERNAS*/
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+
+        /* COMIENZA HEADER ------------------------------------------*/
+        .mainh {
+            width: 100%;
+            margin: 0;
+            padding: 1% 0 0.5% 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #000000;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+        }
+
+        .cheader {
+            margin: 0 3% 0 3%;
+            padding: 0;
+            display: grid;
+            grid-column: 1;
+            font-family: 'Playfair Display', serif;
+            width: auto;
+            color: azure;
+            letter-spacing: 10px;
+        }
+
+        .cheader > h1 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cheader > p {
+            margin-top: 5px;
+            text-align: center;
+            letter-spacing: 10px;
+            font-size: 12px;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .lheader {
+            display: flex;
+            width: 65%;
+            padding: 0;
+            color: azure;
+        }
+
+        .lheader > a {
+            color: azure;
+            text-decoration: none;
+            margin: auto;
+            font-size: 14px;
+        }
+
+        .link-buttom {
+            width: 120px;
+            border-radius: 10px;
+            border-style: none;
+            background-color: azure;
+            padding: 2%;
+            color: black;
+            font-size: 14px;
+            margin: auto;
+
+        }
+
+        .login-singup > a {
+            color: azure;
+            text-decoration: none;
+            margin: 5% auto;
+        }
+
+        /* FINALIZA HEADER ------------------------------------------*/
+        /* COMIENZA BODY --------------------------------------------*/
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: background 1s linear;
+            animation: fade 4s infinite;
+            font-family: Arial, sans-serif;
+        }
+
+        /* FINALIZA BODY --------------------------------------------*/
+        /* COMIENZA FINDER ------------------------------------------*/
+        .intro {
+            display: flex;
+            width: 80%;
+            margin: 15% auto;
+            justify-content: center;
+            align-items: center;
+            padding: 2% 1%;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .entry-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .entry-group > p {
+            width: available;
+            justify-content: center;
+            align-content: center;
+            filter: drop-shadow(0 0 10px #000000);
+        }
+
+        input {
+            border-color: rgba(0, 0, 0, 0.8);
+            font-size: 13px;
+        }
+
+        .inputciudad {
+            border-radius: 10px 0 0 10px;
+            border-left-style: solid;
+            border-right-style: none;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            width: 150px;
+            height: 50px;
+        }
+
+        .inputfentrada {
+            border-left-style: solid;
+            border-right-style: none;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            width: 150px;
+            height: 50px;
+            justify-content: center;
+
+        }
+
+        .inputfsalida {
+            border-left-style: solid;
+            border-right-style: none;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            width: 150px;
+            height: 50px;
+            justify-content: center;
+
+        }
+
+        .inputnadultos {
+            border-left-style: solid;
+            border-right-style: none;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            width: 150px;
+            height: 50px;
+            justify-content: center;
+
+        }
+
+        .inputniños {
+            border-left-style: solid;
+            border-right-style: solid;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            width: 150px;
+            height: 50px;
+            justify-content: center;
+        }
+
+        .inputnhabitaciones {
+            border-radius: 0 10px 10px 0;
+            border-left-style: none;
+            border-right-style: solid;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            width: 150px;
+            height: 50px;
+            justify-content: center;
+        }
+
+        .buscar {
+            width: 56px;
+            height: 56px;
+            margin: auto 0 0 2%;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #ffffff;
+            background-position: center;
+        }
+
+        /* FINALIZA FINDER ------------------------------------------*/
+        /* COMINEZA FOOTER ------------------------------------------*/
+        .lasth {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            width: 100%;
+            background-color: black;
+            padding-top: 1%;
+        }
+
+        .middle-footer {
+            display: grid;
+            grid-column: 1;
+            grid-gap: 10px;
+        }
+
+        .middle-footer > p {
+            color: rgba(240, 255, 255, 0.44);
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .nets {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .nets > img {
+            width: 15%;
+        }
+
+        .promote-hotel {
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .promote-hotel > p {
+            color: azure;
+        }
+
+        .registra {
+            align-content: center;
+            width: 190px;
+            border-radius: 10px;
+            border-style: none;
+            background-color: azure;
+            padding: 5%;
+            color: black;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-links > a {
+            color: azure;
+            text-decoration: none;
+            padding-top: 2%;
+
+        }
+
+        /* FINALIZA FOOTER ------------------------------------------*/
+
+
+    </style>
+<title>Reservas</title>
 </head>
-    <title>Reservas</title>
-</head>
 
 
 
-<style>
-    /*FUENTES EXTERNAS*/
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
-
-    /* COMIENZA HEADER ------------------------------------------*/
-    .mainh{
-        width: 100%;
-        margin: 0;
-        padding: 1% 0 0.5% 0;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-evenly;
-        align-items: center;
-        background-color: #000000;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
-    }
-    .cheader{
-        margin: 0 3% 0 3%;
-        padding: 0;
-        display: grid;
-        grid-column: 1;
-        font-family: 'Playfair Display', serif;
-        width: auto;
-        color: azure;
-        letter-spacing: 10px;
-    }
-    .cheader > h1{
-        text-align: center;
-        font-family: 'Playfair Display', serif;
-        padding: 0;
-        margin: 0;
-    }
-    .cheader > p{
-        margin-top: 5px;
-        text-align: center;
-        letter-spacing: 10px;
-        font-size: 12px;
-        padding: 0;
-        font-family: Arial,sans-serif;
-    }
-    .lheader{
-        display: flex;
-        width: 65%;
-        padding: 0;
-        color: azure;
-    }
-    .lheader > a{
-        color: azure;
-        text-decoration: none;
-        margin: auto;
-        font-size: 14px;
-    }
-    .link-buttom{
-        width: 120px;
-        border-radius: 10px;
-        border-style: none;
-        background-color: azure;
-        padding: 2%;
-        color: black;
-        font-size: 14px;
-        margin: auto;
-
-    }
-    .login-singup > a{
-        color: azure;
-        text-decoration: none;
-        margin: 5% auto;
-    }
-    /* FINALIZA HEADER ------------------------------------------*/
-    /* COMIENZA BODY --------------------------------------------*/
-    body {
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        transition: background 1s linear;
-        animation: fade 4s infinite;
-        font-family: Arial, sans-serif;
-    }
-    /* FINALIZA BODY --------------------------------------------*/
-    /* COMIENZA FINDER ------------------------------------------*/
-    .intro{
-        display: flex;
-        width: 80%;
-        margin: 15% auto;
-        justify-content: center;
-        align-items: center;
-        padding: 2% 1%;
-        font-size: 14px;
-        background-color: rgba(255, 255, 255, 0.4);
-        box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(5px);
-        color: white;
-        border-radius: 10px;
-    }
-    .entry-group{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .entry-group > p{
-        width: available;
-        justify-content: center;
-        align-content: center;
-        filter: drop-shadow(0 0 10px #000000);
-    }
-    input{
-        border-color: rgba(0, 0, 0, 0.8);
-        font-size: 13px;
-    }
-    .inputciudad{
-        border-radius: 10px 0 0 10px;
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-    }
-    .inputfentrada{
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-
-    }
-    .inputfsalida{
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-
-    }
-    .inputnadultos{
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-
-    }
-    .inputniños{
-        border-left-style: solid;
-        border-right-style: solid;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-    }
-    .inputnhabitaciones{
-        border-radius: 0 10px 10px 0;
-        border-left-style: none;
-        border-right-style: solid;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-    }
-    .buscar{
-        width: 56px;
-        height: 56px;
-        margin: auto 0 0 2%;
-        border-style: solid;
-        border-color: rgba(0, 0, 0, 0.8);
-        border-radius: 10px;
-        padding: 10px;
-        background-color: #ffffff;
-        background-position: center;
-    }
-    /* FINALIZA FINDER ------------------------------------------*/
-    /* COMINEZA FOOTER ------------------------------------------*/
-    .lasth{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        width: 100%;
-        background-color: black;
-        padding-top: 1%;
-    }
-    .middle-footer{
-        display: grid;
-        grid-column: 1;
-        grid-gap: 10px;
-    }
-    .middle-footer > p{
-        color: rgba(240, 255, 255, 0.44);
-        text-decoration: none;
-        font-size: 11px;
-    }
-    .nets{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
-    .nets > img{
-        width: 15%;
-    }
-    .promote-hotel{
-        width: 20%;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
-    }
-    .promote-hotel > p{
-        color: azure;
-    }
-    .registra{
-        align-content: center;
-        width: 190px;
-        border-radius: 10px;
-        border-style: none;
-        background-color: azure;
-        padding: 5%;
-        color: black;
-        font-size: 14px;
-    }
-    .footer-links{
-        width: 20%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-    }
-    .footer-links > a{
-        color: azure;
-        text-decoration: none;
-        padding-top: 2%;
-
-    }
-    /* FINALIZA FOOTER ------------------------------------------*/
-
-
-</style>
 
 <header class="mainh">
 
@@ -290,7 +320,7 @@
 <h1> Reservas</h1>
 <div class="row" style="width: 95%; flex-wrap: nowrap; padding: 2%; margin: auto; ">
     <div class="card" style="width:35%; padding: 2%;">
-        <img src="/img/paris.jpg" class="card-img-top" alt="...">
+        <img th:src="${hotel.img}" class="card-img-top" alt="...">
         <div class="card-body">
             <h4 class="card-title">Datos de reserva</h4>
             <div class="row">
@@ -298,7 +328,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Entrada</h5>
-                            <p class="card-text">Día de entrada</p>
+                            <p th:text="${fecha_inicio}" id="fecha_inicio"></p>
 
                         </div>
                     </div>
@@ -307,7 +337,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Salida</h5>
-                            <p class="card-text">Día de salida</p>
+                            <p th:text="${fecha_fin}" id="fecha_fin"></p>
 
                         </div>
                     </div>
@@ -316,23 +346,26 @@
             <div class="card" style="width: 100%;">
                 <div class="card-body">
                     <h4 class="card-title">Duración</h4>
-                    <p class="card-text">...</p>
+                    <p th:text="${duracion} + ' días'" id="duracion"></p>
                 </div>
             </div>
         </div>
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h4 class="card-title">Selección</h4>
-                <p class="card-text" th:text="${hotel.nombre}"></p>
-
+                <h5 class="card-text" th:text="${hotel.nombre}"></h5>
                 <p class="card-text">Tipo de habitación</p>
-                <p class="card-text">Número de huéspedes</p>
+                <div style="display: flex; flex-flow: row nowrap; justify-content: space-around;">
+                <p class="card-text">Número de huéspedes:</p>
+                <p class="card-text" th:text="${num_personas}">
+                </div>
             </div>
         </div>
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h4 class="card-title">Precio</h4>
-                <p class="card-text" th:text="${habitacion.precio_base}"></p>
+                <p class="card-text" th:text="${precio} + '€/persona '"></p>
+                <small style="color:indianred !important" id="precio" class="form-text text-muted">* sujeto a las modificaciones de elección de pensión</small>
             </div>
         </div>
         <div class="card" style="width: 100%;">
@@ -362,11 +395,79 @@
 
             <div class="mb-3 form-check">
                 <h6>Elige tu pensión:</h6>
-                <div th:each="p : ${hotel.pension}">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1" th:text="${p}">Check me out</label>
+                <div style="display: flex; flex-flow: row wrap; margin-bottom: 2%;">
+                        <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;" >
+                            <div th:if="${pension.booleanSa == true}" style="display: flex; flex-flow: column wrap;">
+                                <div style="display: inline-block">
+                                    <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
+
+                                    <label class="form-check-label" for="ad">Solo alojamiento</label>
+                                </div>
+                                <small style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                                ${pension.sa}+ '€ por persona y día'"></small>
+
+                            </div>
+                            <div th:if="${pension.booleanSa == false}">
+                                <p>Elige alguna pensión.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;" >
+                            <div th:if="${pension.booleanAd == true}" style="display: flex; flex-flow: column wrap;">
+                                <div style="display: inline-block">
+                                    <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
+
+                                    <label class="form-check-label" for="ad">Almuerzo y Desayuno</label>
+                                </div>
+                                <small  style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                                ${pension.ad}+ '€ por persona y día'"></small>
+
+                            </div>
+                            <div th:if="${pension.booleanAd == false}">
+                                <p>Este Hotel no oferta Almuerzo y Desayuno</p>
+                            </div>
+
+                        </div>
+
+
+                    <div scope="row" style="width: 50%; padding: 1%; margin-bottom: 2%;" >
+                        <div th:if="${pension.booleanMp == true}" style="display: flex; flex-flow: column wrap;">
+                            <div style="display: inline-block; ">
+                                <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
+
+                                <label class="form-check-label" for="ad">Media Pensión</label>
+                            </div>
+                            <small  style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                            ${pension.mp}+ '€ por persona y día'"></small>
+
+                        </div>
+                        <div th:if="${pension.booleanMp == false}">
+                            <p>Este Hotel no oferta Media Pensión</p>
+                        </div>
+
+                    </div>
+
+                    <div scope="row" style="width: 50%; padding: 1%;  margin-bottom: 2%;" >
+                        <div th:if="${pension.booleanPc == true}" style="display: flex; flex-flow: column wrap;">
+                            <div style="display: inline-block;">
+                                <input type="checkbox" class="form-check-input" id="ad" style="margin-right: 1%">
+
+                                <label class="form-check-label" for="ad">Pensión completa</label>
+                            </div>
+                            <small  style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                            ${pension.pc}+ '€ por persona y día'"></small>
+
+                        </div>
+                        <div th:if="${pension.booleanPc == false}">
+                            <p>Este Hotel no oferta Pensión completa</p>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+
+
             <div style="text-align: center;">
                 <h6>Preferencia de pago:</h6>
                 <button type="button" class="btn btn-success">Recepción</button>
@@ -375,12 +476,13 @@
         </form>
     </div>
 </div>
+</div>
 <footer class="lasth">
 
     <div class="promote-hotel">
         <p>Forma parte de nosotros</p>
         <form method="get" action="registro_admin.html">
-            <button class="registra" >Registra tus alojamientos</button>
+            <button class="registra">Registra tus alojamientos</button>
         </form>
     </div>
 

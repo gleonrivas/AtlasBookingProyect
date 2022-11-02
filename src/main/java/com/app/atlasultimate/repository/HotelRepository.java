@@ -2,6 +2,7 @@ package com.app.atlasultimate.repository;
 
 
 import com.app.atlasultimate.model.Hotel;
+import com.app.atlasultimate.model.Pension;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -32,4 +33,8 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
 
     @Query(value = "SELECT id_hotel FROM habitacion h where id = :id", nativeQuery = true)
     Integer findHotelByIdHab(@Param("id")Integer id);
+
+
+
+
 }

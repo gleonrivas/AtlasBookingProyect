@@ -35,4 +35,6 @@ public class HotelBusquedaDTO {
         this.ciudad = ciudad;
         this.n_max_personas = n_max_personas;
     }
+
+
 }

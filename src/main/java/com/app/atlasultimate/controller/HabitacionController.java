@@ -17,10 +17,11 @@ public class HabitacionController {
     @Autowired
     private HotelServiceImp hotelServicio;
 
-    @GetMapping("nueva/{id}")
-    public String crearHabitacion( @PathVariable Integer id, Model model, Model mod2) {
+    //MUESTRA FORMULARIO CREACION DE HABITACION
+    @GetMapping("nueva/{id_hotel}")
+    public String crearHabitacion( @PathVariable Integer id_hotel, Model model, Model mod2) {
         Habitacion habitacion = new Habitacion();
-        Hotel hotel = hotelServicio.buscarHotel(id);
+        Hotel hotel = hotelServicio.buscarHotel(id_hotel);
         model.addAttribute("habitacion", habitacion);
         mod2.addAttribute("hotel", hotel);
 

@@ -38,4 +38,5 @@ public class HotelServiceImp {
     public Integer obtenerIdHotel(Integer id){
         return repositorio.findHotelByIdHab(id);
     }
+
 }

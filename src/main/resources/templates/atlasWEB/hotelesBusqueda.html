@@ -385,6 +385,7 @@
         <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><p class="link-buttom">Ver perfil</p></a>
     </div>
+
 </header>
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
     <div class="entry-group">
@@ -421,9 +422,10 @@
             </div>
             <p class="nombreHotel" th:text="${h.nombre}"></p>
             <p class="ubicacionHotel" th:text="${h.direccion}"></p>
-            <button><a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}">Ver más</a></button>
-        </div>
+            <button type="submit"><a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
+         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>        </div>
     </div>
+
 </div>
 
 

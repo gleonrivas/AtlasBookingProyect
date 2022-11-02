@@ -39,7 +39,8 @@
 
 <div style="width: 90%; margin: auto">
 
-    <form  class="card" style="padding:2%" name="form" th:action="@{/hotel/editarhabitacion/{id}(id=${habitacion.id})}" th:object="${habitacion}" method="post">
+    <form  class="card" style="padding:2%" name="form" th:action="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}"
+           th:object="${habitacion}" method="post">
 
         <h2>Editar Habitación</h2>
 
@@ -63,11 +64,14 @@
         <label class="form-label" for="precio_base">Precio Base</label>
         <input class="form-control" type="number" id="precio_base" name="precio_base" th:field="*{precio_base}"/>
         <br>
-        <button class="btn btn-success" style="margin: auto; width: 30%;" type="submit" text="Siguiente">Siguiente</button>
+        <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${idhotel})}">
+        <button class="btn btn-success" style="margin: auto; width: 30%;" type="submit" text="Siguiente">Guardar</button>
+        </a>
     </form>
     <br>
     <div style="margin: auto; width: 30%;">
-        <a href="/hotel/habitacion">
+        <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${idhotel})}">
+
             <button class="btn btn-success" style=" width: 100%;">Volver</button>
         </a>
     </div>
