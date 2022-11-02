@@ -391,9 +391,8 @@
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
             <p th:text="'Numero de personas: ' + ${h.n_max_personas}"></p>
             <p th:text="'Precio/dia: ' + ${h.precio_base} + ' €'"></p>
-            <a  th:href="@{/reserva/datos/{id_hab}(id_hab=${h.id})}">
-                <button  type="button" class="btn btn-dark">Reservar</button>
-            </a>
+            <a  th:href="@{/reserva/datos/(id_hab=${h.id},fecha_inicio=${fecha_inicio},fecha_fin=${fecha_fin},
+            num_personas=${num_personas})}"><button> Reservar</button></a>
 
         </div>
     </div>

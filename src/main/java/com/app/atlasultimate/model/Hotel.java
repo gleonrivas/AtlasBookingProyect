@@ -1,5 +1,6 @@
 package com.app.atlasultimate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity (name="hotel")
+@Entity(name = "hotel")
 @Table(name = "hotel")
 @Getter
 @Setter
@@ -20,7 +21,7 @@ import java.util.Set;
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id" , length = 10)
+    @Column(name = "id", length = 10)
     private Integer id;
     @Column(name = "nombre", length = 150)
     private String nombre;
@@ -86,19 +87,21 @@ public class Hotel {
     @Column(name = "parking")
     private Boolean parking;
 
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "usuario")
     private Usuario id_usuario;
 
-
-    @OneToMany(mappedBy = "hotel")
+    @JsonBackReference
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Review> review;
-    
-    @OneToMany(mappedBy = "hotel")
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Habitacion> habiacion;
 
-    @ManyToMany(mappedBy = "hotel")
+    @JsonBackReference
+    @ManyToMany(mappedBy = "hotel", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Pension> pension;
 
 

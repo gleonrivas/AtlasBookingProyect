@@ -67,20 +67,9 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido) && Objects.equals(dni, usuario.dni) && Objects.equals(rol, usuario.rol) && Objects.equals(telefono, usuario.telefono) && Objects.equals(email, usuario.email) && Objects.equals(contrasena, usuario.contrasena) && Objects.equals(hotel, usuario.hotel) && Objects.equals(registro, usuario.registro) && Objects.equals(review, usuario.review);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nombre, apellido, dni, rol, telefono, email, contrasena, hotel, registro, review);
-    }
 
     public Usuario() {
 
     }
+
 }

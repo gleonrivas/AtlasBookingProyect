@@ -423,7 +423,10 @@
             <p class="nombreHotel" th:text="${h.nombre}"></p>
             <p class="ubicacionHotel" th:text="${h.direccion}"></p>
             <button type="submit"><a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
-         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>        </div>
+         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>
+        </div>
+
+
     </div>
 
 </div>

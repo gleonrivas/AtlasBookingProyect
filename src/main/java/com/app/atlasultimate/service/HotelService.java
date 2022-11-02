@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class HotelServiceImp {
+public class HotelService {
 
     @Autowired
     private HotelRepository repositorio;

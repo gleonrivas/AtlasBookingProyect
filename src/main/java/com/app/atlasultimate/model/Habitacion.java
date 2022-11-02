@@ -6,13 +6,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "habitacion")
 @Getter
 @Setter
-@EqualsAndHashCode
+
 public class Habitacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,5 +77,18 @@ public class Habitacion {
     }
 
     public Habitacion() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Habitacion)) return false;
+        Habitacion that = (Habitacion) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getC_individual(), that.getC_individual()) && Objects.equals(getC_doble(), that.getC_doble()) && Objects.equals(getPrecio_base(), that.getPrecio_base()) && Objects.equals(getBano(), that.getBano()) && Objects.equals(getVistas(), that.getVistas()) && Objects.equals(getN_max_personas(), that.getN_max_personas()) && Objects.equals(getNum_habitaciones_iguales(), that.getNum_habitaciones_iguales()) && Objects.equals(getHotel(), that.getHotel()) && Objects.equals(getRegistro(), that.getRegistro());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getC_individual(), getC_doble(), getPrecio_base(), getBano(), getVistas(), getN_max_personas(), getNum_habitaciones_iguales(), getHotel(), getRegistro());
     }
 }
