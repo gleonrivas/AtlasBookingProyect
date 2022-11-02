@@ -391,6 +391,10 @@
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
             <p th:text="'Numero de personas: ' + ${h.n_max_personas}"></p>
             <p th:text="'Precio/dia: ' + ${h.precio_base} + ' €'"></p>
+            <a  th:href="@{/reserva/datos/{id_hab}(id_hab=${h.id})}">
+                <button  type="button" class="btn btn-dark">Reservar</button>
+            </a>
+
         </div>
     </div>
 
@@ -415,35 +419,7 @@
     </div>
 </div>
 
-<div class="center-container">
-    <div class="row-container-barra">
-        <div class="tarjeta" th:each="h : ${habitaciones}">
-            <div class="row-container">
-                <p>Camas dobles:  </p>
-                <p th:text="${h.c_doble}"></p>
-            </div>
-            <div class="row-container">
-                <p>Camas individuales:  </p>
-                <p th:text="${h.c_individual}"></p>
-            </div>
-            <div class="row-container">
-                <p>Numero de personas:  </p>
-                <p th:text="${h.n_max_personas}"></p>
-            </div>
-            <div class="row-container">
-                <p>precio:  </p>
-                <p th:text="${h.precio_base}"></p>
-                <p>€</p>
-            </div>
-            <a  th:href="@{/reserva/datos/{id_hab}(id_hab=${h.id})}">
 
-                <button  type="button" class="btn btn-dark">Reservar</button>
-            </a>
-        </div>
-    </div>
-
-</div>
-<h1 th:text="${nombre}"></h1>
 
 <form class="formulario" sec:authorize="isAuthenticated()" th:action="@{/hotel/{id_hotel}(id_hotel=${hotel.id})}" th:object="${review}" method="post">
     <div class="componente-registro">

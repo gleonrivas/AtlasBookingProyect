@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -197,16 +198,6 @@ public class HotelController {
         } catch (Exception e){
             System.out.println(e);
         }
-
-
-
-        /*model.addAttribute("review", review);
-
-        List<Usuario> usuario = null;
-        for (int i = 0; reviews.size() >=10; i++){
-            usuario.add(reviews.get(i).getUsuario());
-        }
-        model.addAttribute("usuario", usuario);*/
 
 
         String fondo = hotelRepository.findHotelById(id).getImg();
