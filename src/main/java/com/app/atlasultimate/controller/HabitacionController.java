@@ -17,7 +17,6 @@ public class HabitacionController {
     @Autowired
     private HotelServiceImp hotelServicio;
 
-    //MUESTRA FORMULARIO CREACION DE HABITACION
     @GetMapping("nueva/{id}")
     public String crearHabitacion( @PathVariable Integer id, Model model, Model mod2) {
         Habitacion habitacion = new Habitacion();
