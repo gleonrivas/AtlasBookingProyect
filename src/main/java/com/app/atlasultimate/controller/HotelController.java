@@ -8,14 +8,25 @@ import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.service.HabitacionServiceImp;
 import com.app.atlasultimate.service.HotelServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("hotel")
@@ -31,15 +42,15 @@ public class HotelController {
     private HabitacionController habcontroller;
 
 
-    @GetMapping("/habitacion/{id}")
-    public String leerHabitaciones(@PathVariable Integer id, Model model, Model model2) {
-        List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id);
+    @GetMapping("/habitacion/{id_hotel}")
+    public String leerHabitaciones(@PathVariable Integer id_hotel, Model model) {
+        List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id_hotel);
+        Hotel hotel = servicioHotel.obtenerHotelporId(id_hotel);
         model.addAttribute("habitaciones", listadeHabitacion);
-        model2.addAttribute("hotel", servicioHotel.obtenerHotelporId(id));
+        model.addAttribute("hotel", hotel);
 
 
         return "/AdminHabitaciones.html";
-
 
 
     }
@@ -52,10 +63,24 @@ public class HotelController {
     }
 
     //crear hoteles
-    @PostMapping("nuevo")
-    public String guardarHotel(@ModelAttribute("hotel") Hotel hotel) {
+    @PostMapping(path="nuevo")
+    public String guardarHotel(@ModelAttribute("hotel") Hotel hotel, @RequestParam("file") MultipartFile file) throws IOException {
         chequearBoolean(hotel);
-        servicioHotel.guardarHotel(hotel);
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        hotel.setImg(fileName);
+        Hotel nuevoHotel = servicioHotel.guardarHotel(hotel);
+        String uploadDir = "./imgHotel/" + nuevoHotel.getId();
+        Path uploadPath = Paths.get(uploadDir);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+        try (InputStream inputStream = file.getInputStream()) {
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new IOException("No se puede guardar"+ fileName);
+        }
+
         return "redirect:/hotel/nuevo?exito";
     }
 
@@ -95,6 +120,7 @@ public class HotelController {
         hotelexistente.setCancelacion_g(hotel.getCancelacion_g());
         servicioHotel.actualizarHotel(hotelexistente);
         chequearBoolean(hotelexistente);
+
         return "redirect:/usuario/inicio";
 
     }
@@ -117,18 +143,19 @@ public class HotelController {
     }
     //cargar habitacion en formulario para editarla
 
-    @GetMapping("/editarhabitacion/{id}")
-    public String editarHabitacion(@PathVariable Integer id, Model model) {
-        model.addAttribute("habitacion", servicio.obtenerHabitacionporId(id));
-
+    @GetMapping("/editarhabitacion/{id_habitacion}")
+    public String editarHabitacion(@PathVariable Integer id_habitacion, Model model) {
+        model.addAttribute("habitacion", servicio.obtenerHabitacionporId(id_habitacion));
+        Integer idhotel = servicioHotel.obtenerIdHotel(id_habitacion);
+        model.addAttribute("idhotel", idhotel);
         return "/editarHabitacion.html";
     }
 
     //Peticionpost para enviar la info cambiada de la habitacion
-    @PostMapping("/editarhabitacion/{id}")
-    public String actualizarHabitacion(@PathVariable Integer id, @ModelAttribute("habitacion") Habitacion hab, Model modelo) {
-        Habitacion habitacionexistente = servicio.obtenerHabitacionporId(id);
-        habitacionexistente.setId(id);
+    @PostMapping("/editarhabitacion/{id_habitacion}")
+    public String actualizarHabitacion(@PathVariable Integer id_habitacion, @ModelAttribute("habitacion") Habitacion hab, Model modelo) {
+        Habitacion habitacionexistente = servicio.obtenerHabitacionporId(id_habitacion);
+        habitacionexistente.setId(id_habitacion);
         habitacionexistente.setC_individual(hab.getC_individual());
         habitacionexistente.setC_doble(hab.getC_doble());
         habitacionexistente.setPrecio_base(hab.getPrecio_base());
@@ -137,14 +164,15 @@ public class HotelController {
         habcontroller.chequearBooleanHabitacion(habitacionexistente);
         servicio.actualizarHabitacion(habitacionexistente);
 
-        return "redirect:/hotel/habitacion";
+        return "redirect:/hotel/habitacion/{id_hotel}";
     }
 
     //Eliminar habitacion
-    @DeleteMapping("/habitacion/{id}")
-    public String eliminarHab(@PathVariable Integer id) {
-        servicio.eliminarHabitacion(id);
-        return "redirect:/hotel/habitacion";
+    @DeleteMapping("/habitacion/{id_hotel}")
+    public String eliminarHab(@PathVariable Integer id_hotel, Integer id_habitacion) {
+
+        servicio.eliminarHabitacion(id_habitacion);
+        return "redirect:/hotel/habitacion/{id_hotel}";
     }
 
     @Autowired
@@ -158,17 +186,17 @@ public class HotelController {
 
     @GetMapping("/habitaciones")
     public String filtrarHabitaciones(@RequestParam(value = "id") Integer id, Model model,
-                                      @RequestParam (value = "fecha_inicio", required = false) String fechaInicio,
+                                      @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
                                       @RequestParam(value = "fecha_fin", required = false) String fechaFin,
-                                      @RequestParam(value = "num_personas", required=false) Integer num_personas
+                                      @RequestParam(value = "num_personas", required = false) Integer num_personas
     ) {
-        String fecha1= fechaInicio;
-        String fecha2= fechaFin;
+        String fecha1 = fechaInicio;
+        String fecha2 = fechaFin;
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
-        model.addAttribute("fecha_inicio",fechaInicio);
+        model.addAttribute("fecha_inicio", fechaInicio);
         model.addAttribute("fecha_fin", fechaFin);
         model.addAttribute("num_personas", num_personas);
 
@@ -179,11 +207,11 @@ public class HotelController {
     public String filtrarHotel(@ModelAttribute(value = "id_hab") Integer id_hab, Model modelo,
                                @ModelAttribute(value = "fecha_inicio") String fechaInicio,
                                @ModelAttribute(value = "fecha_fin") String fechaFin) {
-        String fecha1= fechaInicio;
-        String fecha2= fechaFin;
+        String fecha1 = fechaInicio;
+        String fecha2 = fechaFin;
         Habitacion h = servicioHab.obtenerHabitacionporId(id_hab);
         modelo.addAttribute("h", h);
-        modelo.addAttribute("fecha_inicio",fecha1);
+        modelo.addAttribute("fecha_inicio", fecha1);
         modelo.addAttribute("fecha_fin", fecha2);
 
         return "/hotel.html";

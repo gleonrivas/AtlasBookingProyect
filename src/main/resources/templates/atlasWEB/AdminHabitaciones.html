@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -41,7 +41,7 @@
 
 <div id="tituloyboton">
     <h1>Tus habitaciones</h1>
-    <a th:href="@{/habitacion/nueva/{id}(id=${hotel.id})}">
+    <a th:href="@{/habitacion/nueva/{id_hotel}(id_hotel=${hotel.id})}">
         <button type="button">Añadir habitación</button>
     </a>
 </div>
@@ -83,12 +83,15 @@
 
             </div>
             <div class="botones">
-                <a th:href="@{/hotel/editarhabitacion/{id}(id=${habitacion.id})}">
+                <a th:href="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}">
                     <button type="submit">Editar</button>
                 </a>
-                <a th:href="@{/hotel/habitacion/{id}(id=${habitacion.id})}">
-                    <button type="submit">Eliminar</button>
+                <form method="delete" th:action="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}"
+                      th:object="${habitacion}">
+                <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
+                    <button th:field="${habitacion.id}" type="submit">Eliminar</button>
                 </a>
+                </form>
             </div>
         </div>
 
