@@ -17,4 +17,5 @@ public interface PensionRepository extends JpaRepository<Pension, Integer> {
     Pension pensionPorId(@Param("id") Integer id);
 
 
+
 }

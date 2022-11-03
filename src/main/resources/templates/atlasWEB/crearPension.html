@@ -36,16 +36,16 @@
 <br>
 <h3 style="margin: auto;">Introduzca las pensiones que oferta</h3>
 <br>
-<form style="margin: auto">
+<form style="margin: auto" th:action="@{/pension/crear/}" th:object="${pension}" method="post">
     <div style="display: flex; flex-flow: row nowrap; width: 90%">
         <div class="form-check" style="display: flex; flex-flow: row nowrap;width: 50%; justify-content: space-between;">
             <label class="form-check-label" for="alojamiento">Solo alojamiento</label>
-            <input type="checkbox" class="form-check-input" id="alojamiento">
+            <input type="checkbox" class="form-check-input" id="alojamiento" th:checked="*{booleanSa}">
         </div>
 
         <div class="form-group">
             <label for="precioAlojamiento">Precio Alojamiento</label>
-            <input type="number" class="form-control" id="precioAlojamiento"  placeholder="Introduce el precio">
+            <input type="number" class="form-control" id="precioAlojamiento"  placeholder="Introduce el precio" th:field="*{sa}">
             <small id="alojamientodetalle" class="form-text text-muted">Si esta opción no añade ningún extra al
                 alojamiento, introduce la cantidad de 0 €</small>
         </div>
@@ -54,12 +54,12 @@
         <div style="display: flex; flex-flow: row nowrap;">
             <div class="form-check" style="display: flex; flex-flow: row nowrap;width: 50%; justify-content: space-between;">
                 <label class="form-check-label" for="desayunoyalmuerzo">Desayuno y Almuerzo</label>
-                <input type="checkbox" class="form-check-input" id="desayunoyalmuerzo">
+                <input type="checkbox" class="form-check-input" id="desayunoyalmuerzo" th:checked="*{booleanAd}">
             </div>
 
             <div class="form-group">
                 <label for="precioDesayuno">Precio del desayuno y almuerzo</label>
-                <input type="number" class="form-control" id="precioDesayuno"  placeholder="Introduce el precio">
+                <input type="number" class="form-control" id="precioDesayuno"  placeholder="Introduce el precio" th:field="*{ad}">
                 <small id="almydesdetalle" class="form-text text-muted">Esta cantidad se añadirá por día y huésped al precio final</small>
             </div>
         </div>
@@ -67,13 +67,13 @@
     <div style="display: flex; flex-flow: row nowrap; width: 90%; justify-content: space-between;">
         <div style="display: flex; flex-flow: row nowrap;">
             <div class="form-check" style="display: flex; flex-flow: row nowrap;width: 50%; justify-content: space-between;">
-                <label class="form-check-label" for="almuerzoycena">Almuerzo y Cena</label>
-                <input type="checkbox" class="form-check-input" id="almuerzoycena">
+                <label class="form-check-label" for="almuerzoycena">Media pensión</label>
+                <input type="checkbox" class="form-check-input" id="almuerzoycena" th:checked="*{booleanMp}">
             </div>
 
             <div class="form-group">
-                <label for="precioalmuerzocena">Precio del almuerzo y la cena</label>
-                <input type="number" class="form-control" id="precioalmuerzocena"  placeholder="Introduce el precio">
+                <label for="precioalmuerzocena">Precio de la media pensión</label>
+                <input type="number" class="form-control" id="precioalmuerzocena"  placeholder="Introduce el precio" th:field="*{mp}">
                 <small id="emailHelp" class="form-text text-muted">Esta cantidad se añadirá por día y huésped al precio final</small>
             </div>
         </div>
@@ -82,12 +82,12 @@
         <div style="display: flex; flex-flow: row nowrap;">
             <div class="form-check" style="display: flex; flex-flow: row nowrap;width: 50%; justify-content: space-between;">
                 <label class="form-check-label" for="pensioncompleta">Pensión completa</label>
-                <input type="checkbox" class="form-check-input" id="pensioncompleta">
+                <input type="checkbox" class="form-check-input" id="pensioncompleta" th:checked="*{booleanPc}">
             </div>
 
             <div class="form-group" >
                 <label for="preciopc">Precio de la pensión completa</label>
-                <input type="number" class="form-control" id="preciopc"  placeholder="Introduce el precio">
+                <input type="number" class="form-control" id="preciopc"  placeholder="Introduce el precio" th:field="*{pc}">
                 <small id="pensioncompletadetalle" class="form-text text-muted">Esta cantidad se añadirá por día y huésped al precio final</small>
             </div>
         </div>
