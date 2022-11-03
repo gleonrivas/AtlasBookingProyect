@@ -69,7 +69,6 @@ public class ReservaController {
         modelo.addAttribute("usuario", usuario);
 
 
-
         return "/reservas.html";
     }
 

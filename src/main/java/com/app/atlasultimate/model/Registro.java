@@ -28,6 +28,7 @@ public class Registro {
     @Column(name = "n_personas", length = 1)
     private Integer n_personas;
     @Column(name = "t_pago", length = 150)
+    @Enumerated(value = EnumType.STRING)
     private tipo_pago t_pago;
     @Column(name = "senal")
     private Double senal;
