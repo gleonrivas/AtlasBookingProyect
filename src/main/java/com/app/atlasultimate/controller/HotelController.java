@@ -70,6 +70,8 @@ public class HotelController {
         modelo.addAttribute("hotel", hotel);
         return "/crearhotel.html";
     }
+
+
     //crear hoteles
     @PostMapping(path="nuevo")
     public String guardarHotel(@ModelAttribute("hotel") Hotel hotel, @RequestParam("file") MultipartFile file) throws IOException {

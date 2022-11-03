@@ -86,15 +86,14 @@
                 <a th:href="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}">
                     <button type="submit">Editar</button>
                 </a>
-                <form method="delete" th:action="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}"
-                      th:object="${habitacion}">
+                <form method="delete" th:action="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
                 <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
-                    <button th:field="${habitacion.id}" type="submit">Eliminar</button>
+                    <button  type="submit">Eliminar</button>
                 </a>
 
                 </form>
                 <a th:href="@{/temporada/crear/{id_habitacion}(id_habitacion=${habitacion.id})}">
-                    <button th:field="${habitacion.id}" type="submit">Añadir Temporadas</button>
+                    <button type="submit">Añadir Temporadas</button>
                 </a>
             </div>
         </div>

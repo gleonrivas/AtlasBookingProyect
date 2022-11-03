@@ -36,7 +36,7 @@
 <br>
 <h3 style="margin: auto;">Introduzca el precio según la temporada</h3>
 <br>
-<form class="card" style="margin: auto" th:action="@{/temporada/crear/{id_habitacion}}" th:object="${temporada}" method="post">
+<form class="card" style="margin: auto" th:action="@{/temporada/crear/${habitacion.id}}" th:object="${temporada}" method="post">
 
         <div class="form-group">
             <label for="precioInvierno">Precio de Invierno</label>

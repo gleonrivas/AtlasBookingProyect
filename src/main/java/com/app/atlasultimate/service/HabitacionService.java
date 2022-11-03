@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HabitacionService implements HabitacionServicio {
@@ -37,8 +38,8 @@ public class HabitacionService implements HabitacionServicio {
         habitacionRepository.saveAll(habs);
     }
 
-    public Habitacion obtenerHabitacionporId(Integer id) {
-        return habitacionRepository.findById(id).get();
+    public Habitacion obtenerHabitacionporId(Integer integer) {
+        return habitacionRepository.findTopById(integer);
     }
 
     public Habitacion actualizarHabitacion(Habitacion hab) {

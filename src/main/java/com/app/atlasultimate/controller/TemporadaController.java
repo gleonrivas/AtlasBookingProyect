@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("temporada")
 public class TemporadaController {
@@ -20,7 +22,7 @@ public class TemporadaController {
     TemporadaService temporadaService;
 
     @GetMapping("crear/{id_habitacion}")
-    public String crearTemporada (@PathVariable Integer id_habitacion, Model model){
+    public String crearTemporada(@PathVariable Integer id_habitacion, Model model){
         Habitacion hab = habitacionService.obtenerHabitacionporId(id_habitacion);
         Temporada temporada = new Temporada();
 
@@ -31,14 +33,14 @@ public class TemporadaController {
     }
 
     @PostMapping("crear/{id_habitacion}")
-    public String guardarTemporada(
-                                   @ModelAttribute("habitacion") Habitacion habitacion,
+    public String guardarTemporada(@ModelAttribute("habitacion") Habitacion habitacion,
                                    @ModelAttribute("temporada") Temporada temporada){
+
        temporadaService.guardarTemporada(temporada);
        Temporada temp = temporadaService.traerUltimaTemporada();
        habitacionService.cambiarIdTemporada(temp.getId(), habitacion.getId());
 
 
-       return "redirect:/hotel/habitacion/{id_habitacion}";
+       return "redirect:/hotel/habitacion/" + habitacion.getId();
     }
 }

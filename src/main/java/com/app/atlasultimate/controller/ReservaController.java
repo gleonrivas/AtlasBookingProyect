@@ -16,8 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.time.LocalDate;
+
+
 
 @Controller
 @RequestMapping("reserva")
@@ -42,7 +43,6 @@ public class ReservaController {
                                   @RequestParam(value = "num_personas", required=false) Integer num_personas,
                                   Model modelo) {
         String fecha1= fechaInicio;
-
         String fecha2= fechaFin;
         Integer idHotel = servicioHotel.obtenerIdHotel(idHab);
         Hotel hotel = servicioHotel.obtenerHotelporId(idHotel);
