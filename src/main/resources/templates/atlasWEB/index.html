@@ -232,7 +232,25 @@
 
   }
   /* FINALIZA FOOTER ------------------------------------------*/
+  .error{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+    margin-top: 10%;
 
+  }
+
+  .error > p{
+    background-color: indianred;
+    width: 241px;
+    margin: auto 5px;
+    padding: 6.4px 21.3px;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 20px;
+  }
 
 </style>
 
@@ -255,6 +273,15 @@
   </div>
 
 </header>
+<div class="error" th:if="${param.fallo}">
+  <p>La fecha de entrada debe de ser anterior a la fecha de salida</p>
+</div>
+<div class="error" th:if="${param.fallo2}">
+  <p>Solo está disponible la reserva con un día de diferencia</p>
+</div>
+<div class="error" th:if="${param.falloFecha}">
+  <p>Por favor, introduzca una fecha</p>
+</div>
 
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
   <div class="entry-group">

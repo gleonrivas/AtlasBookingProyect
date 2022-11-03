@@ -63,9 +63,13 @@ public class MyController {
         model.addAttribute("fecha_inicio", busquedaDTO.getFecha_inicio());
         model.addAttribute("fecha_fin", busquedaDTO.getFecha_fin());
 
-
-
-        if (hoteles.isEmpty()){
+        if (busquedaDTO.getFecha_inicio().equals("") || busquedaDTO.getFecha_fin().equals("")){
+            return "redirect:/?falloFecha";
+        }else if(LocalDate.parse(busquedaDTO.getFecha_inicio()).equals(LocalDate.parse(busquedaDTO.getFecha_fin()))){
+            return "redirect:/?fallo2";
+        }else if(LocalDate.parse(busquedaDTO.getFecha_inicio()).isAfter(LocalDate.parse(busquedaDTO.getFecha_fin()))){
+            return "redirect:/?fallo";
+        }else if (hoteles.isEmpty()){
             return "redirect:/fallo";
         }else {
             model.addAttribute("ciudadhotel", hoteles.get(0).getCiudad());
