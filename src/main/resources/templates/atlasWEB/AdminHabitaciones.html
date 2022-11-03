@@ -91,7 +91,11 @@
                 <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
                     <button th:field="${habitacion.id}" type="submit">Eliminar</button>
                 </a>
+
                 </form>
+                <a th:href="@{/temporada/crear/{id_habitacion}(id_habitacion=${habitacion.id})}">
+                    <button th:field="${habitacion.id}" type="submit">Añadir Temporadas</button>
+                </a>
             </div>
         </div>
 

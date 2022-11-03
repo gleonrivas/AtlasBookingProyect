@@ -12,7 +12,7 @@ public class UtilidadesHabitacion {
         } else if (camaIndividual < 2 || camadoble < 2) {
             return "Habitación múltiple";
         } else {
-            return "Pregunt en recepcion";
+            return "Pregunta en recepcion";
         }
     }
 

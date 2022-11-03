@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class HabitacionServiceImp implements HabitacionServicio {
+public class HabitacionService implements HabitacionServicio {
 
     @Autowired
     private HabitacionRepository habitacionRepository;
@@ -49,5 +49,9 @@ public class HabitacionServiceImp implements HabitacionServicio {
         habitacionRepository.deleteById(id);
     }
 
+    public void cambiarIdTemporada (Integer id_temporada, Integer id_hab){
+        habitacionRepository.cambiarIdTemporada(id_temporada, id_hab);
+
+    }
 
 }

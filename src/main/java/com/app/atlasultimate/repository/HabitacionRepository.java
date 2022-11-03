@@ -18,5 +18,7 @@ public interface HabitacionRepository  extends JpaRepository<Habitacion,Integer>
     @Query(value = "SELECT * FROM habitacion h where id_hotel = :id_hotel", nativeQuery = true)
     List<Habitacion> findAllById(@Param("id_hotel")Integer id_hotel);
 
+    @Query(value="update habitacion set temporada_id = :id_temporada where id = :id_habitacion", nativeQuery = true)
+    void cambiarIdTemporada(@Param("id_temporada") Integer id_temporada, @Param ("id_habitacion") Integer id_habitacion);
 
 }

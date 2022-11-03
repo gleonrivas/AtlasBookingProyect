@@ -1,6 +1,7 @@
 package com.app.atlasultimate.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import java.util.Set;
 @Table(name = "habitacion")
 @Getter
 @Setter
-
+@AllArgsConstructor
 public class Habitacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +45,12 @@ public class Habitacion {
     @JsonBackReference
     @OneToMany(mappedBy = "habitacion",fetch = FetchType.LAZY)
     private Set<Registro> registro;
+
+    @JsonBackReference
+    @ManyToOne()
+    @JoinColumn(name = "temporada_id")
+    private Temporada temporada;
+
 
 
 

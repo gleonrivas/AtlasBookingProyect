@@ -4,7 +4,7 @@ import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
 import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.repository.UsuarioRepository;
-import com.app.atlasultimate.service.HabitacionServiceImp;
+import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class UsuarioController {
     @Autowired
     private HotelService servicio;
     @Autowired
-    private HabitacionServiceImp servicioHab;
+    private HabitacionService servicioHab;
 
 //PAGINA INICIO ROL ADMIN
     @GetMapping("inicio")

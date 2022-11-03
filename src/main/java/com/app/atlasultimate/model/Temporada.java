@@ -1,9 +1,7 @@
 package com.app.atlasultimate.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +11,8 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Temporada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +36,11 @@ public class Temporada {
     @JoinColumn(name = "temporada_id")
     private List<Habitacion> habitaaciones;
 
+    public Temporada(Double precioInvierno, Double precioPrimavera, Double precioVerano, Double precioOtono, List<Habitacion> habitaaciones) {
+        this.precioInvierno = precioInvierno;
+        this.precioPrimavera = precioPrimavera;
+        this.precioVerano = precioVerano;
+        this.precioOtono = precioOtono;
+        this.habitaaciones = habitaaciones;
+    }
 }
