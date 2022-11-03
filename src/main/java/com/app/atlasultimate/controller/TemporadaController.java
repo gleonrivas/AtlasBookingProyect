@@ -21,8 +21,8 @@ public class TemporadaController {
     @Autowired
     TemporadaService temporadaService;
 
-    @GetMapping("crear/{id_habitacion}")
-    public String crearTemporada(@PathVariable Integer id_habitacion, Model model){
+    @GetMapping("crear/")
+    public String crearTemporada(@RequestParam(value="id_habitacion") Integer id_habitacion, Model model){
         Habitacion hab = habitacionService.obtenerHabitacionporId(id_habitacion);
         Temporada temporada = new Temporada();
 
@@ -32,15 +32,16 @@ public class TemporadaController {
         return "/crearTemporada.html";
     }
 
-    @PostMapping("crear/{id_habitacion}")
-    public String guardarTemporada(@ModelAttribute("habitacion") Habitacion habitacion,
-                                   @ModelAttribute("temporada") Temporada temporada){
+    @PostMapping("crear/")
+    public String guardarTemporada(@ModelAttribute(value="id_habitacion") Integer id_habitacion,
+                                   @ModelAttribute(value="habitacion") Habitacion habitacion,
+                                   @ModelAttribute(value= "temporada") Temporada temporada){
 
        temporadaService.guardarTemporada(temporada);
        Temporada temp = temporadaService.traerUltimaTemporada();
-       habitacionService.cambiarIdTemporada(temp.getId(), habitacion.getId());
+       habitacionService.cambiarIdTemporada(temp.getId(), id_habitacion);
 
 
-       return "redirect:/hotel/habitacion/" + habitacion.getId();
+       return "/crearTemporada.html";
     }
 }
