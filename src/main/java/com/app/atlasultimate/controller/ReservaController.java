@@ -2,15 +2,15 @@ package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.Utilidades.UtilidadesHabitacion;
 import com.app.atlasultimate.Utilidades.UtilidadesPrecio;
-import com.app.atlasultimate.model.Habitacion;
-import com.app.atlasultimate.model.Hotel;
-import com.app.atlasultimate.model.Pension;
-import com.app.atlasultimate.model.Temporada;
+import com.app.atlasultimate.model.*;
+import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.PensionService;
 import com.app.atlasultimate.service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +24,13 @@ import java.time.LocalDate;
 @RequestMapping("reserva")
 public class ReservaController {
     @Autowired
+    private UsuarioRepository usuarioRepository;
+    @Autowired
     private HotelService servicioHotel;
     @Autowired
     private HabitacionService servicioHab;
-
     @Autowired
     private PensionService servicioPension;
-
     @Autowired
     private ReservaService servicioReserva;
 
@@ -54,6 +54,8 @@ public class ReservaController {
         Double precio = UtilidadesPrecio.precioSemiFinal(LocalDate.parse(fecha1), LocalDate.parse(fecha2),
                 temporada, habitacion.getPrecio_base());
         String tipoHabitacion = UtilidadesHabitacion.tipoHabitacion(habitacion.getC_individual(), habitacion.getC_doble());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
 
         modelo.addAttribute("hotel", hotel);
         modelo.addAttribute("habitacion", habitacion);
@@ -64,6 +66,7 @@ public class ReservaController {
         modelo.addAttribute("precio", precio);
         modelo.addAttribute("num_personas", num_personas);
         modelo.addAttribute("tipoHabitacion", tipoHabitacion);
+        modelo.addAttribute("usuario", usuario);
 
 
         return "/reservas.html";

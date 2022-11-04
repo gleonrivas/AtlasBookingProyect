@@ -3,10 +3,13 @@ package com.app.atlasultimate.repository;
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Registro;
 import com.app.atlasultimate.model.Temporada;
+import com.app.atlasultimate.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
@@ -22,6 +25,6 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
     @Query(value = "select temporada_id from  habitacion h where h.id = :id_hab ", nativeQuery = true)
     Integer IdTemporadaporIdHab(@Param("id_hab") Integer id);
 
-
+    List<Registro> findAllByUsuario(Usuario usuario);
 
 }

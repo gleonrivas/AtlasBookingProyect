@@ -338,7 +338,6 @@
                         <div class="card-body">
                             <h5 class="card-title">Salida</h5>
                             <p th:text="${fecha_fin}" id="fecha_fin"></p>
-
                         </div>
                     </div>
                 </div>
@@ -379,18 +378,18 @@
     <div style="width: 65%;">
         <form>
             <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="email" class="form-control" id="nombre" aria-describedby="emailHelp">
+                <label  class="form-label">Nombre: </label>
+                <p th:text="${usuario.nombre}"></p>
 
             </div>
             <div class="mb-3">
-                <label for="apellido" class="form-label">Apellidos</label>
-                <input type="email" class="form-control" id="apellido" aria-describedby="emailHelp">
+                <label class="form-label">Apellidos: </label>
+                <p th:text="${usuario.apellido}"></p>
 
             </div>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label  class="form-label">Email: </label>
+                <p th:text="${usuario.email}"></p>
 
             </div>
 
@@ -422,7 +421,7 @@
 
                                     <label class="form-check-label" for="ad">Almuerzo y Desayuno</label>
                                 </div>
-                                <small  style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                                <small  style="color:indianred !important" class="form-text text-muted" th:text="'El precio incrementará '+
                                 ${pension.ad}+ '€ por persona y día'"></small>
 
                             </div>
@@ -440,7 +439,7 @@
 
                                 <label class="form-check-label" for="ad">Media Pensión</label>
                             </div>
-                            <small  style="color:indianred !important" id="adanuncio" class="form-text text-muted" th:text="'El precio incrementará '+
+                            <small  style="color:indianred !important"  class="form-text text-muted" th:text="'El precio incrementará '+
                             ${pension.mp}+ '€ por persona y día'"></small>
 
                         </div>

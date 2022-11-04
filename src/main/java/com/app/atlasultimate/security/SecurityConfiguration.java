@@ -49,6 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/hotel/nuevo").hasAuthority(Rol.administrador.toString())
                 .antMatchers("/hotel/editar").hasAuthority(Rol.administrador.toString())
                 .antMatchers("/hotel/nuevo").hasAuthority(Rol.administrador.toString())
+                .antMatchers("reserva/datos/**").hasAuthority(Rol.usuario.toString())
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registro").permitAll()
