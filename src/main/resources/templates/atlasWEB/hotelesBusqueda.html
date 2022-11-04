@@ -412,7 +412,8 @@
 <div class="hotelSlider">
     <div class="hotel-container">
         <div class="hotelCard" th:each="h : ${hoteles}">
-            <a th:href="@{http://localhost:8080/hotel/{id}(id=${h.id})}" class="linkhotel"><img th:src="${h.img}" alt=""></a>
+            <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
+         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="${h.img}" alt=""></a>
             <div class="estrellasHotel">
                 <p th:if="${h.estrellas} == 1">⭐</p>
                 <p th:if="${h.estrellas} == 2">⭐⭐</p>

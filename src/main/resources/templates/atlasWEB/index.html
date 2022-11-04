@@ -257,7 +257,8 @@
 <header class="mainh">
 
   <div class="lheader">
-    <a href="Descubre">Descubre</a>
+    <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
     <a href="Descubre">Descubre</a>
   </div>
   <div class="cheader">
