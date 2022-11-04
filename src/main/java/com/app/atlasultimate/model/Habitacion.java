@@ -71,7 +71,7 @@ public class Habitacion {
     }
 
     public Habitacion(Habitacion hab) {
-        this.id = null;
+        this.id = hab.id;
         this.c_individual = hab.c_individual;
         this.c_doble = hab.c_doble;
         this.precio_base = hab.precio_base;

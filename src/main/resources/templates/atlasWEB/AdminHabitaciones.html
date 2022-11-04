@@ -41,9 +41,15 @@
 
 <div id="tituloyboton">
     <h1>Tus habitaciones</h1>
+    <div style="display: flex; flex-flow: column wrap; width: 20%">
     <a th:href="@{/habitacion/nueva/{id_hotel}(id_hotel=${hotel.id})}">
-        <button type="button">Añadir habitación</button>
+        <button style="width: 100%; margin-bottom: 4%" type="button">Añadir habitación</button>
     </a>
+
+    <a th:href="@{/usuario/inicio/}">
+        <button style="width: 100%" type="button">Volver</button>
+    </a>
+    </div>
 </div>
 <div id="confirmacion" th:if="${habitaciones.size == 0}">
     <h2 style=" text-align: center">Este hotel no tiene actualmente habitaciones, por favor, cree su primera

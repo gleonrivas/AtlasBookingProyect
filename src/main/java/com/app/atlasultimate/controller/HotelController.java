@@ -165,9 +165,9 @@ public class HotelController {
 
     //Peticionpost para enviar la info cambiada de la habitacion
     @PostMapping("/editarhabitacion/{id_habitacion}")
-    public String actualizarHabitacion(@PathVariable Integer id_habitacion, @ModelAttribute("habitacion") Habitacion hab, Model modelo) {
+    public String actualizarHabitacion(@PathVariable Integer id_habitacion, @ModelAttribute("habitacion") Habitacion hab,
+                                       @ModelAttribute("idhotel") Integer id_hotel) {
         Habitacion habitacionexistente = servicio.obtenerHabitacionporId(id_habitacion);
-        habitacionexistente.setId(id_habitacion);
         habitacionexistente.setC_individual(hab.getC_individual());
         habitacionexistente.setC_doble(hab.getC_doble());
         habitacionexistente.setPrecio_base(hab.getPrecio_base());
