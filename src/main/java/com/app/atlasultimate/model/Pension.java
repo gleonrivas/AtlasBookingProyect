@@ -1,10 +1,7 @@
 package com.app.atlasultimate.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,12 +12,12 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Pension {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", length = 10)
-    private Double id;
+    private Integer id;
     //solo alojamiento
     @Column(name = "sa")
     private Double sa;
@@ -57,4 +54,16 @@ public class Pension {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Hotel> hotel;
+
+    public Pension(Double sa, Boolean booleanSa, Double ad, Boolean booleanAd, Double mp, Boolean booleanMp, Double pc, Boolean booleanPc, Hotel id_hotel) {
+        this.sa = sa;
+        this.booleanSa = booleanSa;
+        this.ad = ad;
+        this.booleanAd = booleanAd;
+        this.mp = mp;
+        this.booleanMp = booleanMp;
+        this.pc = pc;
+        this.booleanPc = booleanPc;
+        this.id_hotel = id_hotel;
+    }
 }

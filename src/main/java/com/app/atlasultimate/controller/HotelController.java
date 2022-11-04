@@ -1,14 +1,8 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.ReviewDTO;
-import com.app.atlasultimate.model.Habitacion;
-import com.app.atlasultimate.model.Hotel;
-import com.app.atlasultimate.model.Review;
-import com.app.atlasultimate.model.Usuario;
-import com.app.atlasultimate.repository.HabitacionRepository;
-import com.app.atlasultimate.repository.HotelRepository;
-import com.app.atlasultimate.repository.ReviewRepository;
-import com.app.atlasultimate.repository.UsuarioRepository;
+import com.app.atlasultimate.model.*;
+import com.app.atlasultimate.repository.*;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.ReviewService;
@@ -37,7 +31,7 @@ import java.util.Map;
 public class HotelController {
 
     @ModelAttribute("usuario")
-    public Usuario usuario(){
+    public Usuario usuario() {
         return new Usuario();
     }
 
@@ -50,13 +44,19 @@ public class HotelController {
     @Autowired
     private HabitacionController habcontroller;
 
+    @Autowired
+    private TemporadaRepository temporadaRepository;
+
 
     @GetMapping("/habitacion/{id_hotel}")
     public String leerHabitaciones(@PathVariable Integer id_hotel, Model model) {
         List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id_hotel);
         Hotel hotel = servicioHotel.obtenerHotelporId(id_hotel);
+        List<Temporada> listaTemporadas = temporadaRepository.listaTemporadas();
+
         model.addAttribute("habitaciones", listadeHabitacion);
         model.addAttribute("hotel", hotel);
+        model.addAttribute("temporadas", listaTemporadas);
 
 
         return "/AdminHabitaciones.html";
@@ -73,11 +73,14 @@ public class HotelController {
 
 
     //crear hoteles
-    @PostMapping(path="nuevo")
+    @PostMapping(path = "nuevo")
     public String guardarHotel(@ModelAttribute("hotel") Hotel hotel, @RequestParam("file") MultipartFile file) throws IOException {
         chequearBoolean(hotel);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         hotel.setImg(fileName);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        hotel.setId_usuario(usuario);
         Hotel nuevoHotel = servicioHotel.guardarHotel(hotel);
         String uploadDir = "./imgHotel/" + nuevoHotel.getId();
         Path uploadPath = Paths.get(uploadDir);
@@ -88,7 +91,7 @@ public class HotelController {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new IOException("No se puede guardar"+ fileName);
+            throw new IOException("No se puede guardar" + fileName);
         }
 
         return "redirect:/hotel/nuevo?exito";
@@ -203,13 +206,13 @@ public class HotelController {
     private ReviewRepository reviewRepository;
 
     @ModelAttribute("review")
-    public ReviewDTO reviewRegistroDTO(){
+    public ReviewDTO reviewRegistroDTO() {
         return new ReviewDTO();
 
     }
 
     @GetMapping("/{id}")
-    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model, @ModelAttribute("hotel") Hotel hot){
+    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model, @ModelAttribute("hotel") Hotel hot) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
@@ -225,14 +228,13 @@ public class HotelController {
 
         Map<String, Review> mapa = new HashMap<>();
         model.addAttribute("mapa", mapa);
-        try{
-            for (int i = 0; i<=10; i++){
+        try {
+            for (int i = 0; i <= 10; i++) {
                 mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
-
 
 
         return "/hotel.html";
@@ -249,6 +251,7 @@ public class HotelController {
         reviewService.guardarReview(reviewDTO);
         return "redirect:/hotel/" + id;
     }
+
     @GetMapping("/habitaciones")
     public String filtrarHabitaciones(@RequestParam(value = "id") Integer id, Model model,
                                       @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,

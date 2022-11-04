@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TemporadaRepository extends JpaRepository<Temporada, Integer> {
 
@@ -15,4 +17,7 @@ public interface TemporadaRepository extends JpaRepository<Temporada, Integer> {
 
     @Query(value = "select *  from temporada order by id desc limit 1 ", nativeQuery = true)
     Temporada ultimaTemporada();
+
+    @Query(value = "select *  from temporada ", nativeQuery = true)
+    List<Temporada> listaTemporadas();
 }

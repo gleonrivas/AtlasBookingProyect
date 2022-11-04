@@ -63,8 +63,8 @@ public class UtilidadesPrecio {
     }
 
     public static Double precioSemiFinal( LocalDate fechaInicio, LocalDate fechaFin,
-                                              Temporada temporadaporHabitacion,
-                                              Double precioBase){
+                                          Temporada temporadaporHabitacion,
+                                          Double precioBase){
         Double preciofin;
         Integer duracion = duracionReserva(fechaInicio, fechaFin);
 

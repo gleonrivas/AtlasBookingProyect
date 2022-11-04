@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="www.http://thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -151,9 +151,19 @@
                 <a th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}">
                     <button type="submit">Ver habitaciones</button>
                 </a>
-                <a th:href="@{/pension/crear/(id=${hotel.id})}">
-                    <button type="submit">Tipos de Pensiones</button>
-                </a>
+
+                <div  th:if="${#lists.contains(id_hoteles,hotel.id)}">
+                        <button type="submit" disabled >Tipos de Pensiones</button>
+                        <small>su hotel ya tiene una pensión disponible</small>
+                    </div>
+                <div  th:if="${!#lists.contains(id_hoteles,hotel.id)}">
+                        <a th:href="@{/pension/crear/(id=${hotel.id})}">
+                            <button type="submit" >Tipos de Pensiones</button>
+                        </a>
+                    </div>
+
+
+
             </div>
 
         </div>
