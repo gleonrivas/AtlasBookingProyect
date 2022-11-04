@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.HashMap;
@@ -157,16 +158,17 @@ public class HotelController {
 
     @GetMapping("/editarhabitacion/{id_habitacion}")
     public String editarHabitacion(@PathVariable Integer id_habitacion, Model model) {
-        model.addAttribute("habitacion", servicio.obtenerHabitacionporId(id_habitacion));
         Integer idhotel = servicioHotel.obtenerIdHotel(id_habitacion);
+        model.addAttribute("habitacion", servicio.obtenerHabitacionporId(id_habitacion));
         model.addAttribute("idhotel", idhotel);
+        model.addAttribute("id_habitacion", id_habitacion);
         return "/editarHabitacion.html";
     }
 
     //Peticionpost para enviar la info cambiada de la habitacion
     @PostMapping("/editarhabitacion/{id_habitacion}")
-    public String actualizarHabitacion(@PathVariable Integer id_habitacion, @ModelAttribute("habitacion") Habitacion hab,
-                                       @ModelAttribute("idhotel") Integer id_hotel) {
+    public String actualizarHabitacion(@ModelAttribute("id_habitacion") Integer id_habitacion,
+                                       @ModelAttribute("habitacion") Habitacion hab){
         Habitacion habitacionexistente = servicio.obtenerHabitacionporId(id_habitacion);
         habitacionexistente.setC_individual(hab.getC_individual());
         habitacionexistente.setC_doble(hab.getC_doble());
@@ -175,8 +177,7 @@ public class HotelController {
         habitacionexistente.setVistas(hab.getVistas());
         habcontroller.chequearBooleanHabitacion(habitacionexistente);
         servicio.actualizarHabitacion(habitacionexistente);
-
-        return "redirect:/hotel/habitacion/{id_hotel}";
+        return "redirect:/hotel/editarhabitacion/"+ id_habitacion;
     }
 
     //Eliminar habitacion

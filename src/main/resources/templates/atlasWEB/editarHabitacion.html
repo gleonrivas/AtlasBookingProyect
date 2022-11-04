@@ -39,8 +39,8 @@
 
 <div style="width: 90%; margin: auto">
 
-    <form  class="card" style="padding:2%" name="form" th:action="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}"
-           th:object="${habitacion}" method="post">
+    <form  class="card" style="padding:2%" name="form"
+           th:object="${habitacion}" th:method="post">
 
         <h2>Editar Habitación</h2>
 
