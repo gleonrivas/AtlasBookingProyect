@@ -24,8 +24,12 @@
             <input class="parform" type="email" id="correo" th:value="${usuario.email}"  th:field="*{email}"/>
         </div>
         <div class="componente-registro">
-            <label class="parform" for="tel" type="tel">Teléfono</label>
+            <label class="parform" for="tel" >Teléfono</label>
             <input class="parform" type="tel" id="tel"  th:value="${usuario.telefono}" th:field="*{telefono}"/>
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="contrasena" >Cambiar contraseña:</label>
+            <input class="parform" type="text" id="contrasena" th:field="*{contrasena}"/>
         </div>
         <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
         <h1>Reservas realizadas</h1>
@@ -43,9 +47,8 @@
             <p>Precio Total</p>
             <p th:text="${r.precio_total_dias}"></p>
             ----------------------------------------
-
         </div>
-
     </form>
+    <a th:href="@{/}"><button>Volver</button></a>
 </body>
 </html>
