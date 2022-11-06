@@ -42,7 +42,7 @@ public class ReservaController {
 
 
     @GetMapping("datos")
-    public String registroreserva(@RequestParam(value = "id_hab") Integer idHab,
+    public String registroreserva(@ModelAttribute(value = "id_hab") Integer idHab,
                                   @RequestParam (value = "fecha_inicio", required = false) String fechaInicio,
                                   @RequestParam(value = "fecha_fin", required = false) String fechaFin,
                                   @RequestParam(value = "num_personas", required=false) Integer num_personas,
@@ -89,12 +89,10 @@ public class ReservaController {
     ReservaRepository reservaRepository;
 
     @PostMapping("datos")
-    public String HacerReserva(@ModelAttribute("reserva") Registro registro,
-                               @RequestParam(value = "id_hab") Integer idHab,
-                                  @RequestParam (value = "fecha_inicio", required = false) String fechaInicio,
-                                  @RequestParam(value = "fecha_fin", required = false) String fechaFin,
-                                  @RequestParam(value = "num_personas", required=false) Integer num_personas,
-                                  Model modelo) {
+    public String HacerReserva(@ModelAttribute(value = "id_hab") Integer idHab,
+                                  @ModelAttribute (value = "fecha_inicio") String fechaInicio,
+                                  @ModelAttribute(value = "fecha_fin") String fechaFin,
+                                  @ModelAttribute(value = "num_personas") Integer num_personas) {
         String fecha1 = fechaInicio;
         String fecha2 = fechaFin;
         Integer idHotel = servicioHotel.obtenerIdHotel(idHab);
@@ -109,7 +107,7 @@ public class ReservaController {
         String tipoHabitacion = UtilidadesHabitacion.tipoHabitacion(habitacion.getC_individual(), habitacion.getC_doble());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
-
+        Registro registro = new Registro();
         registro.setT_pension(tipo_pension.pc);
 
         Double precioFinal = 0.0;

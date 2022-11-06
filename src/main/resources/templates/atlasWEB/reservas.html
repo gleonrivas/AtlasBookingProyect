@@ -382,7 +382,11 @@
                 <label  class="form-label">Email: </label>
                 <p th:text="${usuario.email}"></p>
             </div>
-            <form action="#" method="post">
+            <form th:action="@{/reserva/datos}" method="post">
+                <input type="hidden" th:value="${id_hab}" th:attr="name='id_hab'"/>
+                <input type="hidden" th:value="${fecha_inicio}" th:attr="name='fecha_inicio'"/>
+                <input type="hidden" th:value="${fecha_fin}" th:attr="name='fecha_fin'"/>
+                <input type="hidden" th:value="${num_personas}" th:attr="name='num_personas'"/>
                 <button type="submit">Reservar</button>
             </form>
 
