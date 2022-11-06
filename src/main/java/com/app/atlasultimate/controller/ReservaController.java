@@ -131,11 +131,14 @@ public class ReservaController {
                 duracion,
                 usuario,
                 habitacion);
-        if (reserva != null){
+        if (reserva == null){
+            return "/reservas.html";
+        }else {
             reservaRepository.save(registroFinal);
+            return "/PerfilUsuario.html";
         }
 
-        return "/reservas.html";
+
     }
 
 

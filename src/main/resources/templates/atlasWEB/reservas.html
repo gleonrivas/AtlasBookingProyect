@@ -385,14 +385,14 @@
         </div>
             <form th:action="@{/reserva/datos/}" th:method="post">
                 <h2>Selecciona el tipo de pension</h2>
-                <label>ad</label>
-                <input type="checkbox"  th:value="${1}" th:attr="name='ad'"/>
-                <label>media pension</label>
-                <input type="checkbox"  th:value="${1}" th:attr="name='mp'"/>
-                <label>pension completa</label>
-                <input type="checkbox"  th:value="${1}" th:attr="name='pc'"/>
-                <label>sa</label>
-                <input type="checkbox"  th:value="${1}" th:attr="name='sa'"/>
+                <label th:if="${pension.booleanAd == true}">ad</label>
+                <input th:if="${pension.booleanAd == true}" type="checkbox"  th:value="${1}" th:attr="name='ad'"/>
+                <label th:if="${pension.booleanMp == true}">media pension</label>
+                <input  th:if="${pension.booleanMp == true}" type="checkbox"  th:value="${1}" th:attr="name='mp'"/>
+                <label th:if="${pension.booleanPc == true}">pension completa</label>
+                <input  th:if="${pension.booleanPc == true}" type="checkbox"  th:value="${1}" th:attr="name='pc'"/>
+                <label  th:if="${pension.booleanSa == true}">sa</label>
+                <input  th:if="${pension.booleanSa == true}" type="checkbox"  th:value="${1}" th:attr="name='sa'"/>
 
                 <h2>Selecciona el tipo de pago</h2>
                 <label>tarjeta</label>
