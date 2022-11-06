@@ -38,14 +38,22 @@ public class ReservaController {
     private PensionService servicioPension;
     @Autowired
     private ReservaService servicioReserva;
+    @Autowired
+    ReservaRepository reservaRepository;
 
 
-
-    @GetMapping("datos")
+    @GetMapping("datos/")
     public String registroreserva(@ModelAttribute(value = "id_hab") Integer idHab,
                                   @RequestParam (value = "fecha_inicio", required = false) String fechaInicio,
                                   @RequestParam(value = "fecha_fin", required = false) String fechaFin,
                                   @RequestParam(value = "num_personas", required=false) Integer num_personas,
+                                  @RequestParam(value = "reserva", required=false) Integer reserva ,
+                                  @RequestParam(value = "ad", required=false) Integer ad ,
+                                  @RequestParam(value = "mp", required=false) Integer mp ,
+                                  @RequestParam(value = "pc", required=false) Integer pc ,
+                                  @RequestParam(value = "sa", required=false) Integer sa ,
+                                  @RequestParam(value = "tarjeta", required=false) Integer tarjeta ,
+                                  @RequestParam(value = "efectivo", required=false) Integer efectivo ,
                                   Model modelo) {
         String fecha1= fechaInicio;
         String fecha2= fechaFin;
@@ -76,39 +84,28 @@ public class ReservaController {
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("tarjeta" ,tipo_pago.tarjeta);
         modelo.addAttribute("efectivo" ,tipo_pago.efectivo);
-        modelo.addAttribute("ad", tipo_pension.ad);
-        modelo.addAttribute("mp", tipo_pension.mp);
-        modelo.addAttribute("pc", tipo_pension.pc);
-        modelo.addAttribute("sa", tipo_pension.sa);
-
-
-        return "/reservas.html";
-    }
-
-    @Autowired
-    ReservaRepository reservaRepository;
-
-    @PostMapping("datos")
-    public String HacerReserva(@ModelAttribute(value = "id_hab") Integer idHab,
-                                  @ModelAttribute (value = "fecha_inicio") String fechaInicio,
-                                  @ModelAttribute(value = "fecha_fin") String fechaFin,
-                                  @ModelAttribute(value = "num_personas") Integer num_personas) {
-        String fecha1 = fechaInicio;
-        String fecha2 = fechaFin;
-        Integer idHotel = servicioHotel.obtenerIdHotel(idHab);
-        Hotel hotel = servicioHotel.obtenerHotelporId(idHotel);
-        Integer id_pension = servicioPension.pensionporIdHotel(hotel.getId());
-        Pension pension = servicioPension.pensionporId(id_pension);
-        Habitacion habitacion = servicioHab.obtenerHabitacionporId(idHab);
-        Integer duracion = UtilidadesPrecio.duracionReserva(LocalDate.parse(fecha1), LocalDate.parse(fecha2));
-        Temporada temporada = servicioReserva.temporadaporId(idHab);
-        Double precio = UtilidadesPrecio.precioSemiFinal(LocalDate.parse(fecha1), LocalDate.parse(fecha2),
-                temporada, habitacion.getPrecio_base());
-        String tipoHabitacion = UtilidadesHabitacion.tipoHabitacion(habitacion.getC_individual(), habitacion.getC_doble());
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
         Registro registro = new Registro();
-        registro.setT_pension(tipo_pension.pc);
+
+        if (pc!=null){
+            registro.setT_pension(tipo_pension.pc);
+        }else if (ad!=null){
+            registro.setT_pension(tipo_pension.ad);
+        }else if (mp!=null){
+            registro.setT_pension(tipo_pension.mp);
+        }else if (sa!=null){
+            registro.setT_pension(tipo_pension.sa);
+        }else {
+            reserva = null;
+        }
+
+        if (tarjeta != null){
+            registro.setT_pago(tipo_pago.tarjeta);
+        }else if (efectivo != null){
+            registro.setT_pago(tipo_pago.efectivo);
+        }else {
+            reserva = null;
+        }
+
 
         Double precioFinal = 0.0;
         if (registro.getT_pension() == tipo_pension.ad) {
@@ -128,19 +125,20 @@ public class ReservaController {
         Registro registroFinal = new Registro(fecha1,
                 fecha2,
                 num_personas,
-                tipo_pago.tarjeta,
-                tipo_pension.ad,
+                registro.getT_pago(),
+                registro.getT_pension(),
                 precioFinal,
                 duracion,
                 usuario,
                 habitacion);
+        if (reserva != null){
+            reservaRepository.save(registroFinal);
+        }
 
-        reservaRepository.save(registroFinal);
-
-
-        return "redirect:/reservas/datos/informe";
-
+        return "/reservas.html";
     }
+
+
 
 
 

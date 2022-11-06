@@ -382,15 +382,34 @@
                 <label  class="form-label">Email: </label>
                 <p th:text="${usuario.email}"></p>
             </div>
-            <form th:action="@{/reserva/datos}" method="post">
+        </div>
+            <form th:action="@{/reserva/datos/}" th:method="post">
+                <h2>Selecciona el tipo de pension</h2>
+                <label>ad</label>
+                <input type="checkbox"  th:value="${1}" th:attr="name='ad'"/>
+                <label>media pension</label>
+                <input type="checkbox"  th:value="${1}" th:attr="name='mp'"/>
+                <label>pension completa</label>
+                <input type="checkbox"  th:value="${1}" th:attr="name='pc'"/>
+                <label>sa</label>
+                <input type="checkbox"  th:value="${1}" th:attr="name='sa'"/>
+
+                <h2>Selecciona el tipo de pago</h2>
+                <label>tarjeta</label>
+                <input type="checkbox"  th:value="${1}" th:attr="name='tarjeta'"/>
+                <label>En hotel</label>
+                <input type="checkbox"  th:value="${1}" th:attr="name='efectivo'"/>
+
                 <input type="hidden" th:value="${id_hab}" th:attr="name='id_hab'"/>
                 <input type="hidden" th:value="${fecha_inicio}" th:attr="name='fecha_inicio'"/>
                 <input type="hidden" th:value="${fecha_fin}" th:attr="name='fecha_fin'"/>
                 <input type="hidden" th:value="${num_personas}" th:attr="name='num_personas'"/>
+                <input type="hidden" th:value="${1}" th:attr="name='reserva'"/>
                 <button type="submit">Reservar</button>
             </form>
 
-
+    </div>
+</form>
 <footer class="lasth">
 
     <div class="promote-hotel">
