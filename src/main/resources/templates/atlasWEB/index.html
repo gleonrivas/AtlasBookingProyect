@@ -68,7 +68,7 @@
     border-radius: 10px;
     border-style: none;
     background-color: azure;
-    padding: 2%;
+    padding: 7px;
     color: black;
     font-size: 14px;
     margin: auto;
@@ -239,7 +239,8 @@
 <header class="mainh">
 
   <div class="lheader">
-    <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+    <a sec:authorize="isAnonymous()" th:href="@{/}">Buscar destino</a>
+    <!--<a sec:authorize="hasRole('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>-->
     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
     <a href="Descubre">Descubre</a>
   </div>
@@ -249,10 +250,9 @@
   </div>
 
   <div class="lheader">
-    <a href="Descubre">Descubre</a>
-    <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
-    <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
-    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><p class="link-buttom">Ver perfil</p></a>
+    <a href="FacturasAdmin.html">Descubre</a>
+    <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+    <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
   </div>
 
 </header>

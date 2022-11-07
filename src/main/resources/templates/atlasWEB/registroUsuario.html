@@ -197,30 +197,26 @@
         margin: auto 10% auto 0;
     }
 
-    .password-error{
-        width: 100%;
-        color: red;
-        text-align: justify;
-        font-size: 13px;
-    }
     .confirmacion{
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 428px;
+        width: 400px;
         position: absolute;
-         margin-top: -15px;
-
+        margin-top: -15px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .error{
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 428px;
+        width: 400px;
         position: absolute;
         margin-top: -15px;
-
+        margin-left: auto;
+        margin-right: auto;
     }
     .confirmacion > p{
         background-color: green;
@@ -235,8 +231,8 @@
 
     .error > p{
         background-color: indianred;
-        width: 241px;
-        margin: auto 5px;
+        width: max-content;
+        margin: auto;
         padding: 6.4px 21.3px;
         color: white;
         text-align: center;
@@ -249,7 +245,7 @@
     .submit{
         width: 40%;
         height: 40px;
-        margin-top: 10%;
+        margin-top: 5%;
         padding: 3% 10%;
         border-radius: 15px;
         border-style: none;
@@ -267,6 +263,13 @@
         border-color: rgba(0, 0, 0, 0.44);
         background-color: #ffffff;
         font-size: 13px;
+    }
+
+    .formulario >a{
+        padding-top: 10px;
+        margin-bottom: 0;
+        text-decoration: underline;
+        font-size: 14px;
     }
     /* FINALIZA REGISTRO-BOX Y HEREDEROS ------------------------*/
 
@@ -332,10 +335,10 @@
             </div>
 
             <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
+            <a th:href="@{/login}">¿Ya tienes una cuenta?</a>
         </form>
 
     </div>
-    <a th:href="@{/login}">Inicia Sesión</a>
 
 <footer class="lasth">
 

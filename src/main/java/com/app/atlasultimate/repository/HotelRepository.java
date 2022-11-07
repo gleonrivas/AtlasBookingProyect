@@ -17,7 +17,7 @@ import java.util.List;
 public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
 
 
-    @Query(value = "SELECT * FROM hotel h where usuario = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM hotel h where usuario = :id order by h.id DESC", nativeQuery = true)
     List<Hotel> findHotelById_usuario(@Param("id")Integer id);
 
     @Query(value = "SELECT h2.*  FROM registro r \n" +

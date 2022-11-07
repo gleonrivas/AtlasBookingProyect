@@ -12,7 +12,7 @@
 
 <style>
     /*FUENTES EXTERNAS*/
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
 
     /* COMIENZA HEADER ------------------------------------------*/
     .mainh{
@@ -97,6 +97,13 @@
         box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
 
     }
+    h1{
+        font-family: 'PT Sans', sans-serif;
+    }
+    h2{
+        font-family: 'PT Sans', sans-serif;
+
+    }
     /* FINALIZA BODY --------------------------------------------*/
     /* COMINEZA FOOTER ------------------------------------------*/
     .lasth{
@@ -170,6 +177,8 @@
         flex-wrap: nowrap;
         color: black;
         justify-content: space-between;
+        font-family: 'PT Sans', sans-serif;
+
     }
     .tituloyboton > h1{
         margin: 0;
@@ -225,9 +234,11 @@
         align-content: center;
         justify-content: space-between;
     }
-    .destacados > h2{
+    .destacados > h1{
         width: max-content;
         margin: 0;
+        font-family: 'PT Sans', sans-serif;
+
     }
     .estrellas{
         background-color: black;
@@ -235,7 +246,8 @@
         padding: 5px 10px;
         border-radius: 20px;
         width: fit-content;
-        margin: 0 15px;
+        height: min-content;
+        margin: auto 15px;
     }
     .estrellas > p{
         margin: 0;
@@ -251,8 +263,10 @@
         margin-left: 50px;
         margin-top: 41.5px;
     }
-    .hotel-services > h2{
+    .hotel-services > h1{
         margin-top: 0;
+        font-family: 'PT Sans', sans-serif;
+
     }
     .hotel-services-p{
         display: flex;
@@ -341,7 +355,7 @@
         </div>
         <div class="hotel-data">
             <div class="destacados">
-                <h2 th:text="${hotel.nombre} "></h2>
+                <h1 th:text="${hotel.nombre} "></h1>
                 <div class="estrellas">
                     <p th:if="${hotel.estrellas} == 1">⭐</p>
                     <p th:if="${hotel.estrellas} == 2">⭐⭐</p>
@@ -369,7 +383,7 @@
         </div>
     </div>
     <div class="hotel-services">
-        <h2>Servicios activos</h2>
+        <h1>Servicios activos</h1>
         <div class="hotel-services-p">
             <p th:if="${hotel.wifi} == true">Wifi</p>
             <p th:if="${hotel.mascotas} == true">Mascotas</p>
@@ -396,7 +410,9 @@
 
     <div class="promote-hotel">
         <p>Forma parte de nosotros</p>
-        <button>Registra tus alojamientos</button>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" >Registra tus alojamientos</button>
+        </form>
     </div>
 
     <div class="middle-footer">
@@ -405,9 +421,9 @@
             <p>ADMIN</p>
         </div>
         <div class="nets">
-            <img src="img/face.svg" alt="">
-            <img src="img/insta.svg" alt="">
-            <img src="img/twitter.svg" alt="">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
         </div>
         <p>Copyrigth © 2022 Atlas Booking S.L.</p>
     </div>
