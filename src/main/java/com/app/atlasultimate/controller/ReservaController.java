@@ -1,8 +1,6 @@
 package com.app.atlasultimate.controller;
-
 import com.app.atlasultimate.Utilidades.UtilidadesHabitacion;
 import com.app.atlasultimate.Utilidades.UtilidadesPrecio;
-import com.app.atlasultimate.controller.DTO.RegistroDTO;
 import com.app.atlasultimate.model.*;
 import com.app.atlasultimate.repository.ReservaRepository;
 import com.app.atlasultimate.repository.UsuarioRepository;
@@ -16,11 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 
 
@@ -84,6 +77,8 @@ public class ReservaController {
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("tarjeta" ,tipo_pago.tarjeta);
         modelo.addAttribute("efectivo" ,tipo_pago.efectivo);
+
+
         Registro registro = new Registro();
 
         if (pc!=null){
@@ -131,11 +126,14 @@ public class ReservaController {
                 duracion,
                 usuario,
                 habitacion);
+
         if (reserva == null){
             return "/reservas.html";
         }else {
             reservaRepository.save(registroFinal);
-            return "/PerfilUsuario.html";
+            modelo.addAttribute("registro", registroFinal);
+            return "/HistorialReserva.html";
+
         }
 
 
