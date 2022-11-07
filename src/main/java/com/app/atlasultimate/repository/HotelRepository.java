@@ -26,7 +26,7 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
             "where  :fecha_inicio not BETWEEN r.f_entrada  and r.f_salida  \n" +
             "and :fecha_fin not BETWEEN r.f_entrada  and r.f_salida \n" +
             "and h2.ciudad like %:ciudad% \n" +
-            "and h.n_max_personas >= :n_max_personas \n", nativeQuery = true)
+            "and h.n_max_personas >= :n_max_personas group by h2.id \n", nativeQuery = true)
     List<Hotel> findAllByReservas(@Param("fecha_inicio") String fecha_inicio,
                                   @Param("fecha_fin") String fecha_fin,
                                   @Param("ciudad") String ciudad,
