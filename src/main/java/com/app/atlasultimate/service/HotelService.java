@@ -23,7 +23,7 @@ public class HotelService {
         return repositorio.save(hotel);
     }
     public Hotel obtenerHotelporId (Integer id){
-        return repositorio.findById(id).get();
+        return repositorio.findTopById(id);
     }
     public Hotel actualizarHotel(Hotel hotel){
 

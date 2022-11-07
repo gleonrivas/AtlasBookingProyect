@@ -9,7 +9,7 @@ import com.app.atlasultimate.repository.HabitacionRepository;
 import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.repository.ReviewRepository;
 import com.app.atlasultimate.repository.UsuarioRepository;
-import com.app.atlasultimate.service.HabitacionServiceImp;
+import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class HotelController {
     }
 
     @Autowired
-    private HabitacionServiceImp servicio;
+    private HabitacionService servicio;
 
     @Autowired
     private HotelService servicioHotel;
@@ -70,6 +70,8 @@ public class HotelController {
         modelo.addAttribute("hotel", hotel);
         return "/crearhotel.html";
     }
+
+
     //crear hoteles
     @PostMapping(path="nuevo")
     public String guardarHotel(@ModelAttribute("hotel") Hotel hotel, @RequestParam("file") MultipartFile file) throws IOException {
@@ -192,7 +194,7 @@ public class HotelController {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    private HabitacionServiceImp servicioHab;
+    private HabitacionService servicioHab;
 
     @Autowired
     private ReviewService reviewService;

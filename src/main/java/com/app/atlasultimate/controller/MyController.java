@@ -11,10 +11,18 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller("")
 public class MyController {
+
+
+    @GetMapping("fallo")
+    public String falloBusqueda(){
+        return "/errorBusqueda.html";
+    }
 
     @Autowired
     private HotelRepository hotelRepository;
@@ -29,7 +37,13 @@ public class MyController {
     }
 
     @GetMapping("")
-    public String index(HttpSession session) {
+    public String index(Model model) {
+
+        String fecha = LocalDate.now().toString();
+        String fecha2 = LocalDate.now().plusDays(1).toString();
+        model.addAttribute("fecha", fecha);
+        model.addAttribute("fecha2", fecha2);
+
         return "/index.html";
     }
 
@@ -43,16 +57,26 @@ public class MyController {
         List<Hotel> hoteles = hotelRepository.findAllByReservas(busquedaDTO.getFecha_inicio(),
                 busquedaDTO.getFecha_fin(), busquedaDTO.getCiudad(), busquedaDTO.getN_max_personas());
         model.addAttribute("hoteles", hoteles);
-        model.addAttribute("ciudadhotel", hoteles.get(0).getCiudad());
         HotelBusquedaDTO hotelDTO = new HotelBusquedaDTO(busquedaDTO.getFecha_inicio(),
                 busquedaDTO.getFecha_fin(), busquedaDTO.getCiudad(), busquedaDTO.getN_max_personas());
         model.addAttribute("hotelDTO", hotelDTO);
-        model.addAttribute("ciudadhotel", hoteles.get(0).getCiudad());
         model.addAttribute("fecha_inicio", busquedaDTO.getFecha_inicio());
         model.addAttribute("fecha_fin", busquedaDTO.getFecha_fin());
 
+        if (busquedaDTO.getFecha_inicio().equals("") || busquedaDTO.getFecha_fin().equals("")){
+            return "redirect:/?falloFecha";
+        }else if(LocalDate.parse(busquedaDTO.getFecha_inicio()).equals(LocalDate.parse(busquedaDTO.getFecha_fin()))){
+            return "redirect:/?fallo2";
+        }else if(LocalDate.parse(busquedaDTO.getFecha_inicio()).isAfter(LocalDate.parse(busquedaDTO.getFecha_fin()))){
+            return "redirect:/?fallo";
+        }else if (hoteles.isEmpty()){
+            return "redirect:/fallo";
+        }else {
+            model.addAttribute("ciudadhotel", hoteles.get(0).getCiudad());
+            return "/hotelesBusqueda.html";
+        }
 
-        return "/hotelesBusqueda.html";
+
 
     }
 

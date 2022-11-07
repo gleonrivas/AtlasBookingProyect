@@ -12,4 +12,7 @@ public interface TemporadaRepository extends JpaRepository<Temporada, Integer> {
 
     @Query(value = "select *  from temporada where id = :id ", nativeQuery = true)
     Temporada temporadaPorId(@Param("id") Integer id);
+
+    @Query(value = "select *  from temporada order by id desc limit 1 ", nativeQuery = true)
+    Temporada ultimaTemporada();
 }

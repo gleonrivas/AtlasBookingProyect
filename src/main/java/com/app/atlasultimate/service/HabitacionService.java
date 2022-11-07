@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class HabitacionServiceImp implements HabitacionServicio {
+public class HabitacionService implements HabitacionServicio {
 
     @Autowired
     private HabitacionRepository habitacionRepository;
@@ -37,8 +38,8 @@ public class HabitacionServiceImp implements HabitacionServicio {
         habitacionRepository.saveAll(habs);
     }
 
-    public Habitacion obtenerHabitacionporId(Integer id) {
-        return habitacionRepository.findById(id).get();
+    public Habitacion obtenerHabitacionporId(Integer integer) {
+        return habitacionRepository.findTopById(integer);
     }
 
     public Habitacion actualizarHabitacion(Habitacion hab) {
@@ -49,5 +50,9 @@ public class HabitacionServiceImp implements HabitacionServicio {
         habitacionRepository.deleteById(id);
     }
 
+    public void cambiarIdTemporada (Integer id_temporada, Integer id_hab){
+        habitacionRepository.cambiarIdTemporada(id_temporada, id_hab);
+
+    }
 
 }

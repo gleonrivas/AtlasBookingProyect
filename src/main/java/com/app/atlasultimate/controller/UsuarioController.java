@@ -1,10 +1,12 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
+import com.app.atlasultimate.model.Registro;
 import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.HotelRepository;
+import com.app.atlasultimate.repository.ReservaRepository;
 import com.app.atlasultimate.repository.UsuarioRepository;
-import com.app.atlasultimate.service.HabitacionServiceImp;
+import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("usuario")
@@ -26,7 +30,7 @@ public class UsuarioController {
     @Autowired
     private HotelService servicio;
     @Autowired
-    private HabitacionServiceImp servicioHab;
+    private HabitacionService servicioHab;
 
 //PAGINA INICIO ROL ADMIN
     @GetMapping("inicio")
@@ -100,13 +104,18 @@ public class UsuarioController {
         return "redirect:/usuario/inicio";
     }
 
+    @Autowired
+    ReservaRepository reservaRepository;
 
     @GetMapping("perfil")
     public String perfil(Model model){
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        List<Registro> registros = reservaRepository.findAllByUsuario(usuario);
         model.addAttribute("usuario", usuario);
+        model.addAttribute("reservas", registros);
+
         return "/PerfilUsuario.html";
     }
 

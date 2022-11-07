@@ -22,17 +22,17 @@ public class Registro {
 
 
     @Column(name = "f_entrada")
-    private LocalDate f_entrada;
+    private String f_entrada;
     @Column(name = "f_salida")
-    private LocalDate f_salida;
+    private String f_salida;
     @Column(name = "n_personas", length = 1)
     private Integer n_personas;
     @Column(name = "t_pago", length = 150)
-    private String t_pago;
-    @Column(name = "senal")
-    private Double senal;
+    @Enumerated(value = EnumType.STRING)
+    private tipo_pago t_pago;
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "t_pension", length = 150)
-    private String t_pension;
+    private tipo_pension t_pension;
     @Column(name = "precio_total_dias")
     private Double precio_total_dias;
     @Column(name = "n_dias", length = 3)
@@ -41,10 +41,31 @@ public class Registro {
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
-    Usuario usuario;
+    private Usuario usuario;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_habitacion")
-    Habitacion habitacion;
+    private Habitacion habitacion;
+
+    public Registro(String f_entrada, String f_salida, Integer n_personas, tipo_pago t_pago, tipo_pension t_pension, Double precio_total_dias, Integer n_dias, Usuario usuario, Habitacion habitacion) {
+
+        this.f_entrada = f_entrada;
+        this.f_salida = f_salida;
+        this.n_personas = n_personas;
+        this.t_pago = t_pago;
+        this.t_pension = t_pension;
+        this.precio_total_dias = precio_total_dias;
+        this.n_dias = n_dias;
+        this.usuario = usuario;
+        this.habitacion = habitacion;
+
+    }
+
+
+    public Registro() {
+
+    }
+
+
 }
