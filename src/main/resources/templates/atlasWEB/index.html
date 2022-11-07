@@ -251,8 +251,10 @@
 
   <div class="lheader">
     <a href="FacturasAdmin.html">Descubre</a>
-    <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
-    <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+    <a sec:authorize="isAnonymous()" th:href="@{/usuario/inicio}"><button class="link-buttom">Iniciar sesión</button></a>
+
   </div>
 
 </header>
