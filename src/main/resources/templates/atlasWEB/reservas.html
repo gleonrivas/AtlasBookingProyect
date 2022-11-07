@@ -392,13 +392,13 @@
             <form th:action="@{/reserva/datos/}" th:method="post">
                 <h2>Selecciona el tipo de pension</h2>
                 <div class="colunm-container">
-                    <label th:if="${pension.booleanAd == true}">ad</label>
+                    <label th:if="${pension.booleanAd == true}">Alojamiento y desayuno</label>
                     <input th:if="${pension.booleanAd == true}" type="checkbox"  th:value="${1}" th:attr="name='ad'"/>
                     <label th:if="${pension.booleanMp == true}">media pension</label>
                     <input  th:if="${pension.booleanMp == true}" type="checkbox"  th:value="${1}" th:attr="name='mp'"/>
                     <label th:if="${pension.booleanPc == true}">pension completa</label>
                     <input  th:if="${pension.booleanPc == true}" type="checkbox"  th:value="${1}" th:attr="name='pc'"/>
-                    <label  th:if="${pension.booleanSa == true}">sa</label>
+                    <label  th:if="${pension.booleanSa == true}">Solo alojamiento</label>
                     <input  th:if="${pension.booleanSa == true}" type="checkbox"  th:value="${1}" th:attr="name='sa'"/>
                 </div>
                 <h2>Selecciona el tipo de pago</h2>

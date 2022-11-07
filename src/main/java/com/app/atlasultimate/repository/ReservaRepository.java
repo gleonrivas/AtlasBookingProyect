@@ -27,6 +27,5 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
 
     List<Registro> findAllByUsuario(Usuario usuario);
 
-    Registro findFirstByUsuarioOrderByIdDesc(Usuario usuario);
 
 }
