@@ -39,6 +39,9 @@ public class Registro {
     @Column(name = "n_dias", length = 3)
     private Integer n_dias;
 
+    @Column(name = "activa")
+    private Boolean activa;
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")

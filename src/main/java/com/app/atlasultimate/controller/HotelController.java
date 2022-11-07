@@ -47,6 +47,26 @@ public class HotelController {
 
     @Autowired
     private TemporadaRepository temporadaRepository;
+    @Autowired
+    private HabitacionRepository repository;
+
+    @Autowired
+    private HotelRepository hotelRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private HabitacionService servicioHab;
+
+    @Autowired
+    private ReviewService reviewService;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ReservaRepository reservaRepository;
 
 
     @GetMapping("/habitacion/{id_hotel}")
@@ -54,15 +74,25 @@ public class HotelController {
         List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id_hotel);
         Hotel hotel = servicioHotel.obtenerHotelporId(id_hotel);
         List<Temporada> listaTemporadas = temporadaRepository.listaTemporadas();
+        List<Integer>  listaIdHavitacionReserva = reservaRepository.listaidHabporRegistro();
 
         model.addAttribute("habitaciones", listadeHabitacion);
         model.addAttribute("hotel", hotel);
         model.addAttribute("temporadas", listaTemporadas);
+        model.addAttribute("listaid", listaIdHavitacionReserva);
+
 
 
         return "/AdminHabitaciones.html";
 
 
+    }
+    //Eliminar habitacion
+    @PostMapping("/habitacion/{id_hotel}")
+    public String eliminarHab(@PathVariable Integer id_hotel,
+                              @ModelAttribute("habitacion") Habitacion habitacion) {
+        servicio.eliminarHabitacion(habitacion.getId());
+        return "redirect:/hotel/habitacion/"+id_hotel;
     }
 
     @GetMapping("nuevo")
@@ -180,31 +210,9 @@ public class HotelController {
         return "redirect:/hotel/editarhabitacion/"+ id_habitacion;
     }
 
-    //Eliminar habitacion
-    @DeleteMapping("/habitacion/{id_hotel}")
-    public String eliminarHab(@PathVariable Integer id_hotel, Integer id_habitacion) {
 
-        servicio.eliminarHabitacion(id_habitacion);
-        return "redirect:/hotel/habitacion/{id_hotel}";
-    }
 
-    @Autowired
-    private HabitacionRepository repository;
 
-    @Autowired
-    private HotelRepository hotelRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private HabitacionService servicioHab;
-
-    @Autowired
-    private ReviewService reviewService;
-
-    @Autowired
-    private ReviewRepository reviewRepository;
 
     @ModelAttribute("review")
     public ReviewDTO reviewRegistroDTO() {

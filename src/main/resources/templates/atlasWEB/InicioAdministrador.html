@@ -46,12 +46,12 @@
     </a>
 </div>
 <div id="confirmacion" th:if="${hoteles.size == 0}">
-    <h2 style=" text-align: center"> Actualmente, no tiene</h2>
+    <h2 style=" text-align: center"> Actualmente, no tiene ningún hotel.</h2>
     <br>
 </div>
 <div id="confirmacion2" th:if="${hoteles.size > 0}">
-    <div class="marcohotel" th:each=" hotel : ${hoteles}">
-        <div class="conjunto">
+    <div class="marcohotel" th:each=" hotel : ${hoteles}" style="display: flex; flex-flow: row wrap">
+        <div class="conjunto" style="display: flex; flex-flow: row nowrap; width: 100%">
             <div class="contenedores" style="width: 50%">
                 <h2 th:text="${hotel.nombre} ">Nombre del hotel</h2>
                 <p>Estrellas: </p>
@@ -141,38 +141,45 @@
                 </div>
 
             </div>
-            <div class="botones">
-                <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}">
-                    <button type="submit">Editar</button>
-                </a>
+
+            <div class="imagenes" style="width: 50%">
+                <img th:src="${hotel.img}" alt="..." style=" width: 100%;">
+            </div>
+        </div>
+
+
+
+        <div class="botones" style="display: flex; flex-flow: row nowrap; width: 100%; justify-content: space-around">
+            <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}" style="width: 20%">
+                <button style="width: 100%" type="submit">Editar</button>
+            </a>
+            <div th:if="${#lists.contains(listhab,hotel.id)}" style="width: 20% ; display: flex; flex-flow: row wrap" >
+                <button style="width: 100%" type="submit" disabled>Eliminar</button>
+                <small style="width: 100%; text-align: center">Debe eliminar primero las habitaciones de este hotel</small>
+            </div>
+            <div th:if="${!#lists.contains(listhab,hotel.id)}" style="width: 20%">
                 <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
-                    <button type="submit">Eliminar</button>
+                    <button style="width: 100%" type="submit">Eliminar</button>
                 </a>
-                <a th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}">
-                    <button type="submit">Ver habitaciones</button>
-                </a>
-
-                <div  th:if="${#lists.contains(id_hoteles,hotel.id)}">
-                        <button type="submit" disabled >Tipos de Pensiones</button>
-                        <small>su hotel ya tiene una pensión disponible</small>
-                    </div>
-                <div  th:if="${!#lists.contains(id_hoteles,hotel.id)}">
-                        <a th:href="@{/pension/crear/(id=${hotel.id})}">
-                            <button type="submit" >Tipos de Pensiones</button>
-                        </a>
-                    </div>
-
-
-
             </div>
 
+            <a th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}" style="width: 20%">
+                <button style="width: 100%" type="submit">Ver habitaciones</button>
+            </a>
+
+            <div  th:if="${#lists.contains(id_hoteles,hotel.id)}" style="width: 20%; display: flex; flex-flow: row wrap">
+                <button style="width: 100%" type="submit" disabled >Tipos de Pensiones</button>
+                <small style="width: 100%; text-align: center" >Su hotel ya tiene una pensión disponible</small>
+            </div>
+            <div  th:if="${!#lists.contains(id_hoteles,hotel.id)}" style="width: 20%">
+                <a th:href="@{/pension/crear/(id=${hotel.id})}">
+                    <button style="width: 100%" type="submit" >Tipos de Pensiones</button>
+                </a>
+            </div>
+
+
+
         </div>
-
-
-        <div class="imagenes" style="width: 50%">
-            <img th:src="${hotel.img}" alt="..." style=" width: 100%;">
-        </div>
-
     </div>
 </div>
 

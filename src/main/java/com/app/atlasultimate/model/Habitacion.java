@@ -18,7 +18,7 @@ import java.util.Set;
 public class Habitacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id" )
     private Integer id;
 
     @Column(name = "c_indiviual", length = 1)
@@ -51,6 +51,10 @@ public class Habitacion {
     @JoinColumn(name = "temporada_id")
     private Temporada temporada;
 
+    @PreRemove
+    public void nullificar(){
+        registro.forEach(r -> r.setHabitacion(null));
+    }
 
 
 

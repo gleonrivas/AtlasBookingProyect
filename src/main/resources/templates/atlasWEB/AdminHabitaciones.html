@@ -42,13 +42,13 @@
 <div id="tituloyboton">
     <h1>Tus habitaciones</h1>
     <div style="display: flex; flex-flow: column wrap; width: 20%">
-    <a th:href="@{/habitacion/nueva/{id_hotel}(id_hotel=${hotel.id})}">
-        <button style="width: 100%; margin-bottom: 4%" type="button">Añadir habitación</button>
-    </a>
+        <a th:href="@{/habitacion/nueva/{id_hotel}(id_hotel=${hotel.id})}">
+            <button style="width: 100%; margin-bottom: 4%" type="button">Añadir habitación</button>
+        </a>
 
-    <a th:href="@{/usuario/inicio/}">
-        <button style="width: 100%" type="button">Volver</button>
-    </a>
+        <a th:href="@{/usuario/inicio/}">
+            <button style="width: 100%" type="button">Volver</button>
+        </a>
     </div>
 </div>
 <div id="confirmacion" th:if="${habitaciones.size == 0}">
@@ -57,10 +57,13 @@
     <br>
 </div>
 <div id="confirmacion2" th:if="${habitaciones.size > 0}">
-    <div class="marcohotel" th:each="habitacion : ${habitaciones}">
-        <div class="conjunto">
+    <div class="marcohotel" th:each="habitacion : ${habitaciones}" style="display: flex; flex-flow: row wrap">
+        <h2>Habitación</h2>
+        <div class="conjunto" style="display: flex; flex-flow: row nowrap; width: 100%; justify-content: space-around;">
+
             <div class="contenedores">
-                <h2>Habitación</h2>
+                <h3 style="width: 100%">Información general</h3>
+                <br>
                 <p> Aforo máximo: </p>
                 <p th:text="${habitacion.n_max_personas}"></p>
                 <p> Camas individuales: </p>
@@ -71,52 +74,61 @@
                 <p th:text="${habitacion.precio_base}"></p>
 
             </div>
-            <div class="contenedores" id="contenedor2">
-                <div class="listas">
-                    <p>lista de comodidades activas</p>
-                    <ul>
-                        <li>
-                            <p> baño: </p>
-                            <input type="checkbox" th:checked="${habitacion.bano} ">
-                        </li>
-                        <li>
-                            <p> Vistas: </p>
-                            <input type="checkbox" th:checked="${habitacion.vistas} ">
-                        </li>
+            <div class="contenedores" style="display: flex; flex-flow: row wrap; align-content: flex-start">
 
-                    </ul>
-                </div>
+                <h3 style="width: 100%; margin-bottom: 5%">Lista de comodidades activas</h3>
+
+                <ul style="width: 100%">
+                    <li>
+                        <p> baño: </p>
+                        <input type="checkbox" th:checked="${habitacion.bano} ">
+                    </li>
+                    <li>
+                        <p> Vistas: </p>
+                        <input type="checkbox" th:checked="${habitacion.vistas} ">
+                    </li>
+
+                </ul>
 
 
             </div>
-            <div class="botones">
-                <a th:href="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}">
-                    <button type="submit">Editar</button>
-                </a>
-                <form method="delete" th:action="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
-                    <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
-                        <button type="submit">Eliminar</button>
-                    </a>
+            <div class="imagenes">
 
+                <p>aqui van imagenes</p>
+            </div>
+
+        </div>
+
+
+        <div class="botones" style="display: flex; flex-flow: row nowrap; width: 100%; justify-content: space-around">
+            <div th:if="${#lists.contains(listaid,habitacion.id)}"
+                 style="width: 20% ; display: flex; flex-flow: row wrap">
+                <button style="width: 100%" type="submit" disabled>Eliminar</button>
+                <small style="width: 100%; text-align: center">Esta habitación está reservada, no se puede
+                    eliminar</small>
+            </div>
+            <div th:if="${!#lists.contains(listaid,habitacion.id)}" style="width: 20%">
+                <form th:object="${habitacion}" th:method="post">
+                    <input type="hidden" th:value="${habitacion.id}" th:attr="name='id'"/>
+                    <button style="width: 100%" type="submit">Eliminar</button>
                 </form>
-                <div th:if="${#lists.contains(temporadas,habitacion.temporada)}">
-                    <button type="submit" disabled>Añadir Temporadas</button>
-                    <small>su hotel ya tiene el precio establecido</small>
-                </div>
-                <div th:if="${!#lists.contains(temporadas,habitacion.temporada)}">
-                    <a th:href="@{/temporada/crear/(id_habitacion=${habitacion.id})}">
-                        <button type="submit">Añadir Temporadas</button>
-                    </a>
-                </div>
+            </div>
+
+            <a th:href="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}" style="width: 20%">
+                <button style="width: 100%" type="submit">Editar</button>
+            </a>
+
+            <div th:if="${#lists.contains(temporadas,habitacion.temporada)}"
+                 style="width: 20% ; display: flex; flex-flow: row wrap">
+                <button style="width: 100%" type="submit" disabled>Añadir Temporadas</button>
+                <small style="width: 100%; text-align: center">Su hotel ya tiene el precio establecido</small>
+            </div>
+            <div th:if="${!#lists.contains(temporadas,habitacion.temporada)}" style="width: 20%">
+                <a th:href="@{/temporada/crear/(id_habitacion=${habitacion.id})}">
+                    <button style="width: 100%" type="submit">Añadir Temporadas</button>
+                </a>
             </div>
         </div>
-
-
-        <div class="imagenes">
-            <img src="">
-            <p>aqui van imagenes</p>
-        </div>
-
     </div>
 
 </div>
