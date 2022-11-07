@@ -208,21 +208,25 @@ public class HotelController {
 
     }
 
-    @GetMapping("/{id}")
-    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model, @ModelAttribute("hotel") Hotel hot){
+    @GetMapping("/habitaciones/")
+    public String filtrarHabitaciones(@RequestParam(value = "id") Integer id, Model model, @ModelAttribute("hotel") Hotel hot,
+                                      @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
+                                      @RequestParam(value = "fecha_fin", required = false) String fechaFin,
+                                      @RequestParam(value = "num_personas", required = false) Integer num_personas){
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
         model.addAttribute("usuario", usuario);
+
+        model.addAttribute("fecha_inicio", fechaInicio);
+        model.addAttribute("fecha_fin", fechaFin);
+        model.addAttribute("num_personas", num_personas);
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
-
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
-
         List<Review> review = reviewRepository.find10LastValues(id);
         model.addAttribute("review", review);
-
         Map<String, Review> mapa = new HashMap<>();
         model.addAttribute("mapa", mapa);
         try{
@@ -233,13 +237,16 @@ public class HotelController {
             System.out.println(e);
         }
 
+        String fondo = hotelRepository.findHotelById(id).getImg();
+        model.addAttribute("hotelimagen", fondo);
+
 
 
         return "/hotel.html";
     }
 
-    @PostMapping("/{id}")
-    public String guardarReview(@PathVariable(value = "id") Integer id, @ModelAttribute("review") ReviewDTO reviewDTO, @ModelAttribute("hotel") Hotel hot) {
+    @PostMapping("/habitaciones/")
+    public String guardarReview(@RequestParam(value = "id") Integer id, @ModelAttribute("review") ReviewDTO reviewDTO, @ModelAttribute("hotel") Hotel hot) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());

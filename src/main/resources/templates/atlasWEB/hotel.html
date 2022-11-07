@@ -415,16 +415,14 @@
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
             <p th:text="'Numero de personas: ' + ${h.n_max_personas}"></p>
             <p th:text="'Precio/dia: ' + ${h.precio_base} + ' €'"></p>
-            <a class="reservar" th:href="@{/reserva/datos/(id_hab=${h.id},fecha_inicio=${fecha_inicio},fecha_fin=${fecha_fin},
-            num_personas=${num_personas})}"><button > Reservar</button></a>
-
+            <a class="reservar" sec:authorize="hasAuthority('usuario')" th:href="@{/reserva/datos/(id_hab=${h.id},fecha_inicio=${fecha_inicio},fecha_fin=${fecha_fin},
+            num_personas=${num_personas})}"><button> Reservar</button></a>
         </div>
     </div>
 
 </div>
 <h2>Los 10 comentarios mas recientes.</h2>
 <div class="comentario-slider">
-
     <div class="comentario-container">
         <div class="comentario-tarjeta" th:each="m : ${mapa}">
             <p th:text="${'@'+m.key}"></p>
@@ -444,10 +442,10 @@
 
 
 
-<form class="formulario" sec:authorize="isAuthenticated()" th:action="@{/hotel/{id_hotel}(id_hotel=${hotel.id})}" th:object="${review}" method="post">
+<form class="formulario" sec:authorize="isAuthenticated()" th:action="@{#}" th:object="${review}" method="post">
     <div class="componente-registro">
 
-        <h2>Comenta algo,  <span th:text="${nombre}"></span></h2>
+        <h2>Comenta algo,  <span th:text="${usuario.nombre}"></span></h2>
         <label class="parform" for="nombre">Comentario</label>
         <input class="parform" type="text" id="nombre"  th:field="*{comentario}"/>
     </div>
@@ -457,7 +455,6 @@
     </div>
     <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
 </form>
-
 </div>
 
 
