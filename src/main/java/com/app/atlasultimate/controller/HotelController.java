@@ -76,6 +76,9 @@ public class HotelController {
     @PostMapping(path="nuevo")
     public String guardarHotel(@ModelAttribute("hotel") Hotel hotel, @RequestParam("file") MultipartFile file) throws IOException {
         chequearBoolean(hotel);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        hotel.setId_usuario(usuario);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         hotel.setImg(fileName);
         Hotel nuevoHotel = servicioHotel.guardarHotel(hotel);
@@ -90,6 +93,7 @@ public class HotelController {
         } catch (IOException e) {
             throw new IOException("No se puede guardar"+ fileName);
         }
+
 
         return "redirect:/hotel/nuevo?exito";
     }

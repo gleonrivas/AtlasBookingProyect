@@ -339,73 +339,91 @@
     </div>
 
 </header>
-
-
-<div class="tituloyboton">
-    <h1>Gestión de hoteles</h1>
-    <a th:href="@{/hotel/nuevo}">
-        <button class="boton editar" type="button">Crear un nuevo hotel</button>
-    </a>
+<div id="confirmacion" th:if="${hoteles.size == 0}">
+    <h2 style=" text-align: center"> Actualmente, no tiene ningún hotel.</h2>
+    <br>
 </div>
+<div id="confirmacion2" th:if="${hoteles.size > 0}">
+    <div class="tituloyboton">
+        <h1>Gestión de hoteles</h1>
+        <a th:href="@{/hotel/nuevo}">
+            <button class="boton editar" type="button">Crear un nuevo hotel</button>
+        </a>
+    </div>
 
-<div class="hotel-card" th:each=" hotel : ${hoteles}">
-    <div class="hotel-info">
-        <div class="hotel-img">
-            <img th:src="${hotel.img}">
-        </div>
-        <div class="hotel-data">
-            <div class="destacados">
-                <h1 th:text="${hotel.nombre} "></h1>
-                <div class="estrellas">
-                    <p th:if="${hotel.estrellas} == 1">⭐</p>
-                    <p th:if="${hotel.estrellas} == 2">⭐⭐</p>
-                    <p th:if="${hotel.estrellas} == 3">⭐⭐⭐</p>
-                    <p th:if="${hotel.estrellas} == 4">⭐⭐⭐⭐</p>
-                    <p th:if="${hotel.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+    <div class="hotel-card" th:each=" hotel : ${hoteles}">
+        <div class="hotel-info">
+            <div class="hotel-img">
+                <img th:src="${hotel.img}">
+            </div>
+            <div class="hotel-data">
+                <div class="destacados">
+                    <h1 th:text="${hotel.nombre} "></h1>
+                    <div class="estrellas">
+                        <p th:if="${hotel.estrellas} == 1">⭐</p>
+                        <p th:if="${hotel.estrellas} == 2">⭐⭐</p>
+                        <p th:if="${hotel.estrellas} == 3">⭐⭐⭐</p>
+                        <p th:if="${hotel.estrellas} == 4">⭐⭐⭐⭐</p>
+                        <p th:if="${hotel.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                    </div>
+                </div>
+
+                <p th:text="${hotel.direccion} "></p>
+                <p th:text="${hotel.ciudad +', '+ hotel.pais} "></p>
+                <p th:text="${hotel.telefono} ">Teléfono</p>
+                <p th:text="${hotel.email} ">Email</p>
+                <div class="hotel-controllers">
+                    <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}">
+                        <button class="boton editar" type="submit">Editar</button>
+                    </a>
+                    <div th:if="${#lists.contains(listhab,hotel.id)}"  >
+                        <button  type="submit" disabled>Eliminar</button>
+                        <small>Debe eliminar primero las habitaciones de este hotel</small>
+                    </div>
+                    <div th:if="${!#lists.contains(listhab,hotel.id)}" style="width: 20%">
+                        <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
+                            <button style="width: 100%" type="submit">Eliminar</button>
+                        </a>
+                    </div>
+                    <a th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}">
+                        <button class="boton habitaciones" type="submit">Habitaciones</button>
+                    </a>
+                    <div  th:if="${#lists.contains(id_hoteles,hotel.id)}" >
+                        <button  type="submit" disabled >Tipos de Pensiones</button>
+                        <small  >Su hotel ya tiene una pensión disponible</small>
+                    </div>
+                    <div  th:if="${!#lists.contains(id_hoteles,hotel.id)}" >
+                        <a th:href="@{/pension/crear/(id=${hotel.id})}">
+                            <button type="submit" >Tipos de Pensiones</button>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <p th:text="${hotel.direccion} "></p>
-            <p th:text="${hotel.ciudad +', '+ hotel.pais} "></p>
-            <p th:text="${hotel.telefono} ">Teléfono</p>
-            <p th:text="${hotel.email} ">Email</p>
-            <div class="hotel-controllers">
-                <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}">
-                    <button class="boton editar" type="submit">Editar</button>
-                </a>
-                <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
-                    <button class="boton eliminar" type="submit">Eliminar</button>
-                </a>
-                <a th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}">
-                    <button class="boton habitaciones" type="submit">Habitaciones</button>
-                </a>
+        </div>
+        <div class="hotel-services">
+            <h1>Servicios activos</h1>
+            <div class="hotel-services-p">
+                <p th:if="${hotel.wifi} == true">Wifi</p>
+                <p th:if="${hotel.mascotas} == true">Mascotas</p>
+                <p th:if="${hotel.comedor} == true">Restaurante</p>
+                <p th:if="${hotel.espectaculos} == true">Espectaculos</p>
+                <p th:if="${hotel.patio} == true">Patio</p>
+                <p th:if="${hotel.piscina} == true">Piscina</p>
+                <p th:if="${hotel.terraza} == true">Terraza</p>
+                <p th:if="${hotel.parking} == true">Parking</p>
+                <p th:if="${hotel.accesibilidad} == true">Acceso para minuválidos</p>
+                <p th:if="${hotel.multilengua} == true">Lengua local e ingles</p>
+                <p th:if="${hotel.s_habitacion} == true">Servicio de habitaciones</p>
+                <p th:if="${hotel.s_transporte} == true">Servicio de transporte</p>
+                <p th:if="${hotel.tours} == true">Guias turisticos</p>
             </div>
-        </div>
-    </div>
-    <div class="hotel-services">
-        <h1>Servicios activos</h1>
-        <div class="hotel-services-p">
-            <p th:if="${hotel.wifi} == true">Wifi</p>
-            <p th:if="${hotel.mascotas} == true">Mascotas</p>
-            <p th:if="${hotel.comedor} == true">Restaurante</p>
-            <p th:if="${hotel.espectaculos} == true">Espectaculos</p>
-            <p th:if="${hotel.patio} == true">Patio</p>
-            <p th:if="${hotel.piscina} == true">Piscina</p>
-            <p th:if="${hotel.terraza} == true">Terraza</p>
-            <p th:if="${hotel.parking} == true">Parking</p>
-            <p th:if="${hotel.accesibilidad} == true">Acceso para minuválidos</p>
-            <p th:if="${hotel.multilengua} == true">Lengua local e ingles</p>
-            <p th:if="${hotel.s_habitacion} == true">Servicio de habitaciones</p>
-            <p th:if="${hotel.s_transporte} == true">Servicio de transporte</p>
-            <p th:if="${hotel.tours} == true">Guias turisticos</p>
+
         </div>
 
-    </div>
 
+    </div>
 
 </div>
-
-
 <footer class="lasth">
 
     <div class="promote-hotel">
