@@ -342,6 +342,12 @@
 <div id="confirmacion" th:if="${hoteles.size == 0}">
     <h2 style=" text-align: center"> Actualmente, no tiene ningún hotel.</h2>
     <br>
+    <div class="tituloyboton">
+
+        <a th:href="@{/hotel/nuevo}">
+            <button class="boton editar" type="button">Crear un nuevo hotel</button>
+        </a>
+    </div>
 </div>
 <div id="confirmacion2" th:if="${hoteles.size > 0}">
     <div class="tituloyboton">

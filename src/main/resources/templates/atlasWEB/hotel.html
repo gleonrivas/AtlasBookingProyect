@@ -451,19 +451,7 @@
 
 
 
-<form class="formulario" sec:authorize="hasAuthority('usuario')" th:action="@{#}" th:object="${review}" method="post">
-    <div class="componente-registro">
 
-        <h2>Comenta algo,  <span th:text="${usuario.nombre}"></span></h2>
-        <label class="parform" for="nombre">Comentario</label>
-        <input class="parform" type="text" id="nombre"  th:field="*{comentario}"/>
-    </div>
-    <div class="componente-registro">
-        <label class="parform" for="apellido">Estrellas</label>
-        <input class="parform" type="number" id="apellido"  th:field="*{estrellas}" />
-    </div>
-    <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
-</form>
 </div>
 
 
