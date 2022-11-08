@@ -256,36 +256,16 @@ public class HotelController {
     }
 
     @PostMapping("/habitaciones/")
-    public String guardarReview(@RequestParam(value = "id") Integer id, @ModelAttribute("review") ReviewDTO reviewDTO, @ModelAttribute("hotel") Hotel hot) {
+    public String guardarReview(@RequestParam(value = "id") Integer id, @ModelAttribute("resena") ReviewDTO reviewDTO) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
 
         reviewDTO.setId_usuario(usuario);
-        reviewDTO.setId_hotel(hot);
+        reviewDTO.setId_hotel(hotelRepository.findHotelById(id));
         reviewService.guardarReview(reviewDTO);
-        return "redirect:/hotel/" + id;
-    }
-    @GetMapping("/habitaciones")
-    public String filtrarHabitaciones(@RequestParam(value = "id") Integer id, Model model,
-                                      @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
-                                      @RequestParam(value = "fecha_fin", required = false) String fechaFin,
-                                      @RequestParam(value = "num_personas", required = false) Integer num_personas
-    ) {
-        String fecha1 = fechaInicio;
-        String fecha2 = fechaFin;
-        Hotel hotel = hotelRepository.findHotelById(id);
-        model.addAttribute("hotel", hotel);
-        List<Habitacion> habitaciones = repository.findAllById(id);
-        model.addAttribute("habitaciones", habitaciones);
-        model.addAttribute("fecha_inicio", fechaInicio);
-        model.addAttribute("fecha_fin", fechaFin);
-        model.addAttribute("num_personas", num_personas);
+        return "#";
 
-        String fondo = hotelRepository.findHotelById(id).getImg();
-        model.addAttribute("hotelimagen", fondo);
-
-        return "/hotel.html";
     }
 
     @PostMapping("/")
