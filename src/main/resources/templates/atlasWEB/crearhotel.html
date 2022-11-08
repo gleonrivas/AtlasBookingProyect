@@ -337,11 +337,11 @@
             <h2>Horarios de recepción</h2>
             <div class="julieta">
                 <label class="form-label" for="recepcion">Apertura de recepción: (HH:MM:SS)</label>
-                <input class="myinput" style="width: max-content" type="text"  id="recepcion" name="recepcion" th:field="*{hc_recepcion}" />
+                <input class="myinput" style="width: max-content" type="time" step="1" id="recepcion" name="recepcion" th:field="*{hc_recepcion}" />
             </div>
             <div class="julieta">
                 <label class="form-label" for="recepcion1">Cierre de recepción: (HH:MM:SS)</label>
-                <input class="myinput" style="width: max-content" type="text" id="recepcion1" name="recepcion" th:field="*{hf_recepcion}" />
+                <input class="myinput" style="width: max-content" type="time" step="1" id="recepcion1" name="recepcion" th:field="*{hf_recepcion}" />
             </div>
         </div>
 
@@ -410,12 +410,13 @@
 
         <div class="abss">
             <button class="link-buttom" type="submit">Guardar</button>
-            <a href="/usuario/inicio">
-                <button class="link-buttom">Volver</button>
-            </a>
+
         </div>
 
         </form>
+<a href="/usuario/inicio">
+    <button class="link-buttom">Volver</button>
+</a>
 </div>
 
 <footer class="lasth">
