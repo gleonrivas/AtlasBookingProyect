@@ -8,8 +8,6 @@
 </head>
 <body class="images-container">
 
-
-
 <style>
   /*FUENTES EXTERNAS*/
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
@@ -94,6 +92,9 @@
     transition: background 1s linear;
     animation: fade 4s infinite;
     font-family: Arial, sans-serif;
+  }
+  body::-webkit-scrollbar{
+    display: none;
   }
   /* FINALIZA BODY --------------------------------------------*/
   /* COMIENZA FINDER ------------------------------------------*/
@@ -233,20 +234,22 @@
   }
   /* FINALIZA FOOTER ------------------------------------------*/
   .error{
+    left: 0;
+    right: 0;
+    position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: auto;
-    margin-top: 10%;
+    width: max-content;
+    margin: -25% auto 0 auto;
 
   }
-
   .error > p{
-    background-color: indianred;
-    width: 241px;
+    background-color: #f9f3ff;
+    width: max-content;
     margin: auto 5px;
-    padding: 6.4px 21.3px;
-    color: white;
+    padding: 20px;
+    color: #ff0000;
     text-align: center;
     font-size: 15px;
     border-radius: 20px;
@@ -257,33 +260,36 @@
 <header class="mainh">
 
   <div class="lheader">
-    <a sec:authorize="isAnonymous()" th:href="@{/}">Buscar destino</a>
-    <!--<a sec:authorize="hasRole('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>-->
-    <a sec:authorize="isAuthenticated()" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
-    <a href="Descubre">Descubre</a>
+    <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+    <a th:href="@{/}">Buscar destino</a>
+    <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+    <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
   </div>
+
   <div class="cheader">
     <h1>Atlas</h1>
     <p>BOOKING</p>
   </div>
 
   <div class="lheader">
-    <a href="FacturasAdmin.html">Descubre</a>
+    <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+    <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+    <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
     <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
     <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
-    <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
 
   </div>
 
 </header>
+
 <div class="error" th:if="${param.fallo}">
-  <p>La fecha de entrada debe de ser anterior a la fecha de salida</p>
+  <p>🚫 La fecha de entrada debe de ser anterior a la fecha de salida</p>
 </div>
 <div class="error" th:if="${param.fallo2}">
-  <p>Solo está disponible la reserva con un día de diferencia</p>
+  <p>🚫 Solo está disponible la reserva con un día de diferencia</p>
 </div>
 <div class="error" th:if="${param.falloFecha}">
-  <p>Por favor, introduzca una fecha</p>
+  <p>🚫 Por favor, introduzca una fecha</p>
 </div>
 
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">

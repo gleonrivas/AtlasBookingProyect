@@ -8,6 +8,7 @@
     <title>Inicio de sesión</title>
 </head>
 <body>
+
 <style th:inline="text">
     /*FUENTES EXTERNAS*/
     @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
@@ -46,9 +47,9 @@
         margin-top: 5px;
         text-align: center;
         letter-spacing: 10px;
-        font-family: Arial, serif;
         font-size: 12px;
         padding: 0;
+        font-family: Arial,sans-serif;
     }
     .lheader{
         display: flex;
@@ -67,7 +68,7 @@
         border-radius: 10px;
         border-style: none;
         background-color: azure;
-        padding: 4% 2%;
+        padding: 7px;
         color: black;
         font-size: 14px;
         margin: auto;
@@ -94,6 +95,9 @@
         transition: background 1s linear;
         animation: fade 4s infinite;
         font-family: Arial, sans-serif;
+    }
+    body::-webkit-scrollbar{
+        display: none;
     }
     h1{
         font-family: 'PT Sans', sans-serif;
@@ -364,19 +368,26 @@
 <header class="mainh">
 
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <a href="Descubre">Descubre</a>
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
     </div>
+
     <div class="cheader">
         <h1>Atlas</h1>
         <p>BOOKING</p>
     </div>
+
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><p class="link-buttom">Ver perfil</p></a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/registro}"><button class="link-buttom">Regístrate</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+
     </div>
+
 </header>
 
 <div class="hotel-container">

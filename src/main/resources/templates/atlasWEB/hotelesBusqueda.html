@@ -66,7 +66,7 @@
         border-radius: 10px;
         border-style: none;
         background-color: azure;
-        padding: 2%;
+        padding: 7px;
         color: black;
         font-size: 14px;
         margin: auto;
@@ -93,7 +93,9 @@
         animation: fade 4s ease-in-out;
         font-family: Arial, sans-serif;
     }
-
+    body::-webkit-scrollbar{
+        display: none;
+    }
     /* FINALIZA BODY --------------------------------------------*/
     /* COMIENZA FINDER ------------------------------------------*/
     .intro{
@@ -347,7 +349,7 @@
         border-radius: 10px;
         color: white;
         border: none;
-        font-size: 12px;
+        font-size: 14px;
     }
     .hotelCard > button > a{
         color: white;
@@ -370,22 +372,28 @@
 <header class="mainh">
 
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <a href="Descubre">Descubre</a>
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
     </div>
+
     <div class="cheader">
         <h1>Atlas</h1>
         <p>BOOKING</p>
     </div>
 
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><p class="link-buttom">Ver perfil</p></a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+
     </div>
 
 </header>
+
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
     <div class="entry-group">
         <label for="fecha_inicio">Fecha de entrada</label>

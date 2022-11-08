@@ -6,8 +6,6 @@
 </head>
 <body class="images-container">
 
-
-
 <style>
     /*FUENTES EXTERNAS*/
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
@@ -95,6 +93,9 @@
         box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
 
     }
+    body::-webkit-scrollbar{
+        display: none;
+    }
     h1{
         font-family: 'PT Sans', sans-serif;
     }
@@ -173,7 +174,7 @@
     }
     .formulario{
         display: flex;
-        margin: 7% auto 10% auto;
+        margin: 0 auto;
         width: 350px;
         justify-content: center;
         flex-direction: column;
@@ -213,6 +214,56 @@
         font-size: 14px;
 
     }
+    .container{
+        width: available;
+        padding: 5% 10%;
+        display: flex;
+        flex-direction: row;
+
+    }
+    .maria{
+        overflow-y: scroll;
+        overflow-x: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        width: max-content;
+
+    }
+    .maria::-webkit-scrollbar{
+        display: none;
+    }
+    .scrollDown{
+        width: 100%;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 400px;
+
+    }
+    .reserva-card{
+        width: max-content;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background-color: white;
+        border-radius: 25px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    .sonia{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        width: max-content;
+        margin-left:10px;
+    }
+    .sonia > p{
+        margin: 5px 0;
+    }
+
+
     /* FINALIZA BODY PERFIL -------------------------------------*/
 
 </style>
@@ -220,71 +271,78 @@
 <header class="mainh">
 
     <div class="lheader">
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
         <a th:href="@{/}">Buscar destino</a>
-        <!--<a sec:authorize="hasRole('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>-->
-        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
-        <a href="Descubre">Descubre</a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
     </div>
+
     <div class="cheader">
         <h1>Atlas</h1>
         <p>BOOKING</p>
     </div>
 
     <div class="lheader">
-        <a href="FacturasAdmin.html">Descubre</a>
-        <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
-        <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+
     </div>
 
 </header>
 
+    <div class="container">
+        <form class="formulario" name="form" th:action="@{/usuario/perfil}" th:object="${usuario}" method="post">
+            <h1>Tu perfil</h1>
+            <div class="componente-registro">
+                <label class="parform" for="nombre">Nombre</label>
+                <input class="parform" type="text" id="nombre" th:value="${usuario.nombre}" th:field="*{nombre}"/>
+            </div>
+            <div class="componente-registro">
+                <label class="parform" for="apellido">Apellidos</label>
+                <input class="parform" type="text" id="apellido" th:value="${usuario.apellido}"  th:field="*{apellido}" />
+            </div>
+            <div class="componente-registro">
+                <label class="parform" for="dni">DNI</label>
+                <input class="parform" type="text" id="dni" th:value="${usuario.dni}"  th:field="*{dni}" />
+            </div>
+            <div class="componente-registro">
+                <label class="parform" for="correo">Email</label>
+                <input class="parform" type="email" id="correo" th:value="${usuario.email}"  th:field="*{email}"/>
+            </div>
+            <div class="componente-registro">
+                <label class="parform" for="tel" >Teléfono</label>
+                <input class="parform" type="tel" id="tel"  th:value="${usuario.telefono}" th:field="*{telefono}"/>
+            </div>
+            <div class="componente-registro">
+                <label class="parform" for="contrasena" >Contraseña:</label>
+                <input class="parform" type="text" id="contrasena" th:value="${usuario.contrasena}" th:field="*{contrasena}"/>
+            </div>
+            <button class="submit" type ="submit" text="Siguiente">Actualizar datos</button>
+        </form>
+        <div sec:authorize="hasAuthority('usuario')" class="formulario maria">
+            <h1>Reservas realizadas</h1>
+            <div class="scrollDown">
+                <div class="reserva-card" th:each="r : ${reservas}">
+                    <div class="sonia">
+                        <p th:text="${'Entrada: ' + r.f_entrada}"></p>
+                        <p th:text="${'Salida: ' + r.f_salida}"></p>
+                    </div>
+                    <div class="sonia">
+                        <p th:text="${'Dias totales: ' + r.n_dias}"></p>
+                        <p th:text="${'Numero de personas: ' + r.n_personas}"></p>
+                    </div>
+                    <div class="sonia">
+                        <p th:text="${'Tipo de pensión: ' + r.t_pension}"></p>
+                        <p th:text="${'Precio final: ' + r.precio_total_dias + ' €'}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-
-    <form class="formulario" name="form" th:action="@{/usuario/perfil}" th:object="${usuario}" method="post">
-        <div class="componente-registro">
-            <label class="parform" for="nombre">Nombre</label>
-            <input class="parform" type="text" id="nombre" th:value="${usuario.nombre}" th:field="*{nombre}"/>
-        </div>
-        <div class="componente-registro">
-            <label class="parform" for="apellido">Apellidos</label>
-            <input class="parform" type="text" id="apellido" th:value="${usuario.apellido}"  th:field="*{apellido}" />
-        </div>
-        <div class="componente-registro">
-            <label class="parform" for="dni">DNI</label>
-            <input class="parform" type="text" id="dni" th:value="${usuario.dni}"  th:field="*{dni}" />
-        </div>
-        <div class="componente-registro">
-            <label class="parform" for="correo">Email</label>
-            <input class="parform" type="email" id="correo" th:value="${usuario.email}"  th:field="*{email}"/>
-        </div>
-        <div class="componente-registro">
-            <label class="parform" for="tel" >Teléfono</label>
-            <input class="parform" type="tel" id="tel"  th:value="${usuario.telefono}" th:field="*{telefono}"/>
-        </div>
-        <div class="componente-registro">
-            <label class="parform" for="contrasena" >Contraseña:</label>
-            <input class="parform" type="text" id="contrasena" th:value="${usuario.contrasena}" th:field="*{contrasena}"/>
-        </div>
-        <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
-        <h1>Reservas realizadas</h1>
-        <div th:each="r : ${reservas}">
-            <p>Fecha entrada</p>
-            <p th:text="${r.f_entrada}"></p>
-            <p>Fecha salida</p>
-            <p th:text="${r.f_salida}"></p>
-            <p>Numero de dias</p>
-            <p th:text="${r.n_dias}"></p>
-            <p>Personas</p>
-            <p th:text="${r.n_personas}"></p>
-            <p>Tipo de pension</p>
-            <p th:text="${r.t_pension}"></p>
-            <p>Precio Total</p>
-            <p th:text="${r.precio_total_dias}"></p>
-            ----------------------------------------
-        </div>
-    </form>
-<a th:href="@{/}"><button>Volver</button></a>
 
 <footer class="lasth">
 
