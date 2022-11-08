@@ -20,7 +20,7 @@ public class Pension {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", length = 10)
-    private Double id;
+    private Integer id;
     //solo alojamiento
     @Column(name = "sa")
     private Double sa;

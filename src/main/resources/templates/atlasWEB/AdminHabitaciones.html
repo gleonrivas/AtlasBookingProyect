@@ -87,6 +87,8 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        transition: background 1s linear;
+        animation: fade 4s infinite;
         font-family: Arial, sans-serif;
         -webkit-backdrop-filter: blur(25px);
         background: linear-gradient(324deg, rgba(143,154,255,1) 0%, rgb(183, 189, 243) 100%);
@@ -94,6 +96,9 @@
         border-radius: 25px;
         box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
 
+    }
+    body::-webkit-scrollbar{
+        display: none;
     }
     h1{
         font-family: 'PT Sans', sans-serif;
@@ -166,160 +171,123 @@
 
     }
     /* FINALIZA FOOTER ------------------------------------------*/
-    /* COMINEZA HOTEL BODY --------------------------------------*/
+    /* COMINEZA HOTEL-EDIT --------------------------------------*/
     .tituloyboton{
-        margin: 50px auto 0 auto;
-        width: 85%;
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
-        color: black;
-        justify-content: space-between;
-        font-family: 'PT Sans', sans-serif;
-
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-evenly;
+        margin: 4% auto;
     }
-    .tituloyboton > h1{
-        margin: 0;
-    }
-
-    .hotel-card{
-        color: black;
-        padding-left: 0;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        width: 85%;
-        margin: 50px auto;
-        justify-content: left;
-        border: none 2px rgba(255, 255, 255, 0.3);
-        border-radius: 35px;
-        -webkit-backdrop-filter: blur(100px);
-        backdrop-filter: blur(100px);
-        background-color: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 30px 100px rgba(0, 0, 0, 0.73);
-
-    }
-    .hotel-info{
-        padding-left: 0;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+    h2{
+        margin: 0.5rem auto;
         width: max-content;
-        border-radius: 35px 0 0 35px;
-    }
-    .hotel-img{
-        margin-left: 0;
-        width: 300px;
-        height: 300px;
-        border-radius: 35px;
-    }
-    .hotel-img >img{
-        margin-left: 0;
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 35px 0 0 35px;
-    }
-    .hotel-data{
-        margin: auto 0 auto 50px;
-    }
-    .destacados{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        margin: 0;
-        width: max-content;
-        align-content: center;
-        justify-content: space-between;
-    }
-    .destacados > h1{
-        width: max-content;
-        margin: 0;
-        font-family: 'PT Sans', sans-serif;
-
-    }
-    .estrellas{
-        background-color: black;
-        font-size: 12px;
-        padding: 5px 10px;
-        border-radius: 20px;
-        width: fit-content;
-        height: min-content;
-        margin: auto 15px;
-    }
-    .estrellas > p{
-        margin: 0;
     }
 
 
-    .hotel-services{
-        color: #000000;
+    .container{
+        width: 200px;
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
-        width: auto;
-        margin-left: 50px;
-        margin-top: 41.5px;
-    }
-    .hotel-services > h1{
-        margin-top: 0;
-        font-family: 'PT Sans', sans-serif;
+        margin: 3% 50px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+        padding: 20px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.48);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
 
     }
-    .hotel-services-p{
+
+
+    .card{
         display: flex;
         flex-direction: row;
-        width: available;
         flex-wrap: wrap;
-        margin-right: 50px;
-        gap:10px;
-    }
-    .hotel-services-p > p{
-        align-items: center;
-        margin: 0;
-        width: max-content;
-        height: fit-content;
-        background-color: black;
-        padding: 10px 15px;
-        border-radius: 25px;
-        color: white;
-        font-size: 13px;
+        width: 90%;
+        margin: 2% auto;
+        justify-content: space-evenly;
     }
 
-    .hotel-controllers{
+
+    .correcto{
+        left: 0;
+        right: 0;
+        margin-top: -45%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .correcto > p{
+        padding: 15px;
+        background-color: #e6ffe6;
+        font-size: 14px;
+        color: green;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+
+    }
+
+    .notmy{
+        margin: 10px auto 10px 0;
+
+    }
+    input{
+        height: 20px;
+        padding: 1% 1% 1% 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 13px;
+        margin: auto 5px auto 0px;
+        width: min-content;
+    }
+
+
+    label{
+        margin: 0;
+    }
+
+    .julieta{
+        width: 100%;
+        margin: 0 0 0 auto;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        margin: 0 auto;
+        justify-content: space-between;
     }
-
-    .boton{
-        padding: 5px 15px;
-        font-size: 15px;
-        border-radius: 10px;
-        margin-right: 10px;
-        border:none;
-        width: auto;
-        height: 35px;
-        transition: all 0.2s ease;
+    .julieta > label{
+        margin: auto 10px auto 0;
+        width:max-content;
     }
-    .boton:hover{
-        scale: 1.1;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    .abss{
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        position: absolute;
+        right: 0;
+        margin-top: -5%;
+        margin-right: 11%;
     }
-
-    .editar{
-        background-color: rgb(255, 255, 255);
+    p{
+        margin: 0.5rem 0;
     }
-    .eliminar{
-        background-color: rgba(255, 0, 0, 1);
-        color: white;
+    .botones{
+        justify-content: space-evenly;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
     }
-    .habitaciones{
-        background-color: black;
-        color: white;
+    h1{
+        margin: 0;
     }
-    /* FINALIZA HOTEL BODY --------------------------------------*/
+    /* FINALIZA HOTEL-EDIT --------------------------------------*/
 
 </style>
 
@@ -340,74 +308,85 @@
 
 
 
-<div id="tituloyboton">
+<div class="tituloyboton">
     <h1>Tus habitaciones</h1>
     <a th:href="@{/habitacion/nueva/{id_hotel}(id_hotel=${hotel.id})}">
-        <button type="button">Añadir habitación</button>
+        <button class="link-buttom" style="width: max-content" type="button">Añadir habitación</button>
+    </a>
+    <a th:href="@{/usuario/inicio/}">
+        <button class="link-buttom" style="width: max-content" type="button">Volver</button>
     </a>
 </div>
+
+
 <div id="confirmacion" th:if="${habitaciones.size == 0}">
-    <h2 style=" text-align: center">Este hotel no tiene actualmente habitaciones, por favor, cree su primera habitación.</h2>
-    <br>
+    <h2>Este hotel no tiene actualmente habitaciones, por favor, cree su primera habitación.</h2>
 </div>
-<div id="confirmacion2" th:if="${habitaciones.size > 0}">
-    <div class="marcohotel" th:each="habitacion : ${habitaciones}">
-        <div class="conjunto">
-            <div class="contenedores">
-                <h2>Habitación</h2>
+
+<div class="container" style="display: flex;flex-direction: row;width: min-content; margin: 0; background-color: transparent; border: none; box-shadow: none">
+    <div class="container" th:if="${habitaciones.size > 0}" th:each="habitacion : ${habitaciones}">
+        <div class="contenedores">
+            <h2>Habitación</h2>
+            <div class="julieta">
                 <p> Aforo máximo: </p>
                 <p th:text="${habitacion.n_max_personas}"></p>
+            </div>
+            <div class="julieta">
                 <p> Camas individuales: </p>
                 <p th:text="${habitacion.c_individual}"></p>
+            </div>
+            <div class="julieta">
                 <p> Camas dobles: </p>
                 <p th:text="${habitacion.c_doble}"></p>
+            </div>
+            <div class="julieta">
                 <p> Precio Base: </p>
                 <p th:text="${habitacion.precio_base}"></p>
-
             </div>
-            <div class="contenedores" id="contenedor2">
-                <div class="listas">
-                    <p>lista de comodidades activas</p>
-                    <ul>
-                        <li>
-                            <p> baño: </p>
-                            <input type="checkbox" th:checked="${habitacion.bano} ">
-                        </li>
-                        <li>
-                            <p> Vistas: </p>
-                            <input type="checkbox" th:checked="${habitacion.vistas} ">
-                        </li>
-
-                    </ul>
+            <div style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-evenly">
+                <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                    <input type="checkbox" th:checked="${habitacion.bano} ">
+                    <p> Baño </p>
                 </div>
-
-
+                <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                    <input type="checkbox" th:checked="${habitacion.vistas} ">
+                    <p> Vistas </p>
+                </div>
             </div>
-            <div class="botones">
-                <a th:href="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}">
-                    <button type="submit">Editar</button>
-                </a>
-                <form method="delete" th:action="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
-                <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
-                    <button  type="submit">Eliminar</button>
-                </a>
 
+        </div>
+        <div class="botones">
+
+            <a th:href="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}">
+                <button class="link-buttom" type="submit">Editar</button>
+            </a>
+
+            <div th:if="${#lists.contains(listaid,habitacion.id)}">
+                <button class="link-buttom" type="submit" disabled>Eliminar</button>
+                <small style="width: 100%; text-align: center">Esta habitación está reservada, no se puede
+                    eliminar</small>
+            </div>
+            <div th:if="${!#lists.contains(listaid,habitacion.id)}" >
+                <form th:object="${habitacion}" th:method="post">
+                    <input type="hidden" th:value="${habitacion.id}" th:attr="name='id'"/>
+                    <button class="link-buttom" type="submit">Eliminar</button>
                 </form>
-                <a th:href="@{/temporada/crear/{id_habitacion}(id_habitacion=${habitacion.id})}">
-                    <button type="submit">Añadir Temporadas</button>
+            </div>
+
+            <div th:if="${#lists.contains(temporadas,habitacion.temporada)}">
+                <button class="link-buttom" type="submit" disabled>Añadir Temporadas</button>
+                <small >Su hotel ya tiene el precio establecido</small>
+            </div>
+            <div th:if="${!#lists.contains(temporadas,habitacion.temporada)}" >
+                <a th:href="@{/temporada/crear/(id_habitacion=${habitacion.id})}">
+                    <button class="link-buttom" type="submit">Añadir Temporadas</button>
                 </a>
             </div>
+
         </div>
-
-
-        <div class="imagenes">
-            <img src="">
-            <p>aqui van imagenes</p>
-        </div>
-
     </div>
-
 </div>
+
 <footer class="lasth">
 
     <div class="promote-hotel">

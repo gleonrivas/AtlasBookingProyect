@@ -36,14 +36,14 @@
 <br>
 <h3 style="margin: auto;">Introduzca el precio según la temporada</h3>
 <br>
-<form class="card" style="margin: auto" th:action="@{/temporada/crear/${habitacion.id}}" th:object="${temporada}" method="post">
+<form class="card" style="margin: auto" th:action="@{/temporada/crear/}" th:object="${temporada}" method="post">
 
-        <div class="form-group">
-            <label for="precioInvierno">Precio de Invierno</label>
-            <input type="number" class="form-control" id="precioInvierno"  placeholder="Introduce el precio" th:field="*{precioInvierno}">
-            <small id="inviernodetalle" class="form-text text-muted">Esta cantidad se añadirá por día
-                y huésped al precio final</small>
-        </div>
+    <div class="form-group">
+        <label for="precioInvierno">Precio de Invierno</label>
+        <input type="number" class="form-control" id="precioInvierno"  placeholder="Introduce el precio" th:field="*{precioInvierno}">
+        <small id="inviernodetalle" class="form-text text-muted">Esta cantidad se añadirá por día
+            y huésped al precio final</small>
+    </div>
 
     <div class="form-group">
         <label for="precioPrimavera">Precio de Primavera</label>
@@ -66,12 +66,12 @@
             y huésped al precio final</small>
     </div>
 
-
+    <input type="hidden" th:value="${id_habitacion}" th:attr="name='id_habitacion'"/>
     <button type="submit" class="btn btn-primary">Guardar</button>
 
 </form>
 <br>
-<a  th:href="@{/hotel/habitacion/{id_habitacion}(id_habitacion=${habitacion.id})}">
+<a  th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
     <button  type="submit" class="btn btn-primary">Volver</button></a>
 <br>
 <footer class="lasth">

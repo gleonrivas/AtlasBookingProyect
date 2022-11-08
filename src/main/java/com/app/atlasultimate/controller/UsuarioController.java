@@ -3,9 +3,7 @@ package com.app.atlasultimate.controller;
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
 import com.app.atlasultimate.model.Registro;
 import com.app.atlasultimate.model.Usuario;
-import com.app.atlasultimate.repository.HotelRepository;
-import com.app.atlasultimate.repository.ReservaRepository;
-import com.app.atlasultimate.repository.UsuarioRepository;
+import com.app.atlasultimate.repository.*;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.UsuarioService;
@@ -31,6 +29,11 @@ public class UsuarioController {
     private HotelService servicio;
     @Autowired
     private HabitacionService servicioHab;
+    @Autowired
+    private HabitacionRepository habitacionRepository;
+
+    @Autowired
+    private PensionRepository pensionRepository;
 
 //PAGINA INICIO ROL ADMIN
     @GetMapping("inicio")
@@ -38,7 +41,9 @@ public class UsuarioController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
-
+        List<Integer> listahabidhotel = habitacionRepository.idHotelPorHabitacion();
+        modelo.addAttribute("id_hoteles", pensionRepository.listarPensionporidhotel());
+        modelo.addAttribute("listhab",listahabidhotel);
         modelo.addAttribute("hoteles", repository.findHotelById_usuario(usuario.getId()));
         return "/InicioAdministrador.html";
     }
