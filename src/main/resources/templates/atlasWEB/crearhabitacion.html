@@ -336,8 +336,8 @@
         <div class="julieta" style="justify-content: space-around; margin-top: 25px">
             <button class="link-buttom" style="margin: 0;" type="submit" text="Siguiente">Siguiente</button>
             <div>
-                <a href="/hotel/habitacion">
-                    <button class="link-buttom">Volver</button>
+                <a class="link-buttom" style="text-decoration: none; padding: 10px" th:href="@{/hotel/habitacion/{id}(id =${hotel.id})}">
+                    Volver
                 </a>
             </div>
         </div>
