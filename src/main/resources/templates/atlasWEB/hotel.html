@@ -92,8 +92,6 @@
         background-image: url([[${hotelimagen}]]);
         background-repeat: no-repeat;
         background-attachment: fixed;
-        transition: background 1s linear;
-        animation: fade 4s infinite;
         font-family: Arial, sans-serif;
     }
     body::-webkit-scrollbar{
@@ -453,7 +451,7 @@
 
 
 
-<form class="formulario" sec:authorize="isAuthenticated()" th:action="@{#}" th:object="${review}" method="post">
+<form class="formulario" sec:authorize="hasAuthority('usuario')" th:action="@{#}" th:object="${review}" method="post">
     <div class="componente-registro">
 
         <h2>Comenta algo,  <span th:text="${usuario.nombre}"></span></h2>

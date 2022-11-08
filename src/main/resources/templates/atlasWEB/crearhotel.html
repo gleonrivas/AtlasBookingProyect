@@ -7,9 +7,6 @@
     <title>Atlas Booking</title>
 </head>
 <body class="images-container">
-
-
-
 <style>
     /*FUENTES EXTERNAS*/
     @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
@@ -97,6 +94,9 @@
         box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
 
     }
+    body::-webkit-scrollbar{
+        display: none;
+    }
     h1{
         font-family: 'PT Sans', sans-serif;
     }
@@ -168,160 +168,109 @@
 
     }
     /* FINALIZA FOOTER ------------------------------------------*/
-    /* COMINEZA HOTEL BODY --------------------------------------*/
-    .tituloyboton{
-        margin: 50px auto 0 auto;
-        width: 85%;
+    /* COMINEZA HOTEL-EDIT --------------------------------------*/
+    .titulo{
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
-        color: black;
-        justify-content: space-between;
-        font-family: 'PT Sans', sans-serif;
-
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-evenly;
+        margin-top: 4%;
     }
-    .tituloyboton > h1{
+    .titulo > h1{
         margin: 0;
     }
 
-    .hotel-card{
-        color: black;
-        padding-left: 0;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        width: 85%;
-        margin: 50px auto;
-        justify-content: left;
-        border: none 2px rgba(255, 255, 255, 0.3);
-        border-radius: 35px;
-        -webkit-backdrop-filter: blur(100px);
-        backdrop-filter: blur(100px);
-        background-color: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 30px 100px rgba(0, 0, 0, 0.73);
 
-    }
-    .hotel-info{
-        padding-left: 0;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        width: max-content;
-        border-radius: 35px 0 0 35px;
-    }
-    .hotel-img{
-        margin-left: 0;
+    .container{
         width: 300px;
-        height: 300px;
-        border-radius: 35px;
-    }
-    .hotel-img >img{
-        margin-left: 0;
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 35px 0 0 35px;
-    }
-    .hotel-data{
-        margin: auto 0 auto 50px;
-    }
-    .destacados{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        margin: 0;
-        width: max-content;
-        align-content: center;
-        justify-content: space-between;
-    }
-    .destacados > h1{
-        width: max-content;
-        margin: 0;
-        font-family: 'PT Sans', sans-serif;
-
-    }
-    .estrellas{
-        background-color: black;
-        font-size: 12px;
-        padding: 5px 10px;
-        border-radius: 20px;
-        width: fit-content;
-        height: min-content;
-        margin: auto 15px;
-    }
-    .estrellas > p{
-        margin: 0;
-    }
-
-
-    .hotel-services{
-        color: #000000;
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
-        width: auto;
-        margin-left: 50px;
-        margin-top: 41.5px;
+        margin: 1% auto;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+        padding: 20px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.48);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
     }
-    .hotel-services > h1{
-        margin-top: 0;
-        font-family: 'PT Sans', sans-serif;
 
-    }
-    .hotel-services-p{
+
+    .card{
         display: flex;
         flex-direction: row;
-        width: available;
         flex-wrap: wrap;
-        margin-right: 50px;
-        gap:10px;
-    }
-    .hotel-services-p > p{
-        align-items: center;
-        margin: 0;
-        width: max-content;
-        height: fit-content;
-        background-color: black;
-        padding: 10px 15px;
-        border-radius: 25px;
-        color: white;
-        font-size: 13px;
+        width: 90%;
+        margin: 2% auto;
     }
 
-    .hotel-controllers{
+
+    .correcto{
+        left: 0;
+        right: 0;
+        margin-top: -45%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .correcto > p{
+        padding: 15px;
+        background-color: #e6ffe6;
+        font-size: 14px;
+        color: green;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+
+    }
+
+    .notmy{
+        margin: 10px auto 10px 0;
+
+    }
+    .myinput{
+        height: 20px;
+        padding: 1% 1% 1% 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 13px;
+        margin: 5px 0 ;
+        width: auto;
+    }
+
+    h2{
+        margin: 1rem 0;
+    }
+    label{
+        margin: 0;
+    }
+
+    .julieta{
+        width: 100%;
+        margin: 0;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        margin: 0 auto;
+        justify-content: space-between;
     }
-
-    .boton{
-        padding: 5px 15px;
-        font-size: 15px;
-        border-radius: 10px;
-        margin-right: 10px;
-        border:none;
-        width: auto;
-        height: 35px;
-        transition: all 0.2s ease;
+    .julieta > label{
+        margin: auto 10px auto 0;
+        width:max-content;
     }
-    .boton:hover{
-        scale: 1.1;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    .abss{
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        position: absolute;
+        right: 0;
+        margin-top: -5%;
+        margin-right: 11%;
     }
-
-    .editar{
-        background-color: rgb(255, 255, 255);
-    }
-    .eliminar{
-        background-color: rgba(255, 0, 0, 1);
-        color: white;
-    }
-    .habitaciones{
-        background-color: black;
-        color: white;
-    }
-    /* FINALIZA HOTEL BODY --------------------------------------*/
+    /* FINALIZA HOTEL-EDIT --------------------------------------*/
 
 </style>
 
@@ -339,111 +288,136 @@
     </div>
 
 </header>
+<div class="titulo">
 
-
-<h1>¡Hola ...ADMIN!</h1>
-<div style="width: 90%; margin: auto">
-
-    <form class="card" style="padding:2%"  name="form" th:action="@{/hotel/nuevo}" th:object="${hotel}" method="post" enctype="multipart/form-data">
-        <h2>Información de alojamiento</h2>
-        <label class="form-label" for="nombre">¿Cómo se llama tu hotel?</label>
-        <input class="form-control" type="text" id="nombre" name="nombre" th:field="*{nombre}"/>
-        <label class="form-label" for="estrellas">¿Cuántas estrellas tiene tu hotel?</label>
-        <input class="form-control" type="number" id="estrellas" name="estrellas" th:field="*{estrellas}"/>
-        <label class="form-label" for="tel" >Número de teléfono</label>
-        <input class="form-control" type="text" id="tel" name="tel" th:field="*{telefono}"/>
-
-        <h2>Ubicación</h2>
-        <label class="form-label" for="direccion">Dirección</label>
-        <input class="form-control" type="text" id="direccion" name="direccion" th:field="*{direccion}"/>
-        <label class="form-label" for="pais">País</label>
-        <select class="form-select" type="text" id="pais" name="Países" th:field="*{pais}">
-            <option value="España">España</option>
-            <option value="Francia">Francia</option>
-            <option value="Hungria">Hungría</option>
-            <option value="Italia">Italia</option>
-            <option value="Alemania">Alemania</option>
-        </select>
-        <label class="form-label" for="ciudad">Ciudad</label>
-        <select class="form-select" type="text" id="ciudad" name="Ciudades" th:field="*{ciudad}">
-            <option value="Córdoba">Córdoba</option>
-            <option value="Sevilla">Sevilla</option>
-            <option value="Madrid">Madrid</option>
-        </select>
-        <label class="form-label" for="cp">Email</label>
-        <input class="form-control" type="email" id="cp" name="cod" th:field="*{email}"/>
-
-        <h2>Instalaciones y servicios</h2>
-        <label class="form-label" for="multilengua">¿Se habla más de una lengua?</label>
-        <input class="form-check-label"  type="checkbox" id="multilengua" name="accesibilidad"  th:checked="*{multilengua} ? true : false "/>
-
-        <label class="form-label" for="accesibilidad">Accesibilidad para silla de ruedas</label>
-        <input class="form-check-label"  type="checkbox" id="accesibilidad" name="accesibilidad"  th:checked="*{accesibilidad} ? true : false "/>
-
-        <label class="form-label" for="espectaculos">Espectáculos</label>
-        <input class="form-check-label"   type="checkbox" id="espectaculos" name="espectaculos" th:checked="*{espectaculos}" />
-
-        <label class="form-label" for="piscina">Piscina</label>
-        <input class="form-check-label"  type="checkbox" id="piscina" name="piscina" th:checked="*{piscina}" />
-
-        <label class="form-label" for="patioInterior">Patio</label>
-        <input class="form-check-label"   type="checkbox" id="patioInterior" name="patio" th:checked="*{patio}"/>
-
-        <label class="form-label" for="tours">Tours</label>
-        <input class="form-check-label"  type="checkbox" id="tours" name="tours" th:checked="*{tours}" />
-
-        <label class="form-label" for="servicioHabitaciones">Servicio de habitaciones</label>
-        <input class="form-check-label" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:checked="*{s_habitacion}"/>
-
-        <label class="form-label" for="comedor">Comedor</label>
-        <input class="form-check-label"  type="checkbox" id="comedor" name="comedor" th:checked="*{comedor}"/>
-
-        <label class="form-label" for="terraza">Terraza</label>
-        <input class="form-check-label"  type="checkbox" id="terraza" name="terraza" th:checked="*{terraza}" />
-
-        <label class="form-label" for="servicioTransporte">Servicio de transporte</label>
-        <input class="form-check-label"   type="checkbox" id="servicioTransporte" name="servicioTransporte" th:checked="*{s_transporte}" />
-
-        <label class="form-label" for="aparcamiento">Parking</label>
-        <input class="form-check-label" type="checkbox" id="aparcamiento" name="aparcamiento" th:checked="*{parking}" />
-
-        <label class="form-label" for="mascotas">Mascotas</label>
-        <input class="form-check-label" type="checkbox" id="mascotas" name="mascotas" th:checked="*{mascotas}"/>
-
-        <h2>Horarios de recepción</h2>
-        <label class="form-label" for="recepcion">Hora de apertura de recepción: (HH:MM:SS)</label>
-        <input class="form-control"   type="text" id="recepcion" name="recepcion" th:field="*{hc_recepcion}" />
-
-        <label class="form-label" for="recepcion1">Hora de cierre de recepción: (HH:MM:SS)</label>
-        <input class="form-control"  type="text" step="1" id="recepcion1" name="recepcion" th:field="*{hf_recepcion}" />
-
-        <h2>Imágenes del alojamiento</h2>
-        <label>Photos: </label>
-        <input type="file" name="file" id="file" accept="image/png, image/jpeg, image/jpg"/>
-
-        <h2>Condiciones</h2>
-        <label class="form-label" for="cancelacionGratuita">Cancelación gratuita</label>
-        <input class="form-check-label" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita" th:checked="*{cancelacion_g}" />
-        <!-- <label class="parform" for="pago" type="ciudad">Escoge la preferencia de pago</label>
-       - <select class="parform" type="text" id="pago" name="prefPago" th:field="*{preferenciaPago}">
-             <option value="Recepcion">En Recepción</option>
-             <option value="Atlas">By Atlas</option>
-         </select>-->
-        <br>
-         <button style="margin: auto; width: 30%;" class="btn btn-success" type="submit">Guardar</button>
-    </form>
-
-    <br>
-    <div style="margin: auto; width: 30%;">
-        <a href="/usuario/inicio">
-        <button  class="btn btn-success" style=" width: 100%;">Volver</button>
-    </a>
-    </div>
-    <br>
-    <div id="confirmacion" th:if="${param.exito}">
-        Ha registrado su hotel correctamente. </div>
+    <h1>Creando un nuevo hotel</h1>
 
 </div>
+<div class="correcto" th:if="${param.exito}">
+    <p>✅ Se ha creado el hotel correctamente.</p>
+</div>
+    <form class="card"  name="form" th:action="@{/hotel/nuevo}" th:object="${hotel}" method="post" enctype="multipart/form-data">
+        <div class="container">
+            <h2>Información del hotel</h2>
+            <label class="form-label" for="nombre">¿Cómo se llama tu hotel?</label>
+            <input class="myinput" type="text" id="nombre" name="nombre" th:field="*{nombre}"/>
+            <label class="form-label" for="estrellas">¿Cuántas estrellas tiene tu hotel?</label>
+            <input class="myinput" type="number" id="estrellas" name="estrellas" th:field="*{estrellas}"/>
+            <label class="form-label" for="tel" >Número de teléfono</label>
+            <input class="myinput" type="text" id="tel" name="tel" th:field="*{telefono}"/>
+            <h2>Condiciones</h2>
+            <div>
+                <input class="notmy" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita" th:checked="*{cancelacion_g}" />
+                <label class="form-label" for="cancelacionGratuita">Cancelación gratuita</label>
+            </div>
+            <h2>Imágenes del alojamiento</h2>
+            <label>Foto: </label>
+            <input type="file" name="file" id="file" accept="image/png, image/jpeg, image/jpg"/>
+
+        </div>
+
+        <div class="container">
+            <h2>Ubicación</h2>
+            <div class="julieta">
+                <label class="form-label" for="direccion">Dirección</label>
+                <input class="myinput" type="text" id="direccion" name="direccion" th:field="*{direccion}"/>
+            </div>
+            <div class="julieta">
+                <label class="form-label" for="pais">País</label>
+                <input class="myinput" type="text" id="pais" name="Países" th:field="*{pais}">
+            </div>
+            <div class="julieta">
+                <label class="form-label" for="ciudad">Ciudad</label>
+                <input class="myinput" type="text" id="ciudad" name="Ciudades" th:field="*{ciudad}">
+            </div>
+            <div class="julieta">
+                <label class="form-label" for="cp">Email</label>
+                <input class="myinput" type="email" id="cp" name="cod" th:field="*{email}"/>
+            </div>
+            <h2>Horarios de recepción</h2>
+            <div class="julieta">
+                <label class="form-label" for="recepcion">Apertura de recepción:</label>
+                <input class="myinput" style="width: max-content" type="time" step="1" id="recepcion" name="recepcion" th:field="*{hc_recepcion}" />
+            </div>
+            <div class="julieta">
+                <label class="form-label" for="recepcion1">Cierre de recepción:</label>
+                <input class="myinput" style="width: max-content" type="time" step="1" id="recepcion1" name="recepcion" th:field="*{hf_recepcion}" />
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Instalaciones y servicios</h2>
+            <div>
+                <input class="notmy"  type="checkbox" id="multilengua" name="accesibilidad"  th:checked="*{accesibilidad} ? true : false "/>
+                <label class="form-label" for="multilengua">¿Se habla más de una lengua?</label>
+            </div>
+            <div>
+                <input class="notmy"  type="checkbox" id="accesibilidad" name="accesibilidad"  th:checked="*{accesibilidad} ? true : false "/>
+                <label class="form-label" for="accesibilidad">Accesibilidad para silla de ruedas</label>
+            </div>
+
+            <div>
+                <input class="notmy"   type="checkbox" id="espectaculos" name="espectaculos" th:checked="*{espectaculos}" />
+                <label class="form-label" for="espectaculos">Espectáculos</label>
+            </div>
+
+            <div>
+                <input class="notmy"  type="checkbox" id="piscina" name="piscina" th:checked="*{piscina}" />
+                <label class="form-label" for="piscina">Piscina</label>
+            </div>
+
+            <div>
+                <input class="notmy"   type="checkbox" id="patioInterior" name="patio" th:checked="*{patio}"/>
+                <label class="form-label" for="patioInterior">Patio</label>
+            </div>
+
+            <div>
+                <input class="notmy"  type="checkbox" id="tours" name="tours" th:checked="*{tours}" />
+                <label class="form-label" for="tours">Tours</label>
+            </div>
+
+            <div>
+                <input class="notmy" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:checked="*{s_habitacion}"/>
+                <label class="form-label" for="servicioHabitaciones">Servicio de habitaciones</label>
+            </div>
+
+            <div>
+                <input class="notmy"  type="checkbox" id="comedor" name="comedor" th:checked="*{comedor}"/>
+                <label class="form-label" for="comedor">Comedor</label>
+            </div>
+
+            <div>
+                <input class="notmy"  type="checkbox" id="terraza" name="terraza" th:checked="*{terraza}" />
+                <label class="form-label" for="terraza">Terraza</label>
+            </div>
+
+            <div>
+                <input class="notmy"   type="checkbox" id="servicioTransporte" name="servicioTransporte" th:checked="*{s_transporte}" />
+                <label class="form-label" for="servicioTransporte">Servicio de transporte</label>
+            </div>
+
+            <div>
+                <input class="notmy" type="checkbox" id="aparcamiento" name="aparcamiento" th:checked="*{parking}" />
+                <label class="form-label" for="aparcamiento">Parking</label>
+            </div>
+
+            <div>
+                <input class="notmy" type="checkbox" id="mascotas" name="mascotas" th:checked="*{mascotas}"/>
+                <label class="form-label" for="mascotas">Mascotas</label>
+            </div>
+
+        </div>
+
+        <div class="abss">
+            <button class="link-buttom" type="submit">Guardar</button>
+            <a th:href="@{/usuario/inicio}">
+                <button class="link-buttom">Volver</button>
+            </a>
+        </div>
+
+        </form>
+</div>
+
 <footer class="lasth">
 
     <div class="promote-hotel">
@@ -456,7 +430,7 @@
     <div class="middle-footer">
         <div class="cheader">
             <h1>Atlas</h1>
-            <p>BOOKING</p>
+            <p>ADMIN</p>
         </div>
         <div class="nets">
             <img src="/img/face.svg" alt="">
