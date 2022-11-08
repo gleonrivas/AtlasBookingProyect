@@ -313,6 +313,9 @@
     <a th:href="@{/habitacion/nueva/{id_hotel}(id_hotel=${hotel.id})}">
         <button class="link-buttom" style="width: max-content" type="button">Añadir habitación</button>
     </a>
+    <a th:href="@{/usuario/inicio/}">
+        <button class="link-buttom" style="width: max-content" type="button">Volver</button>
+    </a>
 </div>
 
 
@@ -358,15 +361,27 @@
                 <button class="link-buttom" type="submit">Editar</button>
             </a>
 
-            <form method="delete" th:action="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
-                <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
-                    <button  class="link-buttom" type="submit">Eliminar</button>
-                </a>
-            </form>
+            <div th:if="${#lists.contains(listaid,habitacion.id)}">
+                <button class="link-buttom" type="submit" disabled>Eliminar</button>
+                <small style="width: 100%; text-align: center">Esta habitación está reservada, no se puede
+                    eliminar</small>
+            </div>
+            <div th:if="${!#lists.contains(listaid,habitacion.id)}" >
+                <form th:object="${habitacion}" th:method="post">
+                    <input type="hidden" th:value="${habitacion.id}" th:attr="name='id'"/>
+                    <button class="link-buttom" type="submit">Eliminar</button>
+                </form>
+            </div>
 
-            <a th:href="@{/temporada/crear/{id_habitacion}(id_habitacion=${habitacion.id})}">
-                <button class="link-buttom" type="submit">Añadir Temporadas</button>
-            </a>
+            <div th:if="${#lists.contains(temporadas,habitacion.temporada)}">
+                <button class="link-buttom" type="submit" disabled>Añadir Temporadas</button>
+                <small >Su hotel ya tiene el precio establecido</small>
+            </div>
+            <div th:if="${!#lists.contains(temporadas,habitacion.temporada)}" >
+                <a th:href="@{/temporada/crear/(id_habitacion=${habitacion.id})}">
+                    <button class="link-buttom" type="submit">Añadir Temporadas</button>
+                </a>
+            </div>
 
         </div>
     </div>

@@ -332,16 +332,16 @@
 
 
         <div class="julieta" style="margin-top: 25px">
-            <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${idhotel})}">
-                <button class="link-buttom" >Volver</button>
-            </a>
-            <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${idhotel})}">
-                <button class="link-buttom" type="submit" text="Siguiente">Guardar</button>
-            </a>
+
+            <button class="link-buttom" type="submit" text="Siguiente">Guardar</button>
+
 
         </div>
 
     </form>
+    <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${idhotel})}">
+        <button class="link-buttom" >Volver</button>
+    </a>
 
 
 </div>
