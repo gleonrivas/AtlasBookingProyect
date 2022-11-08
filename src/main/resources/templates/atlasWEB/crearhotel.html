@@ -68,40 +68,40 @@
 
         <h2>Instalaciones y servicios</h2>
         <label class="form-label" for="multilengua">¿Se habla más de una lengua?</label>
-        <input class="form-check-label"  type="checkbox" id="multilengua" name="accesibilidad"  th:checked="*{multilengua} ? true : false "/>
+        <input class="form-check-label"  type="checkbox" id="multilengua" name="accesibilidad"  th:field="*{multilengua}  "/>
 
         <label class="form-label" for="accesibilidad">Accesibilidad para silla de ruedas</label>
-        <input class="form-check-label"  type="checkbox" id="accesibilidad" name="accesibilidad"  th:checked="*{accesibilidad} ? true : false "/>
+        <input class="form-check-label"  type="checkbox" id="accesibilidad" name="accesibilidad"  th:field="*{accesibilidad} "/>
 
         <label class="form-label" for="espectaculos">Espectáculos</label>
-        <input class="form-check-label"   type="checkbox" id="espectaculos" name="espectaculos" th:checked="*{espectaculos}" />
+        <input class="form-check-label"   type="checkbox" id="espectaculos" name="espectaculos" th:field="*{espectaculos}" />
 
         <label class="form-label" for="piscina">Piscina</label>
-        <input class="form-check-label"  type="checkbox" id="piscina" name="piscina" th:checked="*{piscina}" />
+        <input class="form-check-label"  type="checkbox" id="piscina" name="piscina" th:field="*{piscina}" />
 
         <label class="form-label" for="patioInterior">Patio</label>
-        <input class="form-check-label"   type="checkbox" id="patioInterior" name="patio" th:checked="*{patio}"/>
+        <input class="form-check-label"   type="checkbox" id="patioInterior" name="patio" th:field="*{patio}"/>
 
         <label class="form-label" for="tours">Tours</label>
-        <input class="form-check-label"  type="checkbox" id="tours" name="tours" th:checked="*{tours}" />
+        <input class="form-check-label"  type="checkbox" id="tours" name="tours" th:field="*{tours}" />
 
         <label class="form-label" for="servicioHabitaciones">Servicio de habitaciones</label>
-        <input class="form-check-label" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:checked="*{s_habitacion}"/>
+        <input class="form-check-label" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:field="*{s_habitacion}"/>
 
         <label class="form-label" for="comedor">Comedor</label>
-        <input class="form-check-label"  type="checkbox" id="comedor" name="comedor" th:checked="*{comedor}"/>
+        <input class="form-check-label"  type="checkbox" id="comedor" name="comedor" th:field="*{comedor}"/>
 
         <label class="form-label" for="terraza">Terraza</label>
-        <input class="form-check-label"  type="checkbox" id="terraza" name="terraza" th:checked="*{terraza}" />
+        <input class="form-check-label"  type="checkbox" id="terraza" name="terraza" th:field="*{terraza}" />
 
         <label class="form-label" for="servicioTransporte">Servicio de transporte</label>
-        <input class="form-check-label"   type="checkbox" id="servicioTransporte" name="servicioTransporte" th:checked="*{s_transporte}" />
+        <input class="form-check-label"   type="checkbox" id="servicioTransporte" name="servicioTransporte" th:field="*{s_transporte}" />
 
         <label class="form-label" for="aparcamiento">Parking</label>
-        <input class="form-check-label" type="checkbox" id="aparcamiento" name="aparcamiento" th:checked="*{parking}" />
+        <input class="form-check-label" type="checkbox" id="aparcamiento" name="aparcamiento" th:field="*{parking}" />
 
         <label class="form-label" for="mascotas">Mascotas</label>
-        <input class="form-check-label" type="checkbox" id="mascotas" name="mascotas" th:checked="*{mascotas}"/>
+        <input class="form-check-label" type="checkbox" id="mascotas" name="mascotas" th:field="*{mascotas}"/>
 
         <h2>Horarios de recepción</h2>
         <label class="form-label" for="recepcion">Hora de apertura de recepción: (HH:MM:SS)</label>
@@ -116,12 +116,8 @@
 
         <h2>Condiciones</h2>
         <label class="form-label" for="cancelacionGratuita">Cancelación gratuita</label>
-        <input class="form-check-label" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita" th:checked="*{cancelacion_g}" />
-        <!-- <label class="parform" for="pago" type="ciudad">Escoge la preferencia de pago</label>
-       - <select class="parform" type="text" id="pago" name="prefPago" th:field="*{preferenciaPago}">
-             <option value="Recepcion">En Recepción</option>
-             <option value="Atlas">By Atlas</option>
-         </select>-->
+        <input class="form-check-label" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita" th:field="*{cancelacion_g}" />
+
         <br>
          <button style="margin: auto; width: 30%;" class="btn btn-success" type="submit">Guardar</button>
     </form>

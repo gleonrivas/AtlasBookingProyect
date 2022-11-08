@@ -106,7 +106,7 @@ public class HotelController {
     //crear hoteles
     @PostMapping(path = "nuevo")
     public String guardarHotel(@ModelAttribute("hotel") Hotel hotel, @RequestParam("file") MultipartFile file) throws IOException {
-        chequearBoolean(hotel);
+
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         hotel.setImg(fileName);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
