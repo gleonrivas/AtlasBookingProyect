@@ -378,7 +378,7 @@
     </div>
 
     <div class="lheader">
-        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/}">Descubre</a>
         <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
         <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
@@ -449,10 +449,15 @@
     </div>
 </div>
 
-
-
-
-</div>
+<form method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
+    <h2>Comente algo, <span th:text="${usuario.nombre}"></span></h2>
+    <label for="comentario">Comentario</label>
+    <input id="comentario" type="text" th:field="*{comentario}">
+    <label for="estrellas">Estrellas</label>
+    <input id="estrellas" type="number" th:field="*{estrellas}">
+    <input type="hidden" th:value="${id}" th:attr="name='id'"/>
+    <button type="submit">Comentar</button>
+</form>
 
 
 <footer class="lasth">
