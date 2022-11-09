@@ -68,12 +68,10 @@
 
     <input type="hidden" th:value="${id_habitacion}" th:attr="name='id_habitacion'"/>
     <button type="submit" class="btn btn-primary">Guardar</button>
+    <a  th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${id_hotel})}">Volver</a>
 
 </form>
-<br>
-<a  th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${hotel.id})}">
-    <button  type="submit" class="btn btn-primary">Volver</button></a>
-<br>
+
 <footer class="lasth">
 
     <div class="promote-hotel">

@@ -136,8 +136,9 @@ public class HotelController {
         hotelexistente.setHf_recepcion(hotel.getHf_recepcion());
         hotelexistente.setWifi(hotel.getWifi());
         hotelexistente.setCancelacion_g(hotel.getCancelacion_g());
-        servicioHotel.actualizarHotel(hotelexistente);
         chequearBoolean(hotelexistente);
+        servicioHotel.actualizarHotel(hotelexistente);
+
         return "redirect:/usuario/inicio";
 
     }

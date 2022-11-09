@@ -36,7 +36,7 @@ public class TemporadaController {
         model.addAttribute("habitacion", hab);
         model.addAttribute("temporada", temporada);
         model.addAttribute("id_habitacion", id_habitacion);
-        model.addAttribute("hotel", hotel);
+        model.addAttribute("id_hotel", id_hotel);
         return "/crearTemporada.html";
     }
 
