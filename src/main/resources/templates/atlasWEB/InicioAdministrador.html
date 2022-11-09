@@ -1,204 +1,453 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/styles/index.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/InicioAdministrador.css">
-    <link rel="stylesheet" href="/styles/footer.css">
     <title>Atlas Booking</title>
 </head>
-<body>
+<body class="images-container">
+
+
+
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 20px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial,sans-serif;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        -webkit-backdrop-filter: blur(25px);
+        background: linear-gradient(324deg, rgba(143,154,255,1) 0%, rgb(183, 189, 243) 100%);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+
+    }
+    h1{
+        font-family: 'PT Sans', sans-serif;
+    }
+    h2{
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMINEZA HOTEL BODY --------------------------------------*/
+    .tituloyboton{
+        margin: 50px auto 0 auto;
+        width: 85%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        color: black;
+        justify-content: space-between;
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    .tituloyboton > h1{
+        margin: 0;
+    }
+
+    .hotel-card{
+        color: black;
+        padding-left: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width:90% ;
+        margin: 50px auto;
+        justify-content: left;
+        border: none 2px rgba(255, 255, 255, 0.3);
+        border-radius: 35px;
+        -webkit-backdrop-filter: blur(100px);
+        backdrop-filter: blur(100px);
+        background-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 30px 100px rgba(0, 0, 0, 0.73);
+        height: 300px;
+    }
+    .hotel-info{
+        padding-left: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: max-content;
+        border-radius: 35px 0 0 35px;
+        height: 300px;
+    }
+    .hotel-img{
+        margin-left: 0;
+        width: 300px;
+        height: 300px;
+        border-radius: 35px;
+    }
+    .hotel-img >img{
+        margin-left: 0;
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 35px 0 0 35px;
+    }
+    .hotel-data{
+        margin: auto 0 auto 50px;
+    }
+    .destacados{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin: 0;
+        width: max-content;
+        align-content: center;
+        justify-content: space-between;
+    }
+    .destacados > h1{
+        width: max-content;
+        margin: 0;
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    .estrellas{
+        background-color: black;
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        width: fit-content;
+        height: min-content;
+        margin: auto 15px;
+    }
+    .estrellas > p{
+        margin: 0;
+    }
+
+
+    .hotel-services{
+        color: #000000;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: auto;
+        margin-left: 50px;
+        margin-top: 41.5px;
+        height: 300px;
+    }
+    .hotel-services > h1{
+        margin-top: 0;
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    .hotel-services-p{
+        display: flex;
+        flex-direction: row;
+        width: available;
+        flex-wrap: wrap;
+        margin-right: 50px;
+        gap:10px;
+    }
+    .hotel-services-p > p{
+        align-items: center;
+        margin: 0;
+        width: max-content;
+        height: fit-content;
+        background-color: black;
+        padding: 10px 15px;
+        border-radius: 25px;
+        color: white;
+        font-size: 13px;
+    }
+
+    .hotel-controllers{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin: 0 auto;
+    }
+
+    .boton{
+        padding: 5px 15px;
+        font-size: 15px;
+        border-radius: 10px;
+        margin-right: 10px;
+        border:none;
+        width: auto;
+        height: 35px;
+        transition: all 0.2s ease;
+    }
+    .boton:hover{
+        scale: 1.1;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .editar{
+        background-color: rgb(255, 255, 255);
+    }
+    .eliminar{
+        background-color: rgba(255, 0, 0, 1);
+        color: white;
+    }
+    .habitaciones{
+        background-color: black;
+        color: white;
+    }
+    /* FINALIZA HOTEL BODY --------------------------------------*/
+
+</style>
 
 <header class="mainh">
-
     <div class="cheader">
         <h1>Atlas</h1>
-        <p>BOOKING</p>
+        <p>ADMIN</p>
     </div>
-
     <div class="lheader">
-        <a href="InicioAdministrador.html">Inicio</a>
-        <a href="ComentariosAdmin.html">Comentarios</a>
+        <a th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
         <a href="FacturasAdmin.html">Administración</a>
-        <a href="ofertas_servicios_admin.html">Ofertas y Servicios</a>
-        <a href="InformesAdmin.html">Informes</a>
-        <div class="login-singup">
-            <button href="index.html">Hola Paco</button>
-            <a href="index.html">Crear cuenta</a>
-        </div>
+        <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
     </div>
-
 
 </header>
-
-
-<div id="tituloyboton">
-    <h1>Tus alojamientos</h1>
-    <a th:href="@{/hotel/nuevo}">
-        <button type="button">Añadir alojamiento</button>
-    </a>
-</div>
 <div id="confirmacion" th:if="${hoteles.size == 0}">
     <h2 style=" text-align: center"> Actualmente, no tiene ningún hotel.</h2>
     <br>
-</div>
-<div id="confirmacion2" th:if="${hoteles.size > 0}">
-    <div class="marcohotel" th:each=" hotel : ${hoteles}" style="display: flex; flex-flow: row wrap">
-        <div class="conjunto" style="display: flex; flex-flow: row nowrap; width: 100%">
-            <div class="contenedores" style="width: 50%">
-                <h2 th:text="${hotel.nombre} ">Nombre del hotel</h2>
-                <p>Estrellas: </p>
-                <p th:text="${hotel.estrellas} "></p>
-                <p>Dirección: </p>
-                <p th:text="${hotel.direccion} "></p>
-                <p>Ciudad: </p>
-                <p th:text="${hotel.ciudad} "></p>
-                <p>País: </p>
-                <p th:text="${hotel.pais} "></p>
-                <p>Teléfono: </p>
-                <p th:text="${hotel.telefono} ">Teléfono</p>
-                <p>Email: </p>
-                <p th:text="${hotel.email} ">Email</p>
+    <div class="tituloyboton">
 
-
-            </div>
-            <div class="contenedores" id="contenedor2">
-                <div class="listas">
-                    <p>lista de comodidades activas</p>
-                    <ul>
-                        <li>
-                            <p>Accesibilidad:</p>
-                            <input type="checkbox" th:checked="${hotel.accesibilidad} ">
-                        </li>
-                        <li>
-                            <p>Terraza:</p>
-                            <input type="checkbox" th:checked="${hotel.terraza} ">
-                        </li>
-                        <li>
-                            <p>Patio: </p>
-                            <input type="checkbox" th:checked="${hotel.patio} ">
-                        </li>
-                        <li>
-                            <p>Parking: </p>
-                            <input type="checkbox" th:checked="${hotel.parking} ">
-                        </li>
-                        <li>
-                        <li>
-                            <p>Mascotas: </p>
-                            <input type="checkbox" th:checked="${hotel.mascotas}">
-                        </li>
-                        <li>
-                            <p>Wifi: </p>
-                            <input type="checkbox" th:checked="${hotel.wifi}">
-                        </li>
-                        <li>
-                            <p>Multilengua: </p>
-                            <input type="checkbox" th:checked="${hotel.multilengua}">
-                        </li>
-                    </ul>
-                </div>
-                <div class="listas">
-                    <p>lista de servicios activos</p>
-
-
-                    <ul>
-                        <li>
-                            <p>Piscina: </p>
-                            <input type="checkbox" th:checked="${hotel.piscina} ">
-                        </li>
-                        <li>
-                            <p>Servicio de habitaciones: </p>
-                            <input type="checkbox" th:checked="${hotel.s_habitacion} ">
-                        </li>
-                        <li>
-                            <p>Servicio de transporte: </p>
-                            <input type="checkbox" th:checked="${hotel.s_transporte} ">
-                        </li>
-                        <li>
-                            <p>Tours: </p>
-                            <input type="checkbox" th:checked="${hotel.tours} ">
-                        </li>
-                        <li>
-                            <p>Espectáculos: </p>
-                            <input type="checkbox" th:checked="${hotel.espectaculos} ">
-                        </li>
-                        <li>
-                            <p>Comedor: </p>
-                            <input type="checkbox" th:checked="${hotel.comedor} ">
-                        </li>
-                        <li>
-                            <p>Cancelación gratuita </p>
-                            <input type="checkbox" th:checked="${hotel.cancelacion_g} ">
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="imagenes" style="width: 50%">
-                <img th:src="${hotel.img}" alt="..." style=" width: 100%;">
-            </div>
-        </div>
-
-
-
-        <div class="botones" style="display: flex; flex-flow: row nowrap; width: 100%; justify-content: space-around">
-            <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}" style="width: 20%">
-                <button style="width: 100%" type="submit">Editar</button>
-            </a>
-            <div th:if="${#lists.contains(listhab,hotel.id)}" style="width: 20% ; display: flex; flex-flow: row wrap" >
-                <button style="width: 100%" type="submit" disabled>Eliminar</button>
-                <small style="width: 100%; text-align: center">Debe eliminar primero las habitaciones de este hotel</small>
-            </div>
-            <div th:if="${!#lists.contains(listhab,hotel.id)}" style="width: 20%">
-                <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
-                    <button style="width: 100%" type="submit">Eliminar</button>
-                </a>
-            </div>
-
-            <a th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}" style="width: 20%">
-                <button style="width: 100%" type="submit">Ver habitaciones</button>
-            </a>
-
-            <div  th:if="${#lists.contains(id_hoteles,hotel.id)}" style="width: 20%; display: flex; flex-flow: row wrap">
-                <button style="width: 100%" type="submit" disabled >Tipos de Pensiones</button>
-                <small style="width: 100%; text-align: center" >Su hotel ya tiene una pensión disponible</small>
-            </div>
-            <div  th:if="${!#lists.contains(id_hoteles,hotel.id)}" style="width: 20%">
-                <a th:href="@{/pension/crear/(id=${hotel.id})}">
-                    <button style="width: 100%" type="submit" >Tipos de Pensiones</button>
-                </a>
-            </div>
-
-
-
-        </div>
+        <a th:href="@{/hotel/nuevo}">
+            <button class="boton editar" type="button">Crear un nuevo hotel</button>
+        </a>
     </div>
 </div>
+<div id="confirmacion2" th:if="${hoteles.size > 0}">
+    <div class="tituloyboton">
+        <h1>Gestión de hoteles</h1>
+        <a th:href="@{/hotel/nuevo}">
+            <button class="boton editar" type="button">Crear un nuevo hotel</button>
+        </a>
+    </div>
 
+    <div class="hotel-card" th:each=" hotel : ${hoteles}">
+        <div class="hotel-info">
+            <div class="hotel-img">
+                <img th:src="${hotel.img}">
+            </div>
+            <div class="hotel-data">
+                <div class="destacados">
+                    <h1 th:text="${hotel.nombre} "></h1>
+                    <div class="estrellas">
+                        <p th:if="${hotel.estrellas} == 1">⭐</p>
+                        <p th:if="${hotel.estrellas} == 2">⭐⭐</p>
+                        <p th:if="${hotel.estrellas} == 3">⭐⭐⭐</p>
+                        <p th:if="${hotel.estrellas} == 4">⭐⭐⭐⭐</p>
+                        <p th:if="${hotel.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                    </div>
+                </div>
+
+                <p th:text="${hotel.direccion} "></p>
+                <p th:text="${hotel.ciudad +', '+ hotel.pais} "></p>
+                <p th:text="${hotel.telefono} ">Teléfono</p>
+                <p th:text="${hotel.email} ">Email</p>
+                <div class="hotel-controllers">
+                    <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}">
+                        <button class=" boton editar" type="submit">Editar</button>
+                    </a>
+                    <div th:if="${#lists.contains(listhab,hotel.id)}"  >
+                        <button class=" boton editar" type="submit" disabled>Eliminar</button>
+                        <small>Debe eliminar primero las habitaciones de este hotel</small>
+                    </div>
+                    <div th:if="${!#lists.contains(listhab,hotel.id)}" >
+                        <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
+                            <button class="link-buttom boton editar" type="submit">Eliminar</button>
+                        </a>
+                    </div>
+                    <a th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}">
+                        <button class="boton habitaciones" type="submit">Habitaciones</button>
+                    </a>
+                    <div  th:if="${#lists.contains(id_hoteles,hotel.id)}" >
+                        <button class="link-buttom boton editar" type="submit" disabled >Tipos de Pensiones</button>
+                        <small  >Su hotel ya tiene una pensión disponible</small>
+                    </div>
+                    <div  th:if="${!#lists.contains(id_hoteles,hotel.id)}" >
+                        <a th:href="@{/pension/crear/(id=${hotel.id})}">
+                            <button class="link-buttom boton editar" type="submit" >Tipos de Pensiones</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hotel-services">
+            <h1>Servicios activos</h1>
+            <div class="hotel-services-p">
+                <p th:if="${hotel.wifi} == true">Wifi</p>
+                <p th:if="${hotel.mascotas} == true">Mascotas</p>
+                <p th:if="${hotel.comedor} == true">Restaurante</p>
+                <p th:if="${hotel.espectaculos} == true">Espectaculos</p>
+                <p th:if="${hotel.patio} == true">Patio</p>
+                <p th:if="${hotel.piscina} == true">Piscina</p>
+                <p th:if="${hotel.terraza} == true">Terraza</p>
+                <p th:if="${hotel.parking} == true">Parking</p>
+                <p th:if="${hotel.accesibilidad} == true">Acceso para minuválidos</p>
+                <p th:if="${hotel.multilengua} == true">Lengua local e ingles</p>
+                <p th:if="${hotel.s_habitacion} == true">Servicio de habitaciones</p>
+                <p th:if="${hotel.s_transporte} == true">Servicio de transporte</p>
+                <p th:if="${hotel.tours} == true">Guias turisticos</p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
 <footer class="lasth">
 
     <div class="promote-hotel">
         <p>Forma parte de nosotros</p>
-        <button>Registra tus alojamientos</button>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" >Registra tus alojamientos</button>
+        </form>
     </div>
 
     <div class="middle-footer">
         <div class="cheader">
             <h1>Atlas</h1>
-            <p>BOOKING</p>
+            <p>ADMIN</p>
         </div>
         <div class="nets">
-            <img src="img/face.svg" alt="">
-            <img src="img/insta.svg" alt="">
-            <img src="img/twitter.svg" alt="">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
         </div>
         <p>Copyrigth © 2022 Atlas Booking S.L.</p>
     </div>

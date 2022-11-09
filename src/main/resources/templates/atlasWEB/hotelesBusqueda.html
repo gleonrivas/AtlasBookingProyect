@@ -66,7 +66,7 @@
         border-radius: 10px;
         border-style: none;
         background-color: azure;
-        padding: 2%;
+        padding: 7px;
         color: black;
         font-size: 14px;
         margin: auto;
@@ -93,7 +93,9 @@
         animation: fade 4s ease-in-out;
         font-family: Arial, sans-serif;
     }
-
+    body::-webkit-scrollbar{
+        display: none;
+    }
     /* FINALIZA BODY --------------------------------------------*/
     /* COMIENZA FINDER ------------------------------------------*/
     .intro{
@@ -270,7 +272,6 @@
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
-        justify-content: space-around;
         margin: 0 auto;
         width: 95%;
         padding: 50px 0 0 0;
@@ -319,7 +320,7 @@
 
     .nombreHotel{
         margin: 15px 44px 0 0;
-        font-family: Futura,serif;
+        font-family: 'PT Sans', sans-serif;
         font-size: 30px;
         font-weight: bold;
         width: 189px;
@@ -330,14 +331,18 @@
         padding-left: 7%;
     }
     .estrellasHotel{
-        z-index: 2;
-        margin: -5% auto 0 auto;
-        padding: 1% 4%;
-        background-color: #000000;
+        background-color: black;
+        font-size: 12px;
+        padding: 5px 10px;
         border-radius: 20px;
-        font-size: 10px;
         width: fit-content;
+        height: min-content;
+        margin: -5% auto 0 auto;
         box-shadow:0 5px 20px rgba(0, 0, 0, 0.5);
+        z-index: 2;
+    }
+    .estrellasHotel > p{
+        margin: 0;
     }
 
     .hotelCard > button{
@@ -348,7 +353,7 @@
         border-radius: 10px;
         color: white;
         border: none;
-        font-size: 12px;
+        font-size: 14px;
     }
     .hotelCard > button > a{
         color: white;
@@ -371,22 +376,28 @@
 <header class="mainh">
 
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <a href="Descubre">Descubre</a>
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
     </div>
+
     <div class="cheader">
         <h1>Atlas</h1>
         <p>BOOKING</p>
     </div>
 
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <a sec:authorize="isAnonymous()" th:href="@{/login}"><p class="link-buttom">Identificate</p></a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><p class="link-buttom">Cerrar sesión</p></a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><p class="link-buttom">Ver perfil</p></a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+
     </div>
 
 </header>
+
 <form th:action="@{/}" method="post" th:object="${hotel}" class="intro">
     <div class="entry-group">
         <label for="fecha_inicio">Fecha de entrada</label>

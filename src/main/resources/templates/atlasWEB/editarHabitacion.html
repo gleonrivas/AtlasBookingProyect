@@ -1,111 +1,381 @@
-<!DOCTYPE html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Crear Hotel</title>
-    <link rel="stylesheet" href="/styles/FacturasAdmin.css">
-    <link rel="stylesheet" href="/styles/finder.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/footer.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atlas Booking</title>
 </head>
-<body>
+<body class="images-container">
+
+
+
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 20px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial,sans-serif;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: background 1s linear;
+        animation: fade 4s infinite;
+        font-family: Arial, sans-serif;
+        -webkit-backdrop-filter: blur(25px);
+        background: linear-gradient(324deg, rgba(143,154,255,1) 0%, rgb(183, 189, 243) 100%);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+
+    }
+    body::-webkit-scrollbar{
+        display: none;
+    }
+    h1{
+        font-family: 'PT Sans', sans-serif;
+    }
+    h2{
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMINEZA HOTEL-EDIT --------------------------------------*/
+    .titulo{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-evenly;
+        margin-top: 4%;
+    }
+    h1{
+        margin: 1rem auto;
+        width: max-content;
+    }
+
+
+    .container{
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        margin: 9% auto;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+        padding: 20px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.48);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+
+    .card{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: 2% auto;
+        justify-content: space-evenly;
+    }
+
+
+    .correcto{
+        left: 0;
+        right: 0;
+        margin-top: -45%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .correcto > p{
+        padding: 15px;
+        background-color: #e6ffe6;
+        font-size: 14px;
+        color: green;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+
+    }
+
+    .notmy{
+        margin: 10px auto 10px 0;
+
+    }
+    input{
+        height: 20px;
+        padding: 1% 1% 1% 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 13px;
+        margin: 5px 0 ;
+        width: auto;
+    }
+
+
+    label{
+        margin: 0;
+    }
+
+    .julieta{
+        width: 100%;
+        margin: 0 0 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    .julieta > label{
+        margin: auto 10px auto 0;
+        width:max-content;
+    }
+    .abss{
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        position: absolute;
+        right: 0;
+        margin-top: -5%;
+        margin-right: 11%;
+    }
+    /* FINALIZA HOTEL-EDIT --------------------------------------*/
+
+</style>
 
 <header class="mainh">
-
     <div class="cheader">
         <h1>Atlas</h1>
-        <p>BOOKING</p>
+        <p>ADMIN</p>
     </div>
-
     <div class="lheader">
-        <a href="InicioAdministrador.html">Inicio</a>
+        <a th:href="@{/usuario/inicio}">Gestión de hoteles</a>
         <a href="ComentariosAdmin.html">Comentarios</a>
         <a href="FacturasAdmin.html">Administración</a>
-        <a href="ofertas_servicios_admin.html">Ofertas y Servicios</a>
-        <a href="InformesAdmin.html">Informes</a>
-        <div class="login-singup">
-            <button href="index.html">Hola Paco</button>
-            <a href="index.html">Crear cuenta</a>
-        </div>
+        <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
     </div>
-
-
 
 </header>
 
-<h1>¡Hola ...ADMIN!</h1>
 
-<div style="width: 90%; margin: auto">
+<div class="container">
+    <h1>Editar habitación</h1>
 
-    <form  class="card" style="padding:2%" name="form"
-           th:object="${habitacion}" th:method="post">
+    <form  class="card" style="padding:2%" name="form" th:action="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}"
+           th:object="${habitacion}" method="post">
 
-        <h2>Editar Habitación</h2>
 
-        <label class="form-label" for="num_max">Aforo máximo de la habitación:</label>
-        <input class="form-control" type="number" id="num_max" name="num_max"
-               th:field="*{n_max_personas}"/>
+        <div class="julieta">
+            <label class="form-label" for="num_max">Aforo máximo de la habitación:</label>
+            <input class="form-control" type="number" id="num_max" name="num_max"th:field="*{n_max_personas}"/>
+        </div>
 
-        <br>
-        <label class="form-label" for="cama_individual">Número de camas individuales</label>
-        <input class="form-control" type="number" id="cama_individual" name="cama_individual" th:field="*{c_individual}"/>
-        <br>
-        <label class="form-label" for="cama_doble">Número de camas dobles</label>
-        <input class="form-control" type="number" id="cama_doble" name="cama_doble" th:field="*{c_doble}"/>
-        <br>
-        <label class="form-label" for="bano">Baño</label>
-        <input class="form-check-label" type="checkbox" id="bano" name="bano" th:checked="*{bano}"/>
+        <div class="julieta">
+            <label class="form-label" for="cama_individual">Número de camas individuales</label>
+            <input class="form-control" type="number" id="cama_individual" name="cama_individual" th:field="*{c_individual}"/>
+        </div>
 
-        <label class="form-label" for="vistas">Vistas</label>
-        <input class="form-check-label" type="checkbox" id="vistas" name="vistas" th:checked="*{vistas}"/>
+        <div class="julieta">
+            <label class="form-label" for="cama_doble">Número de camas dobles</label>
+            <input class="form-control" type="number" id="cama_doble" name="cama_doble" th:field="*{c_doble}"/>
+        </div>
+        <div class="julieta">
+            <label class="form-label" for="precio_base">Precio Base</label>
+            <input class="form-control" type="number" id="precio_base" name="precio_base" th:field="*{precio_base}"/>
+        </div>
 
-        <label class="form-label" for="precio_base">Precio Base</label>
-        <input class="form-control" type="number" id="precio_base" name="precio_base" th:field="*{precio_base}"/>
-        <br>
+        <div>
+            <label class="form-label" for="bano">Baño</label>
+            <input class="form-check-label" type="checkbox" id="bano" name="bano" th:checked="*{bano}"/>
+        </div>
 
-        <button class="btn btn-success" style="margin: auto; width: 30%;" type="submit" text="Siguiente">Guardar</button>
+        <div>
+            <label class="form-label" for="vistas">Vistas</label>
+            <input class="form-check-label" type="checkbox" id="vistas" name="vistas" th:checked="*{vistas}"/>
+        </div>
+
+
+
+        <div class="julieta" style="margin-top: 25px">
+
+            <button class="link-buttom" type="submit" text="Siguiente">Guardar</button>
+
+
+        </div>
 
     </form>
-    <br>
-    <div style="margin: auto; width: 30%;">
-        <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${idhotel})}">
+    <a th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${idhotel})}">
+        <button class="link-buttom" >Volver</button>
+    </a>
 
-            <button class="btn btn-success" style=" width: 100%;">Volver</button>
-        </a>
+
+</div>
+<footer class="lasth">
+
+    <div class="promote-hotel">
+        <p>Forma parte de nosotros</p>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" >Registra tus alojamientos</button>
+        </form>
     </div>
-</div>
-    <br>
-    <footer class="lasth">
 
-        <div class="promote-hotel">
-            <p>Forma parte de nosotros</p>
-            <button>Registra tus alojamientos</button>
+    <div class="middle-footer">
+        <div class="cheader">
+            <h1>Atlas</h1>
+            <p>BOOKING</p>
         </div>
-
-        <div class="middle-footer">
-            <div class="cheader">
-                <h1>Atlas</h1>
-                <p>BOOKING</p>
-            </div>
-            <div class="nets">
-                <img src="img/face.svg" alt="">
-                <img src="img/insta.svg" alt="">
-                <img src="img/twitter.svg" alt="">
-            </div>
-            <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+        <div class="nets">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
         </div>
+        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+    </div>
 
-        <div class="footer-links">
-            <a href="index.html">Sobre nosotros.</a>
-            <a href="index.html">Comunidad.</a>
-            <a href="index.html">Uso de cookies.</a>
-            <a href="index.html">Politica de privacidad.</a>
-            <a href="index.html">Condiciones de uso.</a>
-        </div>
+    <div class="footer-links">
+        <a href="index.html">Comunidad.</a>
+        <a href="index.html">Sobre nosotros.</a>
+        <a href="index.html">Uso de cookies.</a>
+        <a href="index.html">Politica de privacidad.</a>
+        <a href="index.html">Condiciones de uso.</a>
+    </div>
 
-    </footer>
-</div>
+</footer>
+
 </body>
 </html>

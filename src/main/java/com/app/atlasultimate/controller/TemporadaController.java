@@ -46,11 +46,11 @@ public class TemporadaController {
                                    @ModelAttribute(value= "temporada") Temporada temporada,
                                    @ModelAttribute (value= "hotel") Hotel hotel){
 
-       temporadaService.guardarTemporada(temporada);
-       Temporada temp = temporadaService.traerUltimaTemporada();
-       habitacionService.cambiarIdTemporada(temp.getId(), id_habitacion);
+        temporadaService.guardarTemporada(temporada);
+        Temporada temp = temporadaService.traerUltimaTemporada();
+        habitacionService.cambiarIdTemporada(temp.getId(), id_habitacion);
 
 
-       return "/crearTemporada.html";
+        return "/crearTemporada.html";
     }
 }

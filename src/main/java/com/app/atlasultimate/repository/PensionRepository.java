@@ -23,5 +23,11 @@ public interface PensionRepository extends JpaRepository<Pension, Integer> {
     @Query(value ="select id_hotel from pension ",nativeQuery = true)
     List<Integer> listarPensionporidhotel();
 
+    @Query(value ="select id from pension order by id desc limit 1",nativeQuery = true)
+    Integer idUltimaPension();
+
+    @Query(value ="select id_hotel from pension ",nativeQuery = true)
+    List<Integer> listarPensionporidhotel();
+
 
 }

@@ -38,12 +38,12 @@
 <br>
 <form class="card" style="margin: auto" th:action="@{/temporada/crear/}" th:object="${temporada}" method="post">
 
-        <div class="form-group">
-            <label for="precioInvierno">Precio de Invierno</label>
-            <input type="number" class="form-control" id="precioInvierno"  placeholder="Introduce el precio" th:field="*{precioInvierno}">
-            <small id="inviernodetalle" class="form-text text-muted">Esta cantidad se añadirá por día
-                y huésped al precio final</small>
-        </div>
+    <div class="form-group">
+        <label for="precioInvierno">Precio de Invierno</label>
+        <input type="number" class="form-control" id="precioInvierno"  placeholder="Introduce el precio" th:field="*{precioInvierno}">
+        <small id="inviernodetalle" class="form-text text-muted">Esta cantidad se añadirá por día
+            y huésped al precio final</small>
+    </div>
 
     <div class="form-group">
         <label for="precioPrimavera">Precio de Primavera</label>

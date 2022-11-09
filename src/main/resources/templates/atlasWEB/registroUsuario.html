@@ -45,9 +45,9 @@
         margin-top: 5px;
         text-align: center;
         letter-spacing: 10px;
-        font-family: Arial, serif;
         font-size: 12px;
         padding: 0;
+        font-family: Arial,sans-serif;
     }
     .lheader{
         display: flex;
@@ -66,7 +66,7 @@
         border-radius: 10px;
         border-style: none;
         background-color: azure;
-        padding: 2%;
+        padding: 7px;
         color: black;
         font-size: 14px;
         margin: auto;
@@ -90,9 +90,10 @@
         background-image: url("/img/nyk-wallpaper.jpeg");
         background-repeat: no-repeat;
         background-attachment: fixed;
-        transition: background 1s linear;
-        animation: fade 4s infinite;
         font-family: Arial, sans-serif;
+    }
+    body::-webkit-scrollbar{
+        display: none;
     }
     /* FINALIZA BODY --------------------------------------------*/
     /* COMINEZA FOOTER ------------------------------------------*/
@@ -197,30 +198,26 @@
         margin: auto 10% auto 0;
     }
 
-    .password-error{
-        width: 100%;
-        color: red;
-        text-align: justify;
-        font-size: 13px;
-    }
     .confirmacion{
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 428px;
+        width: 400px;
         position: absolute;
-         margin-top: -15px;
-
+        margin-top: -15px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .error{
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 428px;
+        width: 400px;
         position: absolute;
         margin-top: -15px;
-
+        margin-left: auto;
+        margin-right: auto;
     }
     .confirmacion > p{
         background-color: green;
@@ -235,8 +232,8 @@
 
     .error > p{
         background-color: indianred;
-        width: 241px;
-        margin: auto 5px;
+        width: max-content;
+        margin: auto;
         padding: 6.4px 21.3px;
         color: white;
         text-align: center;
@@ -249,7 +246,7 @@
     .submit{
         width: 40%;
         height: 40px;
-        margin-top: 10%;
+        margin-top: 5%;
         padding: 3% 10%;
         border-radius: 15px;
         border-style: none;
@@ -268,6 +265,13 @@
         background-color: #ffffff;
         font-size: 13px;
     }
+
+    .formulario >a{
+        padding-top: 10px;
+        margin-bottom: 0;
+        text-decoration: underline;
+        font-size: 14px;
+    }
     /* FINALIZA REGISTRO-BOX Y HEREDEROS ------------------------*/
 
 </style>
@@ -275,17 +279,24 @@
 <header class="mainh">
 
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <a href="Descubre">Descubre</a>
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
     </div>
+
     <div class="cheader">
         <h1>Atlas</h1>
         <p>BOOKING</p>
     </div>
 
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <button class="link-buttom" href="index.html">Identifícate</button>
+        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+
     </div>
 
 </header>
@@ -317,6 +328,10 @@
             <div class="componente-registro">
                 <label class="parform" for="rol">Rol</label>
                 <input class="parform"  type="text" id="rol"  th:field="*{rol}"/>
+                <!--<select name="selectorRol" class="selector" id="rol"  th:field="*{rol}">
+                    <option value="0">usuario</option>
+                    <option value="1">administrador</option>
+                </select>-->
             </div>
             <div class="componente-registro">
                 <label class="parform" for="tel" type="tel">Teléfono</label>
@@ -332,10 +347,10 @@
             </div>
 
             <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
+            <a th:href="@{/login}">¿Ya tienes una cuenta?</a>
         </form>
 
     </div>
-    <a th:href="@{/login}">Inicia Sesión</a>
 
 <footer class="lasth">
 

@@ -1,142 +1,399 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/styles/index.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/InicioAdministrador.css">
-    <link rel="stylesheet" href="/styles/footer.css">
     <title>Atlas Booking</title>
 </head>
-<body>
+<body class="images-container">
+
+
+
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 20px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial,sans-serif;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: background 1s linear;
+        animation: fade 4s infinite;
+        font-family: Arial, sans-serif;
+        -webkit-backdrop-filter: blur(25px);
+        background: linear-gradient(324deg, rgba(143,154,255,1) 0%, rgb(183, 189, 243) 100%);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+
+    }
+    body::-webkit-scrollbar{
+        display: none;
+    }
+    h1{
+        font-family: 'PT Sans', sans-serif;
+    }
+    h2{
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMINEZA HOTEL-EDIT --------------------------------------*/
+    .tituloyboton{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-evenly;
+        margin: 4% auto;
+    }
+    h2{
+        margin: 0.5rem auto;
+        width: max-content;
+    }
+
+
+    .container{
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        margin: 3% 50px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+        padding: 20px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.48);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+
+    }
+
+
+    .card{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: 2% auto;
+        justify-content: space-evenly;
+    }
+
+
+    .correcto{
+        left: 0;
+        right: 0;
+        margin-top: -45%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .correcto > p{
+        padding: 15px;
+        background-color: #e6ffe6;
+        font-size: 14px;
+        color: green;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+
+    }
+
+    .notmy{
+        margin: 10px auto 10px 0;
+
+    }
+    input{
+        height: 20px;
+        padding: 1% 1% 1% 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 13px;
+        margin: auto 5px auto 0px;
+        width: min-content;
+    }
+
+
+    label{
+        margin: 0;
+    }
+
+    .julieta{
+        width: 100%;
+        margin: 0 0 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    .julieta > label{
+        margin: auto 10px auto 0;
+        width:max-content;
+    }
+    .abss{
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        position: absolute;
+        right: 0;
+        margin-top: -5%;
+        margin-right: 11%;
+    }
+    p{
+        margin: 0.5rem 0;
+    }
+    .botones{
+        justify-content: space-evenly;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    h1{
+        margin: 0;
+    }
+    /* FINALIZA HOTEL-EDIT --------------------------------------*/
+
+</style>
 
 <header class="mainh">
-
     <div class="cheader">
         <h1>Atlas</h1>
-        <p>BOOKING</p>
+        <p>ADMIN</p>
     </div>
-
     <div class="lheader">
-        <a href="InicioAdministrador.html">Inicio</a>
+        <a th:href="@{/usuario/inicio}">Gestión de hoteles</a>
         <a href="ComentariosAdmin.html">Comentarios</a>
         <a href="FacturasAdmin.html">Administración</a>
-        <a href="ofertas_servicios_admin.html">Ofertas y Servicios</a>
-        <a href="InformesAdmin.html">Informes</a>
-        <div class="login-singup">
-            <button href="index.html">Hola Paco</button>
-            <a href="index.html">Crear cuenta</a>
-        </div>
+        <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
     </div>
-
 
 </header>
 
 
-<div id="tituloyboton">
+
+<div class="tituloyboton">
     <h1>Tus habitaciones</h1>
-    <div style="display: flex; flex-flow: column wrap; width: 20%">
-        <a th:href="@{/habitacion/nueva/{id_hotel}(id_hotel=${hotel.id})}">
-            <button style="width: 100%; margin-bottom: 4%" type="button">Añadir habitación</button>
-        </a>
-
-        <a th:href="@{/usuario/inicio/}">
-            <button style="width: 100%" type="button">Volver</button>
-        </a>
-    </div>
+    <a th:href="@{/habitacion/nueva/{id_hotel}(id_hotel=${hotel.id})}">
+        <button class="link-buttom" style="width: max-content" type="button">Añadir habitación</button>
+    </a>
+    <a th:href="@{/usuario/inicio/}">
+        <button class="link-buttom" style="width: max-content" type="button">Volver</button>
+    </a>
 </div>
+
+
 <div id="confirmacion" th:if="${habitaciones.size == 0}">
-    <h2 style=" text-align: center">Este hotel no tiene actualmente habitaciones, por favor, cree su primera
-        habitación.</h2>
-    <br>
+    <h2>Este hotel no tiene actualmente habitaciones, por favor, cree su primera habitación.</h2>
 </div>
-<div id="confirmacion2" th:if="${habitaciones.size > 0}">
-    <div class="marcohotel" th:each="habitacion : ${habitaciones}" style="display: flex; flex-flow: row wrap">
-        <h2>Habitación</h2>
-        <div class="conjunto" style="display: flex; flex-flow: row nowrap; width: 100%; justify-content: space-around;">
 
-            <div class="contenedores">
-                <h3 style="width: 100%">Información general</h3>
-                <br>
+<div class="container" style="display: flex;flex-direction: row;width: min-content; margin: 0; background-color: transparent; border: none; box-shadow: none">
+    <div class="container" th:if="${habitaciones.size > 0}" th:each="habitacion : ${habitaciones}">
+        <div class="contenedores">
+            <h2>Habitación</h2>
+            <div class="julieta">
                 <p> Aforo máximo: </p>
                 <p th:text="${habitacion.n_max_personas}"></p>
+            </div>
+            <div class="julieta">
                 <p> Camas individuales: </p>
                 <p th:text="${habitacion.c_individual}"></p>
+            </div>
+            <div class="julieta">
                 <p> Camas dobles: </p>
                 <p th:text="${habitacion.c_doble}"></p>
+            </div>
+            <div class="julieta">
                 <p> Precio Base: </p>
                 <p th:text="${habitacion.precio_base}"></p>
-
             </div>
-            <div class="contenedores" style="display: flex; flex-flow: row wrap; align-content: flex-start">
-
-                <h3 style="width: 100%; margin-bottom: 5%">Lista de comodidades activas</h3>
-
-                <ul style="width: 100%">
-                    <li>
-                        <p> baño: </p>
-                        <input type="checkbox" th:checked="${habitacion.bano} ">
-                    </li>
-                    <li>
-                        <p> Vistas: </p>
-                        <input type="checkbox" th:checked="${habitacion.vistas} ">
-                    </li>
-
-                </ul>
-
-
-            </div>
-            <div class="imagenes">
-
-                <p>aqui van imagenes</p>
+            <div style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-evenly">
+                <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                    <input type="checkbox" th:checked="${habitacion.bano} ">
+                    <p> Baño </p>
+                </div>
+                <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                    <input type="checkbox" th:checked="${habitacion.vistas} ">
+                    <p> Vistas </p>
+                </div>
             </div>
 
         </div>
+        <div class="botones">
 
+            <a th:href="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}">
+                <button class="link-buttom" type="submit">Editar</button>
+            </a>
 
-        <div class="botones" style="display: flex; flex-flow: row nowrap; width: 100%; justify-content: space-around">
-            <div th:if="${#lists.contains(listaid,habitacion.id)}"
-                 style="width: 20% ; display: flex; flex-flow: row wrap">
-                <button style="width: 100%" type="submit" disabled>Eliminar</button>
+            <div th:if="${#lists.contains(listaid,habitacion.id)}">
+                <button class="link-buttom" type="submit" disabled>Eliminar</button>
                 <small style="width: 100%; text-align: center">Esta habitación está reservada, no se puede
                     eliminar</small>
             </div>
-            <div th:if="${!#lists.contains(listaid,habitacion.id)}" style="width: 20%">
+            <div th:if="${!#lists.contains(listaid,habitacion.id)}" >
                 <form th:object="${habitacion}" th:method="post">
                     <input type="hidden" th:value="${habitacion.id}" th:attr="name='id'"/>
-                    <button style="width: 100%" type="submit">Eliminar</button>
+                    <button class="link-buttom" type="submit">Eliminar</button>
                 </form>
             </div>
 
-            <a th:href="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}" style="width: 20%">
-                <button style="width: 100%" type="submit">Editar</button>
-            </a>
-
-            <div th:if="${#lists.contains(temporadas,habitacion.temporada)}"
-                 style="width: 20% ; display: flex; flex-flow: row wrap">
-                <button style="width: 100%" type="submit" disabled>Añadir Temporadas</button>
-                <small style="width: 100%; text-align: center">Su hotel ya tiene el precio establecido</small>
+            <div th:if="${#lists.contains(temporadas,habitacion.temporada)}">
+                <button class="link-buttom" type="submit" disabled>Añadir Temporadas</button>
+                <small >Su hotel ya tiene el precio establecido</small>
             </div>
-            <div th:if="${!#lists.contains(temporadas,habitacion.temporada)}" style="width: 20%">
+            <div th:if="${!#lists.contains(temporadas,habitacion.temporada)}" >
                 <a th:href="@{/temporada/crear/(id_habitacion=${habitacion.id})}">
-                    <button style="width: 100%" type="submit">Añadir Temporadas</button>
+                    <button class="link-buttom" type="submit">Añadir Temporadas</button>
                 </a>
             </div>
+
         </div>
     </div>
-
 </div>
+
 <footer class="lasth">
 
     <div class="promote-hotel">
         <p>Forma parte de nosotros</p>
-        <button>Registra tus alojamientos</button>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" >Registra tus alojamientos</button>
+        </form>
     </div>
 
     <div class="middle-footer">
@@ -145,16 +402,16 @@
             <p>BOOKING</p>
         </div>
         <div class="nets">
-            <img src="img/face.svg" alt="">
-            <img src="img/insta.svg" alt="">
-            <img src="img/twitter.svg" alt="">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
         </div>
         <p>Copyrigth © 2022 Atlas Booking S.L.</p>
     </div>
 
     <div class="footer-links">
-        <a href="index.html">Sobre nosotros.</a>
         <a href="index.html">Comunidad.</a>
+        <a href="index.html">Sobre nosotros.</a>
         <a href="index.html">Uso de cookies.</a>
         <a href="index.html">Politica de privacidad.</a>
         <a href="index.html">Condiciones de uso.</a>

@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.HashMap;
@@ -32,7 +31,7 @@ import java.util.Map;
 public class HotelController {
 
     @ModelAttribute("usuario")
-    public Usuario usuario() {
+    public Usuario usuario(){
         return new Usuario();
     }
 
@@ -47,23 +46,6 @@ public class HotelController {
 
     @Autowired
     private TemporadaRepository temporadaRepository;
-    @Autowired
-    private HabitacionRepository repository;
-
-    @Autowired
-    private HotelRepository hotelRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private HabitacionService servicioHab;
-
-    @Autowired
-    private ReviewService reviewService;
-
-    @Autowired
-    private ReviewRepository reviewRepository;
 
     @Autowired
     private ReservaRepository reservaRepository;
@@ -75,24 +57,15 @@ public class HotelController {
         Hotel hotel = servicioHotel.obtenerHotelporId(id_hotel);
         List<Temporada> listaTemporadas = temporadaRepository.listaTemporadas();
         List<Integer>  listaIdHavitacionReserva = reservaRepository.listaidHabporRegistro();
-
         model.addAttribute("habitaciones", listadeHabitacion);
         model.addAttribute("hotel", hotel);
         model.addAttribute("temporadas", listaTemporadas);
         model.addAttribute("listaid", listaIdHavitacionReserva);
 
 
-
         return "/AdminHabitaciones.html";
 
 
-    }
-    //Eliminar habitacion
-    @PostMapping("/habitacion/{id_hotel}")
-    public String eliminarHab(@PathVariable Integer id_hotel,
-                              @ModelAttribute("habitacion") Habitacion habitacion) {
-        servicio.eliminarHabitacion(habitacion.getId());
-        return "redirect:/hotel/habitacion/"+id_hotel;
     }
 
     @GetMapping("nuevo")
@@ -104,14 +77,14 @@ public class HotelController {
 
 
     //crear hoteles
-    @PostMapping(path = "nuevo")
+    @PostMapping(path="nuevo")
     public String guardarHotel(@ModelAttribute("hotel") Hotel hotel, @RequestParam("file") MultipartFile file) throws IOException {
-
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        hotel.setImg(fileName);
+        chequearBoolean(hotel);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
         hotel.setId_usuario(usuario);
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        hotel.setImg(fileName);
         Hotel nuevoHotel = servicioHotel.guardarHotel(hotel);
         String uploadDir = "./imgHotel/" + nuevoHotel.getId();
         Path uploadPath = Paths.get(uploadDir);
@@ -122,8 +95,9 @@ public class HotelController {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new IOException("No se puede guardar" + fileName);
+            throw new IOException("No se puede guardar"+ fileName);
         }
+
 
         return "redirect:/hotel/nuevo?exito";
     }
@@ -198,8 +172,9 @@ public class HotelController {
     //Peticionpost para enviar la info cambiada de la habitacion
     @PostMapping("/editarhabitacion/{id_habitacion}")
     public String actualizarHabitacion(@ModelAttribute("id_habitacion") Integer id_habitacion,
-                                       @ModelAttribute("habitacion") Habitacion hab){
+                                       @ModelAttribute("habitacion") Habitacion hab) {
         Habitacion habitacionexistente = servicio.obtenerHabitacionporId(id_habitacion);
+        habitacionexistente.setN_max_personas(hab.getN_max_personas());
         habitacionexistente.setC_individual(hab.getC_individual());
         habitacionexistente.setC_doble(hab.getC_doble());
         habitacionexistente.setPrecio_base(hab.getPrecio_base());
@@ -207,80 +182,90 @@ public class HotelController {
         habitacionexistente.setVistas(hab.getVistas());
         habcontroller.chequearBooleanHabitacion(habitacionexistente);
         servicio.actualizarHabitacion(habitacionexistente);
+
         return "redirect:/hotel/editarhabitacion/"+ id_habitacion;
     }
 
+    //Eliminar habitacion
+    @PostMapping("/habitacion/{id_hotel}")
+    public String eliminarHab(@PathVariable Integer id_hotel,
+                              @ModelAttribute("habitacion") Habitacion habitacion) {
+        servicio.eliminarHabitacion(habitacion.getId());
+        return "redirect:/hotel/habitacion/"+id_hotel;
+    }
 
+    @Autowired
+    private HabitacionRepository repository;
 
+    @Autowired
+    private HotelRepository hotelRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private HabitacionService servicioHab;
+
+    @Autowired
+    private ReviewService reviewService;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @ModelAttribute("review")
-    public ReviewDTO reviewRegistroDTO() {
+    public ReviewDTO reviewRegistroDTO(){
         return new ReviewDTO();
 
     }
 
-    @GetMapping("/{id}")
-    public String filtrarHabitaciones(@PathVariable(value = "id") Integer id, Model model, @ModelAttribute("hotel") Hotel hot) {
+    @GetMapping("/habitaciones/")
+    public String filtrarHabitaciones(@RequestParam(value = "id") Integer id, Model model, @ModelAttribute("hotel") Hotel hot,
+                                      @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
+                                      @RequestParam(value = "fecha_fin", required = false) String fechaFin,
+                                      @RequestParam(value = "num_personas", required = false) Integer num_personas){
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
         model.addAttribute("usuario", usuario);
+
+        model.addAttribute("fecha_inicio", fechaInicio);
+        model.addAttribute("fecha_fin", fechaFin);
+        model.addAttribute("num_personas", num_personas);
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
-
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
-
         List<Review> review = reviewRepository.find10LastValues(id);
         model.addAttribute("review", review);
-
         Map<String, Review> mapa = new HashMap<>();
         model.addAttribute("mapa", mapa);
-        try {
-            for (int i = 0; i <= 10; i++) {
+        try{
+            for (int i = 0; i<=10; i++){
                 mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
             }
-        } catch (Exception e) {
+        } catch (Exception e){
             System.out.println(e);
         }
+
+        String fondo = hotelRepository.findHotelById(id).getImg();
+        model.addAttribute("hotelimagen", fondo);
+
 
 
         return "/hotel.html";
     }
 
-    @PostMapping("/{id}")
-    public String guardarReview(@PathVariable(value = "id") Integer id, @ModelAttribute("review") ReviewDTO reviewDTO, @ModelAttribute("hotel") Hotel hot) {
+    @PostMapping("/habitaciones/")
+    public String guardarReview(@RequestParam(value = "id") Integer id, @ModelAttribute("resena") ReviewDTO reviewDTO) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
 
         reviewDTO.setId_usuario(usuario);
-        reviewDTO.setId_hotel(hot);
+        reviewDTO.setId_hotel(hotelRepository.findHotelById(id));
         reviewService.guardarReview(reviewDTO);
-        return "redirect:/hotel/" + id;
-    }
+        return "#";
 
-    @GetMapping("/habitaciones")
-    public String filtrarHabitaciones(@RequestParam(value = "id") Integer id, Model model,
-                                      @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
-                                      @RequestParam(value = "fecha_fin", required = false) String fechaFin,
-                                      @RequestParam(value = "num_personas", required = false) Integer num_personas
-    ) {
-        String fecha1 = fechaInicio;
-        String fecha2 = fechaFin;
-        Hotel hotel = hotelRepository.findHotelById(id);
-        model.addAttribute("hotel", hotel);
-        List<Habitacion> habitaciones = repository.findAllById(id);
-        model.addAttribute("habitaciones", habitaciones);
-        model.addAttribute("fecha_inicio", fechaInicio);
-        model.addAttribute("fecha_fin", fechaFin);
-        model.addAttribute("num_personas", num_personas);
-
-        String fondo = hotelRepository.findHotelById(id).getImg();
-        model.addAttribute("hotelimagen", fondo);
-
-        return "/hotel.html";
     }
 
     @PostMapping("/")

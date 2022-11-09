@@ -12,10 +12,24 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    public static String encodeValue(String value) throws UnsupportedEncodingException {
+        return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
+    }
+
+    public static String decode(String value) throws UnsupportedEncodingException {
+        return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
+    }
+
 
     @Autowired
     private UsuarioServiceImp usuarioServiceImp;
@@ -38,6 +52,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.authenticationProvider(authenticationProvider());
+                //.inMemoryAuthentication()
+                //.withUser("usuario").password(passwordEncoder().encode("password")).roles(Rol.administrador.toString())
+                //.and()
+                //.withUser("administrador").password(passwordEncoder().encode("admin")).roles(Rol.usuario.toString())
+
     }
 
     @Override
