@@ -433,6 +433,7 @@
 <h2>Los 10 comentarios mas recientes.</h2>
 <div class="comentario-slider">
     <div class="comentario-container">
+        <h3 th:if="${mapa.isEmpty()}">No hay ningún comentario todavía</h3>
         <div class="comentario-tarjeta" th:each="m : ${mapa}">
             <p th:text="${'@'+m.key}"></p>
             <div class="get-comentario" th:each="v : ${m.value}">
