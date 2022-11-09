@@ -1,0 +1,22 @@
+type Habitacion{
+    id:ID
+    c_individual: Int
+    c_doble: Int
+    precio_base: Float
+    vistas: Boolean
+    bano: Boolean
+    n_max_personas: Int
+    hotel: Hotel
+
+}
+
+
+type Hotel {
+   id: ID
+}
+
+type Query{
+    listarHabitacion(
+        id_hotel: ID
+    ):[Habitacion]
+}

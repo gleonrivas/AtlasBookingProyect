@@ -7,6 +7,8 @@ import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -283,4 +285,19 @@ public class HotelController {
         return "/hotel.html";
 
     }
+
+
+
+
+
+    //GRAPHQL
+    @GetMapping("/habitacion/listar/{id_hotel}")
+    @QueryMapping
+    public List<Habitacion> leerHabitaciones(@PathVariable @Argument(name = "id_hotel") Integer id_hotel) {
+        List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id_hotel);
+        return listadeHabitacion;
+
+
+    }
+
 }

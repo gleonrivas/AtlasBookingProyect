@@ -42,4 +42,5 @@ public class HabitacionController {
         h.setBano(h.getBano() == null ? false : true);
         h.setVistas(h.getVistas() == null ? false : true);
     }
+
 }
