@@ -398,7 +398,7 @@
                             th:value="${pension}" th:text="${pension}"></option>
                 </select>
                 <label for="pago">Selecciona el tipo de pago</label>
-                <select id="pago" th:field="*{t_pension}">
+                <select id="pago" th:field="*{t_pago}">
                     <option th:each="pago : ${T(com.app.atlasultimate.model.tipo_pago).values()}"
                             th:value="${pago}" th:text="${pago}"></option>
                 </select>

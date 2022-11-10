@@ -62,7 +62,7 @@ public class ReservaController {
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
         modelo.addAttribute("hotel", hotel);
         modelo.addAttribute("habitacion", habitacion);
-        modelo.addAttribute("pension", pension);
+        modelo.addAttribute("pensiondto", pension);
         modelo.addAttribute("fecha_inicio", fecha1);
         modelo.addAttribute("fecha_fin", fecha2);
         modelo.addAttribute("duracion", duracion);
