@@ -224,6 +224,8 @@ public class HotelController {
                                       @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
                                       @RequestParam(value = "fecha_fin", required = false) String fechaFin,
                                       @RequestParam(value = "num_personas", required = false) Integer num_personas){
+        Review resena = new Review();
+        model.addAttribute("resena", resena);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
@@ -240,8 +242,9 @@ public class HotelController {
         model.addAttribute("review", review);
         Map<String, Review> mapa = new HashMap<>();
         model.addAttribute("mapa", mapa);
+
         try{
-            for (int i = 0; i<=10; i++){
+            for (int i = 0; i<=20; i++){
                 mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
             }
         } catch (Exception e){
@@ -257,7 +260,10 @@ public class HotelController {
     }
 
     @PostMapping("/habitaciones/")
-    public String guardarReview(@RequestParam(value = "id") Integer id, @ModelAttribute("resena") ReviewDTO reviewDTO) {
+    public String guardarReview(@RequestParam(value = "id") Integer id, @ModelAttribute("resena") ReviewDTO reviewDTO,
+                                @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
+                                @RequestParam(value = "fecha_fin", required = false) String fechaFin,
+                                @RequestParam(value = "num_personas", required = false) Integer num_personas) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
@@ -265,7 +271,7 @@ public class HotelController {
         reviewDTO.setId_usuario(usuario);
         reviewDTO.setId_hotel(hotelRepository.findHotelById(id));
         reviewService.guardarReview(reviewDTO);
-        return "#";
+        return "redirect:/hotel/habitaciones/?id=" + id + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
 
     }
 
