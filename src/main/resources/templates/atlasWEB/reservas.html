@@ -323,7 +323,7 @@
 </header>
 
 <h1> Reservas</h1>
-<form class="row" style="width: 95%; flex-wrap: nowrap; padding: 2%; margin: auto; ">
+<div class="row" style="width: 95%; flex-wrap: nowrap; padding: 2%; margin: auto; ">
     <div class="card" style="width:35%; padding: 2%;">
         <img th:src="${hotel.img}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -391,35 +391,21 @@
                 <p th:text="${usuario.email}"></p>
             </div>
         </div>
-            <form th:action="@{/reserva/datos/}" th:method="post">
-                <h2>Selecciona el tipo de pension</h2>
-                <div class="colunm-container">
-                    <label th:if="${pension.booleanAd == true}">Alojamiento y desayuno</label>
-                    <input th:if="${pension.booleanAd == true}" type="checkbox"  th:value="${1}" th:attr="name='ad'"/>
-                    <label th:if="${pension.booleanMp == true}">media pension</label>
-                    <input  th:if="${pension.booleanMp == true}" type="checkbox"  th:value="${1}" th:attr="name='mp'"/>
-                    <label th:if="${pension.booleanPc == true}">pension completa</label>
-                    <input  th:if="${pension.booleanPc == true}" type="checkbox"  th:value="${1}" th:attr="name='pc'"/>
-                    <label  th:if="${pension.booleanSa == true}">Solo alojamiento</label>
-                    <input  th:if="${pension.booleanSa == true}" type="checkbox"  th:value="${1}" th:attr="name='sa'"/>
-                </div>
-                <h2>Selecciona el tipo de pago</h2>
-                <div class="colunm-container">
-                    <label>tarjeta</label>
-                    <input type="checkbox"  th:value="${1}" th:attr="name='tarjeta'"/>
-                    <label>En hotel</label>
-                    <input type="checkbox"  th:value="${1}" th:attr="name='efectivo'"/>
-                </div>
-                <input type="hidden" th:value="${id_hab}" th:attr="name='id_hab'"/>
-                <input type="hidden" th:value="${fecha_inicio}" th:attr="name='fecha_inicio'"/>
-                <input type="hidden" th:value="${fecha_fin}" th:attr="name='fecha_fin'"/>
-                <input type="hidden" th:value="${num_personas}" th:attr="name='num_personas'"/>
-                <input type="hidden" th:value="${1}" th:attr="name='reserva'"/>
+            <form th:object="${registroDTO}" method="post">
+                <label for="pension">Selecciona el tipo de pension</label>
+                <select id="pension" th:field="*{t_pension}">
+                    <option th:each="pension : ${T(com.app.atlasultimate.model.tipo_pension).values()}"
+                            th:value="${pension}" th:text="${pension}"></option>
+                </select>
+                <label for="pago">Selecciona el tipo de pago</label>
+                <select id="pago" th:field="*{t_pension}">
+                    <option th:each="pago : ${T(com.app.atlasultimate.model.tipo_pago).values()}"
+                            th:value="${pago}" th:text="${pago}"></option>
+                </select>
                 <button type="submit">Reservar</button>
             </form>
-
     </div>
-</form>
+</div>
 <footer class="lasth">
 
     <div class="promote-hotel">
