@@ -5,6 +5,7 @@ import com.app.atlasultimate.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,6 +36,16 @@ public class HotelService {
 
     public Integer obtenerIdHotel(Integer id){
         return repositorio.findHotelByIdHab(id);
+    }
+    public List<Hotel> listarHotel(Integer id_usuario){
+        return repositorio.findHotelById_usuario(id_usuario);
+    }
+
+    public List<Hotel> buscador( Date fecha_inicio,
+                                 Date fecha_fin,
+                                 String ciudad,
+                                 Integer n_max_personas){
+        return repositorio.buscadorgraphiql(fecha_inicio, fecha_fin, ciudad, n_max_personas);
     }
 
 }

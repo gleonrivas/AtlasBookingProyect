@@ -8,7 +8,7 @@ import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +34,7 @@ import java.util.Map;
 public class HotelController {
 
     @ModelAttribute("usuario")
-    public Usuario usuario(){
+    public Usuario usuario() {
         return new Usuario();
     }
 
@@ -58,7 +59,7 @@ public class HotelController {
         List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id_hotel);
         Hotel hotel = servicioHotel.obtenerHotelporId(id_hotel);
         List<Temporada> listaTemporadas = temporadaRepository.listaTemporadas();
-        List<Integer>  listaIdHavitacionReserva = reservaRepository.listaidHabporRegistro();
+        List<Integer> listaIdHavitacionReserva = reservaRepository.listaidHabporRegistro();
         model.addAttribute("habitaciones", listadeHabitacion);
         model.addAttribute("hotel", hotel);
         model.addAttribute("temporadas", listaTemporadas);
@@ -79,7 +80,7 @@ public class HotelController {
 
 
     //crear hoteles
-    @PostMapping(path="nuevo")
+    @PostMapping(path = "nuevo")
     public String guardarHotel(@ModelAttribute("hotel") Hotel hotel, @RequestParam("file") MultipartFile file) throws IOException {
         chequearBoolean(hotel);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -97,7 +98,7 @@ public class HotelController {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new IOException("No se puede guardar"+ fileName);
+            throw new IOException("No se puede guardar" + fileName);
         }
 
 
@@ -186,7 +187,7 @@ public class HotelController {
         habcontroller.chequearBooleanHabitacion(habitacionexistente);
         servicio.actualizarHabitacion(habitacionexistente);
 
-        return "redirect:/hotel/editarhabitacion/"+ id_habitacion;
+        return "redirect:/hotel/editarhabitacion/" + id_habitacion;
     }
 
     //Eliminar habitacion
@@ -194,7 +195,7 @@ public class HotelController {
     public String eliminarHab(@PathVariable Integer id_hotel,
                               @ModelAttribute("habitacion") Habitacion habitacion) {
         servicio.eliminarHabitacion(habitacion.getId());
-        return "redirect:/hotel/habitacion/"+id_hotel;
+        return "redirect:/hotel/habitacion/" + id_hotel;
     }
 
     @Autowired
@@ -216,7 +217,7 @@ public class HotelController {
     private ReviewRepository reviewRepository;
 
     @ModelAttribute("review")
-    public ReviewDTO reviewRegistroDTO(){
+    public ReviewDTO reviewRegistroDTO() {
         return new ReviewDTO();
 
     }
@@ -225,7 +226,7 @@ public class HotelController {
     public String filtrarHabitaciones(@RequestParam(value = "id") Integer id, Model model, @ModelAttribute("hotel") Hotel hot,
                                       @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
                                       @RequestParam(value = "fecha_fin", required = false) String fechaFin,
-                                      @RequestParam(value = "num_personas", required = false) Integer num_personas){
+                                      @RequestParam(value = "num_personas", required = false) Integer num_personas) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
@@ -242,17 +243,16 @@ public class HotelController {
         model.addAttribute("review", review);
         Map<String, Review> mapa = new HashMap<>();
         model.addAttribute("mapa", mapa);
-        try{
-            for (int i = 0; i<=10; i++){
+        try {
+            for (int i = 0; i <= 10; i++) {
                 mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 
         String fondo = hotelRepository.findHotelById(id).getImg();
         model.addAttribute("hotelimagen", fondo);
-
 
 
         return "/hotel.html";
@@ -287,17 +287,76 @@ public class HotelController {
     }
 
 
-
-
-
     //GRAPHQL
-    @GetMapping("/habitacion/listar/{id_hotel}")
-    @QueryMapping
-    public List<Habitacion> leerHabitaciones(@PathVariable @Argument(name = "id_hotel") Integer id_hotel) {
-        List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id_hotel);
-        return listadeHabitacion;
+
+    //Listar habitacion
+    @GetMapping("/habitacion/listar/")
+    @SchemaMapping(typeName = "Query", value = "listarHabitacion")
+    public List<Habitacion> listarHabitacion(@RequestParam @Argument Integer id_hotel) {
+        return servicioHab.listarHabitacionbyIdHotel(id_hotel);
+    }
+
+    //Listar hotel
+
+    @GetMapping("/hotel/listar/")
+    @SchemaMapping(typeName = "Query", value = "listarHotel")
+    public List<Hotel> listarHotel(@RequestParam @Argument Integer id_usuario) {
+        return servicioHotel.listarHotel(id_usuario);
+    }
+
+    //crear y editar Hotel
+    @PostMapping("/hotel/crear/graphiql/")
+    @SchemaMapping(typeName = "Mutation", value = "crearEditarHotel")
+    public String crearEditarHotel(@RequestParam @Argument Integer id_hotel, @RequestParam @Argument String nombre, @RequestParam @Argument String ciudad,
+                                   @RequestParam @Argument String pais, @RequestParam @Argument String direccion,
+                                   @RequestParam @Argument Integer estrellas, @RequestParam @Argument Integer telefono,
+                                   @RequestParam @Argument String email, @RequestParam @Argument Boolean cancelacion_g,
+                                   @RequestParam (required = false) @Argument String img_url, @RequestParam (required = false) @Argument Boolean wifi,
+                                   @RequestParam (required = false) @Argument Boolean mascotas, @RequestParam (required = false) @Argument Boolean multilengua,
+                                   @RequestParam (required = false) @Argument Boolean accesibilidad, @RequestParam (required = false) @Argument Boolean servicio_habitacion,
+                                   @RequestParam (required = false) @Argument Time horacomienzo_recepcion, @RequestParam (required = false) @Argument java.sql.Time horafin_recepcion,
+                                   @RequestParam (required = false) @Argument Boolean servicio_transporte, @RequestParam (required = false) @Argument Boolean tours,
+                                   @RequestParam (required = false) @Argument Boolean comedor, @RequestParam (required = false) @Argument Boolean espectaculos,
+                                   @RequestParam (required = false) @Argument Boolean patio, @RequestParam (required = false) @Argument Boolean piscina,
+                                   @RequestParam (required = false) @Argument Boolean terraza, @RequestParam (required = false) @Argument Boolean parking
+                                   ) {
+        Hotel hotel = new Hotel();
+        if(id_hotel!=null){
+            hotel= hotelRepository.findHotelById(id_hotel);
+            if(hotel == null){
+                return"este hotel no existe";
+            }else{
+                hotel.setId(id_hotel);hotel.setNombre(nombre);hotel.setCiudad(ciudad);hotel.setPais(pais);
+                hotel.setDireccion(direccion);hotel.setEstrellas(estrellas);hotel.setTelefono(telefono);
+                hotel.setEmail(email);hotel.setCancelacion_g(cancelacion_g);hotel.setImg(img_url);
+                hotel.setWifi(wifi);hotel.setMascotas(mascotas);hotel.setMultilengua(multilengua);
+                hotel.setAccesibilidad(accesibilidad);hotel.setS_habitacion(servicio_habitacion);hotel.setHc_recepcion(horacomienzo_recepcion);
+                hotel.setHf_recepcion(horafin_recepcion);hotel.setS_transporte(servicio_transporte);hotel.setTours(tours);
+                hotel.setComedor(comedor);hotel.setEspectaculos(espectaculos);hotel.setPatio(patio);
+                hotel.setPiscina(piscina);hotel.setTerraza(terraza);hotel.setParking(parking);
+                chequearBoolean(hotel);
+                hotelRepository.save(hotel);
+                return "Su hotel se ha editado correctamente";
+            }
+        }else{
+            hotel.setId(id_hotel);hotel.setNombre(nombre);hotel.setCiudad(ciudad);hotel.setPais(pais);
+            hotel.setDireccion(direccion);hotel.setEstrellas(estrellas);hotel.setTelefono(telefono);
+            hotel.setEmail(email);hotel.setCancelacion_g(cancelacion_g);hotel.setImg(img_url);
+            hotel.setWifi(wifi);hotel.setMascotas(mascotas);hotel.setMultilengua(multilengua);
+            hotel.setAccesibilidad(accesibilidad);hotel.setS_habitacion(servicio_habitacion);hotel.setHc_recepcion(horacomienzo_recepcion);
+            hotel.setHf_recepcion(horafin_recepcion);hotel.setS_transporte(servicio_transporte);hotel.setTours(tours);
+            hotel.setComedor(comedor);hotel.setEspectaculos(espectaculos);hotel.setPatio(patio);
+            hotel.setPiscina(piscina);hotel.setTerraza(terraza);hotel.setParking(parking);
+            chequearBoolean(hotel);
+            hotelRepository.save(hotel);
+            return "Su hotel se ha creado correctamente";
+        }
+
+
 
 
     }
+
+
 
 }
