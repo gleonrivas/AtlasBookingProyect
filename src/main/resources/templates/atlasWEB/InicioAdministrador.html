@@ -95,6 +95,10 @@
         box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
 
     }
+
+    body::-webkit-scrollbar{
+        display: none;
+    }
     h1{
         font-family: 'PT Sans', sans-serif;
     }
@@ -186,43 +190,50 @@
         color: black;
         padding-left: 0;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
-        width:90% ;
-        margin: 50px auto;
+        width:350px;
+        margin: 50px 0;
         justify-content: left;
-        border: none 2px rgba(255, 255, 255, 0.3);
+        border: solid 2px rgba(255, 255, 255, 0.3);
         border-radius: 35px;
         -webkit-backdrop-filter: blur(100px);
         backdrop-filter: blur(100px);
         background-color: rgba(255, 255, 255, 0.3);
         box-shadow: 0 30px 100px rgba(0, 0, 0, 0.73);
-        height: 300px;
+        transition: all 1s ease;
+        height: max-content;
+
     }
     .hotel-info{
         padding-left: 0;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
-        width: max-content;
+        width: 350px;
         border-radius: 35px 0 0 35px;
-        height: 300px;
+        padding-bottom: 20px;
     }
     .hotel-img{
         margin-left: 0;
-        width: 300px;
+        width: 350px;
         height: 300px;
-        border-radius: 35px;
     }
     .hotel-img >img{
         margin-left: 0;
-        width: 300px;
+        width: 350px;
         height: 300px;
         object-fit: cover;
-        border-radius: 35px 0 0 35px;
+        border-radius: 35px 35px 0 0;
     }
     .hotel-data{
-        margin: auto 0 auto 50px;
+        display: flex;
+        flex-direction: column;
+        margin: auto 2rem;
+    }
+    .hotel-data p {
+        font-size: 13px;
+        margin: 0.5rem 0;
     }
     .destacados{
         display: flex;
@@ -233,10 +244,11 @@
         align-content: center;
         justify-content: space-between;
     }
-    .destacados > h1{
-        width: max-content;
+    .hotel-data > h1{
+        width: 100%;
         margin: 0;
         font-family: 'PT Sans', sans-serif;
+        text-align: center;
 
     }
     .estrellas{
@@ -246,7 +258,7 @@
         border-radius: 20px;
         width: fit-content;
         height: min-content;
-        margin: auto 15px;
+        margin: -20px auto auto auto;
     }
     .estrellas > p{
         margin: 0;
@@ -254,14 +266,16 @@
 
 
     .hotel-services{
+        z-index: -1;
+        padding: 40px 30px 40px 80px;
         color: #000000;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        width: auto;
-        margin-left: 50px;
-        margin-top: 41.5px;
-        height: 300px;
+        width: 250px;
+        margin:auto 0 auto -50px;
+        height: 60%;
+
     }
     .hotel-services > h1{
         margin-top: 0;
@@ -282,26 +296,27 @@
         width: max-content;
         height: fit-content;
         background-color: black;
-        padding: 10px 15px;
+        padding: 7px 13px;
         border-radius: 25px;
         color: white;
         font-size: 13px;
     }
 
     .hotel-controllers{
+        width: 100%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
-        margin: 0 auto;
+        margin: 0;
     }
 
     .boton{
         padding: 5px 15px;
         font-size: 15px;
         border-radius: 10px;
-        margin-right: 10px;
+        margin-bottom: 10px;
         border:none;
-        width: auto;
+        width: available;
         height: 35px;
         transition: all 0.2s ease;
     }
@@ -321,6 +336,20 @@
         background-color: black;
         color: white;
     }
+    .entraboton{
+        display: flex;
+        flex-direction: column;
+        width: 120px;
+        text-decoration: none;
+    }
+
+    .marcos {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: max-content;
+        margin: 0 auto;
+    }
     /* FINALIZA HOTEL BODY --------------------------------------*/
 
 </style>
@@ -339,6 +368,7 @@
     </div>
 
 </header>
+
 <div id="confirmacion" th:if="${hoteles.size == 0}">
     <h2 style=" text-align: center"> Actualmente, no tiene ningún hotel.</h2>
     <br>
@@ -349,7 +379,8 @@
         </a>
     </div>
 </div>
-<div id="confirmacion2" th:if="${hoteles.size > 0}">
+
+<div id="confirmacion2" style="display: flex; flex-direction: row; flex-wrap: wrap; margin: auto; justify-content: space-evenly" th:if="${hoteles.size > 0}">
     <div class="tituloyboton">
         <h1>Gestión de hoteles</h1>
         <a th:href="@{/hotel/nuevo}">
@@ -357,56 +388,76 @@
         </a>
     </div>
 
-    <div class="hotel-card" th:each=" hotel : ${hoteles}">
-        <div class="hotel-info">
-            <div class="hotel-img">
-                <img th:src="${hotel.img}">
-            </div>
-            <div class="hotel-data">
-                <div class="destacados">
-                    <h1 th:text="${hotel.nombre} "></h1>
-                    <div class="estrellas">
-                        <p th:if="${hotel.estrellas} == 1">⭐</p>
-                        <p th:if="${hotel.estrellas} == 2">⭐⭐</p>
-                        <p th:if="${hotel.estrellas} == 3">⭐⭐⭐</p>
-                        <p th:if="${hotel.estrellas} == 4">⭐⭐⭐⭐</p>
-                        <p th:if="${hotel.estrellas} == 5">⭐⭐⭐⭐⭐</p>
-                    </div>
-                </div>
+    <div class="marcos"  th:each=" hotel : ${hoteles}">
 
-                <p th:text="${hotel.direccion} "></p>
-                <p th:text="${hotel.ciudad +', '+ hotel.pais} "></p>
-                <p th:text="${hotel.telefono} ">Teléfono</p>
-                <p th:text="${hotel.email} ">Email</p>
+        <div class="hotel-card" >
+            <div class="hotel-info">
+                <div class="hotel-img">
+                    <img th:src="${hotel.img}">
+                </div>
+                <div class="estrellas">
+                    <p th:if="${hotel.estrellas} == 1">⭐</p>
+                    <p th:if="${hotel.estrellas} == 2">⭐⭐</p>
+                    <p th:if="${hotel.estrellas} == 3">⭐⭐⭐</p>
+                    <p th:if="${hotel.estrellas} == 4">⭐⭐⭐⭐</p>
+                    <p th:if="${hotel.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                </div>
+                <div class="hotel-data">
+                    <h1 th:text="${hotel.nombre} "></h1>
+                    <p th:text="${hotel.direccion} "></p>
+                    <p th:text="${hotel.ciudad +', '+ hotel.pais} "></p>
+                    <p th:text="${hotel.telefono} ">Teléfono</p>
+                    <p th:text="${hotel.email} ">Email</p>
+                </div>
+                <div class="hotel-data" style="flex-direction: row">
+
+
                 <div class="hotel-controllers">
-                    <a th:href="@{/hotel/editar/{id}(id=${hotel.id})}">
+                    <a class="entraboton"  th:href="@{/hotel/editar/{id}(id=${hotel.id})}">
                         <button class=" boton editar" type="submit">Editar</button>
                     </a>
-                    <div th:if="${#lists.contains(listhab,hotel.id)}"  >
-                        <button class=" boton editar" type="submit" disabled>Eliminar</button>
-                        <small>Debe eliminar primero las habitaciones de este hotel</small>
+
+                    <div class="entraboton"  style="height: 70px" th:if="${#lists.contains(listhab,hotel.id)}">
+                        <button class=" boton editar" style="height: 70px" type="submit" disabled>Elimina antes las habitaciones</button>
                     </div>
-                    <div th:if="${!#lists.contains(listhab,hotel.id)}" >
+
+                    <div class="entraboton"  th:if="${!#lists.contains(listhab,hotel.id)}" >
                         <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
-                            <button class="link-buttom boton editar" type="submit">Eliminar</button>
+                            <button class=" boton eliminar" type="submit">Eliminar</button>
                         </a>
                     </div>
-                    <a th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}">
+
+                </div>
+
+
+                <div class="hotel-controllers">
+
+                    <a class="entraboton"  th:href="@{/hotel/habitacion/{id}(id=${hotel.id})}">
                         <button class="boton habitaciones" type="submit">Habitaciones</button>
                     </a>
-                    <div  th:if="${#lists.contains(id_hoteles,hotel.id)}" >
-                        <button class="link-buttom boton editar" type="submit" disabled >Tipos de Pensiones</button>
-                        <small  >Su hotel ya tiene una pensión disponible</small>
-                    </div>
-                    <div  th:if="${!#lists.contains(id_hoteles,hotel.id)}" >
-                        <a th:href="@{/pension/crear/(id=${hotel.id})}">
-                            <button class="link-buttom boton editar" type="submit" >Tipos de Pensiones</button>
+
+
+                    <div  class="entraboton" style="height: 70px" th:if="${#lists.contains(id_hoteles,hotel.id)}" >
+                        <a style="height: 70px" th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
+                            <button class=" boton editar" style="height: 70px" type="submit" disabled>Ya hay una pensión</button>
                         </a>
                     </div>
+
+
+                    <div  class="entraboton"  th:if="${!#lists.contains(id_hoteles,hotel.id)}" >
+                        <a class="entraboton" th:href="@{/pension/crear/(id=${hotel.id})}">
+                            <button class=" boton editar" type="submit" >Pensiones</button>
+                        </a>
+                    </div>
+
+
                 </div>
             </div>
+
+            </div>
         </div>
-        <div class="hotel-services">
+
+        <div class="hotel-card hotel-services ">
             <h1>Servicios activos</h1>
             <div class="hotel-services-p">
                 <p th:if="${hotel.wifi} == true">Wifi</p>
@@ -423,9 +474,7 @@
                 <p th:if="${hotel.s_transporte} == true">Servicio de transporte</p>
                 <p th:if="${hotel.tours} == true">Guias turisticos</p>
             </div>
-
         </div>
-
 
     </div>
 
