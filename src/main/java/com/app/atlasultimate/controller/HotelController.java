@@ -244,7 +244,7 @@ public class HotelController {
         model.addAttribute("mapa", mapa);
 
         try{
-            for (int i = 0; i<=20; i++){
+            for (int i = 0; i<=10; i++){
                 mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
             }
         } catch (Exception e){
