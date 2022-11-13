@@ -323,6 +323,14 @@
                 <input class="myinput" type="text" id="direccion" name="direccion" th:field="*{direccion}"/>
             </div>
             <div class="julieta">
+                <label class="form-label" for="latitud">Latitud</label>
+                <input class="myinput" type="text" id="latitud" name="latitud" th:field="*{latitud}"/>
+            </div>
+            <div class="julieta">
+                <label class="form-label" for="longitud">Longitud</label>
+                <input class="myinput" type="text" id="longitud" name="longitud" th:field="*{latitud}"/>
+            </div>
+            <div class="julieta">
                 <label class="form-label" for="pais">País</label>
                 <input class="myinput" type="text" id="pais" name="Países" th:field="*{pais}">
             </div>
@@ -414,10 +422,51 @@
         </div>
 
         </form>
+
+<div id="mapa" style="width: 100%; height: 500px;">
+
+</div>
+
 <a href="/usuario/inicio">
     <button class="link-buttom">Volver</button>
 </a>
-</div>
+
+<script>
+    function iniciarMapa(){
+        var latitud = 37.5442706;
+        var longitud = -4.7277528;
+
+        coordenadas= {
+            lng: longitud,
+            lat: latitud
+        }
+
+        generarMapa(coordenadas);
+
+    }
+
+    function generarMapa(coordenadas){
+        var mapa = new google.maps.Map(document.getElementById("mapa"),
+            {
+                zoom: 12,
+                center : new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+            });
+        marcador = new google.maps.Marker({
+            map: mapa,
+            draggable : true,
+            position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+        });
+
+        marcador.addListener("dragend", function(event){
+            document.getElementById("latitud").value = this.getPosition().lat()
+            document.getElementById("longitud").value = this.getPosition().lng()
+        })
+
+
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTq3rz8EYg7akX8PrNfvkr6Yh39c-d67g&callback=iniciarMapa"></script>
 
 <footer class="lasth">
 

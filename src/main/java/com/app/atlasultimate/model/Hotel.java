@@ -31,6 +31,11 @@ public class Hotel {
     private String ciudad;
     @Column(name = "direccion", length = 150)
     private String direccion;
+
+    @Column(name = "latitud", length = 300)
+    private String latitud;
+    @Column(name = "longitud", length = 300)
+    private String longitud;
     @Column(name = "estrellas", length = 1)
     private Integer estrellas;
     @Column(name = "telefono", length = 150)

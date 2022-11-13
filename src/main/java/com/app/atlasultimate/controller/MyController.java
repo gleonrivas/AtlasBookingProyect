@@ -72,10 +72,8 @@ public class MyController {
         }else if (hoteles.isEmpty()){
             return "redirect:/fallo";
         }else {
-            model.addAttribute("ciudadhotel", hoteles.get(0).getCiudad());
             return "/hotelesBusqueda.html";
         }
-
 
 
     }

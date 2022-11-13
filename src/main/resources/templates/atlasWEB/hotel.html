@@ -430,6 +430,10 @@
     </div>
 
 </div>
+<h2>Ubicación del hotel</h2>
+<div id="mapa" style="width: 100%; height: 500px;">
+</div>
+
 <h2>Los 10 comentarios mas recientes.</h2>
 <div class="comentario-slider">
     <div class="comentario-container">
@@ -459,7 +463,37 @@
     <button type="submit">Comentar</button>
 </form>
 
+<script th:inline="javascript">
+    function iniciarMapa(){
 
+        var latitud = [[${hotel.latitud}]];
+        var longitud = [[${hotel.longitud}]];
+
+        coordenadas= {
+            lng: longitud,
+            lat: latitud
+        }
+
+        generarMapa(coordenadas);
+
+    }
+
+    function generarMapa(coordenadas){
+        var mapa = new google.maps.Map(document.getElementById("mapa"),
+            {
+                zoom: 12,
+                center : new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+            });
+        marcador = new google.maps.Marker({
+            map: mapa,
+            draggable : false,
+            position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+        });
+
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTq3rz8EYg7akX8PrNfvkr6Yh39c-d67g&callback=iniciarMapa"></script>
 <footer class="lasth">
 
     <div class="promote-hotel">
