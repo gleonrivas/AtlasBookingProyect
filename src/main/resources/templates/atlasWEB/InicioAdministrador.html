@@ -173,12 +173,12 @@
     /* COMINEZA HOTEL BODY --------------------------------------*/
     .tituloyboton{
         margin: 50px auto 0 auto;
-        width: 85%;
+        width: 65%;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         color: black;
-        justify-content: space-between;
+        justify-content: space-evenly;
         font-family: 'PT Sans', sans-serif;
 
     }
@@ -192,7 +192,7 @@
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        width:350px;
+        width:320px;
         margin: 50px 0;
         justify-content: left;
         border: solid 2px rgba(255, 255, 255, 0.3);
@@ -210,18 +210,18 @@
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        width: 350px;
+        width: 320px;
         border-radius: 35px 0 0 35px;
         padding-bottom: 20px;
     }
     .hotel-img{
         margin-left: 0;
-        width: 350px;
+        width: 320px;
         height: 300px;
     }
     .hotel-img >img{
         margin-left: 0;
-        width: 350px;
+        width: 320px;
         height: 300px;
         object-fit: cover;
         border-radius: 35px 35px 0 0;
@@ -229,7 +229,7 @@
     .hotel-data{
         display: flex;
         flex-direction: column;
-        margin: auto 2rem;
+        margin: 0.5rem 2rem;
     }
     .hotel-data p {
         font-size: 13px;
@@ -271,8 +271,8 @@
         color: #000000;
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
-        width: 250px;
+        flex-wrap: nowrap;
+        width: 230px;
         margin:auto 0 auto -50px;
         height: 60%;
 
@@ -461,13 +461,13 @@
             <h1>Servicios activos</h1>
             <div class="hotel-services-p">
                 <p th:if="${hotel.wifi} == true">Wifi</p>
-                <p th:if="${hotel.mascotas} == true">Mascotas</p>
-                <p th:if="${hotel.comedor} == true">Restaurante</p>
-                <p th:if="${hotel.espectaculos} == true">Espectaculos</p>
                 <p th:if="${hotel.patio} == true">Patio</p>
                 <p th:if="${hotel.piscina} == true">Piscina</p>
                 <p th:if="${hotel.terraza} == true">Terraza</p>
                 <p th:if="${hotel.parking} == true">Parking</p>
+                <p th:if="${hotel.mascotas} == true">Mascotas</p>
+                <p th:if="${hotel.comedor} == true">Restaurante</p>
+                <p th:if="${hotel.espectaculos} == true">Espectaculos</p>
                 <p th:if="${hotel.accesibilidad} == true">Acceso para minuválidos</p>
                 <p th:if="${hotel.multilengua} == true">Lengua local e ingles</p>
                 <p th:if="${hotel.s_habitacion} == true">Servicio de habitaciones</p>
