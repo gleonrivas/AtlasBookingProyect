@@ -1,122 +1,439 @@
-<!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Tipos de pensión</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles/index.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/InicioAdministrador.css">
-    <link rel="stylesheet" href="/styles/footer.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atlas Booking</title>
 </head>
-<body>
-<header class="mainh">
+<body class="images-container">
 
+
+
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh {
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+
+    .cheader {
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+
+    .cheader > h1 {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+
+    .cheader > p {
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 20px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .lheader {
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+
+    .lheader > a {
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+
+    .link-buttom {
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+        text-align: center;
+        text-decoration: none;
+
+    }
+
+    .login-singup > a {
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: background 1s linear;
+        animation: fade 4s infinite;
+        font-family: Arial, sans-serif;
+        -webkit-backdrop-filter: blur(25px);
+        background: linear-gradient(324deg, rgba(143, 154, 255, 1) 0%, rgb(183, 189, 243) 100%);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+
+    }
+
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    h1 {
+        font-family: 'PT Sans', sans-serif;
+    }
+
+    h2 {
+        font-family: 'PT Sans', sans-serif;
+
+    }
+
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+
+    .middle-footer {
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+
+    .middle-footer > p {
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+
+    .nets {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .nets > img {
+        width: 15%;
+    }
+
+    .promote-hotel {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .promote-hotel > p {
+        color: azure;
+    }
+
+    .registra {
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+
+    .footer-links {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .footer-links > a {
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+
+    }
+
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMINEZA HOTEL-EDIT --------------------------------------*/
+    .titulo {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-evenly;
+        margin-top: 4%;
+    }
+
+    .titulo > h1 {
+        margin: 0;
+    }
+
+
+    .container {
+        width: 250px;
+        display: flex;
+        flex-direction: row;
+        margin: 1% auto;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+        padding: 20px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.48);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        justify-content: space-between;
+    }
+    .container0 {
+        width: 100px;
+        display: none;
+        flex-direction: row;
+        margin: 1% auto;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+        padding: 20px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.48);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        justify-content: space-evenly;
+    }
+
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 90%;
+        margin: 2% auto;
+    }
+    .interior{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 50%;
+        margin: 1% auto;
+    }
+
+
+    .correcto {
+        left: 0;
+        right: 0;
+        margin-top: -45%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .correcto > p {
+        padding: 15px;
+        background-color: #e6ffe6;
+        font-size: 14px;
+        color: green;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+
+    }
+
+    .notmy {
+        scale: 1.5;
+        margin: auto 10px;
+    }
+
+    .myinput {
+        height: 20px;
+        padding: 1% 1% 1% 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 13px;
+        margin: auto 0;
+        width: auto;
+    }
+
+    h2 {
+        margin: 1rem 0;
+    }
+
+
+    .julieta {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .julieta > label {
+        margin: auto 10px auto 0;
+        width: max-content;
+    }
+
+    .abss {
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        position: absolute;
+        right: 0;
+        margin-top: -5%;
+        margin-right: 11%;
+    }
+
+    label{
+        height: fit-content;
+        margin: auto 10px;
+    }
+
+    input[type=number]{
+        width: 70px;
+        padding-left: 10px;
+    }
+
+    /* FINALIZA HOTEL-EDIT --------------------------------------*/
+
+</style>
+
+<header class="mainh">
     <div class="cheader">
         <h1>Atlas</h1>
-        <p>BOOKING</p>
+        <p>ADMIN</p>
     </div>
-
     <div class="lheader">
-        <a href="InicioAdministrador.html">Inicio</a>
-        <a href="ComentariosAdmin.html">Comentarios</a>
+        <a th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
         <a href="FacturasAdmin.html">Administración</a>
-        <a href="ofertas_servicios_admin.html">Ofertas y Servicios</a>
-        <a href="InformesAdmin.html">Informes</a>
-        <div class="login-singup">
-            <button href="index.html">Hola Paco</button>
-            <a href="index.html">Crear cuenta</a>
-        </div>
+        <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
     </div>
-
 
 </header>
-<br>
-<h1 style="margin: auto;">Pensiones</h1>
-<br>
-<h3 style="margin: auto;">Introduzca las pensiones que oferta</h3>
-<br>
-<form style="margin: auto" th:action="@{/pension/crear/}" th:object="${pension}" method="post">
-    <div style="display: flex; flex-flow: row nowrap; width: 90%">
-        <div class="form-check" style="display: flex; flex-flow: row nowrap;width: 50%; justify-content: space-between;">
-            <label class="form-check-label" for="alojamiento">Solo alojamiento</label>
-            <input type="checkbox" class="form-check-input" id="alojamiento" th:field="*{booleanSa}">
-        </div>
 
-        <div class="form-group">
-            <label for="precioAlojamiento">Precio Alojamiento</label>
-            <input type="number" class="form-control" id="precioAlojamiento"  placeholder="Introduce el precio" th:field="*{sa}">
-            <small id="alojamientodetalle" class="form-text text-muted">Si esta opción no añade ningún extra al
-                alojamiento, introduce la cantidad de 0 €</small>
-        </div>
-    </div>
-    <div style="display: flex; flex-flow: row nowrap;width: 90%; justify-content: space-between;">
-        <div style="display: flex; flex-flow: row nowrap;">
-            <div class="form-check" style="display: flex; flex-flow: row nowrap;width: 50%; justify-content: space-between;">
-                <label class="form-check-label" for="desayunoyalmuerzo">Desayuno y Almuerzo</label>
-                <input type="checkbox" class="form-check-input" id="desayunoyalmuerzo" th:field="*{booleanAd}">
+<div class="titulo">
+
+    <h1>Pensiones</h1>
+
+</div>
+
+
+<form class="card" th:action="@{/pension/crear/}" th:object="${pension}" method="post">
+
+    <div class="interior">
+            <div class="container">
+                <label>Solo Alojamineto</label>
+                <input onchange="i1()" id="in1-1" class="notmy" type="checkbox" th:field="*{booleanSa}">
             </div>
 
-            <div class="form-group">
-                <label for="precioDesayuno">Precio del desayuno y almuerzo</label>
-                <input type="number" class="form-control" id="precioDesayuno"  placeholder="Introduce el precio" th:field="*{ad}">
-                <small id="almydesdetalle" class="form-text text-muted">Esta cantidad se añadirá por día y huésped al precio final</small>
+            <div class="container0" id="in1">
+                <input class="myinput" type="number" th:field="*{sa}">
+                <label>€</label>
             </div>
-        </div>
     </div>
-    <div style="display: flex; flex-flow: row nowrap; width: 90%; justify-content: space-between;">
-        <div style="display: flex; flex-flow: row nowrap;">
-            <div class="form-check" style="display: flex; flex-flow: row nowrap;width: 50%; justify-content: space-between;">
-                <label class="form-check-label" for="almuerzoycena">Media pensión</label>
-                <input type="checkbox" class="form-check-input" id="almuerzoycena" th:field="*{booleanMp}">
-            </div>
 
-            <div class="form-group">
-                <label for="precioalmuerzocena">Precio de la media pensión</label>
-                <input type="number" class="form-control" id="precioalmuerzocena"  placeholder="Introduce el precio" th:field="*{mp}">
-                <small id="emailHelp" class="form-text text-muted">Esta cantidad se añadirá por día y huésped al precio final</small>
-            </div>
+    <div class="interior">
+        <div class="container">
+            <label>Alojamineto y Desayuno</label>
+            <input onchange="i2()" id="in2-1" class="notmy" type="checkbox" th:field="*{booleanAd}">
         </div>
-    </div>
-    <div style="display: flex; flex-flow: row nowrap; width: 90%; justify-content: space-between;">
-        <div style="display: flex; flex-flow: row nowrap;">
-            <div class="form-check" style="display: flex; flex-flow: row nowrap;width: 50%; justify-content: space-between;">
-                <label class="form-check-label" for="pensioncompleta">Pensión completa</label>
-                <input type="checkbox" class="form-check-input" id="pensioncompleta" th:field="*{booleanPc}">
-            </div>
 
-            <div class="form-group" >
-                <label for="preciopc">Precio de la pensión completa</label>
-                <input type="number" class="form-control" id="preciopc"  placeholder="Introduce el precio" th:field="*{pc}">
-                <small id="pensioncompletadetalle" class="form-text text-muted">Esta cantidad se añadirá por día y huésped al precio final</small>
-            </div>
+        <div class="container0" id="in2">
+            <input class="myinput" type="number" placeholder="Introduce el precio" th:field="*{ad}">
+            <label>€</label>
         </div>
     </div>
+
+    <div class="interior">
+        <div class="container">
+            <label>Desayuno y Almuerzo</label>
+            <input onchange="i3()" id="in3-1" class="notmy" type="checkbox" th:field="*{booleanMp}">
+        </div>
+
+        <div class="container0"id="in3">
+            <input class="myinput" type="number" placeholder="Introduce el precio" th:field="*{mp}">
+            <label>€</label>
+        </div>
+    </div>
+
+    <div class="interior">
+        <div class="container">
+            <label>Pencion Completa</label>
+            <input onchange="i4()" id="in4-1" class="notmy" type="checkbox" th:field="*{booleanPc}">
+        </div>
+
+        <div class="container0" id="in4">
+            <input class="myinput" type="number" placeholder="Introduce el precio" th:field="*{pc}">
+            <label>€</label>
+        </div>
+    </div>
+
     <input type="hidden" th:value="${id}" th:attr="name='id'"/>
-    <a th:href="@{/usuario/inicio/}">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </a>
+    <div class="abss">
+        <button class="link-buttom" type="submit">Guardar</button>
+        <a class="link-buttom" href="/usuario/inicio">Volver</a>
+    </div>
+
 </form>
-<br>
-<a th:href="@{/usuario/inicio/}">
-    <button  type="submit" class="btn btn-primary">Volver</button></a>
-<br>
 <footer class="lasth">
 
     <div class="promote-hotel">
         <p>Forma parte de nosotros</p>
-        <button>Registra tus alojamientos</button>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" >Registra tus alojamientos</button>
+        </form>
     </div>
 
     <div class="middle-footer">
         <div class="cheader">
             <h1>Atlas</h1>
-            <p>BOOKING</p>
+            <p>ADMIN</p>
         </div>
         <div class="nets">
-            <img src="img/face.svg" alt="">
-            <img src="img/insta.svg" alt="">
-            <img src="img/twitter.svg" alt="">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
         </div>
         <p>Copyrigth © 2022 Atlas Booking S.L.</p>
     </div>
@@ -130,5 +447,40 @@
     </div>
 
 </footer>
+
+<script>
+
+    function i1(){
+        if (document.getElementById("in1-1").checked == true){
+            document.getElementById("in1").style.display = "flex"
+
+        }else {
+            document.getElementById("in1").style.display = "none"
+        }
+    }
+    function i2(){
+        if (document.getElementById("in2-1").checked == true){
+            document.getElementById("in2").style.display = "flex"
+        }else {
+            document.getElementById("in2").style.display = "none"
+        }
+    }
+    function i3(){
+        if (document.getElementById("in3-1").checked == true){
+            document.getElementById("in3").style.display = "flex"
+        }else {
+            document.getElementById("in3").style.display = "none"
+        }
+    }
+    function i4(){
+        if (document.getElementById("in4-1").checked == true){
+            document.getElementById("in4").style.display = "flex"
+        }else {
+            document.getElementById("in4").style.display = "none"
+        }
+    }
+
+</script>
+
 </body>
 </html>
