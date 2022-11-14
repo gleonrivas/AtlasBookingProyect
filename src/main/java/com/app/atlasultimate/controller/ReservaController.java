@@ -2,20 +2,22 @@ package com.app.atlasultimate.controller;
 import com.app.atlasultimate.Utilidades.UtilidadesHabitacion;
 import com.app.atlasultimate.Utilidades.UtilidadesPrecio;
 import com.app.atlasultimate.model.*;
-import com.app.atlasultimate.repository.ReservaRepository;
-import com.app.atlasultimate.repository.UsuarioRepository;
+import com.app.atlasultimate.repository.*;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.PensionService;
 import com.app.atlasultimate.service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
-
+import java.time.ZoneId;
+import java.util.Date;
 
 
 @Controller
@@ -33,6 +35,12 @@ public class ReservaController {
     private ReservaService servicioReserva;
     @Autowired
     ReservaRepository reservaRepository;
+    @Autowired
+    private HabitacionRepository habitacionRepository;
+    @Autowired
+    private PensionRepository pensionRepository;
+    @Autowired
+    private TemporadaRepository temporadaRepository;
 
 
     @GetMapping("datos/")
@@ -142,5 +150,49 @@ public class ReservaController {
 
 
 
+
+    @GetMapping("/crear/graphiql/")
+    @SchemaMapping(typeName = "Mutation", value = "crearReserva")
+    public String crearReserva(@RequestParam(required = true) @Argument LocalDate fecha_entrada,
+                               @RequestParam(required = true) @Argument LocalDate fecha_salida,
+                               @RequestParam(required = true) @Argument Integer num_personas,
+                               @RequestParam(required = true) @Argument tipo_pago tipo_pago,
+                               @RequestParam(required = true) @Argument tipo_pension tipo_pension,
+                               @RequestParam(required = true) @Argument Integer id_habitacion,
+                               @RequestParam(required = true) @Argument String email) {
+
+        Registro registro = new Registro();
+        registro.setF_entrada(fecha_entrada.toString());
+        registro.setF_salida(fecha_salida.toString());
+        registro.setN_personas(num_personas);
+        registro.setT_pago(tipo_pago);
+        registro.setT_pension(tipo_pension);
+        registro.setHabitacion(habitacionRepository.findTopById(id_habitacion));
+        registro.setUsuario(usuarioRepository.findTopByEmail(email));
+        Usuario user = usuarioRepository.findTopByEmail(email);
+        Integer id_hotel = habitacionRepository.idHotel(id_habitacion);
+        Pension pension = pensionRepository.pensionPorHotel(id_hotel);
+        Double precioPension = UtilidadesPrecio.booleanPrecioPension(pension,registro.getT_pension());
+        Integer id_temporada = habitacionRepository.idTemporada(id_habitacion);
+        Temporada temp = temporadaRepository.temporadaPorId(id_temporada);
+
+        if(registro.getHabitacion().equals(null)){
+            return "Esta habitación no existe";
+        }
+        if(registro.getUsuario().equals(null)){
+            return "Este usuario no existe";
+        }
+        if(user.getRol().equals(Rol.administrador)){
+            return "Este usuario no puede crear una reserva";
+        }
+        //calcular duracion
+        Integer duracion = UtilidadesPrecio.duracionReserva(fecha_entrada, fecha_salida);
+        //calcular precio
+        //Double precio = UtilidadesPrecio.preciototal(num_personas, duracion, pension, precioPension,  )
+        reservaRepository.save(registro);
+
+        return "Reserva realizada con éxito";
+
+    }
 
 }

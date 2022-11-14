@@ -1,6 +1,8 @@
 package com.app.atlasultimate.Utilidades;
 
+import com.app.atlasultimate.model.Pension;
 import com.app.atlasultimate.model.Temporada;
+import com.app.atlasultimate.model.tipo_pension;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
@@ -90,5 +92,15 @@ public class UtilidadesPrecio {
         return preciofin;
     }
 
-
+    public static Double booleanPrecioPension(Pension pension, tipo_pension tp){
+        if(tp.equals(pension.getBooleanAd())){
+            return pension.getAd();
+        }else if(tp.equals(pension.getBooleanMp())){
+            return pension.getMp();
+        }else if (tp.equals(pension.getBooleanSa())){
+            return  pension.getSa();
+        }else{
+            return pension.getPc();
+        }
+    }
 }

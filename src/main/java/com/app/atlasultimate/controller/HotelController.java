@@ -53,6 +53,9 @@ public class HotelController {
     @Autowired
     private ReservaRepository reservaRepository;
 
+    @Autowired
+    private PensionRepository pensionRepository;
+
 
     @GetMapping("/habitacion/{id_hotel}")
     public String leerHabitaciones(@PathVariable Integer id_hotel, Model model) {
@@ -311,52 +314,113 @@ public class HotelController {
                                    @RequestParam @Argument String pais, @RequestParam @Argument String direccion,
                                    @RequestParam @Argument Integer estrellas, @RequestParam @Argument Integer telefono,
                                    @RequestParam @Argument String email, @RequestParam @Argument Boolean cancelacion_g,
-                                   @RequestParam (required = false) @Argument String img_url, @RequestParam (required = false) @Argument Boolean wifi,
-                                   @RequestParam (required = false) @Argument Boolean mascotas, @RequestParam (required = false) @Argument Boolean multilengua,
-                                   @RequestParam (required = false) @Argument Boolean accesibilidad, @RequestParam (required = false) @Argument Boolean servicio_habitacion,
-                                   @RequestParam (required = false) @Argument Time horacomienzo_recepcion, @RequestParam (required = false) @Argument java.sql.Time horafin_recepcion,
-                                   @RequestParam (required = false) @Argument Boolean servicio_transporte, @RequestParam (required = false) @Argument Boolean tours,
-                                   @RequestParam (required = false) @Argument Boolean comedor, @RequestParam (required = false) @Argument Boolean espectaculos,
-                                   @RequestParam (required = false) @Argument Boolean patio, @RequestParam (required = false) @Argument Boolean piscina,
-                                   @RequestParam (required = false) @Argument Boolean terraza, @RequestParam (required = false) @Argument Boolean parking
-                                   ) {
+                                   @RequestParam(required = false) @Argument String img_url, @RequestParam(required = false) @Argument Boolean wifi,
+                                   @RequestParam(required = false) @Argument Boolean mascotas, @RequestParam(required = false) @Argument Boolean multilengua,
+                                   @RequestParam(required = false) @Argument Boolean accesibilidad, @RequestParam(required = false) @Argument Boolean servicio_habitacion,
+                                   @RequestParam(required = false) @Argument Time horacomienzo_recepcion, @RequestParam(required = false) @Argument java.sql.Time horafin_recepcion,
+                                   @RequestParam(required = false) @Argument Boolean servicio_transporte, @RequestParam(required = false) @Argument Boolean tours,
+                                   @RequestParam(required = false) @Argument Boolean comedor, @RequestParam(required = false) @Argument Boolean espectaculos,
+                                   @RequestParam(required = false) @Argument Boolean patio, @RequestParam(required = false) @Argument Boolean piscina,
+                                   @RequestParam(required = false) @Argument Boolean terraza, @RequestParam(required = false) @Argument Boolean parking
+    ) {
         Hotel hotel = new Hotel();
-        if(id_hotel!=null){
-            hotel= hotelRepository.findHotelById(id_hotel);
-            if(hotel == null){
-                return"este hotel no existe";
-            }else{
-                hotel.setId(id_hotel);hotel.setNombre(nombre);hotel.setCiudad(ciudad);hotel.setPais(pais);
-                hotel.setDireccion(direccion);hotel.setEstrellas(estrellas);hotel.setTelefono(telefono);
-                hotel.setEmail(email);hotel.setCancelacion_g(cancelacion_g);hotel.setImg(img_url);
-                hotel.setWifi(wifi);hotel.setMascotas(mascotas);hotel.setMultilengua(multilengua);
-                hotel.setAccesibilidad(accesibilidad);hotel.setS_habitacion(servicio_habitacion);hotel.setHc_recepcion(horacomienzo_recepcion);
-                hotel.setHf_recepcion(horafin_recepcion);hotel.setS_transporte(servicio_transporte);hotel.setTours(tours);
-                hotel.setComedor(comedor);hotel.setEspectaculos(espectaculos);hotel.setPatio(patio);
-                hotel.setPiscina(piscina);hotel.setTerraza(terraza);hotel.setParking(parking);
+        if (id_hotel != null) {
+            hotel = hotelRepository.findHotelById(id_hotel);
+            if (hotel == null) {
+                return "este hotel no existe";
+            } else {
+                hotel.setId(id_hotel);
+                hotel.setNombre(nombre);
+                hotel.setCiudad(ciudad);
+                hotel.setPais(pais);
+                hotel.setDireccion(direccion);
+                hotel.setEstrellas(estrellas);
+                hotel.setTelefono(telefono);
+                hotel.setEmail(email);
+                hotel.setCancelacion_g(cancelacion_g);
+                hotel.setImg(img_url);
+                hotel.setWifi(wifi);
+                hotel.setMascotas(mascotas);
+                hotel.setMultilengua(multilengua);
+                hotel.setAccesibilidad(accesibilidad);
+                hotel.setS_habitacion(servicio_habitacion);
+                hotel.setHc_recepcion(horacomienzo_recepcion);
+                hotel.setHf_recepcion(horafin_recepcion);
+                hotel.setS_transporte(servicio_transporte);
+                hotel.setTours(tours);
+                hotel.setComedor(comedor);
+                hotel.setEspectaculos(espectaculos);
+                hotel.setPatio(patio);
+                hotel.setPiscina(piscina);
+                hotel.setTerraza(terraza);
+                hotel.setParking(parking);
                 chequearBoolean(hotel);
                 hotelRepository.save(hotel);
                 return "Su hotel se ha editado correctamente";
             }
-        }else{
-            hotel.setId(id_hotel);hotel.setNombre(nombre);hotel.setCiudad(ciudad);hotel.setPais(pais);
-            hotel.setDireccion(direccion);hotel.setEstrellas(estrellas);hotel.setTelefono(telefono);
-            hotel.setEmail(email);hotel.setCancelacion_g(cancelacion_g);hotel.setImg(img_url);
-            hotel.setWifi(wifi);hotel.setMascotas(mascotas);hotel.setMultilengua(multilengua);
-            hotel.setAccesibilidad(accesibilidad);hotel.setS_habitacion(servicio_habitacion);hotel.setHc_recepcion(horacomienzo_recepcion);
-            hotel.setHf_recepcion(horafin_recepcion);hotel.setS_transporte(servicio_transporte);hotel.setTours(tours);
-            hotel.setComedor(comedor);hotel.setEspectaculos(espectaculos);hotel.setPatio(patio);
-            hotel.setPiscina(piscina);hotel.setTerraza(terraza);hotel.setParking(parking);
+        } else {
+            hotel.setId(id_hotel);
+            hotel.setNombre(nombre);
+            hotel.setCiudad(ciudad);
+            hotel.setPais(pais);
+            hotel.setDireccion(direccion);
+            hotel.setEstrellas(estrellas);
+            hotel.setTelefono(telefono);
+            hotel.setEmail(email);
+            hotel.setCancelacion_g(cancelacion_g);
+            hotel.setImg(img_url);
+            hotel.setWifi(wifi);
+            hotel.setMascotas(mascotas);
+            hotel.setMultilengua(multilengua);
+            hotel.setAccesibilidad(accesibilidad);
+            hotel.setS_habitacion(servicio_habitacion);
+            hotel.setHc_recepcion(horacomienzo_recepcion);
+            hotel.setHf_recepcion(horafin_recepcion);
+            hotel.setS_transporte(servicio_transporte);
+            hotel.setTours(tours);
+            hotel.setComedor(comedor);
+            hotel.setEspectaculos(espectaculos);
+            hotel.setPatio(patio);
+            hotel.setPiscina(piscina);
+            hotel.setTerraza(terraza);
+            hotel.setParking(parking);
             chequearBoolean(hotel);
             hotelRepository.save(hotel);
             return "Su hotel se ha creado correctamente";
         }
 
-
-
-
     }
 
+    @DeleteMapping("/deleteHotel/graphiql/")
+    @SchemaMapping(typeName = "Mutation", value = "eliminarHotel")
+    public String eliminarHotel(@RequestParam(required = true) @Argument Integer id_hotel) {
+
+        Hotel hotel = hotelRepository.findHotelById(id_hotel);
+
+        if (hotel == null) {
+            return "El hotel no existe";
+        } else {
+            List<Habitacion> listaPorIdHotel = servicioHab.listarHabitacionbyIdHotel(id_hotel);
+            List<Review> listarReviewsPorIdHotel = reviewRepository.findReviewsHotel(id_hotel);
+            Pension pensionporIdHotel = pensionRepository.pensionPorHotel(id_hotel);
+
+            if (listaPorIdHotel.size() > 0) {
+                return "Debe eliminar primero las habitaciones del hotel";
+            }
+            if (listarReviewsPorIdHotel.size() > 0) {
+                for (Review r : listarReviewsPorIdHotel) {
+                    r.setHotel(null);
+                    reviewRepository.save(r);
+                }
+            }
+            if (pensionporIdHotel != null) {
+                pensionRepository.delete(pensionporIdHotel);
+            }
+            hotelRepository.deleteById(id_hotel);
+            return "El hotel se ha borrado correctamente";
+        }
+
+    }
 
 
 }

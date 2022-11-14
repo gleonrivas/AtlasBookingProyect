@@ -100,15 +100,6 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Habitacion> habiacion;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "hotel", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Pension> pension;
-
-    @PreRemove
-    public void nullificar(){
-        pension.forEach(r -> r.setId_hotel(null));
-    }
-
 
     public Hotel(Integer id) {
         this.id = id;
@@ -365,24 +356,16 @@ public class Hotel {
         this.habiacion = habiacion;
     }
 
-    public List<Pension> getPension() {
-        return pension;
-    }
-
-    public void setPension(List<Pension> pension) {
-        this.pension = pension;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Hotel)) return false;
         Hotel hotel = (Hotel) o;
-        return Objects.equals(id, hotel.id) && Objects.equals(nombre, hotel.nombre) && Objects.equals(pais, hotel.pais) && Objects.equals(ciudad, hotel.ciudad) && Objects.equals(direccion, hotel.direccion) && Objects.equals(estrellas, hotel.estrellas) && Objects.equals(telefono, hotel.telefono) && Objects.equals(email, hotel.email) && Objects.equals(cancelacion_g, hotel.cancelacion_g) && Objects.equals(img, hotel.img) && Objects.equals(wifi, hotel.wifi) && Objects.equals(mascotas, hotel.mascotas) && Objects.equals(multilengua, hotel.multilengua) && Objects.equals(accesibilidad, hotel.accesibilidad) && Objects.equals(s_habitacion, hotel.s_habitacion) && Objects.equals(hc_recepcion, hotel.hc_recepcion) && Objects.equals(hf_recepcion, hotel.hf_recepcion) && Objects.equals(s_transporte, hotel.s_transporte) && Objects.equals(tours, hotel.tours) && Objects.equals(comedor, hotel.comedor) && Objects.equals(espectaculos, hotel.espectaculos) && Objects.equals(patio, hotel.patio) && Objects.equals(piscina, hotel.piscina) && Objects.equals(terraza, hotel.terraza) && Objects.equals(parking, hotel.parking) && Objects.equals(id_usuario, hotel.id_usuario) && Objects.equals(review, hotel.review) && Objects.equals(habiacion, hotel.habiacion) && Objects.equals(pension, hotel.pension);
+        return Objects.equals(getId(), hotel.getId()) && Objects.equals(getNombre(), hotel.getNombre()) && Objects.equals(getPais(), hotel.getPais()) && Objects.equals(getCiudad(), hotel.getCiudad()) && Objects.equals(getDireccion(), hotel.getDireccion()) && Objects.equals(getEstrellas(), hotel.getEstrellas()) && Objects.equals(getTelefono(), hotel.getTelefono()) && Objects.equals(getEmail(), hotel.getEmail()) && Objects.equals(getCancelacion_g(), hotel.getCancelacion_g()) && Objects.equals(getImg(), hotel.getImg()) && Objects.equals(getWifi(), hotel.getWifi()) && Objects.equals(getMascotas(), hotel.getMascotas()) && Objects.equals(getMultilengua(), hotel.getMultilengua()) && Objects.equals(getAccesibilidad(), hotel.getAccesibilidad()) && Objects.equals(getS_habitacion(), hotel.getS_habitacion()) && Objects.equals(getHc_recepcion(), hotel.getHc_recepcion()) && Objects.equals(getHf_recepcion(), hotel.getHf_recepcion()) && Objects.equals(getS_transporte(), hotel.getS_transporte()) && Objects.equals(getTours(), hotel.getTours()) && Objects.equals(getComedor(), hotel.getComedor()) && Objects.equals(getEspectaculos(), hotel.getEspectaculos()) && Objects.equals(getPatio(), hotel.getPatio()) && Objects.equals(getPiscina(), hotel.getPiscina()) && Objects.equals(getTerraza(), hotel.getTerraza()) && Objects.equals(getParking(), hotel.getParking()) && Objects.equals(getId_usuario(), hotel.getId_usuario()) && Objects.equals(getReview(), hotel.getReview()) && Objects.equals(getHabiacion(), hotel.getHabiacion());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, pais, ciudad, direccion, estrellas, telefono, email, cancelacion_g, img, wifi, mascotas, multilengua, accesibilidad, s_habitacion, hc_recepcion, hf_recepcion, s_transporte, tours, comedor, espectaculos, patio, piscina, terraza, parking, id_usuario, review, habiacion, pension);
+        return Objects.hash(getId(), getNombre(), getPais(), getCiudad(), getDireccion(), getEstrellas(), getTelefono(), getEmail(), getCancelacion_g(), getImg(), getWifi(), getMascotas(), getMultilengua(), getAccesibilidad(), getS_habitacion(), getHc_recepcion(), getHf_recepcion(), getS_transporte(), getTours(), getComedor(), getEspectaculos(), getPatio(), getPiscina(), getTerraza(), getParking(), getId_usuario(), getReview(), getHabiacion());
     }
 }
