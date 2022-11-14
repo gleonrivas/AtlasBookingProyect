@@ -244,7 +244,7 @@
     .nombreCiudad{
         margin: 1% auto;
         font-family: Georgia, sans-serif;
-        font-size: 100px;
+        font-size: 80px;
         text-align: center;
         color: white;
         text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
@@ -256,12 +256,12 @@
     }
     @keyframes nciudad {
         from {
-            font-size: 100px;
+            font-size: 50px;
             text-shadow: none;
             margin: 22%;
         }
         to {
-            font-size: 170px;
+            font-size: 80px;
             text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
             margin: 1% auto;
         }
@@ -367,6 +367,27 @@
         border-radius: 30px;
         transition: all 0.2s ease-in-out;
     }
+    .error{
+        left: 0;
+        right: 0;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: max-content;
+        margin: -25% auto 0 auto;
+
+    }
+    .error > p{
+        background-color: #f9f3ff;
+        width: max-content;
+        margin: auto 5px;
+        padding: 20px;
+        color: #ff0000;
+        text-align: center;
+        font-size: 15px;
+        border-radius: 20px;
+    }
 
 
     /* FINALIZA MUESTRA DE HOTEL ---------------------------------*/
@@ -398,14 +419,24 @@
 
 </header>
 
+<div class="error" th:if="${param.fallo}">
+    <p>🚫 La fecha de entrada debe de ser anterior a la fecha de salida</p>
+</div>
+<div class="error" th:if="${param.fallo2}">
+    <p>🚫 Solo está disponible la reserva con un día de diferencia</p>
+</div>
+<div class="error" th:if="${param.falloFecha}">
+    <p>🚫 Por favor, introduzca una fecha</p>
+</div>
+
 <form th:action="@{/descubre}" method="post" th:object="${hotelSinCiudad}" class="intro">
     <div class="entry-group">
         <label for="fecha_inicio">Fecha de entrada</label>
-        <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" class="fecha">
+        <input type="date" id="fecha_inicio" th:field="*{fecha_inicio}" th:min="${fecha}" class="fecha">
     </div>
     <div class="entry-group">
         <label for="fecha_fin">Fecha de salida</label>
-        <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  class="fecha">
+        <input type="date"  id="fecha_fin" th:field="*{fecha_fin}"  th:min="${fecha2}" class="fecha">
     </div>
     <div class="entry-group">
         <label for="n_personas">¿Cuantas personas?</label>
@@ -413,6 +444,8 @@
     </div>
     <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
+
+
 
 <div class="nombreCiudad">Mejores valorados por los clientes</div>
 <div class="hotelSlider">

@@ -31,6 +31,7 @@ public class DescubreController {
 
         String fecha = LocalDate.now().toString();
         String fecha2 = LocalDate.now().plusDays(1).toString();
+
         model.addAttribute("fecha", fecha);
         model.addAttribute("fecha2", fecha2);
         model.addAttribute("hoteles", hotelRepository.mejoresValorados());
@@ -40,6 +41,8 @@ public class DescubreController {
         Hotel hotelRandom = hotelList.get(rand.nextInt(hotelList.size()));
         model.addAttribute("hotelesCiudad", hotelRepository.findAllByCiudad(hotelRandom.getCiudad()));
         model.addAttribute("ciudadRandom" , hotelRandom.getCiudad());
+
+
         return "/descubre.html";
     }
 
@@ -69,11 +72,11 @@ public class DescubreController {
         model.addAttribute("fecha_fin", busquedaDTO.getFecha_fin());
 
         if (busquedaDTO.getFecha_inicio().equals("") || busquedaDTO.getFecha_fin().equals("")){
-            return "redirect:/?falloFecha";
+            return "redirect:/descubre?falloFecha";
         }else if(LocalDate.parse(busquedaDTO.getFecha_inicio()).equals(LocalDate.parse(busquedaDTO.getFecha_fin()))){
-            return "redirect:/?fallo2";
+            return "redirect:/descubre?fallo2";
         }else if(LocalDate.parse(busquedaDTO.getFecha_inicio()).isAfter(LocalDate.parse(busquedaDTO.getFecha_fin()))){
-            return "redirect:/?fallo";
+            return "redirect:/descubre?fallo";
         }else if (hotelesReview.isEmpty() && hotelesPorHotel.isEmpty()){
             return "redirect:/fallo";
         }else {

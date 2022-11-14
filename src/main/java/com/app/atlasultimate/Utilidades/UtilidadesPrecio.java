@@ -83,7 +83,12 @@ public class UtilidadesPrecio {
                               Double precioBase){
         Double preciofin;
 
-        preciofin = precioBase +temporada + pension;
+        if (pension == null){
+            preciofin = precioBase +temporada + 0;
+        }else {
+            preciofin = precioBase +temporada + pension;
+        }
+
         preciofin = preciofin * duracion;
         preciofin = preciofin * numPersona;
 

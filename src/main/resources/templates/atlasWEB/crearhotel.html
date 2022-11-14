@@ -448,7 +448,7 @@
     function generarMapa(coordenadas){
         var mapa = new google.maps.Map(document.getElementById("mapa"),
             {
-                zoom: 20,
+                zoom: 8,
                 center : new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
             });
         marcador = new google.maps.Marker({
