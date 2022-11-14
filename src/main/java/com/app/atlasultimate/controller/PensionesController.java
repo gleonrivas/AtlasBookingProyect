@@ -35,6 +35,19 @@ public class PensionesController {
     public String guardarPension(@ModelAttribute (value="id") Integer id,
                                  @ModelAttribute(value="pension") Pension pension){
 
+        if (!pension.getBooleanSa()) {
+            pension.setSa(0.0);
+        }
+        if (!pension.getBooleanAd()){
+            pension.setAd(0.0);
+        }
+        if (!pension.getBooleanMp()){
+            pension.setMp(0.0);
+        }
+        if (!pension.getBooleanPc()){
+            pension.setPc(0.0);
+        }
+
         Hotel hotel = hotelRepository.findTopById(id);
         Integer id_pension = pensionRepository.idUltimaPension() +1;
         pension.setId(id_pension);
