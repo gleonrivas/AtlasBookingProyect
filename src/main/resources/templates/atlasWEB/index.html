@@ -301,11 +301,11 @@
   </div>
   <div class="entry-group">
     <label for="ciudad">Escribe una ciudad</label>
-    <input type="text" id="ciudad" th:field="*{ciudad}" value="Próximo destino..." class="inputciudad">
+    <input type="text" id="ciudad" th:field="*{ciudad}" placeholder="Próximo destino..." class="inputciudad">
   </div>
   <div class="entry-group">
     <label for="n_personas">¿Cuantas personas?</label>
-    <input type="number" id="n_personas" th:field="*{n_max_personas}" value="0" class="inputn_personas">
+    <input type="number" id="n_personas" th:field="*{n_max_personas}"  class="inputn_personas" value="1">
   </div>
   <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
