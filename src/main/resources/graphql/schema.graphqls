@@ -1,10 +1,10 @@
 scalar Time
 scalar Date
 enum t_pension{
-    solo_alojamiento
-    desayuno_almuerzo
-    media_pension
-    pension_completa
+    sa
+    ad
+    mp
+    pc
 
 }
 enum t_pago{

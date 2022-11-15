@@ -48,12 +48,10 @@ public class Pension {
     private Boolean booleanPc;
 
     @JsonBackReference
-    @ManyToOne( optional = true, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToOne( optional = true, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hotel")
     private Hotel id_hotel;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Hotel> hotel;
 
     public Pension(Double sa, Boolean booleanSa, Double ad, Boolean booleanAd, Double mp, Boolean booleanMp, Double pc, Boolean booleanPc, Hotel id_hotel) {
         this.sa = sa;

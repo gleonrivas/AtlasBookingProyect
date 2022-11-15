@@ -133,7 +133,8 @@ public class ReservaController {
                 precioFinal,
                 duracion,
                 usuario,
-                habitacion);
+                habitacion,
+                true);
 
         if (reserva == null){
             return "/reservas.html";
@@ -169,12 +170,15 @@ public class ReservaController {
         registro.setT_pension(tipo_pension);
         registro.setHabitacion(habitacionRepository.findTopById(id_habitacion));
         registro.setUsuario(usuarioRepository.findTopByEmail(email));
+        registro.setActiva(true);
         Usuario user = usuarioRepository.findTopByEmail(email);
         Integer id_hotel = habitacionRepository.idHotel(id_habitacion);
         Pension pension = pensionRepository.pensionPorHotel(id_hotel);
         Double precioPension = UtilidadesPrecio.booleanPrecioPension(pension,registro.getT_pension());
         Integer id_temporada = habitacionRepository.idTemporada(id_habitacion);
         Temporada temp = temporadaRepository.temporadaPorId(id_temporada);
+        Double temp2 = UtilidadesPrecio.temporadaDouble(fecha_entrada, fecha_salida, temp);
+        Habitacion habitacion = habitacionRepository.findTopById(id_habitacion);
 
         if(registro.getHabitacion().equals(null)){
             return "Esta habitación no existe";
@@ -187,10 +191,11 @@ public class ReservaController {
         }
         //calcular duracion
         Integer duracion = UtilidadesPrecio.duracionReserva(fecha_entrada, fecha_salida);
+        registro.setN_dias(duracion);
         //calcular precio
-        //Double precio = UtilidadesPrecio.preciototal(num_personas, duracion, pension, precioPension,  )
+        Double precio = UtilidadesPrecio.preciototal(num_personas, duracion, precioPension, temp2, habitacion.getPrecio_base());
+        registro.setPrecio_total_dias(precio);
         reservaRepository.save(registro);
-
         return "Reserva realizada con éxito";
 
     }
