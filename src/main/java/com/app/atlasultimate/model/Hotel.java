@@ -100,15 +100,6 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Habitacion> habiacion;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "hotel", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Pension> pension;
-
-    @PreRemove
-    public void nullificar(){
-        pension.forEach(r -> r.setId_hotel(null));
-    }
-
 
     public Hotel(Integer id) {
         this.id = id;
