@@ -55,6 +55,4 @@ public class Pension {
     @JoinColumn(name = "id_hotel")
     private Hotel id_hotel;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Hotel> hotel;
 }

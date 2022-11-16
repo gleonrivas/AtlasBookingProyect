@@ -47,6 +47,9 @@ public class MyController {
         return "/index.html";
     }
 
+
+
+
     @PostMapping("")
     public String filtrarHotel(@ModelAttribute("hotel") HotelBusquedaDTO busquedaDTO, Model model,
                                @ModelAttribute("fecha_inicio") String fechaInicio,

@@ -24,7 +24,7 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
             "join usuario u on h.usuario = u.id \n" +
             "JOIN habitacion h2 on h.id = h2.id_hotel \n" +
             "left JOIN registro r on h2.id = r.id_habitacion \n" +
-            "and :fecha_inicio not BETWEEN r.f_entrada and r.f_salida \n" +
+            "where :fecha_inicio not BETWEEN r.f_entrada and r.f_salida \n" +
             "and :fecha_fin not BETWEEN r.f_entrada  and r.f_salida \n" +
             "and h.ciudad like %:ciudad% \n" +
             "and h2.n_max_personas >= :n_max_personas group by h.id", nativeQuery = true)
@@ -38,7 +38,7 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
             "join usuario u on h.usuario = u.id \n" +
             "JOIN habitacion h2 on h.id = h2.id_hotel \n" +
             "left JOIN registro r on h2.id = r.id_habitacion \n" +
-            "and :fecha_inicio not BETWEEN r.f_entrada and r.f_salida \n" +
+            "where :fecha_inicio not BETWEEN r.f_entrada and r.f_salida \n" +
             "and :fecha_fin not BETWEEN r.f_entrada  and r.f_salida \n" +
             "and h2.n_max_personas >= :n_max_personas group by h.id", nativeQuery = true)
     List<Hotel> findAllByReservas2(@Param("fecha_inicio") String fecha_inicio,
@@ -70,7 +70,7 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
             "JOIN habitacion h2 on h.id = h2.id_hotel \n" +
             "left JOIN registro r on h2.id = r.id_habitacion \n" +
             "left JOIN review r2 on h.id = r2.id_hotel\n" +
-            "and  :fecha_inicio not BETWEEN r.f_entrada  and r.f_salida  \n" +
+            "where  :fecha_inicio not BETWEEN r.f_entrada  and r.f_salida  \n" +
             "and :fecha_fin not BETWEEN r.f_entrada  and r.f_salida \n" +
             "and h2.n_max_personas >= :n_max_personas \n" +
             "group by h.id order by r2.estrellas desc", nativeQuery = true)
@@ -87,7 +87,7 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
             "join usuario u on h.usuario = u.id \n" +
             "JOIN habitacion h2 on h.id = h2.id_hotel \n" +
             "left JOIN registro r on h2.id = r.id_habitacion \n" +
-            "and  :fecha_inicio not BETWEEN r.f_entrada  and r.f_salida  \n" +
+            "where  :fecha_inicio not BETWEEN r.f_entrada  and r.f_salida  \n" +
             "and :fecha_fin not BETWEEN r.f_entrada  and r.f_salida \n" +
             "and h2.n_max_personas >= :n_max_personas \n" +
             "group by h.id order by h.estrellas desc", nativeQuery = true)

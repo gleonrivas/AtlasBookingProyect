@@ -24,4 +24,13 @@ public interface HabitacionRepository  extends JpaRepository<Habitacion,Integer>
     @Query(value="select id_hotel from habitacion h", nativeQuery = true)
     List<Integer> idHotelPorHabitacion();
 
+    @Query(value = "SELECT h.* from habitacion h \n" +
+            "join registro r on h.id = r.id_habitacion \n" +
+            "where :fecha_inicio not BETWEEN r.f_entrada and r.f_salida \n" +
+            "and :fecha_fin not BETWEEN r.f_entrada  and r.f_salida \n" +
+            "and h.id_hotel = :id_hotel", nativeQuery = true)
+    List<Habitacion> findAllByfechas(@Param("fecha_inicio") String fecha_inicio,
+                                     @Param("fecha_fin")String fecha_fin,
+                                     @Param("id_hotel")Integer id_hotel);
+
 }
