@@ -37,7 +37,6 @@ public class Registro {
     private Double precio_total_dias;
     @Column(name = "n_dias", length = 3)
     private Integer n_dias;
-
     @Column(name = "activa")
     private Boolean activa;
 

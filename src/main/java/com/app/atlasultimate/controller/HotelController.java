@@ -44,8 +44,6 @@ public class HotelController {
     @Autowired
     private HotelService servicioHotel;
 
-    @Autowired
-    private HabitacionController habcontroller;
 
     @Autowired
     private TemporadaRepository temporadaRepository;
@@ -187,12 +185,15 @@ public class HotelController {
         habitacionexistente.setPrecio_base(hab.getPrecio_base());
         habitacionexistente.setBano(hab.getBano());
         habitacionexistente.setVistas(hab.getVistas());
-        habcontroller.chequearBooleanHabitacion(habitacionexistente);
+        chequearBooleanHabitacion(habitacionexistente);
         servicio.actualizarHabitacion(habitacionexistente);
 
         return "redirect:/hotel/editarhabitacion/"+ id_habitacion;
     }
-
+    public void chequearBooleanHabitacion(Habitacion h) {
+        h.setBano(h.getBano() == null ? false : true);
+        h.setVistas(h.getVistas() == null ? false : true);
+    }
     //Eliminar habitacion
     @PostMapping("/habitacion/{id_hotel}")
     public String eliminarHab(@PathVariable Integer id_hotel,
