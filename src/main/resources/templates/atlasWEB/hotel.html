@@ -458,6 +458,7 @@
 <h2>Los 10 comentarios mas recientes.</h2>
 <div class="comentario-slider">
     <div class="comentario-container">
+
         <form class="comentario-tarjeta" method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
             <p th:text="${'Comente algo, ' + usuario.nombre}"></p>
             <div class="get-comentario">
@@ -487,6 +488,7 @@
                 <p th:text="${v.comentario}"></p>
             </div>
         </div>
+
     </div>
 </div>
 
