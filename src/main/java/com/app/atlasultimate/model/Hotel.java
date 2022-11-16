@@ -106,7 +106,6 @@ public class Hotel {
     private Set<Habitacion> habiacion;
 
 
-
     public Hotel(Integer id) {
         this.id = id;
     }
@@ -361,7 +360,6 @@ public class Hotel {
     public void setHabiacion(Set<Habitacion> habiacion) {
         this.habiacion = habiacion;
     }
-
 
     @Override
     public boolean equals(Object o) {

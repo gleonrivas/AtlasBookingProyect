@@ -422,7 +422,7 @@
                     </div>
 
                     <div class="entraboton"  th:if="${!#lists.contains(listhab,hotel.id)}" >
-                        <a th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
+                        <a class="entraboton" th:href="@{/usuario/inicio/{id}(id=${hotel.id})}">
                             <button class=" boton eliminar" type="submit">Eliminar</button>
                         </a>
                     </div>

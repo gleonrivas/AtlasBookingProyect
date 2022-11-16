@@ -52,7 +52,6 @@ public class Pension {
     @JoinColumn(name = "id_hotel")
     private Hotel id_hotel;
 
-
     public Pension(Double sa, Boolean booleanSa, Double ad, Boolean booleanAd, Double mp, Boolean booleanMp, Double pc, Boolean booleanPc, Hotel id_hotel) {
         this.sa = sa;
         this.booleanSa = booleanSa;
