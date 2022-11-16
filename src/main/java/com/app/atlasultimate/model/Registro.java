@@ -51,7 +51,8 @@ public class Registro {
     @JoinColumn(name = "id_habitacion")
     private Habitacion habitacion;
 
-    public Registro(String f_entrada, String f_salida, Integer n_personas, tipo_pago t_pago, tipo_pension t_pension, Double precio_total_dias, Integer n_dias, Usuario usuario, Habitacion habitacion) {
+    public Registro(String f_entrada, String f_salida, Integer n_personas, tipo_pago t_pago, tipo_pension t_pension,
+                    Double precio_total_dias, Integer n_dias, Usuario usuario, Habitacion habitacion, Boolean activa) {
 
         this.f_entrada = f_entrada;
         this.f_salida = f_salida;
@@ -62,6 +63,7 @@ public class Registro {
         this.n_dias = n_dias;
         this.usuario = usuario;
         this.habitacion = habitacion;
+        this.activa = activa;
 
     }
 

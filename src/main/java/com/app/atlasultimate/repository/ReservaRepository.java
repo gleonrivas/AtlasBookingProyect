@@ -32,6 +32,9 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
 
     Registro findFirstByUsuarioOrderByIdDesc(Usuario usuario);
 
+    @Query(value="select * from registro where id_habitacion = :id_habitacion", nativeQuery = true)
+    List<Registro> listaregistroPorIdHab(@Param("id_habitacion") Integer id_habitacion);
+
 
 
 }

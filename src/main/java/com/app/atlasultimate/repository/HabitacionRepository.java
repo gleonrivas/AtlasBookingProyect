@@ -33,4 +33,10 @@ public interface HabitacionRepository  extends JpaRepository<Habitacion,Integer>
                                      @Param("fecha_fin")String fecha_fin,
                                      @Param("id_hotel")Integer id_hotel);
 
+    @Query(value = "SELECT id_hotel FROM habitacion h where id = :id_hab", nativeQuery = true)
+    Integer idHotel(@Param("id_hab")Integer id_hab);
+
+    @Query(value = "SELECT temporada_id FROM habitacion h where id = :id_hab", nativeQuery = true)
+    Integer idTemporada(@Param("id_hab")Integer id_hab);
+
 }

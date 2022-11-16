@@ -5,6 +5,8 @@ import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -47,9 +50,6 @@ public class MyController {
         return "/index.html";
     }
 
-
-
-
     @PostMapping("")
     public String filtrarHotel(@ModelAttribute("hotel") HotelBusquedaDTO busquedaDTO, Model model,
                                @ModelAttribute("fecha_inicio") String fechaInicio,
@@ -80,6 +80,21 @@ public class MyController {
         }
 
 
+    }
+
+    //GRAPHIQL buscador hotel
+    @GetMapping("inicio/busqueda")
+    @SchemaMapping(typeName = "Query", value = "buscadorHotel")
+    public List<Hotel> buscadorHotel(@Argument LocalDate fecha_entrada,
+                                     @Argument LocalDate fecha_salida,
+                                     @Argument Integer num_personas,
+                                     @Argument String ciudad) {
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date fechaEntrada = Date.from(fecha_entrada.atStartOfDay(defaultZoneId).toInstant());
+        Date fechaSalida = Date.from(fecha_salida.atStartOfDay(defaultZoneId).toInstant());
+        List<Hotel> hoteles = hotelService.buscador(fechaEntrada, fechaSalida,ciudad,num_personas);
+
+        return hoteles;
     }
 
 

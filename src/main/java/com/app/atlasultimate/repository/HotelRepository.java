@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -95,6 +96,48 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
                                             @Param("fecha_fin") String fecha_fin,
                                             @Param("n_max_personas") Integer n_max_personas);
 
+    @Query(value = "SELECT h2.*  FROM registro r \n" +
+            "join habitacion h on r.id_habitacion = h.id\n" +
+            "JOIN  hotel h2 on h.id_hotel = h2.id\n" +
+            "where  :fecha_inicio not BETWEEN r.f_entrada  and r.f_salida  \n" +
+            "and :fecha_fin not BETWEEN r.f_entrada  and r.f_salida \n" +
+            "and h2.ciudad like %:ciudad% \n" +
+            "and h.n_max_personas >= :n_max_personas group by h2.id\n", nativeQuery = true)
+    List<Hotel> buscadorgraphiql(@Param("fecha_inicio")  Date fecha_inicio,
+                                  @Param("fecha_fin") Date fecha_fin,
+                                  @Param("ciudad") String ciudad,
+                                  @Param("n_max_personas") Integer n_max_personas);
 
-
+    @Query(value = "UPDATE hotel set nombre = :nombre, ciudad = :ciudad, pais = :pais, " +
+            "direccion = :direccion, estrellas = :estrellas," +
+            "telefono = :telefono, email = :email, cancelacion_g = :cancelacion_g, img=:img, " +
+            "wifi = :wifi, mascotas = :mascotas, multilengua = :multilengua, accesibilidad = :accesibilidad," +
+            "s_habitacion = :s_habitacion, hc_recepcion = :hc_recepcion, hf_recepcion = :hf_recepcion," +
+            "s_transporte = :s_transporte, tours = :tours, comedor = :comedor, espectaculos = :espectaculos, " +
+            "patio = :patio, piscina = :piscina, terraza = :terraza, parking = :parking where id = :id", nativeQuery = true)
+    Hotel updateByID(@Param("nombre") String nombre,
+                       @Param("ciudad") String ciudad,
+                       @Param("pais") String pais,
+                       @Param("direccion") String direccion,
+                       @Param("estrellas") Integer estrellas,
+                       @Param("telefono") Integer telefono,
+                       @Param("email") String email,
+                       @Param("img") String img,
+                       @Param("cancelacion_g") Boolean cancelacion_g,
+                       @Param("wifi") Boolean wifi,
+                       @Param("mascotas") Boolean mascotas,
+                       @Param("multilengua") Boolean multilengua,
+                       @Param("accesibilidad") Boolean accesibilidad,
+                       @Param("s_habitacion") Boolean s_habitacion,
+                       @Param("hc_recepcion") Time hc_recepcion,
+                       @Param("hf_recepcion") Time hf_recepcion,
+                       @Param("s_transporte") Boolean s_transporte,
+                       @Param("tours") Boolean tours,
+                       @Param("comedor") Boolean comedor,
+                       @Param("espectaculos") Boolean espectaculos,
+                       @Param("patio") Boolean patio,
+                       @Param("piscina") Boolean piscina,
+                       @Param("terraza") Boolean terraza,
+                       @Param("parking") Boolean parking,
+                       @Param("id") Integer id);
 }

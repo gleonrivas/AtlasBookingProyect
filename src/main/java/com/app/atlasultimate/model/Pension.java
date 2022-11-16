@@ -1,10 +1,7 @@
 package com.app.atlasultimate.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +12,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Pension {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,8 +48,20 @@ public class Pension {
     private Boolean booleanPc;
 
     @JsonBackReference
-    @ManyToOne( optional = true, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToOne( optional = true, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hotel")
     private Hotel id_hotel;
 
+
+    public Pension(Double sa, Boolean booleanSa, Double ad, Boolean booleanAd, Double mp, Boolean booleanMp, Double pc, Boolean booleanPc, Hotel id_hotel) {
+        this.sa = sa;
+        this.booleanSa = booleanSa;
+        this.ad = ad;
+        this.booleanAd = booleanAd;
+        this.mp = mp;
+        this.booleanMp = booleanMp;
+        this.pc = pc;
+        this.booleanPc = booleanPc;
+        this.id_hotel = id_hotel;
+    }
 }

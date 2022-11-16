@@ -7,6 +7,8 @@ import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,13 +53,16 @@ public class HotelController {
     @Autowired
     private ReservaRepository reservaRepository;
 
+    @Autowired
+    private PensionRepository pensionRepository;
+
 
     @GetMapping("/habitacion/{id_hotel}")
     public String leerHabitaciones(@PathVariable Integer id_hotel, Model model) {
         List<Habitacion> listadeHabitacion = servicio.listarHabitacionbyIdHotel(id_hotel);
         Hotel hotel = servicioHotel.obtenerHotelporId(id_hotel);
         List<Temporada> listaTemporadas = temporadaRepository.listaTemporadas();
-        List<Integer>  listaIdHavitacionReserva = reservaRepository.listaidHabporRegistro();
+        List<Integer> listaIdHavitacionReserva = reservaRepository.listaidHabporRegistro();
         model.addAttribute("habitaciones", listadeHabitacion);
         model.addAttribute("hotel", hotel);
         model.addAttribute("temporadas", listaTemporadas);
@@ -224,8 +230,6 @@ public class HotelController {
                                       @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
                                       @RequestParam(value = "fecha_fin", required = false) String fechaFin,
                                       @RequestParam(value = "num_personas", required = false) Integer num_personas){
-        Review resena = new Review();
-        model.addAttribute("resena", resena);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
@@ -236,13 +240,12 @@ public class HotelController {
         model.addAttribute("num_personas", num_personas);
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
-        List<Habitacion> habitaciones = repository.findAllByfechas(fechaInicio, fechaFin, id);
+        List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
         List<Review> review = reviewRepository.find10LastValues(id);
         model.addAttribute("review", review);
         Map<String, Review> mapa = new HashMap<>();
         model.addAttribute("mapa", mapa);
-
         try{
             for (int i = 0; i<=10; i++){
                 mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
@@ -289,4 +292,139 @@ public class HotelController {
         return "/hotel.html";
 
     }
+
+
+    //GRAPHQL
+
+    //Listar habitacion
+    @GetMapping("/habitacion/listar/")
+    @SchemaMapping(typeName = "Query", value = "listarHabitacion")
+    public List<Habitacion> listarHabitacion(@RequestParam @Argument Integer id_hotel) {
+        return servicioHab.listarHabitacionbyIdHotel(id_hotel);
+    }
+
+    //Listar hotel
+
+    @GetMapping("/hotel/listar/")
+    @SchemaMapping(typeName = "Query", value = "listarHotel")
+    public List<Hotel> listarHotel(@RequestParam @Argument Integer id_usuario) {
+        return servicioHotel.listarHotel(id_usuario);
+    }
+
+    //crear y editar Hotel
+    @PostMapping("/hotel/crear/graphiql/")
+    @SchemaMapping(typeName = "Mutation", value = "crearEditarHotel")
+    public String crearEditarHotel(@RequestParam @Argument Integer id_hotel, @RequestParam @Argument String nombre, @RequestParam @Argument String ciudad,
+                                   @RequestParam @Argument String pais, @RequestParam @Argument String direccion,
+                                   @RequestParam @Argument Integer estrellas, @RequestParam @Argument Integer telefono,
+                                   @RequestParam @Argument String email, @RequestParam @Argument Boolean cancelacion_g,
+                                   @RequestParam(required = false) @Argument String img_url, @RequestParam(required = false) @Argument Boolean wifi,
+                                   @RequestParam(required = false) @Argument Boolean mascotas, @RequestParam(required = false) @Argument Boolean multilengua,
+                                   @RequestParam(required = false) @Argument Boolean accesibilidad, @RequestParam(required = false) @Argument Boolean servicio_habitacion,
+                                   @RequestParam(required = false) @Argument Time horacomienzo_recepcion, @RequestParam(required = false) @Argument java.sql.Time horafin_recepcion,
+                                   @RequestParam(required = false) @Argument Boolean servicio_transporte, @RequestParam(required = false) @Argument Boolean tours,
+                                   @RequestParam(required = false) @Argument Boolean comedor, @RequestParam(required = false) @Argument Boolean espectaculos,
+                                   @RequestParam(required = false) @Argument Boolean patio, @RequestParam(required = false) @Argument Boolean piscina,
+                                   @RequestParam(required = false) @Argument Boolean terraza, @RequestParam(required = false) @Argument Boolean parking
+    ) {
+        Hotel hotel = new Hotel();
+        if (id_hotel != null) {
+            hotel = hotelRepository.findHotelById(id_hotel);
+            if (hotel == null) {
+                return "este hotel no existe";
+            } else {
+                hotel.setId(id_hotel);
+                hotel.setNombre(nombre);
+                hotel.setCiudad(ciudad);
+                hotel.setPais(pais);
+                hotel.setDireccion(direccion);
+                hotel.setEstrellas(estrellas);
+                hotel.setTelefono(telefono);
+                hotel.setEmail(email);
+                hotel.setCancelacion_g(cancelacion_g);
+                hotel.setImg(img_url);
+                hotel.setWifi(wifi);
+                hotel.setMascotas(mascotas);
+                hotel.setMultilengua(multilengua);
+                hotel.setAccesibilidad(accesibilidad);
+                hotel.setS_habitacion(servicio_habitacion);
+                hotel.setHc_recepcion(horacomienzo_recepcion);
+                hotel.setHf_recepcion(horafin_recepcion);
+                hotel.setS_transporte(servicio_transporte);
+                hotel.setTours(tours);
+                hotel.setComedor(comedor);
+                hotel.setEspectaculos(espectaculos);
+                hotel.setPatio(patio);
+                hotel.setPiscina(piscina);
+                hotel.setTerraza(terraza);
+                hotel.setParking(parking);
+                chequearBoolean(hotel);
+                hotelRepository.save(hotel);
+                return "Su hotel se ha editado correctamente";
+            }
+        } else {
+            hotel.setId(id_hotel);
+            hotel.setNombre(nombre);
+            hotel.setCiudad(ciudad);
+            hotel.setPais(pais);
+            hotel.setDireccion(direccion);
+            hotel.setEstrellas(estrellas);
+            hotel.setTelefono(telefono);
+            hotel.setEmail(email);
+            hotel.setCancelacion_g(cancelacion_g);
+            hotel.setImg(img_url);
+            hotel.setWifi(wifi);
+            hotel.setMascotas(mascotas);
+            hotel.setMultilengua(multilengua);
+            hotel.setAccesibilidad(accesibilidad);
+            hotel.setS_habitacion(servicio_habitacion);
+            hotel.setHc_recepcion(horacomienzo_recepcion);
+            hotel.setHf_recepcion(horafin_recepcion);
+            hotel.setS_transporte(servicio_transporte);
+            hotel.setTours(tours);
+            hotel.setComedor(comedor);
+            hotel.setEspectaculos(espectaculos);
+            hotel.setPatio(patio);
+            hotel.setPiscina(piscina);
+            hotel.setTerraza(terraza);
+            hotel.setParking(parking);
+            chequearBoolean(hotel);
+            hotelRepository.save(hotel);
+            return "Su hotel se ha creado correctamente";
+        }
+
+    }
+
+    @DeleteMapping("/deleteHotel/graphiql/")
+    @SchemaMapping(typeName = "Mutation", value = "eliminarHotel")
+    public String eliminarHotel(@RequestParam(required = true) @Argument Integer id_hotel) {
+
+        Hotel hotel = hotelRepository.findHotelById(id_hotel);
+
+        if (hotel == null) {
+            return "El hotel no existe";
+        } else {
+            List<Habitacion> listaPorIdHotel = servicioHab.listarHabitacionbyIdHotel(id_hotel);
+            List<Review> listarReviewsPorIdHotel = reviewRepository.findReviewsHotel(id_hotel);
+            Pension pensionporIdHotel = pensionRepository.pensionPorHotel(id_hotel);
+
+            if (listaPorIdHotel.size() > 0) {
+                return "Debe eliminar primero las habitaciones del hotel";
+            }
+            if (listarReviewsPorIdHotel.size() > 0) {
+                for (Review r : listarReviewsPorIdHotel) {
+                    r.setHotel(null);
+                    reviewRepository.save(r);
+                }
+            }
+            if (pensionporIdHotel != null) {
+                pensionRepository.delete(pensionporIdHotel);
+            }
+            hotelRepository.deleteById(id_hotel);
+            return "El hotel se ha borrado correctamente";
+        }
+
+    }
+
+
 }

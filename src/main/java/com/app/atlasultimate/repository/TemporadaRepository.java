@@ -20,4 +20,5 @@ public interface TemporadaRepository extends JpaRepository<Temporada, Integer> {
 
     @Query(value = "select *  from temporada ", nativeQuery = true)
     List<Temporada> listaTemporadas();
+
 }

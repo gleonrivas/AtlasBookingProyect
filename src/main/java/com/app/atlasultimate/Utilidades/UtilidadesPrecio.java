@@ -1,6 +1,8 @@
 package com.app.atlasultimate.Utilidades;
 
+import com.app.atlasultimate.model.Pension;
 import com.app.atlasultimate.model.Temporada;
+import com.app.atlasultimate.model.tipo_pension;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
@@ -61,6 +63,44 @@ public class UtilidadesPrecio {
         }
 
     }
+    public static Double temporadaDouble (LocalDate fechaInicio, LocalDate fechaFin,
+                                                 Temporada temporadaporHabitacion){
+
+        Double escogerTemporada = 0.0;
+
+        LocalDate fechaInicioInvierno = LocalDate.of(fechaInicio.getYear(), 12,21);
+        LocalDate fechafinInvierno = LocalDate.of(fechaInicio.getYear(), 3,19);
+        LocalDate fechaInicioPrimavera = LocalDate.of(fechaInicio.getYear(), 3,20);
+        LocalDate fechafinPrimavera = LocalDate.of(fechaInicio.getYear(), 6,20);
+        LocalDate fechaInicioVerano = LocalDate.of(fechaInicio.getYear(), 6,21);
+        LocalDate fechafinVerano = LocalDate.of(fechaInicio.getYear(), 9,22);
+        LocalDate fechaInicioOtono = LocalDate.of(fechaInicio.getYear(), 9,22);
+        LocalDate fechafinOtono = LocalDate.of(fechaInicio.getYear(), 12,20);
+
+        if(fechaInicio.isAfter(fechaInicioInvierno)  && fechaFin.isBefore(fechafinInvierno)){
+
+            escogerTemporada = temporadaporHabitacion.getPrecioInvierno();
+            return escogerTemporada;
+        }
+
+        else if (fechaInicio.isAfter(fechaInicioPrimavera)  && fechaFin.isBefore(fechafinPrimavera)){
+
+            escogerTemporada = temporadaporHabitacion.getPrecioPrimavera();
+            return escogerTemporada;
+        }
+
+        else if(fechaInicio.isAfter(fechaInicioVerano)  && fechaFin.isBefore(fechafinVerano)){
+
+            escogerTemporada = temporadaporHabitacion.getPrecioVerano();
+            return escogerTemporada;
+        }
+        else {
+
+            escogerTemporada = temporadaporHabitacion.getPrecioOtono();
+            return escogerTemporada;
+        }
+
+    }
 
     public static Double precioSemiFinal( LocalDate fechaInicio, LocalDate fechaFin,
                                           Temporada temporadaporHabitacion,
@@ -95,5 +135,17 @@ public class UtilidadesPrecio {
         return preciofin;
     }
 
+    public static Double booleanPrecioPension(Pension pension, tipo_pension tp){
 
+
+        if(tp.equals(pension.getBooleanAd())){
+            return pension.getAd();
+        }else if(tp.equals(pension.getBooleanMp())){
+            return pension.getMp();
+        }else if (tp.equals(pension.getBooleanSa())){
+            return  pension.getSa();
+        }else{
+            return pension.getPc();
+        }
+    }
 }

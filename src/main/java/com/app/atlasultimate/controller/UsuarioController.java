@@ -1,6 +1,7 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
+import com.app.atlasultimate.model.Pension;
 import com.app.atlasultimate.model.Registro;
 import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.*;
@@ -105,6 +106,8 @@ public class UsuarioController {
     //Eliminar hotel
     @GetMapping("/inicio/{id}")
     public String eliminarHotel (@PathVariable Integer id){
+        Pension p = pensionRepository.pensionPorHotel(id);
+        pensionRepository.delete(p);
         servicio.eliminarHotel(id);
         return "redirect:/usuario/inicio";
     }
