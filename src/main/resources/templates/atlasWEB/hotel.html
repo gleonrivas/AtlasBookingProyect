@@ -324,6 +324,8 @@
     }
 
     .get-comentario {
+        display: flex;
+        flex-direction: column;
         margin: 0 auto;
     }
     .get-comentario > p{
@@ -355,7 +357,30 @@
         border: solid 2px rgba(255, 255, 255, 0.7);
 
     }
+    .marga{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .marga input{
+        border-radius: 10px;
+        padding: 5px 5px 5px 10px;
+        width: 40%;
+        font-size: 13px;
+        border: none;
+        margin-bottom: 10px;
+    }
 
+    .marga label{
+        margin: auto 0 ;
+    }
+    button{
+        transition: all 0.2s ease;
+    }
+    button:hover{
+        transform: scale(1.1);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+    }
 
 
 
@@ -437,6 +462,22 @@
 <h2>Los 10 comentarios mas recientes.</h2>
 <div class="comentario-slider">
     <div class="comentario-container">
+
+        <form class="comentario-tarjeta" method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
+            <p th:text="${'Comente algo, ' + usuario.nombre}"></p>
+            <div class="get-comentario">
+                <div class="marga">
+                    <label for="estrellas">Estrellas</label>
+                    <input id="estrellas" type="number" th:field="*{estrellas}">
+                </div>
+                <div class="marga">
+                    <label for="comentario">Comentario</label>
+                    <input id="comentario" type="text" th:field="*{comentario}">
+                </div>
+                <button class="link-buttom" type="submit">Comentar</button>
+            </div>
+        </form>
+
         <h3 th:if="${mapa.isEmpty()}">No hay ningún comentario todavía</h3>
         <div class="comentario-tarjeta" th:each="m : ${mapa}">
             <p th:text="${'@'+m.key}"></p>
@@ -451,17 +492,10 @@
                 <p th:text="${v.comentario}"></p>
             </div>
         </div>
+
     </div>
 </div>
 
-<form method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
-    <h2>Comente algo, <span th:text="${usuario.nombre}"></span></h2>
-    <label for="comentario">Comentario</label>
-    <input id="comentario" type="text" th:field="*{comentario}">
-    <label for="estrellas">Estrellas</label>
-    <input id="estrellas" type="number" th:field="*{estrellas}">
-    <button type="submit">Comentar</button>
-</form>
 
 <script th:inline="javascript">
     function iniciarMapa(){
