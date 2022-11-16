@@ -51,6 +51,8 @@ public class Habitacion {
     @JoinColumn(name = "temporada_id")
     private Temporada temporada;
 
+
+
     @PreRemove
     public void nullificar(){
         registro.forEach(r -> r.setHabitacion(null));
