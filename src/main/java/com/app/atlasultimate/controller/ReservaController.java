@@ -180,7 +180,7 @@ public class ReservaController {
         Double temp2 = UtilidadesPrecio.temporadaDouble(fecha_entrada, fecha_salida, temp);
         Habitacion habitacion = habitacionRepository.findTopById(id_habitacion);
 
-        if(registro.getHabitacion().equals(null)){
+        if(habitacion.equals(null)){
             return "Esta habitación no existe";
         }
         if(registro.getUsuario().equals(null)){
