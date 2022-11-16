@@ -1,6 +1,7 @@
 package com.app.atlasultimate.repository;
 
 
+import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.model.Pension;
 import com.app.atlasultimate.model.Usuario;
@@ -140,4 +141,31 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
                        @Param("terraza") Boolean terraza,
                        @Param("parking") Boolean parking,
                        @Param("id") Integer id);
+
+    /*saca las habitaciones filtrando por fecha reserva, capacidad de habitacion y ciudad*/
+    @Query(value = "SELECT h.* FROM hotel h left JOIN habitacion h2 on h.id = h2.id_hotel JOIN registro r " +
+            "on h2.id = r.id_habitacion and h.ciudad like %:ciudad% and :fecha_entrada" +
+            " not BETWEEN r.f_entrada and r.f_salida  " +
+            "and :fecha_salida not BETWEEN r.f_entrada  and r.f_salida " +
+            " and h2.n_max_personas >= n_max_personas GROUP by h.id", nativeQuery = true)
+    List<Hotel> primerBuscador (@Param("fecha_entrada") String fecha_entrada,
+                                     @Param("fecha_salida") String fecha_salida,
+                                     @Param("ciudad") String ciudad,
+                                     @Param("n_max_personas") Integer n_max_personas);
+
+
+    /*saca las habitaciones que no tienen reserva, pero son de la ciudad y caben tantas personas*/
+    @Query(value = "SELECT h2.* FROM habitacion h" +
+            " left join registro r on r.id_habitacion = h.id" +
+            "    join hotel h2 on h2.id = h.id_hotel" +
+            "    where h.id not in (select r2.id_habitacion from registro r2" +
+            "            group by r2.id_habitacion)" +
+            "    and h2.ciudad like %:ciudad% and h.n_max_personas >=:n_max_personas;", nativeQuery = true)
+    List<Hotel> segundoBuscador ( @Param("ciudad") String ciudad,
+                                     @Param("n_max_personas") Integer n_max_personas);
+
+
+
+
+
 }

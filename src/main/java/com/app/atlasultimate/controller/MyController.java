@@ -57,7 +57,7 @@ public class MyController {
 
         String fecha1 = fechaInicio;
         String fecha2 = fechaFin;
-        List<Hotel> hoteles = hotelRepository.findAllByReservas(busquedaDTO.getFecha_inicio(),
+        List<Hotel> hoteles = hotelService.buscadorcompleto(busquedaDTO.getFecha_inicio(),
                 busquedaDTO.getFecha_fin(), busquedaDTO.getCiudad(), busquedaDTO.getN_max_personas());
         model.addAttribute("hoteles", hoteles);
         HotelBusquedaDTO hotelDTO = new HotelBusquedaDTO(busquedaDTO.getFecha_inicio(),
@@ -82,20 +82,7 @@ public class MyController {
 
     }
 
-    //GRAPHIQL buscador hotel
-    @GetMapping("inicio/busqueda")
-    @SchemaMapping(typeName = "Query", value = "buscadorHotel")
-    public List<Hotel> buscadorHotel(@Argument LocalDate fecha_entrada,
-                                     @Argument LocalDate fecha_salida,
-                                     @Argument Integer num_personas,
-                                     @Argument String ciudad) {
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        Date fechaEntrada = Date.from(fecha_entrada.atStartOfDay(defaultZoneId).toInstant());
-        Date fechaSalida = Date.from(fecha_salida.atStartOfDay(defaultZoneId).toInstant());
-        List<Hotel> hoteles = hotelService.buscador(fechaEntrada, fechaSalida,ciudad,num_personas);
 
-        return hoteles;
-    }
 
 
 }

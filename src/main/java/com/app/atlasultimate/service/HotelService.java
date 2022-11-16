@@ -5,6 +5,7 @@ import com.app.atlasultimate.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class HotelService {
         return repositorio.findHotelById(id);
 
     }
+
     public Hotel guardarHotel (Hotel hotel){
         return repositorio.save(hotel);
     }
@@ -30,6 +32,7 @@ public class HotelService {
 
         return repositorio.save(hotel);
     }
+
     public void eliminarHotel(Integer id){
         repositorio.deleteById(id);
     }
@@ -46,6 +49,22 @@ public class HotelService {
                                  String ciudad,
                                  Integer n_max_personas){
         return repositorio.buscadorgraphiql(fecha_inicio, fecha_fin, ciudad, n_max_personas);
+    }
+    //nuevo buscador
+    public List<Hotel> buscadorcompleto (String fecha_inicio,
+                                         String fecha_fin,
+                                         String ciudad,
+                                         Integer n_max_personas){
+
+        List<Hotel> listadefinitiva= new ArrayList<>();
+
+        List<Hotel> listabuscador1= repositorio.primerBuscador(fecha_fin,fecha_fin,ciudad,n_max_personas);
+        List<Hotel> listabuscador2= repositorio.segundoBuscador(ciudad,n_max_personas);
+
+        listadefinitiva.addAll(listabuscador1);
+        listadefinitiva.addAll(listabuscador2);
+
+        return listadefinitiva;
     }
 
 }
