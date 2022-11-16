@@ -296,10 +296,8 @@
         display: flex;
         justify-content: space-between;
         width: 300px;
-        position: absolute;
-        right: 0;
-        margin-top: -5%;
-        margin-right: 11%;
+        margin-top: 5%;
+        margin-left: 75%;
     }
 
     /* FINALIZA HOTEL-EDIT --------------------------------------*/
@@ -332,6 +330,15 @@
 <div class="correcto" th:if="${param.exito}">
     <p>✅ Se ha creado el hotel correctamente.</p>
 </div>
+
+<h2 style="margin-left: 10%">Ubicación del hotel</h2>
+<div id="mapa" style="margin-left: 10%; width: 80%; height: 400px;">
+</div>
+<br>
+<br>
+<br>
+<br>
+
 <form class="card" name="form" th:action="@{/hotel/nuevo}" th:object="${hotel}" method="post"
       enctype="multipart/form-data">
     <div class="container">
@@ -364,6 +371,8 @@
             <label class="form-label" for="pais">País</label>
             <input class="myinput" type="text" id="pais" name="Países" th:field="*{pais}">
         </div>
+            <input class="myinput" type="hidden" id="latitud" name="latitud" th:field="*{latitud}"/>
+            <input class="myinput" type="hidden" id="longitud" name="longitud" th:field="*{longitud}">
         <div class="julieta">
             <label class="form-label" for="ciudad">Ciudad</label>
             <input class="myinput" type="text" id="ciudad" name="Ciudades" th:field="*{ciudad}">
@@ -460,6 +469,43 @@
 </form>
 
 </div>
+<script th:inline="javascript">
+    function iniciarMapa(){
+
+        var latitud = 37.5442706;
+        var longitud = -4.7277528;
+
+        coordenadas= {
+            lng: longitud,
+            lat: latitud
+        }
+
+        generarMapa(coordenadas);
+
+    }
+
+    function generarMapa(coordenadas){
+        var mapa = new google.maps.Map(document.getElementById("mapa"),
+            {
+                zoom: 10,
+                center : new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+            });
+        marcador = new google.maps.Marker({
+            map: mapa,
+            draggable : true,
+            position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+        });
+        marcador.addListener("dragend",function (event){
+            document.getElementById("latitud").value = this.getPosition().lat();
+            document.getElementById("longitud").value = this.getPosition().lng();
+
+        })
+
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTq3rz8EYg7akX8PrNfvkr6Yh39c-d67g&callback=iniciarMapa"></script>
+
 
 <footer class="lasth">
 

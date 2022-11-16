@@ -140,6 +140,8 @@ public class HotelController {
         hotelexistente.setHf_recepcion(hotel.getHf_recepcion());
         hotelexistente.setWifi(hotel.getWifi());
         hotelexistente.setCancelacion_g(hotel.getCancelacion_g());
+        hotelexistente.setLatitud(hotel.getLatitud());
+        hotelexistente.setLongitud(hotel.getLongitud());
         chequearBoolean(hotelexistente);
         servicioHotel.actualizarHotel(hotelexistente);
 
