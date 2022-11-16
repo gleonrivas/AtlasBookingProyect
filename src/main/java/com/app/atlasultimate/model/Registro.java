@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Table(name = "registro")
 @Getter
 @Setter
-@EqualsAndHashCode
 public class Registro {
 
     @Id
