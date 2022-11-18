@@ -478,7 +478,7 @@
             </div>
         </form>
 
-        <h3 th:if="${mapa.isEmpty()}">No hay ningún comentario todavía</h3>
+        <h2 style="height: max-content; width: max-content; margin: auto 5%;" th:if="${mapa.isEmpty()}">No hay comentarios todavía</h2>
         <div class="comentario-tarjeta" th:each="m : ${mapa}">
             <p th:text="${'@'+m.key}"></p>
             <div class="get-comentario" th:each="v : ${m.value}">
