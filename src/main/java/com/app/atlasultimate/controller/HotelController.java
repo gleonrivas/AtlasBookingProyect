@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.Transient;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,6 +106,8 @@ public class HotelController {
 
         return "redirect:/hotel/nuevo?exito";
     }
+
+
 
     //cargar hotel en formulario para editarlo
     @GetMapping("/editar/{id}")
@@ -237,7 +240,7 @@ public class HotelController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
         model.addAttribute("usuario", usuario);
-
+        model.addAttribute("resena" , new ReviewDTO());
         model.addAttribute("fecha_inicio", fechaInicio);
         model.addAttribute("fecha_fin", fechaFin);
         model.addAttribute("num_personas", num_personas);
@@ -245,18 +248,17 @@ public class HotelController {
         model.addAttribute("hotel", hotel);
         List<Habitacion> habitaciones = repository.findAllById(id);
         model.addAttribute("habitaciones", habitaciones);
-        List<Review> review = reviewRepository.find10LastValues(id);
+        List<Review> review = reviewRepository.findValues(id);
         model.addAttribute("review", review);
         Map<String, Review> mapa = new HashMap<>();
-        model.addAttribute("mapa", mapa);
         try{
-            for (int i = 0; i<=10; i++){
+            for (int i = 0; i < review.size(); i++){
                 mapa.put(review.get(i).getUsuario().getNombre(), review.get(i));
             }
         } catch (Exception e){
             System.out.println(e);
         }
-
+        model.addAttribute("mapa", mapa);
         String fondo = hotelRepository.findHotelById(id).getImg();
         model.addAttribute("hotelimagen", fondo);
 
@@ -265,8 +267,11 @@ public class HotelController {
         return "/hotel.html";
     }
 
+
+
     @PostMapping("/habitaciones/")
-    public String guardarReview(@RequestParam(value = "id") Integer id, @ModelAttribute("resena") ReviewDTO reviewDTO,
+    public String guardarReview(@RequestParam(value = "id") Integer id,
+                                @ModelAttribute("resena") ReviewDTO reviewDTO,
                                 @RequestParam(value = "fecha_inicio", required = false) String fechaInicio,
                                 @RequestParam(value = "fecha_fin", required = false) String fechaFin,
                                 @RequestParam(value = "num_personas", required = false) Integer num_personas) {

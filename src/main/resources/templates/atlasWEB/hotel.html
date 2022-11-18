@@ -455,30 +455,19 @@
     </div>
 
 </div>
-<h2>Ubicación del hotel</h2>
-<div id="mapa" style="width: 100%; height: 500px;">
+<h2 style="margin-left: 10%">Ubicación del hotel</h2>
+<br>
+<br>
+<div id="mapa" style="margin-left: 5%; width: 90%; height: 600px;">
 </div>
+<br>
+<br>
 
-<h2>Los 10 comentarios mas recientes.</h2>
+<h2>Comentarios mas recientes.</h2>
 <div class="comentario-slider">
     <div class="comentario-container">
 
-        <form class="comentario-tarjeta" method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
-            <p th:text="${'Comente algo, ' + usuario.nombre}"></p>
-            <div class="get-comentario">
-                <div class="marga">
-                    <label for="estrellas">Estrellas</label>
-                    <input id="estrellas" type="number" th:field="*{estrellas}">
-                </div>
-                <div class="marga">
-                    <label for="comentario">Comentario</label>
-                    <input id="comentario" type="text" th:field="*{comentario}">
-                </div>
-                <button class="link-buttom" type="submit">Comentar</button>
-            </div>
-        </form>
-
-        <h3 th:if="${mapa.isEmpty()}">No hay ningún comentario todavía</h3>
+        <h3 th:if="${mapa.isEmpty()}" style="color: white; font-size: 30px; margin-bottom: 10%">Se el primero en comentar</h3>
         <div class="comentario-tarjeta" th:each="m : ${mapa}">
             <p th:text="${'@'+m.key}"></p>
             <div class="get-comentario" th:each="v : ${m.value}">
@@ -495,7 +484,22 @@
 
     </div>
 </div>
-
+<div class="comentario-slider">
+<form class="comentario-tarjeta" method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
+    <p th:text="${'Comente algo, ' + usuario.nombre}"></p>
+    <div class="get-comentario">
+        <div class="marga">
+            <label for="estrellas">Estrellas</label>
+            <input id="estrellas" type="number" th:field="*{estrellas}">
+        </div>
+        <div class="marga">
+            <label for="comentario">Comentario</label>
+            <input id="comentario" type="text" th:field="*{comentario}">
+        </div>
+        <button class="link-buttom" type="submit">Comentar</button>
+    </div>
+</form>
+</div>
 
 <script th:inline="javascript">
     function iniciarMapa(){

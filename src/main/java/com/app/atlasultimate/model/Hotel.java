@@ -105,7 +105,11 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Habitacion> habiacion;
 
-
+    @Transient
+    public String getLogoImagePath(){
+        if (img == null || id == null) return null;
+        return "/imgHotel/" + id +"/" + img;
+    }
 
     public Hotel(Integer id) {
         this.id = id;
