@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    @Query(value = "select * from review r where id_hotel = :id_hotel limit 10", nativeQuery = true)
-    List<Review> find10LastValues(@Param("id_hotel")Integer id_hotel);
+    @Query(value = "select * from review r where id_hotel = :id_hotel", nativeQuery = true)
+    List<Review> findValues(@Param("id_hotel")Integer id_hotel);
 
     List<Review> findAllByHotel(Hotel hotel);
 

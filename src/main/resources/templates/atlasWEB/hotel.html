@@ -455,14 +455,17 @@
     </div>
 
 </div>
-<h2>Ubicación del hotel</h2>
-<div id="mapa" style="width: 100%; height: 500px;">
+<h2 style="margin-left: 10%">Ubicación del hotel</h2>
+<br>
+<br>
+<div id="mapa" style="margin-left: 5%; width: 90%; height: 600px;">
 </div>
 
-<h2>Los 10 comentarios mas recientes.</h2>
+<h2>Comentarios mas recientes.</h2>
 <div class="comentario-slider">
     <div class="comentario-container">
 
+        <h3 th:if="${mapa.isEmpty()}" style="color: white; font-size: 30px; margin-bottom: 10%">Se el primero en comentar</h3>
         <form class="comentario-tarjeta" method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
             <p th:text="${'Comente algo, ' + usuario.nombre}"></p>
             <div class="get-comentario">
