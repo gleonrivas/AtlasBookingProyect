@@ -246,7 +246,7 @@ public class HotelController {
         model.addAttribute("num_personas", num_personas);
         Hotel hotel = hotelRepository.findHotelById(id);
         model.addAttribute("hotel", hotel);
-        List<Habitacion> habitaciones = repository.findAllById(id);
+        List<Habitacion> habitaciones = repository.findAllByReservasInactivas(id);
         model.addAttribute("habitaciones", habitaciones);
         List<Review> review = reviewRepository.findValues(id);
         model.addAttribute("review", review);

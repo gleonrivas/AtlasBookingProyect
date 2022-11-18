@@ -57,13 +57,34 @@ public class HotelService {
                                          Integer n_max_personas){
 
         List<Hotel> listadefinitiva= new ArrayList<>();
-
         List<Hotel> listabuscador1= repositorio.primerBuscador(fecha_inicio,fecha_fin,ciudad,n_max_personas);
         List<Hotel> listabuscador2= repositorio.segundoBuscador(ciudad,n_max_personas);
-
         listadefinitiva.addAll(listabuscador1);
         listadefinitiva.addAll(listabuscador2);
+        return listadefinitiva;
+    }
 
+    public List<Hotel> buscadorcompletoReview (String fecha_inicio,
+                                         String fecha_fin,
+                                         Integer n_max_personas){
+
+        List<Hotel> listadefinitiva= new ArrayList<>();
+        List<Hotel> listabuscador1= repositorio.mejoresValoradosPorReview(fecha_inicio,fecha_fin,n_max_personas);
+        List<Hotel> listabuscador2= repositorio.segundoBuscadorSinCiudad(n_max_personas);
+        listadefinitiva.addAll(listabuscador1);
+        listadefinitiva.addAll(listabuscador2);
+        return listadefinitiva;
+    }
+
+    public List<Hotel> buscadorcompletoHotel (String fecha_inicio,
+                                               String fecha_fin,
+                                               Integer n_max_personas){
+
+        List<Hotel> listadefinitiva= new ArrayList<>();
+        List<Hotel> listabuscador1= repositorio.mejoresValoradosPorHotelBusqueda(fecha_inicio,fecha_fin,n_max_personas);
+        List<Hotel> listabuscador2= repositorio.segundoBuscadorSinCiudad(n_max_personas);
+        listadefinitiva.addAll(listabuscador1);
+        listadefinitiva.addAll(listabuscador2);
         return listadefinitiva;
     }
 

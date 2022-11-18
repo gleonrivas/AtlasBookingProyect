@@ -4,6 +4,7 @@ import com.app.atlasultimate.controller.DTO.DescubreDTO;
 import com.app.atlasultimate.controller.DTO.HotelBusquedaDTO;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.repository.HotelRepository;
+import com.app.atlasultimate.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ public class DescubreController {
 
     @Autowired
     HotelRepository hotelRepository;
+
+    @Autowired
+    HotelService service;
 
     @ModelAttribute("hotelSinCiudad")
     public DescubreDTO devolverNuevoHotelDTO() {
@@ -53,13 +57,14 @@ public class DescubreController {
 
         String fecha1 = fechaInicio;
         String fecha2 = fechaFin;
-        List<Hotel> hotelesReview = hotelRepository.findAllByReservas2(busquedaDTO.getFecha_inicio(),
+        List<Hotel> hotelesReview = service.buscadorcompletoReview(busquedaDTO.getFecha_inicio(),
                 busquedaDTO.getFecha_fin(), busquedaDTO.getN_max_personas());
         model.addAttribute("hoteles", hotelesReview);
-        List<Hotel> hotelesPorHotel = hotelRepository.mejoresValoradosPorHotelBusqueda(busquedaDTO.getFecha_inicio(),
+        List<Hotel> hotelesPorHotel = service.buscadorcompletoHotel(busquedaDTO.getFecha_inicio(),
                 busquedaDTO.getFecha_fin(), busquedaDTO.getN_max_personas());
         model.addAttribute("hotelesLujosos", hotelesPorHotel);
         List<Hotel> hotelList = hotelRepository.findAll();
+
         Random rand = new Random();
         Hotel hotelRandom = hotelList.get(rand.nextInt(hotelList.size()));
         model.addAttribute("hotelesCiudad", hotelRepository.findAllByCiudad(hotelRandom.getCiudad()));
