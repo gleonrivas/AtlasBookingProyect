@@ -63,6 +63,7 @@ public class graphqlController {
     @PostMapping("/habitacion/crear/graphiql/")
     @SchemaMapping(typeName = "Mutation", value = "crearEditarHabitacion")
     public String crearEditarHotel(@RequestParam(required = false) @Argument Integer id_habitacion,
+                                   @RequestParam(required = false) @Argument Integer id_hotel,
                                    @RequestParam @Argument Integer cama_individual,
                                    @RequestParam @Argument Integer cama_doble,
                                    @RequestParam @Argument Double precio_base,
@@ -70,6 +71,8 @@ public class graphqlController {
                                    @RequestParam(required = false) @Argument Boolean bano,
                                    @RequestParam(required = false) @Argument Boolean vistas) {
         Habitacion habitacion = new Habitacion();
+        Hotel hot= new Hotel();
+        hot.setId(id_hotel);
         if (id_habitacion != null) {
             habitacion = habitacionRepository.findTopById(id_habitacion);
             if (habitacion == null) {
@@ -82,6 +85,7 @@ public class graphqlController {
                 habitacion.setN_max_personas(num_maximo_personas);
                 habitacion.setBano(bano);
                 habitacion.setVistas(vistas);
+                habitacion.setHotel(hot);
                 chequearBooleanHabitacion(habitacion);
                 habitacionRepository.save(habitacion);
                 return "Su habitacion se ha editado correctamente";
@@ -94,6 +98,7 @@ public class graphqlController {
             habitacion.setN_max_personas(num_maximo_personas);
             habitacion.setBano(bano);
             habitacion.setVistas(vistas);
+            habitacion.setHotel(hot);
             chequearBooleanHabitacion(habitacion);
             habitacionRepository.save(habitacion);
             return "Su habitacion se ha creado correctamente";
@@ -341,10 +346,10 @@ public class graphqlController {
                                      @Argument LocalDate fecha_salida,
                                      @Argument Integer num_personas,
                                      @Argument String ciudad) {
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        Date fechaEntrada = Date.from(fecha_entrada.atStartOfDay(defaultZoneId).toInstant());
-        Date fechaSalida = Date.from(fecha_salida.atStartOfDay(defaultZoneId).toInstant());
-        List<Hotel> hoteles = servicioHotel.buscador(fechaEntrada, fechaSalida,ciudad,num_personas);
+
+        String fechaEntrada = fecha_entrada.toString();
+        String fechaSalida = fecha_salida.toString();
+        List<Hotel> hoteles = servicioHotel.buscadorcompleto(fechaEntrada, fechaSalida,ciudad,num_personas);
 
         return hoteles;
     }

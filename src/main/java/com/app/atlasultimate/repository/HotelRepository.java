@@ -147,7 +147,7 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
             "on h2.id = r.id_habitacion and h.ciudad like %:ciudad% and :fecha_entrada" +
             " not BETWEEN r.f_entrada and r.f_salida  " +
             "and :fecha_salida not BETWEEN r.f_entrada  and r.f_salida " +
-            " and h2.n_max_personas >= n_max_personas GROUP by h.id", nativeQuery = true)
+            " and h2.n_max_personas >= :n_max_personas GROUP by h.id", nativeQuery = true)
     List<Hotel> primerBuscador (@Param("fecha_entrada") String fecha_entrada,
                                      @Param("fecha_salida") String fecha_salida,
                                      @Param("ciudad") String ciudad,
@@ -159,10 +159,10 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
             " left join registro r on r.id_habitacion = h.id" +
             "    join hotel h2 on h2.id = h.id_hotel" +
             "    where h.id not in (select r2.id_habitacion from registro r2" +
-            "            group by r2.id_habitacion)" +
-            "    and h2.ciudad like %:ciudad% and h.n_max_personas >=:n_max_personas;", nativeQuery = true)
+            "    group by r2.id_habitacion)" +
+            "    and h2.ciudad like %:ciudad% and h.n_max_personas >=:n_max_personas group by h2.id", nativeQuery = true)
     List<Hotel> segundoBuscador ( @Param("ciudad") String ciudad,
-                                     @Param("n_max_personas") Integer n_max_personas);
+                                  @Param("n_max_personas") Integer n_max_personas);
 
 
 

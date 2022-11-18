@@ -58,7 +58,7 @@ public class HotelService {
 
         List<Hotel> listadefinitiva= new ArrayList<>();
 
-        List<Hotel> listabuscador1= repositorio.primerBuscador(fecha_fin,fecha_fin,ciudad,n_max_personas);
+        List<Hotel> listabuscador1= repositorio.primerBuscador(fecha_inicio,fecha_fin,ciudad,n_max_personas);
         List<Hotel> listabuscador2= repositorio.segundoBuscador(ciudad,n_max_personas);
 
         listadefinitiva.addAll(listabuscador1);

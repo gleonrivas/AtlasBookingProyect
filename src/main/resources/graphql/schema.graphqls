@@ -114,6 +114,7 @@ type Mutation{
 
     crearEditarHabitacion(
         id_habitacion:ID
+        id_hotel:Int!
         cama_individual: Int!
         cama_doble:Int!
         precio_base: Float!

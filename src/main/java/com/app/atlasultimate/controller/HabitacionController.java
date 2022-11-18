@@ -4,6 +4,7 @@ import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.model.Registro;
 import com.app.atlasultimate.repository.HabitacionRepository;
+import com.app.atlasultimate.repository.HotelRepository;
 import com.app.atlasultimate.repository.ReservaRepository;
 import com.app.atlasultimate.repository.TemporadaRepository;
 import com.app.atlasultimate.service.HabitacionService;
@@ -29,12 +30,15 @@ public class HabitacionController {
     private HabitacionRepository habitacionRepository;
     @Autowired
     private ReservaRepository reservaRepository;
+    @Autowired
+    private HotelRepository hotelRepository;
 
     //MUESTRA FORMULARIO CREACION DE HABITACION
     @GetMapping("nueva/{id_hotel}")
     public String crearHabitacion(@PathVariable Integer id_hotel, Model model, Model mod2) {
+
+        Hotel hotel = hotelRepository.findTopById(id_hotel);
         Habitacion habitacion = new Habitacion();
-        Hotel hotel = hotelServicio.buscarHotel(id_hotel);
         model.addAttribute("habitacion", habitacion);
         mod2.addAttribute("hotel", hotel);
 
@@ -45,7 +49,8 @@ public class HabitacionController {
     @PostMapping("nueva/{id}")
     public String guardarHabitacion(@ModelAttribute("habitacion") Habitacion hab, @ModelAttribute("hotel") Hotel hot) {
         chequearBooleanHabitacion(hab);
-        hab.setHotel(hot);
+        Hotel hotel = hotelRepository.findTopById(hot.getId());
+        hab.setHotel(hotel);
         servicio.guardarHabMultiple(hab.getNum_habitaciones_iguales(), hab);
         return "redirect:/hotel/habitacion/{id}";
     }

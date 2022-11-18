@@ -72,4 +72,13 @@ public class Usuario {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Usuario)) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(getId(), usuario.getId()) && Objects.equals(getNombre(), usuario.getNombre()) && Objects.equals(getApellido(), usuario.getApellido()) && Objects.equals(getDni(), usuario.getDni()) && getRol() == usuario.getRol() && Objects.equals(getTelefono(), usuario.getTelefono()) && Objects.equals(getEmail(), usuario.getEmail()) && Objects.equals(getContrasena(), usuario.getContrasena()) && Objects.equals(getHotel(), usuario.getHotel()) && Objects.equals(getRegistro(), usuario.getRegistro()) && Objects.equals(getReview(), usuario.getReview());
+    }
+
+
 }

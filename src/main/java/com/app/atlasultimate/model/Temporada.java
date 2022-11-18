@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "temporada")
@@ -43,4 +44,14 @@ public class Temporada {
         this.precioOtono = precioOtono;
         this.habitaaciones = habitaaciones;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Temporada)) return false;
+        Temporada temporada = (Temporada) o;
+        return Objects.equals(getId(), temporada.getId()) && Objects.equals(getPrecioInvierno(), temporada.getPrecioInvierno()) && Objects.equals(getPrecioPrimavera(), temporada.getPrecioPrimavera()) && Objects.equals(getPrecioVerano(), temporada.getPrecioVerano()) && Objects.equals(getPrecioOtono(), temporada.getPrecioOtono()) && Objects.equals(getHabitaaciones(), temporada.getHabitaaciones());
+    }
+
+
 }
