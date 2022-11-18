@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "pension")
@@ -63,4 +64,14 @@ public class Pension {
         this.booleanPc = booleanPc;
         this.id_hotel = id_hotel;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pension)) return false;
+        Pension pension = (Pension) o;
+        return Objects.equals(getId(), pension.getId()) && Objects.equals(getSa(), pension.getSa()) && Objects.equals(getBooleanSa(), pension.getBooleanSa()) && Objects.equals(getAd(), pension.getAd()) && Objects.equals(getBooleanAd(), pension.getBooleanAd()) && Objects.equals(getMp(), pension.getMp()) && Objects.equals(getBooleanMp(), pension.getBooleanMp()) && Objects.equals(getPc(), pension.getPc()) && Objects.equals(getBooleanPc(), pension.getBooleanPc()) && Objects.equals(getId_hotel(), pension.getId_hotel());
+    }
+
+
 }

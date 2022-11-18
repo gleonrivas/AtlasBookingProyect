@@ -366,6 +366,13 @@ public class Hotel {
         this.habiacion = habiacion;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Hotel)) return false;
+        Hotel hotel = (Hotel) o;
+        return Objects.equals(getId(), hotel.getId()) && Objects.equals(getNombre(), hotel.getNombre()) && Objects.equals(getPais(), hotel.getPais()) && Objects.equals(getCiudad(), hotel.getCiudad()) && Objects.equals(getDireccion(), hotel.getDireccion()) && Objects.equals(getLatitud(), hotel.getLatitud()) && Objects.equals(getLongitud(), hotel.getLongitud()) && Objects.equals(getEstrellas(), hotel.getEstrellas()) && Objects.equals(getTelefono(), hotel.getTelefono()) && Objects.equals(getEmail(), hotel.getEmail()) && Objects.equals(getCancelacion_g(), hotel.getCancelacion_g()) && Objects.equals(getImg(), hotel.getImg()) && Objects.equals(getWifi(), hotel.getWifi()) && Objects.equals(getMascotas(), hotel.getMascotas()) && Objects.equals(getMultilengua(), hotel.getMultilengua()) && Objects.equals(getAccesibilidad(), hotel.getAccesibilidad()) && Objects.equals(getS_habitacion(), hotel.getS_habitacion()) && Objects.equals(getHc_recepcion(), hotel.getHc_recepcion()) && Objects.equals(getHf_recepcion(), hotel.getHf_recepcion()) && Objects.equals(getS_transporte(), hotel.getS_transporte()) && Objects.equals(getTours(), hotel.getTours()) && Objects.equals(getComedor(), hotel.getComedor()) && Objects.equals(getEspectaculos(), hotel.getEspectaculos()) && Objects.equals(getPatio(), hotel.getPatio()) && Objects.equals(getPiscina(), hotel.getPiscina()) && Objects.equals(getTerraza(), hotel.getTerraza()) && Objects.equals(getParking(), hotel.getParking()) && Objects.equals(getId_usuario(), hotel.getId_usuario()) && Objects.equals(getReview(), hotel.getReview()) && Objects.equals(getHabiacion(), hotel.getHabiacion());
+    }
 
 
 }

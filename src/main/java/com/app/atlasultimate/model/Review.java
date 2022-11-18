@@ -50,5 +50,14 @@ public class Review {
         this.usuario = usuario;
         this.hotel = hotel;
     }
-   
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Review)) return false;
+        Review review = (Review) o;
+        return Objects.equals(getId(), review.getId()) && Objects.equals(getEstrellas(), review.getEstrellas()) && Objects.equals(getComentario(), review.getComentario()) && Objects.equals(getUsuario(), review.getUsuario()) && Objects.equals(getHotel(), review.getHotel());
+    }
+
+
 }

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity(name="registro")
 @Table(name = "registro")
@@ -70,5 +71,12 @@ public class Registro {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Registro)) return false;
+        Registro registro = (Registro) o;
+        return Objects.equals(getId(), registro.getId()) && Objects.equals(getF_entrada(), registro.getF_entrada()) && Objects.equals(getF_salida(), registro.getF_salida()) && Objects.equals(getN_personas(), registro.getN_personas()) && getT_pago() == registro.getT_pago() && getT_pension() == registro.getT_pension() && Objects.equals(getPrecio_total_dias(), registro.getPrecio_total_dias()) && Objects.equals(getN_dias(), registro.getN_dias()) && Objects.equals(getActiva(), registro.getActiva()) && Objects.equals(getUsuario(), registro.getUsuario()) && Objects.equals(getHabitacion(), registro.getHabitacion());
+    }
 
 }

@@ -92,5 +92,13 @@ public class Habitacion {
     public Habitacion() {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Habitacion)) return false;
+        Habitacion that = (Habitacion) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getC_individual(), that.getC_individual()) && Objects.equals(getC_doble(), that.getC_doble()) && Objects.equals(getPrecio_base(), that.getPrecio_base()) && Objects.equals(getBano(), that.getBano()) && Objects.equals(getVistas(), that.getVistas()) && Objects.equals(getN_max_personas(), that.getN_max_personas()) && Objects.equals(getNum_habitaciones_iguales(), that.getNum_habitaciones_iguales()) && Objects.equals(getHotel(), that.getHotel()) && Objects.equals(getRegistro(), that.getRegistro()) && Objects.equals(getTemporada(), that.getTemporada());
+    }
+
 
 }
