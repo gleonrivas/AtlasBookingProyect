@@ -50,6 +50,7 @@ public class HabitacionController {
     public String guardarHabitacion(@ModelAttribute("habitacion") Habitacion hab, @ModelAttribute("hotel") Hotel hot) {
         chequearBooleanHabitacion(hab);
         Hotel hotel = hotelRepository.findTopById(hot.getId());
+        hab.setId(null);
         hab.setHotel(hotel);
         servicio.guardarHabMultiple(hab.getNum_habitaciones_iguales(), hab);
         return "redirect:/hotel/habitacion/{id}";
