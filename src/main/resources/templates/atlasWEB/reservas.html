@@ -289,29 +289,29 @@
             <div class="ancho-card">
                 <div class="small-card">
                     <h5>Entrada</h5>
-                    <p th:text="${fecha_inicio}" id="fecha_inicio">--/--/--</p>
+                    <p th:text="${fecha_inicio}" id="fecha_inicio"></p>
                 </div>
                 <div class="small-card">
                     <h5>Salida</h5>
-                    <p th:text="${fecha_fin}" id="fecha_fin">--/--/--</p>
+                    <p th:text="${fecha_fin}" id="fecha_fin"></p>
                 </div>
             </div>
 
             <div class="ancho-card">
                 <div class="small-card">
                     <h5 class="card-title">Duración</h5>
-                    <p th:text="${duracion} + ' días'" id="duracion">20 Días</p>
+                    <p th:text="${duracion} + ' Días'" id="duracion"></p>
                 </div>
                 <div class="small-card">
                     <h5>Número de huéspedes:</h5>
-                    <p th:text="${num_personas}">3 personas</p>
+                    <p th:text="${num_personas + 'Personas'}"></p>
                 </div>
             </div>
 
 
             <div class="small-card">
                 <h4>Precio</h4>
-                <p th:text="${precio} + '€/persona '">25 € / persona</p>
+                <p th:text="${precio} + ' € / persona '"></p>
                 <small style="color: indianred">* sujeto a las modificaciones de elección de pensión</small>
             </div>
         </div>
@@ -321,12 +321,12 @@
 
 
             <h2>Datos del usuario</h2>
-            <p class="small-card" th:text="${'Nombre: '+usuario.nombre}">Nombre: Martín</p>
-            <p class="small-card" th:text="${usuario.apellido}">Apellidos: Perez Reverte</p>
-            <p class="small-card" th:text="${'Email: '+usuario.email}">Email: perezreverte@gmail.com</p>
+            <p class="small-card" th:text="${'Nombre: '+usuario.nombre}"></p>
+            <p class="small-card" th:text="${usuario.apellido}"></p>
+            <p class="small-card" th:text="${'Email: '+usuario.email}"></p>
 
             <div class="small-card">
-                <p  th:text="${'Telefono: '+usuario.email}">Telefono: perezreverte@gmail.com</p>
+                <p  th:text="${'Telefono: '+usuario.email}"></p>
                 <small style="color: indianred;">* para cambiar tus datos ve a tu perfil</small>
 
             </div>
