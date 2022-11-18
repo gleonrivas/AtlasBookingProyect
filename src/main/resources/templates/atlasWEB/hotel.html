@@ -465,7 +465,6 @@
 <div class="comentario-slider">
     <div class="comentario-container">
 
-        <h3 th:if="${mapa.isEmpty()}" style="color: white; font-size: 30px; margin-bottom: 10%">Se el primero en comentar</h3>
         <form class="comentario-tarjeta" method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
             <p th:text="${'Comente algo, ' + usuario.nombre}"></p>
             <div class="get-comentario">
