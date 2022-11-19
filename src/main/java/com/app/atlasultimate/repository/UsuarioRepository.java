@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
@@ -23,4 +25,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     @Query(value = "SELECT * from usuario where id = :id", nativeQuery = true)
     Usuario usuarioporId(Integer id);
+
+    @Query(value = "SELECT email from usuario ", nativeQuery = true)
+    List<String> emailUser();
+
 }

@@ -25,6 +25,16 @@ type Usuario{
     email: String!
     contrasena: String!
 }
+type User{
+    id: ID
+    nombre: String
+    apellido: String
+    dni: String
+    rol: Rol!
+    telefono: String
+    email: String!
+}
+
 type Hotel {
     id: ID
     nombre: String
@@ -94,9 +104,10 @@ type Query{
         fecha_salida:Date!
         num_personas:Int!
         ciudad:String!):[Hotel]
+
     mostrarUsuario(
         email:String!
-    ):Usuario
+    ):User
 }
 
 type Mutation{

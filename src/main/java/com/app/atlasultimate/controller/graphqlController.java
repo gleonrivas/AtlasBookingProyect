@@ -368,6 +368,8 @@ public class graphqlController {
                                      @RequestParam @Argument String email,
                                      @RequestParam @Argument String contrasena) {
         Usuario user = new Usuario();
+        List<String> emails = usuarioRepository.emailUser();
+
         if (id_usuario != null) {
             user = usuarioRepository.usuarioporId(id_usuario);
             user.setNombre(nombre);
@@ -380,6 +382,11 @@ public class graphqlController {
             usuarioRepository.save(user);
             return "El usuario se ha editado correctamente";
         } else {
+            for(String s :emails){
+                if(s.equals(email)){
+                    return "este usuario ya tiene una cuenta";
+                }
+            }
             user.setNombre(nombre);
             user.setApellido(apellido);
             user.setDni(dni);
@@ -411,7 +418,7 @@ public class graphqlController {
         } else {
             List<Hotel> listadeHoteles = hotelRepository.findHotelById_usuario(user.getId());
             List<Review> listaReviewPorUser = reviewRepository.findReviewsUsuario(user.getId());
-            List<Registro> listaRegistro = reservaRepository.findAllByUsuario(user);
+            List<Registro> listaRegistro = reservaRepository.listaregistroPorUsuario(user.getId());
             if(listadeHoteles.size()!=0){
                 return "primero debe borrar los hoteles asociados al usuario";
             }else {
@@ -423,13 +430,13 @@ public class graphqlController {
                 }
                 if(listaRegistro.size()!=0){
                     for(Registro registro: listaRegistro){
-                        if(registro.getActiva().equals(1)){
+                        if(registro.getActiva().equals(true)){
                             return "el usuario debe eliminar las reservas activas que tiene";
                         }
                     }
                 }
-                usuarioRepository.save(user);
-                return "El usuario se ha creado correctamente";
+                usuarioRepository.delete(user);
+                return "El usuario se ha eliminado correctamente";
             }
         }
 
