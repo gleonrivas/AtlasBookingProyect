@@ -21,4 +21,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
                        @Param("contrasena") String contrasena,
                        @Param("id") Integer id);
 
+    @Query(value = "SELECT * from usuario where id = :id", nativeQuery = true)
+    Usuario usuarioporId(Integer id);
 }

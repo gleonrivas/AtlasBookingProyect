@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+
 @Controller
 @RequestMapping("graph")
 public class graphqlController {
@@ -71,7 +72,7 @@ public class graphqlController {
                                    @RequestParam(required = false) @Argument Boolean bano,
                                    @RequestParam(required = false) @Argument Boolean vistas) {
         Habitacion habitacion = new Habitacion();
-        Hotel hot= new Hotel();
+        Hotel hot = new Hotel();
         hot.setId(id_hotel);
         if (id_habitacion != null) {
             habitacion = habitacionRepository.findTopById(id_habitacion);
@@ -103,9 +104,8 @@ public class graphqlController {
             habitacionRepository.save(habitacion);
             return "Su habitacion se ha creado correctamente";
         }
-
-
     }
+
     public void chequearBooleanHabitacion(Habitacion h) {
         h.setBano(h.getBano() == null ? false : true);
         h.setVistas(h.getVistas() == null ? false : true);
@@ -239,6 +239,7 @@ public class graphqlController {
         }
 
     }
+
     private void chequearBoolean(Hotel h) {
         h.setTerraza(h.getTerraza() == null ? false : true);
         h.setPiscina(h.getPiscina() == null ? false : true);
@@ -311,19 +312,19 @@ public class graphqlController {
         Usuario user = usuarioRepository.findTopByEmail(email);
         Integer id_hotel = habitacionRepository.idHotel(id_habitacion);
         Pension pension = pensionRepository.pensionPorHotel(id_hotel);
-        Double precioPension = UtilidadesPrecio.booleanPrecioPension(pension,registro.getT_pension());
+        Double precioPension = UtilidadesPrecio.booleanPrecioPension(pension, registro.getT_pension());
         Integer id_temporada = habitacionRepository.idTemporada(id_habitacion);
         Temporada temp = temporadaRepository.temporadaPorId(id_temporada);
         Double temp2 = UtilidadesPrecio.temporadaDouble(fecha_entrada, fecha_salida, temp);
         Habitacion habitacion = habitacionRepository.findTopById(id_habitacion);
 
-        if(habitacion.equals(null)){
+        if (habitacion.equals(null)) {
             return "Esta habitación no existe";
         }
-        if(registro.getUsuario().equals(null)){
+        if (registro.getUsuario().equals(null)) {
             return "Este usuario no existe";
         }
-        if(user.getRol().equals(Rol.administrador)){
+        if (user.getRol().equals(Rol.administrador)) {
             return "Este usuario no puede crear una reserva";
         }
         //calcular duracion
@@ -349,8 +350,88 @@ public class graphqlController {
 
         String fechaEntrada = fecha_entrada.toString();
         String fechaSalida = fecha_salida.toString();
-        List<Hotel> hoteles = servicioHotel.buscadorcompleto(fechaEntrada, fechaSalida,ciudad,num_personas);
+        List<Hotel> hoteles = servicioHotel.buscadorcompleto(fechaEntrada, fechaSalida, ciudad, num_personas);
 
         return hoteles;
+    }
+
+    //CREAR USUARIO
+    //Crear y editar en graphql
+    @PostMapping("/usuario/crear/graphiql/")
+    @SchemaMapping(typeName = "Mutation", value = "crearEditarUsuario")
+    public String crearEditarUsuario(@RequestParam(required = false) @Argument Integer id_usuario,
+                                     @RequestParam(required = false) @Argument String nombre,
+                                     @RequestParam(required = false) @Argument String apellido,
+                                     @RequestParam(required = false) @Argument String dni,
+                                     @RequestParam @Argument Rol rol,
+                                     @RequestParam(required = false) @Argument String telefono,
+                                     @RequestParam @Argument String email,
+                                     @RequestParam @Argument String contrasena) {
+        Usuario user = new Usuario();
+        if (id_usuario != null) {
+            user = usuarioRepository.usuarioporId(id_usuario);
+            user.setNombre(nombre);
+            user.setApellido(apellido);
+            user.setDni(dni);
+            user.setRol(rol);
+            user.setTelefono(telefono);
+            user.setEmail(email);
+            user.setContrasena(contrasena);
+            usuarioRepository.save(user);
+            return "El usuario se ha editado correctamente";
+        } else {
+            user.setNombre(nombre);
+            user.setApellido(apellido);
+            user.setDni(dni);
+            user.setRol(rol);
+            user.setTelefono(telefono);
+            user.setEmail(email);
+            user.setContrasena(contrasena);
+            usuarioRepository.save(user);
+            return "El usuario se ha creado correctamente";
+        }
+    }
+
+    //Mostrar Usuario
+    @GetMapping("/Usuario/listar/")
+    @SchemaMapping(typeName = "Query", value = "mostrarUsuario")
+    public Usuario mostrarUsuario(@RequestParam @Argument String email) {
+        return usuarioRepository.findTopByEmail(email);
+    }
+
+    //Delete user
+    @DeleteMapping("/deleteUsuario/graphiql/")
+    @SchemaMapping(typeName = "Mutation", value = "eliminarUsuario")
+    public String eliminarUsuario(@RequestParam(required = true) @Argument String email) {
+
+        Usuario user = usuarioRepository.findTopByEmail(email);
+
+        if (user == null) {
+            return "El usuario no existe";
+        } else {
+            List<Hotel> listadeHoteles = hotelRepository.findHotelById_usuario(user.getId());
+            List<Review> listaReviewPorUser = reviewRepository.findReviewsUsuario(user.getId());
+            List<Registro> listaRegistro = reservaRepository.findAllByUsuario(user);
+            if(listadeHoteles.size()!=0){
+                return "primero debe borrar los hoteles asociados al usuario";
+            }else {
+                if (listaReviewPorUser.size() != 0) {
+                    for (Review r : listaReviewPorUser) {
+                        r.setUsuario(null);
+                        reviewRepository.save(r);
+                    }
+                }
+                if(listaRegistro.size()!=0){
+                    for(Registro registro: listaRegistro){
+                        if(registro.getActiva().equals(1)){
+                            return "el usuario debe eliminar las reservas activas que tiene";
+                        }
+                    }
+                }
+                usuarioRepository.save(user);
+                return "El usuario se ha creado correctamente";
+            }
+        }
+
     }
 }
