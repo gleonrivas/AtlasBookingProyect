@@ -441,4 +441,21 @@ public class graphqlController {
         }
 
     }
+
+    //CancelarReserva
+    @DeleteMapping("/deleteReserva/graphiql/")
+    @SchemaMapping(typeName = "Mutation", value = "cancelarReserva")
+    public String cancelarReserva(@RequestParam(required = true) @Argument String codigo_reserva
+                                  ) {
+        Registro reg = reservaRepository.registroporCodigo(codigo_reserva);
+        if(reg == null){
+            return "La reserva no existe";
+        }
+        if(reg.getActiva().equals(false)){
+            return "reserva pasada";
+        }
+        reservaRepository.delete(reg);
+        return "su reserva se ha cancelado correctamente";
+
+    }
 }

@@ -146,7 +146,7 @@ public class HotelController {
         hotelexistente.setLatitud(hotel.getLatitud());
         hotelexistente.setLongitud(hotel.getLongitud());
         chequearBoolean(hotelexistente);
-        servicioHotel.actualizarHotel(hotelexistente);
+        hotelRepository.save(hotelexistente);
 
         return "redirect:/usuario/inicio";
 

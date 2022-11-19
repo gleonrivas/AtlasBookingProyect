@@ -34,6 +34,7 @@ public class HistorialReservaController {
         Registro registro = reservaRepository.findFirstByUsuarioOrderByIdDesc(usuario);
         Integer idHotel = servicioHotel.obtenerIdHotel(idHab);
         Hotel hotel = servicioHotel.obtenerHotelporId(idHotel);
+
         model.addAttribute("hotel", hotel);
         model.addAttribute("registro" ,registro);
         return "/HistorialReserva.html";

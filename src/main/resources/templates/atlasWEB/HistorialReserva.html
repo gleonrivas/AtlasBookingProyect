@@ -209,6 +209,7 @@
                     <span class="u-upper ticket__small-label">Saliste</span>
                     <span class="ticket__detail" th:text="${registro.f_salida}"></span>
                 </p>
+
                 <p>
                     <span class="u-upper ticket__small-label">Pensión</span>
                     <span class="ticket__detail" th:if="${registro.t_pension == T(com.app.atlasultimate.model.tipo_pension).pc}">Pensión completa</span>
@@ -240,7 +241,10 @@
                 </p>
 
             </div>
-            <img class="ticket__barcode" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/barcode.png" alt="Fake barcode" />
+            <div style="display: flex; flex-flow: column nowrap; align-items: center">
+            <img style="width: 100%" class="ticket__barcode" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/barcode.png" alt="Fake barcode" />
+            <span style="width: 100%; color:black; font-size: 1.2em; text-align: center" class="ticket__detail" th:text="${registro.codigo}"></span>
+            </div>
         </div>
     </div>
 </div>

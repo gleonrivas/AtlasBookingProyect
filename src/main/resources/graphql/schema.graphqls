@@ -182,4 +182,8 @@ type Mutation{
     eliminarUsuario(
         email: String!
     ):String
+
+    cancelarReserva(
+        codigo_reserva: String!
+    ):String
 }

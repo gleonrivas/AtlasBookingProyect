@@ -282,7 +282,6 @@
     }
 
     .comentario-slider{
-        overflow-x: scroll;
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
@@ -301,6 +300,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
+
     }
 
     .comentario-tarjeta{
@@ -442,8 +442,8 @@
 </div>
 <h2>Habitaciones disponibles para la fecha selecionada.</h2>
 
-<div class="comentario-slider">
-    <div class="comentario-container">
+<div class="comentario-slider" >
+    <div class="comentario-container" style="overflow-x: scroll;">
         <div class="tarjeta" th:each="h : ${habitaciones}">
             <p th:text="'Camas dobles: '+ ${h.c_doble}"></p>
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>

@@ -65,6 +65,13 @@ public class Pension {
         this.id_hotel = id_hotel;
     }
 
+    public Pension(Double sa, Double ad, Double mp, Double pc) {
+        this.sa = sa;
+        this.ad = ad;
+        this.mp = mp;
+        this.pc = pc;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
