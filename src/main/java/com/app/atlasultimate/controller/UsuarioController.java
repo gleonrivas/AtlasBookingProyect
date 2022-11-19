@@ -106,8 +106,11 @@ public class UsuarioController {
     //Eliminar hotel
     @GetMapping("/inicio/{id}")
     public String eliminarHotel (@PathVariable Integer id){
+
         Pension p = pensionRepository.pensionPorHotel(id);
-        pensionRepository.delete(p);
+        if (p != null){
+            pensionRepository.delete(p);
+        }
         servicio.eliminarHotel(id);
         return "redirect:/usuario/inicio";
     }

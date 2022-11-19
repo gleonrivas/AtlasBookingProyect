@@ -5,9 +5,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
     <title>Reservas</title>
 </head>
 
@@ -71,7 +68,7 @@
         width: 120px;
         border-radius: 10px;
         border-style: none;
-        background-color: azure;
+        background-color: #ffffff;
         padding: 7px;
         color: black;
         font-size: 14px;
@@ -92,129 +89,14 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+        background-color: #e5dedb;
+        background-image: url("data:image/svg+xml,%3Csvg width='80' height='88' viewBox='0 0 80 88' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 21.91V26h-2c-9.94 0-18 8.06-18 18 0 9.943 8.058 18 18 18h2v4.09c8.012.722 14.785 5.738 18 12.73 3.212-6.99 9.983-12.008 18-12.73V62h2c9.94 0 18-8.06 18-18 0-9.943-8.058-18-18-18h-2v-4.09c-8.012-.722-14.785-5.738-18-12.73-3.212 6.99-9.983 12.008-18 12.73zM54 58v4.696c-5.574 1.316-10.455 4.428-14 8.69-3.545-4.262-8.426-7.374-14-8.69V58h-5.993C12.27 58 6 51.734 6 44c0-7.732 6.275-14 14.007-14H26v-4.696c5.574-1.316 10.455-4.428 14-8.69 3.545 4.262 8.426 7.374 14 8.69V30h5.993C67.73 30 74 36.266 74 44c0 7.732-6.275 14-14.007 14H54zM42 88c0-9.94 8.06-18 18-18h2v-4.09c8.016-.722 14.787-5.738 18-12.73v7.434c-3.545 4.262-8.426 7.374-14 8.69V74h-5.993C52.275 74 46 80.268 46 88h-4zm-4 0c0-9.943-8.058-18-18-18h-2v-4.09c-8.012-.722-14.785-5.738-18-12.73v7.434c3.545 4.262 8.426 7.374 14 8.69V74h5.993C27.73 74 34 80.266 34 88h4zm4-88c0 9.943 8.058 18 18 18h2v4.09c8.012.722 14.785 5.738 18 12.73v-7.434c-3.545-4.262-8.426-7.374-14-8.69V14h-5.993C52.27 14 46 7.734 46 0h-4zM0 34.82c3.213-6.992 9.984-12.008 18-12.73V18h2c9.94 0 18-8.06 18-18h-4c0 7.732-6.275 14-14.007 14H14v4.696c-5.574 1.316-10.455 4.428-14 8.69v7.433z' fill='%2392ac92' fill-opacity='0.19' fill-rule='evenodd'/%3E%3C/svg%3E");
         font-family: Arial, sans-serif;
     }
     body::-webkit-scrollbar{
         display: none;
     }
     /* FINALIZA BODY --------------------------------------------*/
-    /* COMIENZA FINDER ------------------------------------------*/
-    .intro {
-        display: flex;
-        width: 80%;
-        margin: 15% auto;
-        justify-content: center;
-        align-items: center;
-        padding: 2% 1%;
-        font-size: 14px;
-        background-color: rgba(255, 255, 255, 0.4);
-        box-shadow: 0 5px 50px rgba(0, 0, 0, 1);
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(5px);
-        color: white;
-        border-radius: 10px;
-    }
-
-    .entry-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .entry-group > p {
-        width: available;
-        justify-content: center;
-        align-content: center;
-        filter: drop-shadow(0 0 10px #000000);
-    }
-
-    input {
-        border-color: rgba(0, 0, 0, 0.8);
-        font-size: 13px;
-    }
-
-    .inputciudad {
-        border-radius: 10px 0 0 10px;
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-    }
-
-    .inputfentrada {
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-
-    }
-
-    .inputfsalida {
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-
-    }
-
-    .inputnadultos {
-        border-left-style: solid;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-
-    }
-
-    .inputniños {
-        border-left-style: solid;
-        border-right-style: solid;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-    }
-
-    .inputnhabitaciones {
-        border-radius: 0 10px 10px 0;
-        border-left-style: none;
-        border-right-style: solid;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        width: 150px;
-        height: 50px;
-        justify-content: center;
-    }
-
-    .buscar {
-        width: 56px;
-        height: 56px;
-        margin: auto 0 0 2%;
-        border-style: solid;
-        border-color: rgba(0, 0, 0, 0.8);
-        border-radius: 10px;
-        padding: 10px;
-        background-color: #ffffff;
-        background-position: center;
-    }
-
-    /* FINALIZA FINDER ------------------------------------------*/
     /* COMINEZA FOOTER ------------------------------------------*/
     .lasth {
         display: flex;
@@ -295,6 +177,78 @@
 
     /* FINALIZA FOOTER ------------------------------------------*/
 
+    /* COMIENZA Reserva ------------------------------------------*/
+    h1{
+        width: 100%;
+        text-align: center;
+        margin: 3% 0;
+    }
+    h2{
+        width: 100%;
+        text-align: center;
+    }
+    .difuminado{
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        background-color: rgba(255, 255, 255, 0.43);
+
+    }
+    .rebordes{
+        border-radius: 25px;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .vcard{
+        min-width: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .margenAuto5{
+         margin:  5% auto;
+    }
+    .hcard{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .imagen-div{
+        width: 300px;
+        height: 300px;
+        margin: 10px auto;
+    }
+    .imagen-div img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+        background-color: white;
+    }
+    .ancho-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .small-card{
+        width: fit-content;
+        min-width: 100px;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: white;
+        margin: 10px 0;
+
+    }
+    .small-card *{
+        margin: 5px 0;
+    }
+    /* FINALIZA Reserva ------------------------------------------*/
+
 
 </style>
 <header class="mainh">
@@ -323,89 +277,93 @@
 </header>
 
 <h1> Reservas</h1>
-<div class="row" style="width: 95%; flex-wrap: nowrap; padding: 2%; margin: auto; ">
-    <div class="card" style="width:35%; padding: 2%;">
-        <img th:src="${hotel.img}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h4 class="card-title">Datos de reserva</h4>
-            <div class="row">
-                <div class="col-sm-6" style="width: 50%;">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Entrada</h5>
-                            <p th:text="${fecha_inicio}" id="fecha_inicio"></p>
+    <div class="hcard">
 
-                        </div>
-                    </div>
+        <div class="vcard rebordes difuminado">
+            <div class="imagen-div">
+                <img th:src="${hotel.img}">
+            </div>
+
+            <h2 th:text="${'Datos de reserva en ' + hotel.nombre}"> Datos de reserva en Magia</h2>
+
+            <div class="ancho-card">
+                <div class="small-card">
+                    <h5>Entrada</h5>
+                    <p th:text="${fecha_inicio}" id="fecha_inicio"></p>
                 </div>
-                <div class="col-sm-6" style="width: 50%;">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Salida</h5>
-                            <p th:text="${fecha_fin}" id="fecha_fin"></p>
-                        </div>
-                    </div>
+                <div class="small-card">
+                    <h5>Salida</h5>
+                    <p th:text="${fecha_fin}" id="fecha_fin"></p>
                 </div>
             </div>
-            <div class="card" style="width: 100%;">
-                <div class="card-body">
-                    <h4 class="card-title">Duración</h4>
-                    <p th:text="${duracion} + ' días'" id="duracion"></p>
+
+            <div class="ancho-card">
+                <div class="small-card">
+                    <h5 class="card-title">Duración</h5>
+                    <p th:text="${duracion} + ' Días'" id="duracion"></p>
+                </div>
+                <div class="small-card">
+                    <h5>Número de huéspedes:</h5>
+                    <p th:text="${num_personas + ' Personas'}"></p>
                 </div>
             </div>
-        </div>
-        <div class="card" style="width: 100%;">
-            <div class="card-body">
-                <h4 class="card-title">Selección</h4>
-                <h5 class="card-text" th:text="${hotel.nombre}"></h5>
-                <p class="card-text">Tipo de habitación</p>
-                <p class="card-text" th:text="${tipoHabitacion}">
-                <div style="display: flex; flex-flow: row nowrap; justify-content: space-around;">
-                <p class="card-text">Número de huéspedes:</p>
-                <p class="card-text" th:text="${num_personas}">
-                </div>
-            </div>
-        </div>
-        <div class="card" style="width: 100%;">
-            <div class="card-body">
-                <h4 class="card-title">Precio</h4>
-                <p class="card-text" th:text="${precio} + '€/persona '"></p>
-                <small style="color:indianred !important" id="precio" class="form-text text-muted">* sujeto a las modificaciones de elección de pensión</small>
+
+
+            <div class="small-card">
+                <h4>Precio</h4>
+                <p th:text="${precio} + ' € / persona '"></p>
+                <small style="color: indianred">* sujeto a las modificaciones de elección de pensión</small>
             </div>
         </div>
-    </div>
-    <div style="width: 65%;">
-        <div>
-            <div class="mb-3">
-                <label  class="form-label">Nombre: </label>
-                <p th:text="${usuario.nombre}"></p>
+
+    <div class="vcard">
+        <div class="vcard rebordes difuminado margenAuto5">
+
+
+            <h2>Datos del usuario</h2>
+            <p class="small-card" th:text="${'Nombre: '+usuario.nombre}"></p>
+            <p class="small-card" th:text="${'Apellidos '+usuario.apellido}"></p>
+            <p class="small-card" th:text="${'Email: '+usuario.email}"></p>
+
+            <div class="small-card">
+                <p  th:text="${'Telefono: '+usuario.telefono}"></p>
+                <small style="color: indianred;">* para cambiar tus datos ve a tu perfil</small>
 
             </div>
-            <div class="mb-3">
-                <label class="form-label">Apellidos: </label>
-                <p th:text="${usuario.apellido}"></p>
-
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">Email: </label>
-                <p th:text="${usuario.email}"></p>
-            </div>
         </div>
-            <form th:object="${registroDTO}" method="post">
-                <label for="pension">Selecciona el tipo de pension</label>
-                <select id="pension" th:field="*{t_pension}">
-                    <option th:each="pension : ${T(com.app.atlasultimate.model.tipo_pension).values()}"
-                            th:value="${pension}" th:text="${pension}"></option>
-                </select>
-                <label for="pago">Selecciona el tipo de pago</label>
-                <select id="pago" th:field="*{t_pago}">
-                    <option th:each="pago : ${T(com.app.atlasultimate.model.tipo_pago).values()}"
-                            th:value="${pago}" th:text="${pago}"></option>
-                </select>
-                <button type="submit">Reservar</button>
+
+        <div class="vcard rebordes difuminado ">
+            <h2 style="margin-bottom: 0">Pensión</h2>
+
+            <form class="vcard" th:object="${registroDTO}" method="post">
+                <div class="small-card" style="margin: 2% auto">
+                    <label for="pension">Selecciona el tipo de pension</label>
+                    <select id="pension" th:field="*{t_pension}">
+                        <option th:each="pension : ${T(com.app.atlasultimate.model.tipo_pension).values()}"
+                                th:value="${pension}" th:text="${pension}"></option>
+                    </select>
+                </div>
+
+                <div class="small-card" style="margin: 1% auto 5% auto; justify-content: center">
+                    <label for="pago">Selecciona el tipo de pago</label>
+                    <select id="pago" th:field="*{t_pago}">
+                        <option th:each="pago : ${T(com.app.atlasultimate.model.tipo_pago).values()}"
+                                th:value="${pago}" th:text="${pago}"></option>
+                    </select>
+
+                </div>
+                <button class="link-buttom" style="color: white; background-color: black; margin: 0 auto" type="submit">Reservar</button>
             </form>
+
+        </div>
     </div>
-</div>
+
+
+    </div>
+
+
+
+
 <footer class="lasth">
 
     <div class="promote-hotel">
