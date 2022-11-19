@@ -318,7 +318,7 @@
             <input class="myinput" type="text" id="tel" name="tel" th:field="*{telefono}"/>
             <h2>Condiciones</h2>
             <div>
-                <input class="notmy" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita" th:checked="*{cancelacion_g}" />
+                <input class="notmy" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita" th:field="*{cancelacion_g}" />
                 <label class="form-label" for="cancelacionGratuita">Cancelación gratuita</label>
             </div>
         </div>
@@ -357,61 +357,61 @@
         <div class="container">
             <h2>Instalaciones y servicios</h2>
             <div>
-                <input class="notmy"  type="checkbox" id="multilengua" name="accesibilidad"  th:checked="*{accesibilidad} ? true : false "/>
+                <input class="notmy"  type="checkbox" id="multilengua" name="accesibilidad"  th:field="*{multilengua}"/>
                 <label class="form-label" for="multilengua">¿Se habla más de una lengua?</label>
             </div>
             <div>
-                <input class="notmy"  type="checkbox" id="accesibilidad" name="accesibilidad"  th:checked="*{accesibilidad} ? true : false "/>
+                <input class="notmy"  type="checkbox" id="accesibilidad" name="accesibilidad"  th:field="*{accesibilidad} "/>
                 <label class="form-label" for="accesibilidad">Accesibilidad para silla de ruedas</label>
             </div>
 
             <div>
-                <input class="notmy"   type="checkbox" id="espectaculos" name="espectaculos" th:checked="*{espectaculos}" />
+                <input class="notmy"   type="checkbox" id="espectaculos" name="espectaculos" th:field="*{espectaculos}" />
                 <label class="form-label" for="espectaculos">Espectáculos</label>
             </div>
 
             <div>
-                <input class="notmy"  type="checkbox" id="piscina" name="piscina" th:checked="*{piscina}" />
+                <input class="notmy"  type="checkbox" id="piscina" name="piscina" th:field="*{piscina}" />
                 <label class="form-label" for="piscina">Piscina</label>
             </div>
 
             <div>
-                <input class="notmy"   type="checkbox" id="patioInterior" name="patio" th:checked="*{patio}"/>
+                <input class="notmy"   type="checkbox" id="patioInterior" name="patio" th:field="*{patio}"/>
                 <label class="form-label" for="patioInterior">Patio</label>
             </div>
 
             <div>
-                <input class="notmy"  type="checkbox" id="tours" name="tours" th:checked="*{tours}" />
+                <input class="notmy"  type="checkbox" id="tours" name="tours" th:field="*{tours}" />
                 <label class="form-label" for="tours">Tours</label>
             </div>
 
             <div>
-                <input class="notmy" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:checked="*{s_habitacion}"/>
+                <input class="notmy" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:field="*{s_habitacion}"/>
                 <label class="form-label" for="servicioHabitaciones">Servicio de habitaciones</label>
             </div>
 
             <div>
-                <input class="notmy"  type="checkbox" id="comedor" name="comedor" th:checked="*{comedor}"/>
+                <input class="notmy"  type="checkbox" id="comedor" name="comedor" th:field="*{comedor}"/>
                 <label class="form-label" for="comedor">Comedor</label>
             </div>
 
             <div>
-                <input class="notmy"  type="checkbox" id="terraza" name="terraza" th:checked="*{terraza}" />
+                <input class="notmy"  type="checkbox" id="terraza" name="terraza" th:field="*{terraza}" />
                 <label class="form-label" for="terraza">Terraza</label>
             </div>
 
             <div>
-                <input class="notmy"   type="checkbox" id="servicioTransporte" name="servicioTransporte" th:checked="*{s_transporte}" />
+                <input class="notmy"   type="checkbox" id="servicioTransporte" name="servicioTransporte" th:field="*{s_transporte}" />
                 <label class="form-label" for="servicioTransporte">Servicio de transporte</label>
             </div>
 
             <div>
-                <input class="notmy" type="checkbox" id="aparcamiento" name="aparcamiento" th:checked="*{parking}" />
+                <input class="notmy" type="checkbox" id="aparcamiento" name="aparcamiento" th:field="*{parking}" />
                 <label class="form-label" for="aparcamiento">Parking</label>
             </div>
 
             <div>
-                <input class="notmy" type="checkbox" id="mascotas" name="mascotas" th:checked="*{mascotas}"/>
+                <input class="notmy" type="checkbox" id="mascotas" name="mascotas" th:field="*{mascotas}"/>
                 <label class="form-label" for="mascotas">Mascotas</label>
             </div>
 
