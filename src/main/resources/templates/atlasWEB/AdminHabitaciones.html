@@ -303,6 +303,16 @@
     #confirmacion{
         margin: 12% auto;
     }
+    .hotel-img{
+        width: 320px;
+        height: 150px;
+    }
+    .hotel-img >img{
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
     /* FINALIZA HOTEL-EDIT --------------------------------------*/
 
 </style>
@@ -343,6 +353,9 @@
     <div class="comentario-container">
         <div class="container" th:if="${habitaciones.size > 0}" th:each="habitacion : ${habitaciones}">
                 <h2>Habitación</h2>
+                <div class="hotel-img">
+                    <img th:src="@{/img/imgHab/{id}/{img}(id=${habitacion.id},img=${habitacion.img})}">
+                </div>
                 <div class="julieta">
                     <p> Aforo máximo: </p>
                     <p th:text="${habitacion.n_max_personas}"></p>

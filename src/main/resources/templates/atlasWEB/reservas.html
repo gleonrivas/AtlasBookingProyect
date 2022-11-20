@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -281,10 +281,9 @@
 
         <div class="vcard rebordes difuminado">
             <div class="imagen-div">
-                <img th:src="${hotel.img}">
+                <img th:src="@{/img/imgHab/{id}/{img}(id=${habitacion.id},img=${habitacion.img})}">
             </div>
-
-            <h2 th:text="${'Datos de reserva en ' + hotel.nombre}"> Datos de reserva en Magia</h2>
+            <h2 th:text="${'Datos de reserva en ' + hotel.nombre}">Datos de reserva en Magia</h2>
 
             <div class="ancho-card">
                 <div class="small-card">

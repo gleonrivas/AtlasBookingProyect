@@ -91,7 +91,7 @@ public class HotelController {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         hotel.setImg(fileName);
         Hotel nuevoHotel = servicioHotel.guardarHotel(hotel);
-        String uploadDir = "./src/main/resources/static/img/" + nuevoHotel.getId();
+        String uploadDir = "./src/main/resources/static/img/imgHot/" + nuevoHotel.getId();
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
@@ -260,7 +260,7 @@ public class HotelController {
         }
         model.addAttribute("mapa", mapa);
         String fondo1 = hotelRepository.findHotelById(id).getImg();
-        String fondo = "/img/" + id+ "/" + fondo1;
+        String fondo = "/img/imgHot/" + id+ "/" + fondo1;
         model.addAttribute("hotelimagen", fondo);
 
 

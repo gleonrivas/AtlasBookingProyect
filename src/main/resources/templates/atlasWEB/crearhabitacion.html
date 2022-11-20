@@ -291,7 +291,7 @@
 
     <h1>Crear habitación</h1>
 
-    <form  class="card" style="padding:2%"  name="form" th:action="@{/habitacion/nueva/{id}(id=${hotel.id})}" th:object="${habitacion}" method="post">
+    <form  class="card" style="padding:2%"  name="form" th:action="@{/habitacion/nueva/{id}(id=${hotel.id})}" th:object="${habitacion}" method="post" enctype="multipart/form-data">
 
         <div class="julieta">
             <label class="form-label" for="num_habitaciones_iguales">Número de habitaciones iguales</label>
@@ -316,6 +316,10 @@
             <label class="form-label" for="precio_base">Precio Base</label>
             <input class="form-control" type="number" id="precio_base" name="precio_base" th:field="*{precio_base}"/>
         </div>
+        <div class="julieta">
+            <label for="file">Foto: </label>
+            <input type="file" name="file" id="file" accept="image/png, image/jpeg, image/jpg"/>
+        </div>
         <div>
             <input class="form-check-label" type="checkbox" id="bano" name="bano" th:checked="*{bano}"/>
             <label class="form-label" for="bano">Baño</label>
@@ -325,6 +329,9 @@
             <input class="form-check-label" type="checkbox" id="vistas" name="vistas" th:checked="*{vistas}"/>
             <label class="form-label" for="vistas">Vistas</label>
         </div>
+
+
+
 
 
         <div class="julieta" style="justify-content: space-around; margin-top: 25px">

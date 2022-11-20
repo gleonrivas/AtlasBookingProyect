@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class HabitacionService implements HabitacionServicio {
@@ -28,12 +27,15 @@ public class HabitacionService implements HabitacionServicio {
         return habitacionRepository.save(h);
     }
 
-    public void guardarHabMultiple(Integer num, Habitacion hab) {
-
+    public List<Integer> guardarHabMultiple(Integer num, Habitacion hab) {
+        List<Integer> ids = new ArrayList<>();
+        Habitacion hab2 = new Habitacion();
         for (int i = 0; i < num; i++) {
-            habitacionRepository.save(new Habitacion(hab));
+            hab2 = habitacionRepository.save(new Habitacion(hab));
+            ids.add(hab2.getId());
         }
 
+        return ids;
     }
 
     public Habitacion obtenerHabitacionporId(Integer integer) {
