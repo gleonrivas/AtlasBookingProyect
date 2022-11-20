@@ -20,4 +20,5 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query(value = "select * from review where id_hotel = :id_hotel ", nativeQuery = true)
     List<Review> findReviewsHotel(@Param("id_hotel")Integer id_hotel);
 
+
 }

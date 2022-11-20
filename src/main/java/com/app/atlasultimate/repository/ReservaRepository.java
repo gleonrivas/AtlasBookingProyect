@@ -35,6 +35,6 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
     @Query(value="select * from registro where id_habitacion = :id_habitacion", nativeQuery = true)
     List<Registro> listaregistroPorIdHab(@Param("id_habitacion") Integer id_habitacion);
 
-
+    void deleteAllByHabitacion(Habitacion habitacion);
 
 }
