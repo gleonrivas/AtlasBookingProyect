@@ -382,6 +382,17 @@
         box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
     }
 
+    .hotel-img{
+        width: 200px;
+        height: 150px;
+    }
+    .hotel-img >img{
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
 
 
     /* FINALIZA HOTEL BOX ---------------------------------------*/
@@ -445,6 +456,9 @@
 <div class="comentario-slider" >
     <div class="comentario-container" style="overflow-x: scroll;">
         <div class="tarjeta" th:each="h : ${habitaciones}">
+            <div class="hotel-img">
+                <img th:src="@{/img/imgHab/{id}/{img}(id=${h.id},img=${h.img})}">
+            </div>
             <p th:text="'Camas dobles: '+ ${h.c_doble}"></p>
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
             <p th:text="'Numero de personas: ' + ${h.n_max_personas}"></p>

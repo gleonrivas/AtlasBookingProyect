@@ -39,14 +39,20 @@ public interface HabitacionRepository  extends JpaRepository<Habitacion,Integer>
     @Query(value = "SELECT temporada_id FROM habitacion h where id = :id_hab", nativeQuery = true)
     Integer idTemporada(@Param("id_hab")Integer id_hab);
 
-    @Query(value = "SELECT h.* FROM habitacion h \n" +
-            "left join registro r ON h.id = r.id_habitacion \n" +
-            "where h.id_hotel = :id_hotel \n" +
-            "and (select COUNT(r2.activa)  FROM registro r2\n" +
-            "join habitacion h2 on r2.id_habitacion = r2.id\n" +
-            "JOIN hotel h3 on h2.id_hotel\n" +
-            "where id_hotel = :id_hotel) = 0\n" +
-            "GROUP by h.id", nativeQuery = true)
+    @Query(value = "SELECT h2.*  FROM habitacion h2\n" +
+            "left join registro r2 ON h2.id = r2.id_habitacion\n" +
+            "where h2.id_hotel = :id_hotel \n" +
+            "and ISNULL(r2.activa)\n" +
+            "GROUP by h2.id", nativeQuery = true)
     List<Habitacion> findAllByReservasInactivas(@Param("id_hotel") Integer id_hotel);
+
+    @Query(value = "SELECT h2.*  FROM habitacion h2 \n" +
+            "left join registro r2 ON h2.id = r2.id_habitacion \n" +
+            "where h2.id_hotel = :id_hotel \n" +
+            "and r2.activa = 0 \n" +
+            "GROUP by h2.id", nativeQuery = true)
+    List<Habitacion> findAllByReservasInactivas2(@Param("id_hotel") Integer id_hotel);
+
+
 
 }

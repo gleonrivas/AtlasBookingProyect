@@ -43,5 +43,6 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
 
     @Query(value="select * from registro where codigo = :codigo", nativeQuery = true)
     Registro registroporCodigo(@Param("codigo") String codigo);
+    void deleteAllByHabitacion(Habitacion habitacion);
 
 }

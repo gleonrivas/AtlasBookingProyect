@@ -61,7 +61,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.csrf().disable()
+        httpSecurity.csrf().disable().sessionManagement()
+                .enableSessionUrlRewriting(true)
+                .and()
                 .authorizeRequests()
                 .antMatchers("/usuario/inicio/**").hasAuthority(Rol.administrador.toString())
                 .antMatchers("/hotel/habitacion/").hasAuthority(Rol.administrador.toString())

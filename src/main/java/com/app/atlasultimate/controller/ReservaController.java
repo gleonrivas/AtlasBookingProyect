@@ -150,11 +150,9 @@ public class ReservaController {
                 habitacion
                 );
 
-
+        reservaRepository.deleteAllByHabitacion(habitacion);
         reservaRepository.save(registroFinal);
         return "redirect:/historial?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
-
-
         }
 
 

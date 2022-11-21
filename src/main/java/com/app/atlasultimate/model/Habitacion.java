@@ -27,6 +27,8 @@ public class Habitacion {
     private Integer c_doble;
     @Column(name = "precio_base")
     private Double precio_base;
+    @Column(name = "img")
+    private String img;
     @Column(name = "bano")
     private Boolean bano;
     @Column(name = "vistas")
@@ -63,7 +65,7 @@ public class Habitacion {
 
 
     public Habitacion(Integer id, Integer c_individual, Integer c_doble, Double precio_base, Boolean bano, Boolean vistas,
-                      Integer num_habitaciones_iguales, Hotel hotel, Set<Registro> registro, Integer n_max_personas) {
+                      Integer num_habitaciones_iguales, Hotel hotel, Set<Registro> registro, Integer n_max_personas, String img) {
         this.id = id;
         this.c_individual = c_individual;
         this.c_doble = c_doble;
@@ -74,6 +76,7 @@ public class Habitacion {
         this.hotel = hotel;
         this.registro = registro;
         this.n_max_personas= n_max_personas;
+        this.img = img;
     }
 
     public Habitacion(Habitacion hab) {
@@ -87,6 +90,7 @@ public class Habitacion {
         this.hotel = hab.hotel;
         this.registro =hab.registro;
         this.n_max_personas= hab.n_max_personas;
+        this.img = hab.img;
     }
 
     public Habitacion() {
