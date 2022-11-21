@@ -11,6 +11,29 @@ enum t_pago{
     efectivo
     tarjeta
 }
+enum Rol{
+    administrador
+    usuario
+}
+type Usuario{
+    id: ID
+    nombre: String
+    apellido: String
+    dni: String
+    rol: Rol!
+    telefono: String
+    email: String!
+    contrasena: String!
+}
+type User{
+    id: ID
+    nombre: String
+    apellido: String
+    dni: String
+    rol: Rol!
+    telefono: String
+    email: String!
+}
 
 type Hotel {
     id: ID
@@ -81,6 +104,10 @@ type Query{
         fecha_salida:Date!
         num_personas:Int!
         ciudad:String!):[Hotel]
+
+    mostrarUsuario(
+        email:String!
+    ):User
 }
 
 type Mutation{
@@ -139,5 +166,24 @@ type Mutation{
         tipo_pension: t_pension!
         id_habitacion: Int!
         email: String!
+    ):String
+
+    crearEditarUsuario(
+        id_usuario:ID
+        nombre: String
+        apellido: String
+        dni: String
+        rol: Rol!
+        telefono: String
+        email: String!
+        contrasena: String!
+    ): String
+
+    eliminarUsuario(
+        email: String!
+    ):String
+
+    cancelarReserva(
+        codigo_reserva: String!
     ):String
 }

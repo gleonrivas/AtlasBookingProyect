@@ -5,9 +5,7 @@ import com.app.atlasultimate.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class HotelService {
@@ -61,6 +59,10 @@ public class HotelService {
         List<Hotel> listabuscador2= repositorio.segundoBuscador(ciudad,n_max_personas);
         listadefinitiva.addAll(listabuscador1);
         listadefinitiva.addAll(listabuscador2);
+        Set<Hotel> set = new HashSet<>(listadefinitiva);
+        listadefinitiva.clear();
+        listadefinitiva.addAll(set);
+
         return listadefinitiva;
     }
 

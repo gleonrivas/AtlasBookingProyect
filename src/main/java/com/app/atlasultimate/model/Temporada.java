@@ -45,6 +45,13 @@ public class Temporada {
         this.habitaaciones = habitaaciones;
     }
 
+    public Temporada(Double precioInvierno, Double precioPrimavera, Double precioVerano, Double precioOtono) {
+        this.precioInvierno = precioInvierno;
+        this.precioPrimavera = precioPrimavera;
+        this.precioVerano = precioVerano;
+        this.precioOtono = precioOtono;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

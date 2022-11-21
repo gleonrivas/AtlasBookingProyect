@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.UUID;
 
 
 @Controller
@@ -71,6 +72,7 @@ public class ReservaController {
 
 
 
+
         modelo.addAttribute("hotel", hotel);
         modelo.addAttribute("habitacion", habitacion);
         modelo.addAttribute("pensiondto", pension);
@@ -83,6 +85,7 @@ public class ReservaController {
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("tarjeta" ,tipo_pago.tarjeta);
         modelo.addAttribute("efectivo" ,tipo_pago.efectivo);
+
 
         return "/reservas.html";
 
@@ -113,6 +116,12 @@ public class ReservaController {
 
 
         Double precioFinal = 0.0;
+        if (pension==null){
+            pension = new Pension(0.0,0.0,0.0,0.0);
+        }
+        if (temporada==null){
+            temporada = new Temporada(0.0,0.0,0.0,0.0);
+        }
         if (registroDTO.getT_pension() == tipo_pension.ad) {
             precioFinal = precio + (pension.getAd() * duracion);
         }
@@ -126,7 +135,8 @@ public class ReservaController {
             precioFinal = precio + (pension.getMp() * duracion);
         }
         precioFinal = precioFinal * num_personas;
-
+        Integer num_codigo = reservaRepository.ultimoRegistro() +1;
+        String codigo = fecha1 + fecha2 + idHotel + idHab + duracion + "-" + num_codigo;
         Registro registroFinal = new Registro(fecha1,
                 fecha2,
                 num_personas,
@@ -134,9 +144,11 @@ public class ReservaController {
                 registroDTO.getT_pension(),
                 precioFinal,
                 duracion,
+                true,
+                codigo,
                 usuario,
-                habitacion,
-                true);
+                habitacion
+                );
 
 
         reservaRepository.save(registroFinal);

@@ -107,6 +107,9 @@ public class UtilidadesPrecio {
                                           Double precioBase){
         Double preciofin;
         Integer duracion = duracionReserva(fechaInicio, fechaFin);
+        if(temporadaporHabitacion==null){
+            temporadaporHabitacion = new Temporada(0.0,0.0,0.0,0.0);
+        }
 
         Double precioporhab= precioBase * duracion;
 

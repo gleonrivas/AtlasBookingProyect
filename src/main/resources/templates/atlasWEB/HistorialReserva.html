@@ -135,7 +135,25 @@
         width: 299px;
         max-width: 100%;
     }
-
+    .botonInicio{
+        background: rgba(33, 94, 112);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        font-family: 'Playfair Display', serif;
+        padding: 1%;
+        margin-top:1%;
+        margin-bottom: 1%;
+    }
+    .volver{
+        text-decoration: none;
+        text-align: center;
+        color: #e5dbdb;
+    }
     @media (min-width: 36em) {
         .ticket-wrap {
             margin-bottom: 4em;
@@ -209,6 +227,7 @@
                     <span class="u-upper ticket__small-label">Saliste</span>
                     <span class="ticket__detail" th:text="${registro.f_salida}"></span>
                 </p>
+
                 <p>
                     <span class="u-upper ticket__small-label">Pensión</span>
                     <span class="ticket__detail" th:if="${registro.t_pension == T(com.app.atlasultimate.model.tipo_pension).pc}">Pensión completa</span>
@@ -240,9 +259,16 @@
                 </p>
 
             </div>
-            <img class="ticket__barcode" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/barcode.png" alt="Fake barcode" />
+            <div style="display: flex; flex-flow: column nowrap; align-items: center">
+            <img style="width: 100%" class="ticket__barcode" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/barcode.png" alt="Fake barcode" />
+            <span style="width: 100%; color:black; font-size: 1.2em; text-align: center" class="ticket__detail" th:text="${registro.codigo}"></span>
+            </div>
         </div>
     </div>
 </div>
+<div class="botonInicio">
+<a  class="volver" th:href="@{/}">Volver al Inicio</a>
+</div>
+
 </body>
 </html>
