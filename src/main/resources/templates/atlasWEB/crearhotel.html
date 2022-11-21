@@ -293,6 +293,11 @@
         margin-top: 5%;
         margin-left: 75%;
     }
+    #mapa{
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+    }
+
 
     /* FINALIZA HOTEL-EDIT --------------------------------------*/
 
@@ -326,12 +331,10 @@
 </div>
 
 <h2 style="margin-left: 10%">Ubicación del hotel</h2>
-<div id="mapa" style="margin-left: 10%; width: 80%; height: 400px;">
+<div id="mapa" style="margin: 0 auto; width: 85%; height: 400px;">
 </div>
-<br>
-<br>
-<br>
-<br>
+
+
 
 <form class="card" name="form" th:action="@{/hotel/nuevo}" th:object="${hotel}" method="post"
       enctype="multipart/form-data">
