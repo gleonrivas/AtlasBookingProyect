@@ -152,5 +152,13 @@ public class UsuarioController {
             return "redirect:/usuario/perfil?exito";
     }
 
+    //Eliminar habitacion
+    @DeleteMapping("/perfil/")
+    public String eliminarReserva(@PathVariable String reserva) {
+        Registro r = reservaRepository.registroporCodigo(reserva);
+        r.setActiva(false);
+        reservaRepository.save(r);
+        return "redirect:/perfil/";
+    }
 }
 

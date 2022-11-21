@@ -135,7 +135,25 @@
         width: 299px;
         max-width: 100%;
     }
-
+    .botonInicio{
+        background: rgba(33, 94, 112);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        font-family: 'Playfair Display', serif;
+        padding: 1%;
+        margin-top:1%;
+        margin-bottom: 1%;
+    }
+    .volver{
+        text-decoration: none;
+        text-align: center;
+        color: #e5dbdb;
+    }
     @media (min-width: 36em) {
         .ticket-wrap {
             margin-bottom: 4em;
@@ -248,5 +266,9 @@
         </div>
     </div>
 </div>
+<div class="botonInicio">
+<a  class="volver" th:href="@{/}">Volver al Inicio</a>
+</div>
+
 </body>
 </html>
