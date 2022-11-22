@@ -1,9 +1,8 @@
 package com.app.atlasultimate.controller;
 
+import com.app.atlasultimate.controller.DTO.HabitacionDTO;
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
-import com.app.atlasultimate.model.Pension;
-import com.app.atlasultimate.model.Registro;
-import com.app.atlasultimate.model.Usuario;
+import com.app.atlasultimate.model.*;
 import com.app.atlasultimate.repository.*;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
@@ -16,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("usuario")
@@ -117,6 +118,9 @@ public class UsuarioController {
 
     @Autowired
     ReservaRepository reservaRepository;
+    @Autowired
+    HotelRepository hotelRepository;
+
 
     @GetMapping("perfil")
     public String perfil(Model model){
@@ -126,6 +130,22 @@ public class UsuarioController {
         List<Registro> registros = reservaRepository.findAllByUsuario(usuario);
         model.addAttribute("usuario", usuario);
         model.addAttribute("reservas", registros);
+
+        Map<HabitacionDTO, Registro> mapa = new HashMap<>();
+        try{
+            for (Registro registro: registros){
+                Habitacion habitacion = habitacionRepository.findTopByRegistro(registro);
+                HabitacionDTO habitacionDTO = new HabitacionDTO();
+                habitacionDTO.setId(habitacion.getId());
+                habitacionDTO.setImg(habitacion.getImg());
+                Hotel hotel = hotelRepository.findTopByidHabitacion(habitacion.getId());
+                habitacionDTO.setNombreHotel(hotel.getNombre());
+                mapa.put(habitacionDTO, registro);
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        model.addAttribute("mapa", mapa);
 
         return "/PerfilUsuario.html";
     }
@@ -152,13 +172,14 @@ public class UsuarioController {
             return "redirect:/usuario/perfil?exito";
     }
 
-    //Eliminar habitacion
-    @DeleteMapping("/perfil/")
-    public String eliminarReserva(@PathVariable String reserva) {
+    //Eliminar reserva
+
+    @PostMapping("cancelar_reserva")
+    public String eliminarReserva(@RequestParam (value = "reserva") String reserva) {
         Registro r = reservaRepository.registroporCodigo(reserva);
         r.setActiva(false);
         reservaRepository.save(r);
-        return "redirect:/perfil/";
+        return "redirect:/usuario/perfil";
     }
 }
 
