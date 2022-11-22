@@ -270,6 +270,7 @@
         height: 400px;
 
     }
+
     .primera-reserva-card {
         width: max-content;
         display: flex;
@@ -280,6 +281,17 @@
         padding: 15px;
         margin-bottom: 10px;
     }
+    .primera-reserva-card2 {
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        background-color: #d2d2d2;
+        border-radius: 25px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
     .reserva-card {
         width: max-content;
         display: flex;
@@ -290,10 +302,22 @@
         padding: 15px;
         margin-bottom: 10px;
     }
+    .reserva-card6 {
+        width: max-content;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background-color: #d2d2d2;
+        border-radius: 25px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
     .reserva-card2 {
         margin: auto;
         width: 100%;
     }
+
     .sonia {
         display: flex;
         flex-wrap: nowrap;
@@ -301,6 +325,7 @@
         width: max-content;
         margin-left: 10px;
     }
+
     .sonia2 {
         display: flex;
         flex-wrap: nowrap;
@@ -309,12 +334,14 @@
         margin-left: 10px;
         justify-content: space-around;
     }
-    .codigo{
+
+    .codigo {
         display: flex;
         flex-wrap: nowrap;
         flex-direction: column;
         align-items: center;
     }
+
     .sonia > p {
         margin: 5px 0;
     }
@@ -325,8 +352,12 @@
         border-radius: 25px;
         text-align: center;
         padding: 2%;
-        width: 30%;
+        width: 100%;
         align-self: center;
+    }
+
+    .form2 {
+        width: 50%;
     }
 
     .eliminar {
@@ -404,29 +435,61 @@
         <h1>Reservas realizadas</h1>
         <div class="scrollDown">
             <div class="primera-reserva-card" th:each="r : ${reservas}">
-                <div class="reserva-card">
-                    <div class="sonia">
-                        <p th:text="${'Entrada: ' + r.f_entrada}"></p>
-                        <p th:text="${'Salida: ' + r.f_salida}"></p>
+                <div th:if="${r.activa == true}" class="primera-reserva-card">
+                    <div class="reserva-card" >
+                        <div class="sonia">
+                            <p th:text="${'Entrada: ' + r.f_entrada}"></p>
+                            <p th:text="${'Salida: ' + r.f_salida}"></p>
+                        </div>
+                        <div class="sonia">
+                            <p th:text="${'Dias totales: ' + r.n_dias}"></p>
+                            <p th:text="${'Numero de personas: ' + r.n_personas}"></p>
+                        </div>
+                        <div class="sonia">
+                            <p th:text="${'Tipo de pensión: ' + r.t_pension}"></p>
+                            <p th:text="${'Precio final: ' + r.precio_total_dias + ' €'}"></p>
+                        </div>
                     </div>
-                    <div class="sonia">
-                        <p th:text="${'Dias totales: ' + r.n_dias}"></p>
-                        <p th:text="${'Numero de personas: ' + r.n_personas}"></p>
-                    </div>
-                    <div class="sonia">
-                        <p th:text="${'Tipo de pensión: ' + r.t_pension}"></p>
-                        <p th:text="${'Precio final: ' + r.precio_total_dias + ' €'}"></p>
+                    <div class="reserva-card2">
+                        <div class="sonia2">
+                            <div class="codigo">
+                                <p th:text="${'Código de reserva: '}"></p>
+                                <p th:text="${r.codigo}"></p>
+                            </div>
+                            <form class="form2" name="form2" th:action="@{/usuario/cancelar_reserva/(reserva=${r.codigo})}" method="POST">
+                                    <button class="botonEliminar" type="submit">
+                                        Cancelar Reserva
+                                    </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="reserva-card2">
-                    <div class="sonia2">
-                        <div class="codigo">
-                        <p th:text="${'Código de reserva: '}"></p>
-                        <p th:text="${r.codigo}"></p>
+                <div th:if="${r.activa == false}" class="primera-reserva-card2">
+                    <div class="reserva-card6" >
+                        <div class="sonia">
+                            <p th:text="${'Entrada: ' + r.f_entrada}"></p>
+                            <p th:text="${'Salida: ' + r.f_salida}"></p>
                         </div>
-                        <div class="botonEliminar">
-                            <a class="eliminar" th:href="@{/usuario/perfil/{reserva}(reserva=${r.codigo})}">Cancelar
-                                Reserva</a>
+                        <div class="sonia">
+                            <p th:text="${'Dias totales: ' + r.n_dias}"></p>
+                            <p th:text="${'Numero de personas: ' + r.n_personas}"></p>
+                        </div>
+                        <div class="sonia">
+                            <p th:text="${'Tipo de pensión: ' + r.t_pension}"></p>
+                            <p th:text="${'Precio final: ' + r.precio_total_dias + ' €'}"></p>
+                        </div>
+                    </div>
+                    <div class="reserva-card2">
+                        <div class="sonia2">
+                            <div class="codigo">
+                                <p th:text="${'Código de reserva: '}"></p>
+                                <p th:text="${r.codigo}"></p>
+                            </div>
+                            <form class="form2" name="form2" th:action="@{/usuario/cancelar_reserva/(reserva=${r.codigo})}" method="POST">
+                                    <button class="botonEliminar"  type="submit" disabled>
+                                        Cancelada
+                                    </button>
+                            </form>
                         </div>
                     </div>
                 </div>

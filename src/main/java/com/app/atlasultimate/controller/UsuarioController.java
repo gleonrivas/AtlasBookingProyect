@@ -152,13 +152,14 @@ public class UsuarioController {
             return "redirect:/usuario/perfil?exito";
     }
 
-    //Eliminar habitacion
-    @DeleteMapping("/perfil/")
-    public String eliminarReserva(@PathVariable String reserva) {
+    //Eliminar reserva
+
+    @PostMapping("cancelar_reserva")
+    public String eliminarReserva(@RequestParam (value = "reserva") String reserva) {
         Registro r = reservaRepository.registroporCodigo(reserva);
         r.setActiva(false);
         reservaRepository.save(r);
-        return "redirect:/perfil/";
+        return "redirect:/usuario/perfil";
     }
 }
 
