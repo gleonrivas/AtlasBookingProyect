@@ -353,8 +353,8 @@
     <div class="comentario-container">
         <div class="container" th:if="${habitaciones.size > 0}" th:each="habitacion : ${habitaciones}">
                 <h2>Habitación</h2>
-                <div class="hotel-img">
-                    <img th:src="@{/img/imgHab/{id}/{img}(id=${habitacion.id},img=${habitacion.img})}">
+                <div class="hotel-img" th:if="${habitacion.img} != null">
+                    <img th:src="@{/img/imgHab/{id}/{img}(id=${habitacion.id},img=${habitacion.img})}" th:if="${habitacion.img} != null">
                 </div>
                 <div class="julieta">
                     <p> Aforo máximo: </p>
