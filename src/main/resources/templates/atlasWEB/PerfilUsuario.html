@@ -285,7 +285,7 @@
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        background-color: #d2d2d2;
+        background-color: #ffffff;
         border-radius: 25px;
         padding: 15px;
         margin-bottom: 10px;
@@ -294,7 +294,7 @@
     .reserva-card {
         width: max-content;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
         background-color: white;
         border-radius: 25px;
@@ -313,16 +313,6 @@
         justify-content: center;
         text-align: center;
         align-content: center;
-    }
-    .reserva-card6 {
-        width: max-content;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        background-color: #d2d2d2;
-        border-radius: 25px;
-        padding: 15px;
-        margin-bottom: 10px;
     }
 
     .reserva-card2 {
@@ -357,6 +347,16 @@
     .botonEliminar {
         background-color: brown;
         color: #e5dbdb;
+        border-radius: 25px;
+        text-align: center;
+        padding: 2%;
+        width: 100%;
+        align-self: center;
+    }
+
+    .botonEliminar2 {
+        background-color: #969696;
+        color: #000000;
         border-radius: 25px;
         text-align: center;
         padding: 2%;
@@ -442,8 +442,8 @@
     <div sec:authorize="hasAuthority('usuario')" class="formulario maria">
         <h1>Reservas realizadas</h1>
         <div class="scrollDown">
-            <div class="primera-reserva-card" th:each="r : ${reservas}">
-                <div th:if="${r.activa == true}" class="primera-reserva-card">
+            <div class="primera-reserva-card" th:each="m : ${mapa}">
+                <div th:if="${m.value.activa == true}" class="primera-reserva-card">
                     <div class="reserva-card" >
                         <h2 style="color: black; margin-left: 10%" th:text="${m.key.nombreHotel}" ></h2>
                         <div style="width: 400px; height: auto; margin-left: 10%; border: black 2px">
@@ -470,19 +470,15 @@
                                 <p th:text="${'Código de reserva: '}"></p>
                                 <p th:text="${m.value.codigo}"></p>
                             </div>
-                            <form class="form2" name="form2" th:action="@{/usuario/cancelar_reserva/(reserva=${r.codigo})}" method="POST">
+                            <form class="form2" name="form2" th:action="@{/usuario/cancelar_reserva/(reserva=${m.value.codigo})}" method="POST">
                                     <button class="botonEliminar" type="submit">
                                         Cancelar Reserva
                                     </button>
                             </form>
                         </div>
-                        <div class="botonEliminar">
-                            <a class="eliminar" th:href="@{/usuario/perfil/{reserva}(reserva=${r.codigo})}">Cancelar
-                                Reserva</a>
-                        </div>
                     </div>
                 </div>
-                <div th:if="${r.activa == false}" class="primera-reserva-card2">
+                <div th:if="${m.value.activa == false}" class="primera-reserva-card2">
                     <div class="reserva-card" >
                         <h2 style="color: black; margin-left: 10%" th:text="${m.key.nombreHotel}" ></h2>
                         <div style="width: 400px; height: auto; margin-left: 10%; border: black 2px">
@@ -509,8 +505,8 @@
                                 <p th:text="${'Código de reserva: '}"></p>
                                 <p th:text="${m.value.codigo}"></p>
                             </div>
-                            <form class="form2" name="form2" th:action="@{/usuario/cancelar_reserva/(reserva=${r.codigo})}" method="POST">
-                                <button class="botonEliminar"  type="submit" disabled>
+                            <form class="form2" name="form2" th:action="@{/usuario/cancelar_reserva/(reserva=${m.value.codigo})}" method="POST">
+                                <button class="botonEliminar2"  type="submit" disabled>
                                     Cancelada
                                 </button>
                             </form>
