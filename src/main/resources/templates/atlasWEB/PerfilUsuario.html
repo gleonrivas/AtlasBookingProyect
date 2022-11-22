@@ -283,12 +283,25 @@
     .reserva-card {
         width: max-content;
         display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        background-color: white;
+        border-radius: 25px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    .reserva-card-row {
+        width: max-content;
+        display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         background-color: white;
         border-radius: 25px;
         padding: 15px;
         margin-bottom: 10px;
+        justify-content: center;
+        text-align: center;
+        align-content: center;
     }
     .reserva-card2 {
         margin: auto;
@@ -403,29 +416,35 @@
     <div sec:authorize="hasAuthority('usuario')" class="formulario maria">
         <h1>Reservas realizadas</h1>
         <div class="scrollDown">
-            <div class="primera-reserva-card" th:each="r : ${reservas}">
+            <div class="primera-reserva-card" th:each="m : ${mapa}">
                 <div class="reserva-card">
-                    <div class="sonia">
-                        <p th:text="${'Entrada: ' + r.f_entrada}"></p>
-                        <p th:text="${'Salida: ' + r.f_salida}"></p>
+                    <h2 style="color: black; margin-left: 10%" th:text="${m.key.nombreHotel}" ></h2>
+                    <div style="width: 400px; height: auto; margin-left: 10%; border: black 2px">
+                        <img  style="width: 100%" th:src="@{/img/imgHab/{id}/{img}(id=${m.key.id},img=${m.key.img})}">
                     </div>
-                    <div class="sonia">
-                        <p th:text="${'Dias totales: ' + r.n_dias}"></p>
-                        <p th:text="${'Numero de personas: ' + r.n_personas}"></p>
-                    </div>
-                    <div class="sonia">
-                        <p th:text="${'Tipo de pensión: ' + r.t_pension}"></p>
-                        <p th:text="${'Precio final: ' + r.precio_total_dias + ' €'}"></p>
+                    <div class="reserva-card-row">
+                        <div class="sonia">
+                            <p th:text="${'Entrada: ' + m.value.f_entrada}"></p>
+                            <p th:text="${'Salida: ' + m.value.f_salida}"></p>
+                        </div>
+                        <div class="sonia">
+                            <p th:text="${'Dias totales: ' + m.value.n_dias}"></p>
+                            <p th:text="${'Numero de personas: ' + m.value.n_personas}"></p>
+                        </div>
+                        <div class="sonia">
+                            <p th:text="${'Tipo de pensión: ' + m.value.t_pension}"></p>
+                            <p th:text="${'Precio final: ' + m.value.precio_total_dias + ' €'}"></p>
+                        </div>
                     </div>
                 </div>
                 <div class="reserva-card2">
                     <div class="sonia2">
                         <div class="codigo">
                         <p th:text="${'Código de reserva: '}"></p>
-                        <p th:text="${r.codigo}"></p>
+                        <p th:text="${m.value.codigo}"></p>
                         </div>
                         <div class="botonEliminar">
-                            <a class="eliminar" th:href="@{/usuario/perfil/{reserva}(reserva=${r.codigo})}">Cancelar
+                            <a class="eliminar" th:href="@{/usuario/perfil/{reserva}(reserva=${m.value.codigo})}">Cancelar
                                 Reserva</a>
                         </div>
                     </div>

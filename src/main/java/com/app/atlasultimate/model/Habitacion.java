@@ -20,7 +20,6 @@ public class Habitacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id" )
     private Integer id;
-
     @Column(name = "c_indiviual", length = 1)
     private Integer c_individual;
     @Column(name = "c_doble", length = 1)

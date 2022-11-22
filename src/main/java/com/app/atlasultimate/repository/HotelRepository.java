@@ -139,6 +139,13 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
             "    and h.n_max_personas >=:n_max_personas group by h2.id", nativeQuery = true)
     List<Hotel> segundoBuscadorSinCiudad (@Param("n_max_personas") Integer n_max_personas);
 
+    @Query(value = "SELECT * FROM hotel h \n" +
+            "join habitacion h2 on h.id = h2.id_hotel\n" +
+            "WHEre h2.id = :id_hab\n" +
+            "GROUP by h.id\n" +
+            "LIMIT 1", nativeQuery = true)
+    Hotel findTopByidHabitacion(@Param("id_hab") Integer id_hab);
+
 
 
 
