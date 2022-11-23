@@ -4,6 +4,7 @@ import com.app.atlasultimate.controller.DTO.HabitacionDTO;
 import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
 import com.app.atlasultimate.model.*;
 import com.app.atlasultimate.repository.*;
+import com.app.atlasultimate.security.Oauth2User;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.UsuarioService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -160,6 +162,8 @@ public class UsuarioController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+
+
 
             usuarioRepository.updateByID(usuarioDTO.getNombre(),
                     usuarioDTO.getApellido(),

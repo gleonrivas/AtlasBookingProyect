@@ -83,12 +83,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
+                .oauth2Login().loginPage("/login").userInfoEndpoint().userService(oauth2UserService)
+                .and()
+                .and()
                 .logout().invalidateHttpSession(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .permitAll();
     }
 
+    @Autowired
+    private Oauth2UserService oauth2UserService;
 
 
 }
