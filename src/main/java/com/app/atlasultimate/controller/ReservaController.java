@@ -18,7 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -36,6 +38,7 @@ public class ReservaController {
     @Autowired
     private ReservaService servicioReserva;
     @Autowired
+    static
     ReservaRepository reservaRepository;
     @Autowired
     private HabitacionRepository habitacionRepository;
@@ -135,7 +138,7 @@ public class ReservaController {
             precioFinal = precio + (pension.getMp() * duracion);
         }
         precioFinal = precioFinal * num_personas;
-        Integer num_codigo = reservaRepository.ultimoRegistro() +1;
+        Integer num_codigo = reservaRepository.ultimoRegistro() + 1;
         String codigo = fecha1 + fecha2 + idHotel + idHab + duracion + "-" + num_codigo;
         Registro registroFinal = new Registro(fecha1,
                 fecha2,
@@ -150,12 +153,46 @@ public class ReservaController {
                 habitacion
                 );
 
+        CambiarReservasInactivas();
         reservaRepository.save(registroFinal);
         return "redirect:/historial?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
         }
 
 
 
+        @Autowired
+        static
+        RegistroPasadoRepository registroPasadoRepository;
+
+
+        public static void CambiarReservasInactivas(){
+
+            List<Registro> reservas = reservaRepository.findAll();
+            for (Registro r : reservas) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date = LocalDate.parse(r.getF_entrada(), formatter);
+                if (date.equals(LocalDate.now()) || r.getActiva().equals(false)) {
+                    r.setActiva(false);
+                    RegistroPasado registroPasado = new RegistroPasado();
+                    registroPasado.setF_entrada(r.getF_entrada());
+                    registroPasado.setF_salida(r.getF_salida());
+                    registroPasado.setN_personas(r.getN_personas());
+                    registroPasado.setT_pago(r.getT_pago());
+                    registroPasado.setT_pension(r.getT_pension());
+                    registroPasado.setPrecio_total_dias(r.getPrecio_total_dias());
+                    registroPasado.setN_dias(r.getN_dias());
+                    registroPasado.setActiva(r.getActiva());
+                    registroPasado.setCodigo(r.getCodigo());
+                    registroPasadoRepository.save(registroPasado);
+                    reservaRepository.delete(r);
+                }
+            }
+        }
 
 
 }
+
+
+
+
+
