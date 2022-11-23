@@ -38,7 +38,6 @@ public class ReservaController {
     @Autowired
     private ReservaService servicioReserva;
     @Autowired
-    static
     ReservaRepository reservaRepository;
     @Autowired
     private HabitacionRepository habitacionRepository;
@@ -161,11 +160,10 @@ public class ReservaController {
 
 
         @Autowired
-        static
         RegistroPasadoRepository registroPasadoRepository;
 
 
-        public static void CambiarReservasInactivas(){
+        public void CambiarReservasInactivas(){
 
             List<Registro> reservas = reservaRepository.findAll();
             for (Registro r : reservas) {
