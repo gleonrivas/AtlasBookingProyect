@@ -5,6 +5,7 @@ import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.model.Pension;
 import com.app.atlasultimate.model.Usuario;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
