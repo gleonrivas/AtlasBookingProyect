@@ -27,7 +27,7 @@ import static org.springframework.test.util.AssertionErrors.*;
         "spring.datasource.driver-class-name=org.h2.Driver",
         "spring.datasource.url=jdbc:h2:mem:db",
         "spring.jpa.properties.hibernate.default_schema=",
-        "spring.jpa.hibernate.ddl-auto=update",
+        "spring.jpa.hibernate.ddl-auto=update"
 })
 @TestExecutionListeners
 @ContextConfiguration(classes = HotelRepository.class)
@@ -42,6 +42,7 @@ public class PruebaHotelRepository {
 
         //Given
         Hotel hotelEsperado = UtilidadesFaker.crearHotel();
+
         //When
         Hotel hotelObtenido = hotelRepository.save(hotelEsperado);
 
