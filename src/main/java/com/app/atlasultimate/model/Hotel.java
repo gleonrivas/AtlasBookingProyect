@@ -150,6 +150,39 @@ public class Hotel {
 
     }
 
+    public Hotel(Integer id, String nombre, String pais, String ciudad, String direccion,
+                 Integer estrellas, Integer telefono, String email, Boolean cancelacion_g,
+                 Boolean wifi, Boolean mascotas, Boolean multilengua,
+                 Boolean accesibilidad, Boolean s_habitacion, Time hc_recepcion,
+                 Time hf_recepcion, Boolean s_transporte, Boolean tours, Boolean comedor,
+                 Boolean espectaculos, Boolean patio, Boolean piscina, Boolean terraza,
+                 Boolean parking) {
+        this.id = id;
+        this.nombre = nombre;
+        this.pais = pais;
+        this.ciudad = ciudad;
+        this.direccion = direccion;
+        this.estrellas = estrellas;
+        this.telefono = telefono;
+        this.email = email;
+        this.cancelacion_g = cancelacion_g;
+        this.wifi = wifi;
+        this.mascotas = mascotas;
+        this.multilengua = multilengua;
+        this.accesibilidad = accesibilidad;
+        this.s_habitacion = s_habitacion;
+        this.hc_recepcion = hc_recepcion;
+        this.hf_recepcion = hf_recepcion;
+        this.s_transporte = s_transporte;
+        this.tours = tours;
+        this.comedor = comedor;
+        this.espectaculos = espectaculos;
+        this.patio = patio;
+        this.piscina = piscina;
+        this.terraza = terraza;
+        this.parking = parking;
+    }
+
     public Integer getId() {
         return id;
     }

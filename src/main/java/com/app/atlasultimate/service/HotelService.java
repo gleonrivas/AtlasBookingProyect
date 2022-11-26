@@ -11,7 +11,7 @@ import java.util.*;
 public class HotelService {
 
     @Autowired
-    private HotelRepository repositorio;
+    private  HotelRepository repositorio;
 
     
 
@@ -24,16 +24,18 @@ public class HotelService {
         return repositorio.save(hotel);
     }
     public Hotel obtenerHotelporId (Integer id){
-        return repositorio.findTopById(id);
+        return repositorio.encontrarPorId(id);
     }
     public Hotel actualizarHotel(Hotel hotel){
 
         return repositorio.save(hotel);
     }
 
-    public void eliminarHotel(Integer id){
+    public Hotel eliminarHotel(Integer id){
         repositorio.deleteById(id);
+        return null;
     }
+
 
     public Integer obtenerIdHotel(Integer id){
         return repositorio.findHotelByIdHab(id);
@@ -42,12 +44,6 @@ public class HotelService {
         return repositorio.findHotelById_usuario(id_usuario);
     }
 
-    public List<Hotel> buscador( Date fecha_inicio,
-                                 Date fecha_fin,
-                                 String ciudad,
-                                 Integer n_max_personas){
-        return repositorio.buscadorgraphiql(fecha_inicio, fecha_fin, ciudad, n_max_personas);
-    }
     //nuevo buscador
     public List<Hotel> buscadorcompleto (String fecha_inicio,
                                          String fecha_fin,
@@ -89,5 +85,7 @@ public class HotelService {
         listadefinitiva.addAll(listabuscador2);
         return listadefinitiva;
     }
+
+
 
 }

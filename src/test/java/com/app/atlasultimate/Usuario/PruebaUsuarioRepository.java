@@ -1,4 +1,4 @@
-package Usuario;
+package com.app.atlasultimate.Usuario;
 
 public class PruebaUsuarioRepository {
 }

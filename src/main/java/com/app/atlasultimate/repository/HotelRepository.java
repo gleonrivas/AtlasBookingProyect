@@ -5,6 +5,7 @@ import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.model.Pension;
 import com.app.atlasultimate.model.Usuario;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,8 +31,14 @@ public interface HotelRepository  extends JpaRepository<Hotel, Integer > {
 
     Hotel findTopById(Integer id);
 
+    @Query(value = "SELECT id FROM hotel h where id = :id", nativeQuery = true)
+    Hotel encontrarPorId(@Param("id")Integer id);
+
     @Query(value = "SELECT * FROM hotel h", nativeQuery = true)
     List<Hotel> findAll();
+
+    @Query(value = "SELECT id FROM hotel h", nativeQuery = true)
+    List<Integer> listarId();
 
     List<Hotel> findAllByCiudad(String ciudad);
 
