@@ -21,7 +21,7 @@ public class PruebaComentarioService {
     @InjectMocks
     ReviewService reviewService;
 
-    @Test
+   /*@Test
     public void guardarComentario(){
 
         //PREPARACIÓN
@@ -33,6 +33,6 @@ public class PruebaComentarioService {
 
         //COMPROBACIÓN
         assertEquals("La review no se ha guardado", reviewEsperada, reviewObtenida);
-    }
+    }*/
 
 }
