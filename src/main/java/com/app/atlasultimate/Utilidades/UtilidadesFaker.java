@@ -7,6 +7,7 @@ import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -73,6 +74,22 @@ public class UtilidadesFaker {
             lista.add(hotel);
         }
         return lista;
+    }
+
+    public static List<Hotel> crearListaDeHotelesRandom(){
+        int i = 0;
+        List<Hotel> listaHoteles = new ArrayList<>();
+
+        /*for (int i = 0; i>=10; i++){
+            listaHoteles.add(crearHotel());
+        }*/
+
+        while (i >= 10){
+            listaHoteles.add(crearHotel());
+            i++;
+        }
+
+        return listaHoteles;
     }
 
 
