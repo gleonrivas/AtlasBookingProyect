@@ -1,6 +1,7 @@
 package com.app.atlasultimate.service;
 
 import com.app.atlasultimate.model.Habitacion;
+import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.repository.HabitacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,8 +47,9 @@ public class HabitacionService implements HabitacionServicio {
         return habitacionRepository.save(hab);
     }
 
-    public void eliminarHabitacion(Integer id) {
+    public Hotel eliminarHabitacion(Integer id) {
         habitacionRepository.deleteById(id);
+        return null;
     }
 
     public void cambiarIdTemporada (Integer id_temporada, Integer id_hab){

@@ -67,6 +67,16 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
+    public Usuario(Integer id, String nombre, String apellido, String dni, Rol rol, String telefono, String email, String contrasena) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.rol = rol;
+        this.telefono = telefono;
+        this.email = email;
+        this.contrasena = contrasena;
+    }
 
     public Usuario() {
 
