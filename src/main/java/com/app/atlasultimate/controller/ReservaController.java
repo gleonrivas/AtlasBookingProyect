@@ -4,6 +4,7 @@ import com.app.atlasultimate.Utilidades.UtilidadesPrecio;
 import com.app.atlasultimate.controller.DTO.RegistroDTO;
 import com.app.atlasultimate.model.*;
 import com.app.atlasultimate.repository.*;
+import com.app.atlasultimate.security.Oauth2User;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.PensionService;
@@ -71,6 +72,30 @@ public class ReservaController {
         String tipoHabitacion = UtilidadesHabitacion.tipoHabitacion(habitacion.getC_individual(), habitacion.getC_doble());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.usuario;
+
+        Oauth2User oauth2User = null;
+        if (usuario == null) {
+            oauth2User = (Oauth2User) auth.getPrincipal();
+            if (oauth2User != null) {
+                if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                    Usuario insertUser = new Usuario();
+                    insertUser.setNombre(oauth2User.getFullName());
+                    insertUser.setEmail(oauth2User.getEmail());
+                    insertUser.setRol(Rol.usuario);
+                    usuario = usuarioRepository.save(insertUser);
+                    rol = usuario.getRol();
+
+                } else {
+                    usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+
+                }
+            }
+
+
+        }else {
+            rol = usuario.getRol();
+        }
 
 
 
