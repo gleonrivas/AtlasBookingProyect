@@ -13,7 +13,7 @@ public class ReviewService  {
     @Autowired
     private ReviewRepository repository;
 
-    public void guardarReview(ReviewDTO reviewDTO){
+    public Review guardarReview(ReviewDTO reviewDTO){
         Review review = new Review();
         try {
             review = new Review(reviewDTO.getEstrellas(),
@@ -25,6 +25,7 @@ public class ReviewService  {
             e.printStackTrace();
         }
         repository.save(review);
+        return review;
     }
 
 }

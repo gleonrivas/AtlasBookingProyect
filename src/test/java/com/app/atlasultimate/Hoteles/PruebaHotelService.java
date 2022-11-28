@@ -19,7 +19,8 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 
-@RunWith(MockitoJUnitRunner.class)
+
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class PruebaHotelService {
 
     @Mock

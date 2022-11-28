@@ -52,6 +52,8 @@ public class Habitacion {
     @JoinColumn(name = "temporada_id")
     private Temporada temporada;
 
+    public Habitacion(int i, int uno, int cero, int uno1, String valueOf, boolean b, boolean b1, int uno2, int uno3, String firstName) {
+    }
 
 
     @PreRemove
