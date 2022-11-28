@@ -118,7 +118,7 @@ public class HotelController {
 
     //Peticion post para enviar la info cambiada del hotel
     @PostMapping("/editar/{id}")
-    public String actualizarHotel(@PathVariable Integer id, @ModelAttribute("hotel") Hotel hotel, Model modelo) {
+    public String actualizarHotel(@PathVariable Integer id, @ModelAttribute("hotel") Hotel hotel) {
         Hotel hotelexistente = servicioHotel.obtenerHotelporId(id);
         hotelexistente.setId(id);
         hotelexistente.setNombre(hotel.getNombre());

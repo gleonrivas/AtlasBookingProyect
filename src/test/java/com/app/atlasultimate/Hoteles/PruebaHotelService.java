@@ -2,7 +2,9 @@ package com.app.atlasultimate.Hoteles;
 
 import com.app.atlasultimate.Utilidades.UtilidadesFaker;
 import com.app.atlasultimate.model.Hotel;
+import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.HotelRepository;
+import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.service.HotelService;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +14,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 
@@ -20,6 +24,9 @@ public class PruebaHotelService {
 
     @Mock
     HotelRepository hotelRepository;
+
+    @Mock
+    UsuarioRepository usuarioRepository;
 
     @InjectMocks
     HotelService hotelService;
@@ -45,13 +52,13 @@ public class PruebaHotelService {
 
         //Given
         Hotel hotelEsperado = UtilidadesFaker.crearHotelconId() ;
-        Mockito.when(hotelRepository.save(any())).thenReturn(hotelEsperado);
+        Mockito.when(hotelRepository.findHotelById(hotelEsperado.getId())).thenReturn(hotelEsperado);
 
         //When
         Hotel hotelObtenido = hotelService.buscarHotel(hotelEsperado.getId());
 
         //Then
-        assertNotEquals("El hotel no ha sido encontrado",hotelEsperado,hotelObtenido);
+        assertEquals("El hotel no ha sido encontrado", hotelEsperado, hotelObtenido);
 
     }
 
@@ -69,7 +76,43 @@ public class PruebaHotelService {
 
         //Then
         assertNull(hotelEliminado);
+        assertNotEquals("los hoteles no son iguales", hotelEsperado,hotelEliminado);
 
+
+    }
+
+    @Test
+    @DisplayName("Hotel Service -> Test editarHotel")
+    public void editarHotel(){
+
+        //Given
+        Hotel hotelcreado = UtilidadesFaker.crearHotelconId();
+        Mockito.when(hotelRepository.save(any())).thenReturn(hotelcreado);
+
+        hotelcreado = UtilidadesFaker.editarHotel(hotelcreado);
+
+        //When
+        Hotel hotelCambiado = hotelService.actualizarHotel(hotelcreado);
+
+        //Then
+        assertNotEquals("El hotel no se ha editado",hotelcreado,hotelCambiado);
+
+    }
+
+    @Test
+    @DisplayName("Hotel Service -> Test listarHotel")
+    public void listarHotel(){
+
+        //Given
+        Usuario user = UtilidadesFaker.crearUsuario(1);
+        Mockito.when(usuarioRepository.save(any())).thenReturn(user);
+        List<Hotel> hotelescreado = UtilidadesFaker.litarHoteles(10,1);
+        Mockito.when(hotelRepository.findHotelById_usuario(user.getId())).thenReturn(hotelescreado);
+        //When
+        List<Hotel> hotelesObtenidos = hotelService.listarHotel(1);
+
+        //Then
+        assertEquals("La lista de hoteles no es la misma",hotelescreado,hotelesObtenidos);
     }
 
     /*assertArrayEquals	Sirve para comparar dos arreglos y afirmar distintas propiedades del mismo.
