@@ -58,8 +58,7 @@ public class PruebaHabitacionRepository {
         List<Habitacion> habitacionesObtenidas= habitacionRepository.findAll();
 
         //Then
-        assertEquals("Las habitaciones no coinciden",habitacionesEsperada,habitacionesObtenidas );
-
+        assertEquals("Las habitaciones no coinciden",habitacionesEsperada,habitacionesObtenidas);
 
     }
     /*assertArrayEquals	Sirve para comparar dos arreglos y afirmar distintas propiedades del mismo.
