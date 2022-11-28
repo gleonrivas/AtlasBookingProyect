@@ -101,26 +101,37 @@
     .intro{
         border: solid 2px rgba(255, 255, 255, 0.2);
         display: flex;
-        width: 60%;
-        margin: 5% auto;
+        width: 55%;
         justify-content: space-evenly;
         align-items: center;
-        padding: 2% 3%;
         font-size: 14px;
+        margin: 5% auto;
+        padding: 1.5% 2%;
+        border-radius: 25px;
         background-color: rgba(255, 255, 255, 0.4);
-        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.66);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        color: black;
-        border-radius: 20px;
-        animation: busqueda2 2s ease-in-out;
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.30);
+        -webkit-backdrop-filter: blur(50px);
+        backdrop-filter: blur(50px);
+        animation: busqueda2 1.5s ease-in-out;
     }
     @keyframes busqueda2 {
         from {
+            width: 60%;
             margin: 16% auto;
+            padding: 2% 3%;
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.66);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
         }
         to {
+            width: 55%;
             margin: 5% auto;
+            padding: 1.5% 2%;
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.30);
+            -webkit-backdrop-filter: blur(50px);
+            backdrop-filter: blur(50px);
         }
     }
     .entry-group{
@@ -249,7 +260,7 @@
         color: white;
         text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
         position: relative;
-        animation: nciudad 2s ease-in-out;
+        animation: nciudad 1.5s ease-in-out;
     }
     .nombreCiudad:first-letter{
         text-transform: uppercase;
