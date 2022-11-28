@@ -7,6 +7,7 @@ import com.app.atlasultimate.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,7 @@ public class MyController {
 
     @GetMapping("")
     public String index(Model model) {
+
 
         String fecha = LocalDate.now().toString();
         String fecha2 = LocalDate.now().plusDays(1).toString();

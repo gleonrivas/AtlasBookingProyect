@@ -463,7 +463,7 @@
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
             <p th:text="'Numero de personas: ' + ${h.n_max_personas}"></p>
             <p th:text="'Precio/dia: ' + ${h.precio_base} + ' €'"></p>
-            <a class="reservar" sec:authorize="hasAuthority('usuario')" th:href="@{/reserva/datos/(id_hab=${h.id},fecha_inicio=${fecha_inicio},fecha_fin=${fecha_fin},
+            <a class="reservar" th:if="${rol} == 'usuario' " th:href="@{/reserva/datos/(id_hab=${h.id},fecha_inicio=${fecha_inicio},fecha_fin=${fecha_fin},
             num_personas=${num_personas})}"><button> Reservar</button></a>
             <a  class="reservar" style="width: 190px;"  th:href="@{/login}" sec:authorize="isAnonymous()"><button style="width: 190px;">Inicia sesion para reservar</button></a>
         </div>

@@ -3,6 +3,7 @@ package com.app.atlasultimate.controller;
 import com.app.atlasultimate.controller.DTO.ReviewDTO;
 import com.app.atlasultimate.model.*;
 import com.app.atlasultimate.repository.*;
+import com.app.atlasultimate.security.Oauth2User;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.ReviewService;
@@ -87,6 +88,31 @@ public class HotelController {
         chequearBoolean(hotel);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.usuario;
+
+        Oauth2User oauth2User = null;
+        if (usuario == null) {
+            oauth2User = (Oauth2User) auth.getPrincipal();
+            if (oauth2User != null) {
+                if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                    Usuario insertUser = new Usuario();
+                    insertUser.setNombre(oauth2User.getFullName());
+                    insertUser.setEmail(oauth2User.getEmail());
+                    insertUser.setRol(Rol.usuario);
+                    usuario = usuarioRepository.save(insertUser);
+                    rol = usuario.getRol();
+
+                } else {
+                    usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+
+                }
+            }
+
+
+        }else {
+            rol = usuario.getRol();
+        }
+
         hotel.setId_usuario(usuario);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         hotel.setImg(fileName);
@@ -238,6 +264,32 @@ public class HotelController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.usuario;
+
+        Oauth2User oauth2User = null;
+        if (usuario == null) {
+            oauth2User = (Oauth2User) auth.getPrincipal();
+            if (oauth2User != null) {
+                if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                    Usuario insertUser = new Usuario();
+                    insertUser.setNombre(oauth2User.getFullName());
+                    insertUser.setEmail(oauth2User.getEmail());
+                    insertUser.setRol(Rol.usuario);
+                    usuario = usuarioRepository.save(insertUser);
+                    rol = usuario.getRol();
+
+                } else {
+                    usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+
+                }
+            }
+
+
+        }else {
+            rol = usuario.getRol();
+        }
+
+        model.addAttribute("rol", rol.toString());
         model.addAttribute("usuario", usuario);
         model.addAttribute("resena" , new ReviewDTO());
         model.addAttribute("fecha_inicio", fechaInicio);
@@ -279,6 +331,31 @@ public class HotelController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.usuario;
+
+        Oauth2User oauth2User = null;
+        if (usuario == null) {
+            oauth2User = (Oauth2User) auth.getPrincipal();
+            if (oauth2User != null) {
+                if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                    Usuario insertUser = new Usuario();
+                    insertUser.setNombre(oauth2User.getFullName());
+                    insertUser.setEmail(oauth2User.getEmail());
+                    insertUser.setRol(Rol.usuario);
+                    usuario = usuarioRepository.save(insertUser);
+                    rol = usuario.getRol();
+
+                } else {
+                    usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+
+                }
+            }
+
+
+        }else {
+            rol = usuario.getRol();
+        }
+
 
         reviewDTO.setId_usuario(usuario);
         reviewDTO.setId_hotel(hotelRepository.findHotelById(id));

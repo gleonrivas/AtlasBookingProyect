@@ -41,6 +41,7 @@ public class UtilidadesFaker {
                 faker.bool().bool(),faker.bool().bool(),faker.bool().bool());
         return hotel;
     }
+
     public static Hotel crearHotelconId(){
 
         Random random = new Random();
