@@ -5,6 +5,7 @@ import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
 import com.app.atlasultimate.model.*;
 import com.app.atlasultimate.repository.*;
 import com.app.atlasultimate.security.Oauth2User;
+import com.app.atlasultimate.security.Oauth2UserService;
 import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.UsuarioService;
@@ -12,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -79,8 +83,8 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @ModelAttribute("usuario")
-    public UsuarioRegistroDTO retornarNuevoUsuario(){
-            return new UsuarioRegistroDTO();
+    public Usuario retornarNuevoUsuario(){
+            return new Usuario();
     }
 
     //ENVIAR A FORMULARIO REGISTRO
@@ -92,14 +96,14 @@ public class UsuarioController {
 
     //RECIBIR DATOS USUARIO DE FORMULARIO REGISTRO
     @PostMapping("registro")
-    public String registrarCuentaUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO usuarioDTO){
+    public String registrarCuentaUsuario(@ModelAttribute("usuario") Usuario usuario){
 
 
-        boolean existe = usuarioRepository.existsByEmail(usuarioDTO.getEmail());
+        boolean existe = usuarioRepository.existsByEmail(usuario.getEmail());
         if(existe){
             return "redirect:/usuario/registro?fallo";
         }else {
-            usuarioService.guardar(usuarioDTO);
+            usuarioService.guardar(usuario);
             return "redirect:/usuario/registro?exito";
         }
 
@@ -122,6 +126,8 @@ public class UsuarioController {
     ReservaRepository reservaRepository;
     @Autowired
     HotelRepository hotelRepository;
+    @Autowired
+    Oauth2UserService oauth2UserService;
 
 
     @GetMapping("perfil")
@@ -129,6 +135,34 @@ public class UsuarioController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.usuario;
+
+        Oauth2User oauth2User = null;
+        if (usuario == null) {
+            oauth2User = (Oauth2User) auth.getPrincipal();
+            if (oauth2User != null) {
+                if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                    Usuario insertUser = new Usuario();
+                    insertUser.setNombre(oauth2User.getFullName());
+                    insertUser.setEmail(oauth2User.getEmail());
+                    insertUser.setRol(Rol.usuario);
+                    usuario = usuarioRepository.save(insertUser);
+                    rol = usuario.getRol();
+
+                } else {
+                    usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+
+                }
+            }
+
+
+        }else {
+            rol = usuario.getRol();
+        }
+
+        model.addAttribute("rol", rol.toString());
+
+
         List<Registro> registros = reservaRepository.findAllByUsuario(usuario);
         model.addAttribute("usuario", usuario);
         model.addAttribute("reservas", registros);
@@ -158,31 +192,34 @@ public class UsuarioController {
 
     //RECIBIR DATOS USUARIO DE FORMULARIO REGISTRO
     @PostMapping("perfil")
-    public String modificarUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO usuarioDTO){
+    public String modificarUsuario(@ModelAttribute("usuario") Usuario usuarioDTO){
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
-
-
-
-            usuarioRepository.updateByID(usuarioDTO.getNombre(),
-                    usuarioDTO.getApellido(),
-                    usuarioDTO.getDni(),
-                    usuarioDTO.getEmail(),
-                    usuarioDTO.getTelefono(),
-                    passwordEncoder.encode(usuarioDTO.getContrasena()),
-                    usuario.getId());
+        usuarioService.editarUsuario(usuarioDTO);
 
             return "redirect:/usuario/perfil?exito";
     }
 
     //Eliminar reserva
 
+    @Autowired
+    RegistroPasadoRepository registroPasadoRepository;
+
     @PostMapping("cancelar_reserva")
     public String eliminarReserva(@RequestParam (value = "reserva") String reserva) {
         Registro r = reservaRepository.registroporCodigo(reserva);
         r.setActiva(false);
-        reservaRepository.save(r);
+        RegistroPasado registroPasado = new RegistroPasado();
+        registroPasado.setF_entrada(r.getF_entrada());
+        registroPasado.setF_salida(r.getF_salida());
+        registroPasado.setN_personas(r.getN_personas());
+        registroPasado.setT_pago(r.getT_pago());
+        registroPasado.setT_pension(r.getT_pension());
+        registroPasado.setPrecio_total_dias(r.getPrecio_total_dias());
+        registroPasado.setN_dias(r.getN_dias());
+        registroPasado.setActiva(r.getActiva());
+        registroPasado.setCodigo(r.getCodigo());
+        registroPasadoRepository.save(registroPasado);
+        reservaRepository.delete(r);
         return "redirect:/usuario/perfil";
     }
 }

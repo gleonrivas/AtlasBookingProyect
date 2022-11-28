@@ -439,7 +439,7 @@
         </div>
         <button class="submit" type="submit" text="Siguiente">Actualizar datos</button>
     </form>
-    <div sec:authorize="hasAuthority('usuario')" class="formulario maria">
+    <div th:if="${rol} != 'administrador' " class="formulario maria">
         <h1>Reservas realizadas</h1>
         <div class="scrollDown">
             <div class="primera-reserva-card" th:each="m : ${mapa}">
@@ -517,6 +517,8 @@
         </div>
     </div>
 </div>
+
+
 <footer class="lasth">
 
     <div class="promote-hotel">
