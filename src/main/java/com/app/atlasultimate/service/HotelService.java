@@ -24,7 +24,8 @@ public class HotelService {
         return repositorio.save(hotel);
     }
     public Hotel obtenerHotelporId (Integer id){
-        return repositorio.encontrarPorId(id);
+        Hotel hotel= repositorio.encontrarPorId(id);
+        return hotel;
     }
     public Hotel actualizarHotel(Hotel hotel){
 
