@@ -8,10 +8,7 @@ import com.app.atlasultimate.service.HabitacionService;
 import com.app.atlasultimate.service.HotelService;
 import com.app.atlasultimate.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.Transient;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import java.sql.Time;
 import java.util.HashMap;
 import java.io.IOException;
 import java.io.InputStream;
@@ -359,7 +355,7 @@ public class HotelController {
 
         reviewDTO.setId_usuario(usuario);
         reviewDTO.setId_hotel(hotelRepository.findHotelById(id));
-        reviewService.guardarReview(reviewDTO);
+        reviewService.guardar(reviewDTO);
         return "redirect:/hotel/habitaciones/?id=" + id + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
 
     }
