@@ -46,7 +46,21 @@ public class PruebaUsuarioService {
     }
 
 
+    @Test
+    @DisplayName("Usuario Service -> Test obtenerPorId")
+    public void obtenerUsuarioPorId(){
 
+        //Given
+        Usuario usuarioEsperado = UtilidadesFakerUsuario.crearUsuario();
+        Mockito.when(usuarioRepository.usuarioporId(usuarioEsperado.getId())).thenReturn(usuarioEsperado);
+
+        //When
+        Usuario usuarioObtenido = usuarioService.buscarUsuario(usuarioEsperado.getId());
+
+        //Then
+        assertEquals("El usuario no ha sido encontrado", usuarioEsperado, usuarioObtenido);
+
+    }
 
 
 

@@ -15,8 +15,9 @@ public class UtilidadesFakerUsuario {
     public static Usuario crearUsuario(){
 
         Faker faker = new Faker();
-
+        Integer id = (int)(Math.random()*10+1);
         return new Usuario(
+                id,
                 faker.name().firstName(),
                 faker.name().lastName(),
                 faker.number().digit(),

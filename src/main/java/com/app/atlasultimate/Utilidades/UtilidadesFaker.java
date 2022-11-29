@@ -1,5 +1,6 @@
 package com.app.atlasultimate.Utilidades;
 
+import com.app.atlasultimate.controller.DTO.HotelBusquedaDTO;
 import com.app.atlasultimate.model.Habitacion;
 import com.app.atlasultimate.model.Hotel;
 import com.app.atlasultimate.model.Rol;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class UtilidadesFaker {
 
@@ -171,4 +173,17 @@ public class UtilidadesFaker {
         }
         return lista;
     }
+
+    public static HotelBusquedaDTO busqueda(){
+        HotelBusquedaDTO hotelBusquedaDTO = new HotelBusquedaDTO(
+                faker.date().toString(),
+                faker.date().future(1, TimeUnit.DAYS).toString(),
+                faker.country().capital(),
+                faker.number().numberBetween(1,3)
+
+        );
+        return hotelBusquedaDTO;
+    }
+
+
 }
