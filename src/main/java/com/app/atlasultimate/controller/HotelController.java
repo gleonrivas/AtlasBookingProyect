@@ -260,30 +260,35 @@ public class HotelController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
-        Rol rol = Rol.usuario;
-
+        Rol rol = Rol.anonimo;
         Oauth2User oauth2User = null;
-        if (usuario == null) {
-            oauth2User = (Oauth2User) auth.getPrincipal();
-            if (oauth2User != null) {
-                if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
-                    Usuario insertUser = new Usuario();
-                    insertUser.setNombre(oauth2User.getFullName());
-                    insertUser.setEmail(oauth2User.getEmail());
-                    insertUser.setRol(Rol.usuario);
-                    usuario = usuarioRepository.save(insertUser);
-                    rol = usuario.getRol();
+        try {
+            if (usuario == null) {
+                oauth2User = (Oauth2User) auth.getPrincipal();
+                if (oauth2User != null) {
+                    if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                        Usuario insertUser = new Usuario();
+                        insertUser.setNombre(oauth2User.getFullName());
+                        insertUser.setEmail(oauth2User.getEmail());
+                        insertUser.setRol(Rol.usuario);
+                        usuario = usuarioRepository.save(insertUser);
+                        rol = usuario.getRol();
 
-                } else {
-                    usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+                    } else {
+                        usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+                        rol = usuario.getRol();
 
+                    }
                 }
+
+
+            }else {
+                rol = usuario.getRol();
             }
-
-
-        }else {
-            rol = usuario.getRol();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
 
         model.addAttribute("rol", rol.toString());
         model.addAttribute("usuario", usuario);

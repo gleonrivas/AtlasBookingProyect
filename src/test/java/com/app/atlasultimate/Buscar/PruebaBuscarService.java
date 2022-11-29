@@ -35,7 +35,6 @@ public class PruebaBuscarService {
     @Test
     @DisplayName("Hotel Service -> Test buscar Hoteles")
     public void busquedaHoteles(){
-
         //Given
         HotelBusquedaDTO busqueda = UtilidadesFaker.busqueda();
         List<Hotel> hoteles1 = hotelRepository.primerBuscador(busqueda.getFecha_inicio(), busqueda.getFecha_fin(), busqueda.getCiudad(), busqueda.getN_max_personas());
@@ -47,7 +46,6 @@ public class PruebaBuscarService {
         List<Hotel> hotelesObtenidos = hotelService.buscadorcompleto(busqueda.getFecha_inicio(), busqueda.getFecha_fin(), busqueda.getCiudad(), busqueda.getN_max_personas());
         //Then
         assertEquals("Los hoteles no han sido encontrado", hotelesEsperado, hotelesObtenidos);
-
     }
 
 
