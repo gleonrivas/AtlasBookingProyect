@@ -29,7 +29,7 @@ public class PruebaReservaRepository {
     @Autowired
     RegistroPasadoRepository registroPasadoRepository;
 
-    @Test
+    /*@Test
     public void guardarReservaTest(){
         Registro registroEsperado = UtilidadesFakerRegistro.crearRegistroTest();
 
@@ -38,7 +38,7 @@ public class PruebaReservaRepository {
        // assertNotNull("No se ha guardado la reserva",registroEsperado);
        // assertEquals("Las reservas no coinciden",registroEsperado.getCodigo(), registroObtenido.getCodigo());
 
-    }
+    }*/
 
 
 

@@ -29,4 +29,21 @@ public class UtilidadesFakerUsuario {
 
     }
 
+    public static Usuario crearUsuari0(){
+
+        Faker faker = new Faker();
+        Integer id = (int)(Math.random()*10+1);
+        return new Usuario(
+
+                faker.name().firstName(),
+                faker.name().lastName(),
+                faker.number().digit(),
+                Rol.usuario,
+                faker.phoneNumber().phoneNumber(),
+                faker.internet().emailAddress(),
+                faker.hacker().adjective()
+        );
+
+    }
+
 }
