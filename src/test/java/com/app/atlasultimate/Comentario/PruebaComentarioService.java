@@ -1,7 +1,6 @@
 package com.app.atlasultimate.Comentario;
 
 import com.app.atlasultimate.Utilidades.UtilidadesFakerComentario;
-import com.app.atlasultimate.controller.DTO.ReviewDTO;
 import com.app.atlasultimate.model.Review;
 import com.app.atlasultimate.repository.ReviewRepository;
 import com.app.atlasultimate.service.ReviewService;
@@ -28,11 +27,14 @@ public class PruebaComentarioService {
     public void guardarComentario(){
 
         //PREPARACIÓN
-        Review reviewEsperada = UtilidadesFakerComentario.crearReview();
+        Review reviewEsperada = UtilidadesFakerComentario.crearReviewService();
         Mockito.when(reviewRepository.save(any())).thenReturn(reviewEsperada);
-       ReviewDTO reviewDTO = new ReviewDTO(reviewEsperada.getUsuario().getNombre(),reviewEsperada.getComentario(),
-               reviewEsperada.getEstrellas(),reviewEsperada.getUsuario(),reviewEsperada.getHotel());
-
+        Review reviewDTO = new Review(
+                reviewEsperada.getEstrellas(),
+                reviewEsperada.getComentario(),
+                reviewEsperada.getUsuario(),
+               reviewEsperada.getHotel()
+        );
         //EJECUCIÓN
         Review reviewObtenida = reviewService.guardarReview(reviewDTO);
 

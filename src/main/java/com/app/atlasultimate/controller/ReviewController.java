@@ -35,7 +35,7 @@ public class ReviewController {
 
     @PostMapping("/comentario")
     public String guardarReview(@ModelAttribute("review") ReviewDTO reviewDTO) {
-        reviewService.guardarReview(reviewDTO);
+        reviewService.guardar(reviewDTO);
         return "redirect:/review/comentario?exito";
 
     }

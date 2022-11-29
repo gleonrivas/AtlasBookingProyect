@@ -1,5 +1,6 @@
 package com.app.atlasultimate.Utilidades;
 
+import com.app.atlasultimate.controller.DTO.ReviewDTO;
 import com.app.atlasultimate.model.Review;
 import com.app.atlasultimate.service.ReviewService;
 import com.github.javafaker.Faker;
@@ -18,7 +19,7 @@ public class UtilidadesFakerComentario {
     @Autowired
     UtilidadesFakerUsuario utilidadesFakerUsuario;
 
-    public static Review crearReview(){
+    public static Review crearReviewService(){
 
         Faker faker = new Faker();
 
@@ -28,7 +29,7 @@ public class UtilidadesFakerComentario {
         }
 
         return new Review(
-                (int)(Math.random()*10+1),
+                //(int)(Math.random()*10+1),
                 estrellas,
                 faker.weather().description(),
                 UtilidadesFakerUsuario.crearUsuario(),
