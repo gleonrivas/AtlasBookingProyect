@@ -36,7 +36,7 @@ public class PruebaComentarioService {
                reviewEsperada.getHotel()
         );
         //EJECUCIÓN
-        Review reviewObtenida = reviewService.guardar(reviewDTO);
+        Review reviewObtenida = reviewService.guardarReview(reviewDTO);
 
         //COMPROBACIÓN
         assertEquals("La review no se ha guardado", reviewEsperada, reviewObtenida);

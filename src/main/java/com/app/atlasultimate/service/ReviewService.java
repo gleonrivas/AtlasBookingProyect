@@ -15,10 +15,27 @@ public class ReviewService  {
     public Review guardar(ReviewDTO reviewDTO){
         Review review = new Review();
         try {
-            review = new Review(reviewDTO.getEstrellas(),
+            review = new Review(
+                    reviewDTO.getEstrellas(),
                     reviewDTO.getComentario(),
                     reviewDTO.getId_usuario(),
                     reviewDTO.getId_hotel());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        repository.save(review);
+        return review;
+    }
+
+    public Review guardarReview(Review reviewDTO){
+        Review review = new Review();
+        try {
+            review = new Review(
+                    reviewDTO.getEstrellas(),
+                    reviewDTO.getComentario(),
+                    reviewDTO.getUsuario(),
+                    reviewDTO.getHotel());
 
         } catch (Exception e) {
             e.printStackTrace();
