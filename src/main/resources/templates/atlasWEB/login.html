@@ -209,15 +209,19 @@
         font-size: 15px;
     }
     .boton{
-        width: 40%;
-        height: 40px;
+        display: flex;
+        width: 200px;
+        max-width: 200px;
+        height: 45px;
+        max-height: 45px;
         border-radius: 15px;
         border-style: none;
-        padding: 2%;
+        padding: 0;
         font-size: 14px;
-        margin: auto  20px ;
+        margin: 5px  20px ;
         background-color: #000000;
         color: white;
+        justify-content: space-around;
     }
     /* LOGIN-BOX Y HEREDEROS ------------------------*/
 
@@ -323,17 +327,16 @@
             <label for="password">Introduce tu contraseña</label>
             <input type="password" name="password" id="password"  required autofocus="autofocus"/>
         </div>
-        <button class="boton" type ="submit" >Entrar</button>
-        <a th:href="@{/usuario/registro}">¿No tienes cuenta?, Regístrate</a>
-        <br>
-        <p>Accede con google:</p>
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <div class="google-btn">
-            <div class="google-icon-wrapper">
-                <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+        <button class="boton" type ="submit" ><p style="height: max-content; margin: auto">Entrar</p></button>
+
+        <div class="boton" style="background-color: white; color: black">
+            <div style="margin: auto 0 auto auto; width: fit-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
             </div>
-            <a class="btn-text" style="text-decoration: none" th:href="@{/oauth2/authorization/google}"><b>Sign in with google</b></a>
+            <a style="height: max-content; width: max-content; margin: auto; text-decoration: none; color: black" th:href="@{/oauth2/authorization/google}">Accede con google</a>
         </div>
+
+        <a th:href="@{/usuario/registro}">¿No tienes cuenta?, Regístrate</a>
 
     </form>
 </div>
