@@ -173,6 +173,7 @@
     .hotel-container{
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         width: auto;
         color: black;
         margin: 5% 0;
@@ -288,13 +289,15 @@
         margin: 0 auto;
         width: 95%;
         padding: 25px 0 50px 0;
+        overflow-x: scroll;
+
     }
     .comentario-slider > h2{
         width: max-content;
     }
 
     .comentario-slider::-webkit-scrollbar{
-        display: none;
+        /*display: none;*/
     }
     .comentario-container{
         display: flex;
@@ -393,6 +396,14 @@
         border-radius: 20px;
     }
 
+    #mapa{
+        width: 80%;
+        height: 234px;
+        margin: 50px auto 0 auto;
+        border-radius: 25px;
+        box-shadow: 0 50px 50px rgba(0, 0, 0, 0.46);
+    }
+
 
 
     /* FINALIZA HOTEL BOX ---------------------------------------*/
@@ -425,6 +436,8 @@
 </header>
 
 <div class="hotel-container">
+
+
     <div class="hotel-data">
         <h1 class="titulo" th:text="${hotel.nombre}"></h1>
         <p class="firtsMayus" th:text="${hotel.ciudad}"></p>
@@ -450,14 +463,17 @@
         <p th:if="${hotel.patio} == true">Patio</p>
 
     </div>
+
+    <div id="mapa"></div>
+
 </div>
 <h2>Habitaciones disponibles para la fecha selecionada.</h2>
 
-<div class="comentario-slider" >
-    <div class="comentario-container" style="overflow-x: scroll;">
+<div class="comentario-slider">
+    <div class="comentario-container">
         <div class="tarjeta" th:each="h : ${habitaciones}">
             <div class="hotel-img">
-                <img th:src="@{/img/imgHab/{id}/{img}(id=${h.id},img=${h.img})}">
+                <!-- <img th:src="@{/img/imgHab/{id}/{img}(id=${h.id},img=${h.img})}"> -->
             </div>
             <p th:text="'Camas dobles: '+ ${h.c_doble}"></p>
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
@@ -469,14 +485,11 @@
         </div>
     </div>
 </div>
-<h2 style="margin-left: 10%">Ubicación del hotel</h2>
-<br>
-<br>
-<div id="mapa" style="margin-left: 5%; width: 90%; height: 600px;">
-</div>
+
 
 <h2>Comentarios mas recientes.</h2>
 <div class="comentario-slider">
+
     <div class="comentario-container">
 
         <form class="comentario-tarjeta" method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
@@ -495,6 +508,7 @@
         </form>
 
         <h2 style="height: max-content; width: max-content; margin: auto 5%;" th:if="${mapa.isEmpty()}">No hay comentarios todavía</h2>
+
         <div class="comentario-tarjeta" th:each="m : ${mapa}">
             <p th:text="${'@'+m.key}"></p>
             <div class="get-comentario" th:each="v : ${m.value}">

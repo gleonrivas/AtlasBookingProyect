@@ -313,8 +313,11 @@ public class HotelController {
         }
         model.addAttribute("mapa", mapa);
         String fondo1 = hotelRepository.findHotelById(id).getImg();
+        //para imagen web:
+        model.addAttribute("hotelimagen", fondo1);
         String fondo = "/img/imgHot/" + id+ "/" + fondo1;
-        model.addAttribute("hotelimagen", fondo);
+        //para imagen local:
+        //model.addAttribute("hotelimagen", fondo);
 
 
 

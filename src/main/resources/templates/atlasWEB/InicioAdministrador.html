@@ -396,7 +396,8 @@
         <div class="hotel-card" >
             <div class="hotel-info">
                 <div class="hotel-img">
-                    <img th:src="@{/img/imgHot/{id}/{img}(id=${hotel.id},img=${hotel.img})}">
+                    <!-- <img th:src="@{/img/imgHot/{id}/{img}(id=${hotel.id},img=${hotel.img})}"> -->
+                    <img th:src="${hotel.img}" alt="">
                 </div>
                 <div class="estrellas">
                     <p th:if="${hotel.estrellas} == 1">⭐</p>

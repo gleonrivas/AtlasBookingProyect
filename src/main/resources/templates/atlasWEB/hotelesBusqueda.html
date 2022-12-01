@@ -279,7 +279,7 @@
     }
 
     .hotelSlider{
-        overflow-x: scroll;
+        /*overflow-x: scroll;*/
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
@@ -297,6 +297,7 @@
         flex-wrap: nowrap;
         margin-bottom: 50px;
         overflow-x: scroll;
+        min-width: 500px;
     }
 
     .hotelCard{
@@ -307,7 +308,7 @@
         padding: 0 0 40px 0;
         width: 250px;
         height: 350px;
-        margin: 2%;
+        margin: 50px;
         background-color: rgba(255, 255, 255, 0.64);
         border-radius: 30px;
         border: none 2px rgba(255, 255, 255, 0.5);
@@ -444,7 +445,10 @@
 <div class="hotelSlider">
     <div class="hotel-container">
         <div class="hotelCard" th:each="h : ${hoteles}">
-            <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></a>
+            <!-- <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></a>-->
+            <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel">
+                <img th:src="${h.img}"></a>
+
             <div class="estrellasHotel">
                 <p th:if="${h.estrellas} == 1">⭐</p>
                 <p th:if="${h.estrellas} == 2">⭐⭐</p>
