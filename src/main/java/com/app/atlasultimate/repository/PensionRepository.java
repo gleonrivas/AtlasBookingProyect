@@ -27,8 +27,11 @@ public interface PensionRepository extends JpaRepository<Pension, Integer> {
     @Query(value ="select * from pension where id_hotel = :id_hotel",nativeQuery = true)
     Pension pensionPorHotel(@Param("id_hotel")Integer id_hotel);
 
+/*
+    @Query(value = "delete from pension where id_hotel = :id_hotel", nativeQuery = true)
+    Pension eliminarPensionPorIdHotel(@Param("id_hotel")Integer id_hotel);
 
-
+ */
 
 
 }

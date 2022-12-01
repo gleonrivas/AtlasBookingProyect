@@ -18,4 +18,11 @@ public class PensionService {
     public Pension pensionporId(Integer id){
         return repositorio.pensionPorId(id);
     }
+
+    /*
+    public Pension deletePensionPorIdHotel(Integer id){
+        repositorio.eliminarPensionPorIdHotel(id);
+        return null;
+    }
+    */
 }
