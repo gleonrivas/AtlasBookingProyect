@@ -345,6 +345,12 @@
         width: max-content;
         margin: 0 auto;
     }
+
+    .mariano{
+        width: 100%;
+        margin: 13% auto 20% auto;
+        text-align: center;
+    }
     /* FINALIZA HOTEL BODY --------------------------------------*/
 
 </style>
@@ -365,14 +371,16 @@
 </header>
 
 <div id="confirmacion" th:if="${hoteles.size == 0}">
-    <h2 style=" text-align: center"> Actualmente, no tiene ningún hotel.</h2>
-    <br>
+
     <div class="tituloyboton">
 
         <a th:href="@{/hotel/nuevo}">
             <button class="boton editar" type="button">Crear un nuevo hotel</button>
         </a>
     </div>
+
+    <h2 class="mariano"> Actualmente, no tiene ningún hotel.</h2>
+
 </div>
 
 <div id="confirmacion2" style="display: flex; flex-direction: row; flex-wrap: wrap; margin: auto; justify-content: space-evenly" th:if="${hoteles.size > 0}">
