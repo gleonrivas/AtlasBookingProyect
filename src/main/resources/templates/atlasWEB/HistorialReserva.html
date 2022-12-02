@@ -149,11 +149,52 @@
         margin-top:1%;
         margin-bottom: 1%;
     }
+
     .volver{
         text-decoration: none;
         text-align: center;
         color: #e5dbdb;
     }
+    .btn-material {
+        padding: 0 16px;
+        border-radius: 2px;
+        background-color: #018786;
+        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        color: #fff;
+        transition: background-color 15ms linear,
+        box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+
+        height: 36px;
+        line-height: 2.25rem;
+        font-family: Roboto, sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    .btn-material:hover, .btn-material:focus {
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14),
+        0 1px 10px 0 rgba(0, 0, 0, 0.12);
+        background-color: #159090;
+    }
+
+    .btn-material:active {
+        box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+        background-color: #61b4b3;
+    }
+
+    @media print{
+        .noprint{
+            display:none;
+        }
+    }
+
     @media (min-width: 36em) {
         .ticket-wrap {
             margin-bottom: 4em;
@@ -182,7 +223,6 @@
             margin-top: 2rem;
         }
     }
-
     @supports (display: grid) {
         @media (min-width: 72em) {
             .ticket-info,
@@ -250,25 +290,87 @@
                     <span class="u-upper ticket__small-label">Dirección del hotel</span>
                     <span class="ticket__detail" th:text="${hotel.direccion}"></span>
                 </p>
-
             </div>
             <div class="ticket__timing">
                 <p>
                     <span class="u-upper ticket__small-label">Precio</span>
                     <span class="ticket__detail" th:text="${registro.precio_total_dias + '€'}"></span>
                 </p>
-
             </div>
             <div style="display: flex; flex-flow: column nowrap; align-items: center">
             <img style="width: 100%" class="ticket__barcode" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/barcode.png" alt="Fake barcode" />
             <span style="width: 100%; color:black; font-size: 1.2em; text-align: center" class="ticket__detail" th:text="${registro.codigo}"></span>
             </div>
+            <br>
+            <div class="noprint">
+            <p class="ticket__route">Pago</p>
+            <br>
+            <form method="post" id="pagoForm" th:object="${pago}">
+                <input type="hidden" id="pago" th:field="*{detalles}">
+                <div id="paypal-button-container"></div>
+                <button class="btn-material" type="submit">Completar reserva</button>
+                <button class="btn-material" onclick="imprimir()" type="submit">Reservar e imprimir</button>
+            </form>
+
         </div>
     </div>
 </div>
 <div class="botonInicio">
 <a  class="volver" th:href="@{/}">Volver al Inicio</a>
 </div>
+</div>
+<script src="https://www.paypal.com/sdk/js?client-id=AVsuNza9TrO50qSoqhLzEum_fjlI4kR3apiuxWhTEjAH_eR_V0ZHMUAgpe3QkFojvIzv3TsYiQ0HONNA&components=buttons"></script>
+<script>
+paypal.Buttons({
+    createOrder: function (data, actions) {
+        return actions.order.create({
+            intent: 'CAPTURE',
+            payer: {
+                name: {
+                    given_name: "[[${usuario.nombre}]]",
+                    surname: "[[${usuario.apellido}]]"
+                },
+                address: {
+                    address_line_1: "-----------",
+                    address_line_2: "-----------",
+                    admin_area_2: "España",
+                    admin_area_1: "Madrid",
+                    postal_code: "41770",
+                    country_code: "EU"
+                },
+                email_address: "[[${usuario.email}]]",
+
+                phone: {
+                    phone_type: "MOBILE",
+                    phone_number: {
+                        national_number: "[[${usuario.telefono}]]"
+                    }
+                }
+            },
+
+            purchase_units: [{
+                amount:{
+                    value: "[[${registro.precio_total_dias}]]",
+                    currency_code: "USD"
+                }
+            }]
+        });
+    },
+    onApprove: function(data, actions){
+        return actions.order.capture().then(function(details) {
+            console.log(details);
+            alert("Su pago se ha realizado correctamente");
+            document.getElementById("pago").value = details.status;
+
+        })
+    }
+}).render("#paypal-button-container")
+</script>
+<script>
+    function imprimir() {
+        window.print();
+    }
+</script>
 
 </body>
 </html>

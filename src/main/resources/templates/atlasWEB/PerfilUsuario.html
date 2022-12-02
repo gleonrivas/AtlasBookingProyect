@@ -417,16 +417,16 @@
             <input class="parform" type="text" id="nombre" th:value="${usuario.nombre}" th:field="*{nombre}"/>
         </div>
         <div class="componente-registro">
+            <label class="parform" for="correo">Email</label>
+            <input class="parform" type="email" id="correo" th:value="${usuario.email}" th:field="*{email}"/>
+        </div>
+        <div class="componente-registro">
             <label class="parform" for="apellido">Apellidos</label>
             <input class="parform" type="text" id="apellido" th:value="${usuario.apellido}" th:field="*{apellido}"/>
         </div>
         <div class="componente-registro">
             <label class="parform" for="dni">DNI</label>
             <input class="parform" type="text" id="dni" th:value="${usuario.dni}" th:field="*{dni}"/>
-        </div>
-        <div class="componente-registro">
-            <label class="parform" for="correo">Email</label>
-            <input class="parform" type="email" id="correo" th:value="${usuario.email}" th:field="*{email}"/>
         </div>
         <div class="componente-registro">
             <label class="parform" for="tel">Teléfono</label>

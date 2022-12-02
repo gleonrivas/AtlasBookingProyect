@@ -99,7 +99,6 @@ public class ReservaController {
 
 
 
-
         modelo.addAttribute("hotel", hotel);
         modelo.addAttribute("habitacion", habitacion);
         modelo.addAttribute("pensiondto", pension);
@@ -140,6 +139,34 @@ public class ReservaController {
         String tipoHabitacion = UtilidadesHabitacion.tipoHabitacion(habitacion.getC_individual(), habitacion.getC_doble());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.anonimo;
+        Oauth2User oauth2User = null;
+        try {
+            if (usuario == null) {
+                oauth2User = (Oauth2User) auth.getPrincipal();
+                if (oauth2User != null) {
+                    if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                        Usuario insertUser = new Usuario();
+                        insertUser.setNombre(oauth2User.getFullName());
+                        insertUser.setEmail(oauth2User.getEmail());
+                        insertUser.setRol(Rol.usuario);
+                        usuario = usuarioRepository.save(insertUser);
+                        rol = usuario.getRol();
+
+                    } else {
+                        usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+                        rol = usuario.getRol();
+
+                    }
+                }
+
+
+            }else {
+                rol = usuario.getRol();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         Double precioFinal = 0.0;
@@ -162,7 +189,12 @@ public class ReservaController {
             precioFinal = precio + (pension.getMp() * duracion);
         }
         precioFinal = precioFinal * num_personas;
-        Integer num_codigo = reservaRepository.ultimoRegistro() + 1;
+        Integer num_codigo = 0;
+        if (reservaRepository.ultimoRegistro() == null){
+            num_codigo = 0;
+        }else {
+            num_codigo = reservaRepository.ultimoRegistro() + 1;
+        }
         String codigo = fecha1 + fecha2 + idHotel + idHab + duracion + "-" + num_codigo;
         Registro registroFinal = new Registro(fecha1,
                 fecha2,
@@ -171,7 +203,7 @@ public class ReservaController {
                 registroDTO.getT_pension(),
                 precioFinal,
                 duracion,
-                true,
+                false,
                 codigo,
                 usuario,
                 habitacion
