@@ -311,14 +311,16 @@
                 <button class="btn-material" type="submit">Completar reserva</button>
                 <button class="btn-material" onclick="imprimir()" type="submit">Reservar e imprimir</button>
             </form>
-
+            </div>
         </div>
     </div>
 </div>
-<div class="botonInicio">
-<a  class="volver" th:href="@{/}">Volver al Inicio</a>
+<div class="noprint">
+    <div class="botonInicio">
+    <a  class="volver" th:href="@{/}">Volver al Inicio</a>
+    </div>
 </div>
-</div>
+
 <script src="https://www.paypal.com/sdk/js?client-id=AVsuNza9TrO50qSoqhLzEum_fjlI4kR3apiuxWhTEjAH_eR_V0ZHMUAgpe3QkFojvIzv3TsYiQ0HONNA&components=buttons"></script>
 <script>
 paypal.Buttons({
