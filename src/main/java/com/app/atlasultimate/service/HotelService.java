@@ -54,8 +54,13 @@ public class HotelService {
         List<Hotel> listadefinitiva= new ArrayList<>();
         List<Hotel> listabuscador1= repositorio.primerBuscador(fecha_inicio,fecha_fin,ciudad,n_max_personas);
         List<Hotel> listabuscador2= repositorio.segundoBuscador(ciudad,n_max_personas);
+        List<Hotel> listabuscador3= repositorio.buscadorDeInactivos(fecha_inicio,fecha_fin,ciudad,n_max_personas);
+        List<Hotel> listabuscador4= repositorio.segundoBuscadorDeInactivos(ciudad,n_max_personas);
+
         listadefinitiva.addAll(listabuscador1);
         listadefinitiva.addAll(listabuscador2);
+        listadefinitiva.addAll(listabuscador3);
+        listadefinitiva.addAll(listabuscador4);
         Set<Hotel> set = new HashSet<>(listadefinitiva);
         listadefinitiva.clear();
         listadefinitiva.addAll(set);

@@ -479,7 +479,7 @@
 <div class="comentario-slider">
     <div class="comentario-container">
 
-        <form class="comentario-tarjeta" method="post" sec:authorize="hasAuthority('usuario')" th:object="${resena}">
+        <form class="comentario-tarjeta" method="post" th:if="${rol} == usuario" th:object="${resena}">
             <p th:text="${'Comente algo, ' + usuario.nombre}"></p>
             <div class="get-comentario">
                 <div class="marga">

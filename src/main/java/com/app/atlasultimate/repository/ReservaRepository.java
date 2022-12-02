@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Repository
@@ -24,6 +25,8 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
 
     @Query(value = "select temporada_id from  habitacion h where h.id = :id_hab ", nativeQuery = true)
     Integer IdTemporadaporIdHab(@Param("id_hab") Integer id);
+
+
 
     List<Registro> findAllByUsuario(Usuario usuario);
 
@@ -44,5 +47,8 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
     @Query(value="select * from registro where codigo = :codigo", nativeQuery = true)
     Registro registroporCodigo(@Param("codigo") String codigo);
     void deleteAllByHabitacion(Habitacion habitacion);
+
+    @Query(value = "UPDATE registro SET activa = 1 WHERE id = :id", nativeQuery = true)
+    Registro updateById(@Param("id") Integer id);
 
 }

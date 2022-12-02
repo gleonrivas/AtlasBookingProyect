@@ -29,7 +29,7 @@ public class ScheduleEvent implements
         List<Registro> reservas = reservaRepository.findAll();
         for (Registro r : reservas) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate date = LocalDate.parse(r.getF_entrada(), formatter);
+            LocalDate date = LocalDate.parse(r.getF_salida(), formatter);
             if (date.equals(LocalDate.now())|| r.getActiva().equals(false)) {
                 r.setActiva(false);
                 RegistroPasado registroPasado = new RegistroPasado();

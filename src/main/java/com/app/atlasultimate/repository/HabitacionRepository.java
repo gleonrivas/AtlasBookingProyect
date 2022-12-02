@@ -55,6 +55,22 @@ public interface HabitacionRepository  extends JpaRepository<Habitacion,Integer>
             "GROUP by h2.id", nativeQuery = true)
     List<Habitacion> findAllByReservasInactivas2(@Param("id_hotel") Integer id_hotel);
 
+    @Query(value = "SELECT h2.*  FROM habitacion h2\n" +
+            "left join registro_pasado r2 ON h2.id = r2.id_habitacion\n" +
+            "where h2.id_hotel = :id_hotel \n" +
+            "and ISNULL(r2.activa)\n" +
+            "GROUP by h2.id", nativeQuery = true)
+    List<Habitacion> findAllByReservasInactivas3(@Param("id_hotel") Integer id_hotel);
+
+    @Query(value = "SELECT h2.*  FROM habitacion h2 \n" +
+            "left join registro_pasado r2 ON h2.id = r2.id_habitacion \n" +
+            "where h2.id_hotel = :id_hotel \n" +
+            "and r2.activa = 0 \n" +
+            "GROUP by h2.id", nativeQuery = true)
+    List<Habitacion> findAllByReservasInactivas4(@Param("id_hotel") Integer id_hotel);
+
+
+
     Habitacion findTopByRegistro(Registro registro);
 
 
