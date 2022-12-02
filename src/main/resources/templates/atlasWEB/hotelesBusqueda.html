@@ -445,62 +445,62 @@
 <div class="hotelSlider">
     <div class="hotel-container">
         <div class="hotelCard" th:each="h : ${hoteles}">
-            <!-- <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></a>-->
-            <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel">
-                <img th:src="${h.img}"></a>
+            <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></a>
+            <!--<a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel">
+               <img th:src="${h.img}"></a>-->
 
-            <div class="estrellasHotel">
-                <p th:if="${h.estrellas} == 1">⭐</p>
-                <p th:if="${h.estrellas} == 2">⭐⭐</p>
-                <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
-                <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
-                <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
-            </div>
-            <p class="nombreHotel" th:text="${h.nombre}"></p>
-            <p class="ubicacionHotel" th:text="${h.direccion}"></p>
-            <button type="submit"><a th:href="@{/hotel/habitaciones/(id=${h.id}, fecha_inicio=${hotelDTO.fecha_inicio},
-         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>
-        </div>
+           <div class="estrellasHotel">
+               <p th:if="${h.estrellas} == 1">⭐</p>
+               <p th:if="${h.estrellas} == 2">⭐⭐</p>
+               <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
+               <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
+               <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+           </div>
+           <p class="nombreHotel" th:text="${h.nombre}"></p>
+           <p class="ubicacionHotel" th:text="${h.direccion}"></p>
+           <button type="submit"><a th:href="@{/hotel/habitaciones/(id=${h.id}, fecha_inicio=${hotelDTO.fecha_inicio},
+        fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>
+       </div>
 
 
-    </div>
+   </div>
 
 </div>
 
 
 <footer class="lasth">
 
-    <div class="promote-hotel">
-        <p>Forma parte de nosotros</p>
-        <form method="get" action="registro_admin.html">
-            <button class="registra" >Registra tus alojamientos</button>
-        </form>
-    </div>
+   <div class="promote-hotel">
+       <p>Forma parte de nosotros</p>
+       <form method="get" action="registro_admin.html">
+           <button class="registra" >Registra tus alojamientos</button>
+       </form>
+   </div>
 
-    <div class="middle-footer">
-        <div class="cheader">
-            <h1>Atlas</h1>
-            <p>BOOKING</p>
-        </div>
-        <div class="nets">
-            <img src="/img/face.svg" alt="">
-            <img src="/img/insta.svg" alt="">
-            <img src="/img/twitter.svg" alt="">
-        </div>
-        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
-    </div>
+   <div class="middle-footer">
+       <div class="cheader">
+           <h1>Atlas</h1>
+           <p>BOOKING</p>
+       </div>
+       <div class="nets">
+           <img src="/img/face.svg" alt="">
+           <img src="/img/insta.svg" alt="">
+           <img src="/img/twitter.svg" alt="">
+       </div>
+       <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+   </div>
 
-    <div class="footer-links">
-        <a href="index.html">Comunidad.</a>
-        <a href="index.html">Sobre nosotros.</a>
-        <a href="index.html">Uso de cookies.</a>
-        <a href="index.html">Politica de privacidad.</a>
-        <a href="index.html">Condiciones de uso.</a>
-    </div>
+   <div class="footer-links">
+       <a href="index.html">Comunidad.</a>
+       <a href="index.html">Sobre nosotros.</a>
+       <a href="index.html">Uso de cookies.</a>
+       <a href="index.html">Politica de privacidad.</a>
+       <a href="index.html">Condiciones de uso.</a>
+   </div>
 
 </footer>
 <script>
-    document.body.style.backgroundImage = "url('/img/venecia.jpg')";
+   document.body.style.backgroundImage = "url('/img/venecia.jpg')";
 </script>
 </body>
 

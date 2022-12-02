@@ -101,39 +101,21 @@
     .intro{
         border: solid 2px rgba(255, 255, 255, 0.2);
         display: flex;
-        width: 55%;
         justify-content: space-evenly;
         align-items: center;
         font-size: 14px;
+        border-radius: 25px;
+        width: 55%;
         margin: 5% auto;
         padding: 1.5% 2%;
-        border-radius: 25px;
         background-color: rgba(255, 255, 255, 0.4);
         box-shadow: 0 25px 40px rgba(0, 0, 0, 0.30);
         -webkit-backdrop-filter: blur(50px);
         backdrop-filter: blur(50px);
+
         animation: busqueda2 1.5s ease-in-out;
     }
-    @keyframes busqueda2 {
-        from {
-            width: 60%;
-            margin: 16% auto;
-            padding: 2% 3%;
-            background-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.66);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-        }
-        to {
-            width: 55%;
-            margin: 5% auto;
-            padding: 1.5% 2%;
-            background-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.30);
-            -webkit-backdrop-filter: blur(50px);
-            backdrop-filter: blur(50px);
-        }
-    }
+
     .entry-group{
         display: flex;
         flex-direction: column;
@@ -253,9 +235,12 @@
 
     /* COMINZA MUESTRA DE HOTEL ---------------------------------*/
     .nombreCiudad{
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
         margin: 1% auto;
         font-family: Georgia, sans-serif;
-        font-size: 170px;
+        font-size: 30px;
         text-align: center;
         color: white;
         text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
@@ -265,27 +250,16 @@
     .nombreCiudad:first-letter{
         text-transform: uppercase;
     }
-    @keyframes nciudad {
-        from {
-            font-size: 100px;
-            text-shadow: none;
-            margin: 22%;
-        }
-        to {
-            font-size: 170px;
-            text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
-            margin: 1% auto;
-        }
-    }
 
     .hotelSlider{
-        overflow-x: scroll;
+        overflow-y: scroll;
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
         margin: 0 auto;
-        width: 95%;
-        padding: 50px 0 0 0;
+        width: 400px;
+        height: 500px;
+        padding: 0;
     }
     .hotelSlider::-webkit-scrollbar{
         display: none;
@@ -293,10 +267,9 @@
 
     .hotel-container{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
-        margin-bottom: 50px;
-        overflow-x: scroll;
+        margin: 50px auto;
     }
 
     .hotelCard{
@@ -307,7 +280,7 @@
         padding: 0 0 40px 0;
         width: 250px;
         height: 350px;
-        margin: 2%;
+        margin: 25px auto;
         background-color: rgba(255, 255, 255, 0.64);
         border-radius: 30px;
         border: none 2px rgba(255, 255, 255, 0.5);
@@ -410,6 +383,20 @@
         font-size: 15px;
         border-radius: 20px;
     }
+
+    .hStack{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    .vStack{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
     /* FINALIZA MUESTRA DE HOTEL ---------------------------------*/
 
 </style>
@@ -466,64 +453,76 @@
 </form>
 
 
+<div class="hStack">
 
-<div class="nombreCiudad">Mejores valorados por los clientes</div>
-<div class="hotelSlider">
-    <div class="hotel-container">
-        <div class="hotelCard" th:each="h : ${hoteles}">
-            <div class="linkhotel"><img th:src="${h.img}" alt=""></div>
-            <div class="estrellasHotel">
-                <p th:if="${h.estrellas} == 1">⭐</p>
-                <p th:if="${h.estrellas} == 2">⭐⭐</p>
-                <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
-                <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
-                <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+
+    <div class="vStack">
+        <div class="nombreCiudad">Mejores valorados por los clientes</div>
+        <div class="hotelSlider">
+            <div class="hotel-container">
+                <div class="hotelCard" th:each="h : ${hoteles}">
+                    <div class="linkhotel"><img th:src="${h.img}" alt=""></div>
+                    <div class="estrellasHotel">
+                        <p th:if="${h.estrellas} == 1">⭐</p>
+                        <p th:if="${h.estrellas} == 2">⭐⭐</p>
+                        <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
+                        <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
+                        <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                    </div>
+                    <p class="nombreHotel" th:text="${h.nombre}"></p>
+                    <p class="nombreHotel" th:text="${h.ciudad}"></p>
+                    <p class="ubicacionHotel" th:text="${h.direccion}"></p>
+                </div>
             </div>
-            <p class="nombreHotel" th:text="${h.nombre}"></p>
-            <p class="nombreHotel" th:text="${h.ciudad}"></p>
-            <p class="ubicacionHotel" th:text="${h.direccion}"></p>
         </div>
     </div>
-</div>
 
-<div class="nombreCiudad">Hoteles más lujosos</div>
-<div class="hotelSlider">
-    <div class="hotel-container">
-        <div class="hotelCard" th:each="h : ${hotelesLujosos}">
-            <div class="linkhotel"><img th:src="${h.img}" alt=""></div>
-            <div class="estrellasHotel">
-                <p th:if="${h.estrellas} == 1">⭐</p>
-                <p th:if="${h.estrellas} == 2">⭐⭐</p>
-                <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
-                <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
-                <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+
+    <div class="vStack">
+        <div class="nombreCiudad">Hoteles más lujosos</div>
+        <div class="hotelSlider">
+            <div class="hotel-container">
+                <div class="hotelCard" th:each="h : ${hotelesLujosos}">
+                    <div class="linkhotel"><img th:src="${h.img}" alt=""></div>
+                    <div class="estrellasHotel">
+                        <p th:if="${h.estrellas} == 1">⭐</p>
+                        <p th:if="${h.estrellas} == 2">⭐⭐</p>
+                        <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
+                        <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
+                        <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                    </div>
+                    <p class="nombreHotel" th:text="${h.nombre}"></p>
+                    <p class="nombreHotel" th:text="${h.ciudad}"></p>
+                    <p class="ubicacionHotel" th:text="${h.direccion}"></p>
+                </div>
             </div>
-            <p class="nombreHotel" th:text="${h.nombre}"></p>
-            <p class="nombreHotel" th:text="${h.ciudad}"></p>
-            <p class="ubicacionHotel" th:text="${h.direccion}"></p>
         </div>
     </div>
-</div>
 
-<div class="nombreCiudad">Encuentra el hotel perfecto en <span th:text="${ciudadRandom}"></span></div>
-<div class="hotelSlider">
-    <div class="hotel-container">
-        <div class="hotelCard" th:each="h : ${hotelesCiudad}">
-            <div class="linkhotel"><img th:src="${h.img}" alt=""></div>
-            <div class="estrellasHotel">
-                <p th:if="${h.estrellas} == 1">⭐</p>
-                <p th:if="${h.estrellas} == 2">⭐⭐</p>
-                <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
-                <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
-                <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+
+    <div class="vStack">
+        <div class="nombreCiudad" th:text="${'Encuentra el hotel perfecto en '+ciudadRandom}">
+            <div class="hotelSlider">
+                <div class="hotel-container">
+                    <div class="hotelCard" th:each="h : ${hotelesCiudad}">
+                        <div class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></div>
+                        <div class="estrellasHotel">
+                            <p th:if="${h.estrellas} == 1">⭐</p>
+                            <p th:if="${h.estrellas} == 2">⭐⭐</p>
+                            <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
+                            <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
+                            <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                        </div>
+                        <p class="nombreHotel" th:text="${h.nombre}"></p>
+                        <p class="nombreHotel" th:text="${h.ciudad}"></p>
+                        <p class="ubicacionHotel" th:text="${h.direccion}"></p>
+                    </div>
+                </div>
             </div>
-            <p class="nombreHotel" th:text="${h.nombre}"></p>
-            <p class="nombreHotel" th:text="${h.ciudad}"></p>
-            <p class="ubicacionHotel" th:text="${h.direccion}"></p>
         </div>
     </div>
-</div>
 
+</div>
 
 <footer class="lasth">
 
@@ -557,7 +556,7 @@
 
 </footer>
 <script>
-    document.body.style.backgroundImage = "url('/img/venecia.jpg')";
+    document.body.style.backgroundImage = "url('/img/rio-wallpaper.jpg')";
 </script>
 </body>
 

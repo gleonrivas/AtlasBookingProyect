@@ -297,7 +297,7 @@
     }
 
     .comentario-slider::-webkit-scrollbar{
-        /*display: none;*/
+        display: none;
     }
     .comentario-container{
         display: flex;
@@ -473,7 +473,7 @@
     <div class="comentario-container">
         <div class="tarjeta" th:each="h : ${habitaciones}">
             <div class="hotel-img">
-                <!-- <img th:src="@{/img/imgHab/{id}/{img}(id=${h.id},img=${h.img})}"> -->
+                <img th:src="@{/img/imgHab/{id}/{img}(id=${h.id},img=${h.img})}">
             </div>
             <p th:text="'Camas dobles: '+ ${h.c_doble}"></p>
             <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
