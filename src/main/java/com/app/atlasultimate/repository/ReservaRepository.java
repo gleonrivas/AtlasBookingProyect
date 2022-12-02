@@ -27,7 +27,6 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
     Integer IdTemporadaporIdHab(@Param("id_hab") Integer id);
 
 
-
     List<Registro> findAllByUsuario(Usuario usuario);
 
     @Query(value="select id_habitacion from registro where activa = 0", nativeQuery = true)
