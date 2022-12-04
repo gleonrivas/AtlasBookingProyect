@@ -560,10 +560,10 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTq3rz8EYg7akX8PrNfvkr6Yh39c-d67g&callback=iniciarMapa"></script>
 <footer class="lasth">
 
-    <div class="promote-hotel">
+    <div class="promote-hotel" sec:authorize="isAnonymous()">
         <p>Forma parte de nosotros</p>
-        <form method="get" action="registroUsuario.html">
-            <button class="registra" >Registra tus alojamientos</button>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" th:href="@{/usuario/registro}">Registra tus alojamientos</button>
         </form>
     </div>
 
@@ -573,19 +573,19 @@
             <p>BOOKING</p>
         </div>
         <div class="nets">
-            <img src="/img/face.svg" alt="">
-            <img src="/img/insta.svg" alt="">
-            <img src="/img/twitter.svg" alt="">
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTExLjUsNmMtMy4wMTk3NywwIC01LjUsMi40ODAyMyAtNS41LDUuNXYyNWMwLDMuMDE5NzcgMi40ODAyMyw1LjUgNS41LDUuNWgyNWMzLjAxOTc3LDAgNS41LC0yLjQ4MDIzIDUuNSwtNS41di0yNWMwLC0zLjAxOTc3IC0yLjQ4MDIzLC01LjUgLTUuNSwtNS41ek0xMS41LDloMjVjMS4zOTgyMywwIDIuNSwxLjEwMTc3IDIuNSwyLjV2MjVjMCwxLjM5ODIzIC0xLjEwMTc3LDIuNSAtMi41LDIuNWgtNi41di0xMGgzLjYyNWMwLjUwNCwwIDAuOTMwMTksLTAuMzc2OTUgMC45OTIxOSwtMC44NzY5NWwwLjM3NSwtM2MwLjAzNiwtMC4yODQgLTAuMDU0MTQsLTAuNTY5MTYgLTAuMjQ0MTQsLTAuNzg1MTZjLTAuMTg5LC0wLjIxNSAtMC40NjEwNSwtMC4zMzc4OSAtMC43NDgwNSwtMC4zMzc4OWgtNHYtMy41YzAsLTEuMTAzIDAuODk3LC0yIDIsLTJoMmMwLjU1MiwwIDEsLTAuNDQ3IDEsLTF2LTMuMzc1YzAsLTAuNTE4IC0wLjM5NTE2LC0wLjk1MDA5IC0wLjkxMDE2LC0wLjk5NjA5Yy0wLjA1OSwtMC4wMDUgLTEuNDY5ODYsLTAuMTI4OTEgLTMuMjU1ODYsLTAuMTI4OTFjLTQuNDA3LDAgLTYuODMzOTgsMi42MTYxOSAtNi44MzM5OCw3LjM2NzE5djMuNjMyODFoLTRjLTAuNTUyLDAgLTEsMC40NDcgLTEsMXYzYzAsMC41NTMgMC40NDgsMSAxLDFoNHYxMGgtMTIuNWMtMS4zOTgyMywwIC0yLjUsLTEuMTAxNzcgLTIuNSwtMi41di0yNWMwLC0xLjM5ODIzIDEuMTAxNzcsLTIuNSAyLjUsLTIuNXoiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTE2LjUsNWMtNi4zMzM2MSwwIC0xMS41LDUuMTY2MzkgLTExLjUsMTEuNXYxNWMwLDYuMzMyNzYgNS4xNjYyMSwxMS41IDExLjUsMTEuNWgxNWM2LjMzMjk0LDAgMTEuNSwtNS4xNjcwNiAxMS41LC0xMS41di0xNWMwLC02LjMzMzc5IC01LjE2NzI0LC0xMS41IC0xMS41LC0xMS41ek0xNi41LDhoMTVjNC43MTEyNCwwIDguNSwzLjc4Nzc5IDguNSw4LjV2MTVjMCw0LjcxMTA2IC0zLjc4ODk0LDguNSAtOC41LDguNWgtMTVjLTQuNzEyMjEsMCAtOC41LC0zLjc4ODc2IC04LjUsLTguNXYtMTVjMCwtNC43MTIzOSAzLjc4NzYxLC04LjUgOC41LC04LjV6TTM0LDEyYy0xLjEwNSwwIC0yLDAuODk1IC0yLDJjMCwxLjEwNSAwLjg5NSwyIDIsMmMxLjEwNSwwIDIsLTAuODk1IDIsLTJjMCwtMS4xMDUgLTAuODk1LC0yIC0yLC0yek0yNCwxNGMtNS41MDQ4MiwwIC0xMCw0LjQ5NTE4IC0xMCwxMGMwLDUuNTA0ODIgNC40OTUxOCwxMCAxMCwxMGM1LjUwNDgyLDAgMTAsLTQuNDk1MTggMTAsLTEwYzAsLTUuNTA0ODIgLTQuNDk1MTgsLTEwIC0xMCwtMTB6TTI0LDE3YzMuODgzMTgsMCA3LDMuMTE2ODIgNyw3YzAsMy44ODMxOCAtMy4xMTY4Miw3IC03LDdjLTMuODgzMTgsMCAtNywtMy4xMTY4MiAtNywtN2MwLC0zLjg4MzE4IDMuMTE2ODIsLTcgNywtN3oiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjQiIGhlaWdodD0iMjQiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTAuNjY2NjcsMTAuNjY2NjcpIj48cGF0aCBkPSJNMjIsMy45OTljLTAuNzgsMC40NjMgLTIuMzQ1LDEuMDk0IC0zLjI2NSwxLjI3NmMtMC4wMjcsMC4wMDcgLTAuMDQ5LDAuMDE2IC0wLjA3NSwwLjAyM2MtMC44MTMsLTAuODAyIC0xLjkyNywtMS4yOTkgLTMuMTYsLTEuMjk5Yy0yLjQ4NSwwIC00LjUsMi4wMTUgLTQuNSw0LjVjMCwwLjEzMSAtMC4wMTEsMC4zNzIgMCwwLjVjLTMuMzUzLDAgLTUuOTA1LC0xLjc1NiAtNy43MzUsLTRjLTAuMTk5LDAuNSAtMC4yODYsMS4yOSAtMC4yODYsMi4wMzJjMCwxLjQwMSAxLjA5NSwyLjc3NyAyLjgsMy42M2MtMC4zMTQsMC4wODEgLTAuNjYsMC4xMzkgLTEuMDIsMC4xMzljLTAuNTgxLDAgLTEuMTk2LC0wLjE1MyAtMS43NTksLTAuNjE3YzAsMC4wMTcgMCwwLjAzMyAwLDAuMDUxYzAsMS45NTggMi4wNzgsMy4yOTEgMy45MjYsMy42NjJjLTAuMzc1LDAuMjIxIC0xLjEzMSwwLjI0MyAtMS41LDAuMjQzYy0wLjI2LDAgLTEuMTgsLTAuMTE5IC0xLjQyNiwtMC4xNjVjMC41MTQsMS42MDUgMi4zNjgsMi41MDcgNC4xMzUsMi41MzljLTEuMzgyLDEuMDg0IC0yLjM0MSwxLjQ4NiAtNS4xNzEsMS40ODZoLTAuOTY0YzEuNzg4LDEuMTQ2IDQuMDY1LDIuMDAxIDYuMzQ3LDIuMDAxYzcuNDMsMCAxMS42NTMsLTUuNjYzIDExLjY1MywtMTEuMDAxYzAsLTAuMDg2IC0wLjAwMiwtMC4yNjYgLTAuMDA1LC0wLjQ0N2MwLC0wLjAxOCAwLjAwNSwtMC4wMzUgMC4wMDUsLTAuMDUzYzAsLTAuMDI3IC0wLjAwOCwtMC4wNTMgLTAuMDA4LC0wLjA4Yy0wLjAwMywtMC4xMzYgLTAuMDA2LC0wLjI2MyAtMC4wMDksLTAuMzI5YzAuNzksLTAuNTcgMS40NzUsLTEuMjgxIDIuMDE3LC0yLjA5MWMtMC43MjUsMC4zMjIgLTEuNTAzLDAuNTM4IC0yLjMyLDAuNjM2YzAuODM0LC0wLjUgMi4wMTksLTEuNjkyIDIuMzIsLTIuNjM2ek0xOCw4Ljk5OWMwLDQuMDggLTIuOTU3LDguMzk5IC04LjQ2Niw4Ljk0M2MwLjc0NiwtMC41MjkgMS40NjYsLTEuMjggMS40NjYsLTEuMjhjMCwwIC0zLC0yLjY2MiAtMy4yMjUsLTYuMTRjMS4wMzUsMC4zMTYgMi4xMTMsMC40NzcgMy4yMjUsMC40NzdoMnYtMi41YzAsLTAuMDAxIDAsLTAuMDAxIDAsLTAuMDAxYzAuMDAyLC0xLjM4IDEuMTIsLTIuNDk4IDIuNSwtMi40OThjMS4zODEsMCAyLjUsMS4xMTkgMi41LDIuNWMwLDAgMCwwLjQyIDAsMC40OTl6Ij48L3BhdGg+PC9nPjwvZz4KPC9zdmc+"/>
         </div>
         <p>Copyrigth © 2022 Atlas Booking S.L.</p>
     </div>
 
     <div class="footer-links">
-        <a href="index.html">Comunidad.</a>
-        <a href="index.html">Sobre nosotros.</a>
-        <a href="index.html">Uso de cookies.</a>
-        <a href="index.html">Politica de privacidad.</a>
-        <a href="index.html">Condiciones de uso.</a>
+        <a href="#">Comunidad.</a>
+        <a href="#">Sobre nosotros.</a>
+        <a href="#">Uso de cookies.</a>
+        <a href="#">Politica de privacidad.</a>
+        <a href="#">Condiciones de uso.</a>
     </div>
 
 </footer>
