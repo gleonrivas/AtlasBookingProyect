@@ -229,16 +229,16 @@
 <div class="mainbox" id="mainbox">
     <div class="box" id="box">
         <div class="box1">
-            <span class="font span1"><h5>cupon 1</h5></span>
+            <span class="font span1"><h5>cupon 6</h5></span>
             <span class="font span2"><h5>cupon 2</h5></span>
             <span class="font span3"><h5>cupon 3</h5></span>
-            <span class="font span4"><h5>cupon 4</h5></span>
+            <span class="font span4"><h5>cupon 9</h5></span>
             <span class="font span5"><h5>cupon 5</h5></span>
         </div>
         <div class="box2">
             <span class="font span1"><h5>cupon 6</h5></span>
             <span class="font span2"><h5>cupon 7</h5></span>
-            <span class="font span3"><h5>cupon 8</h5></span>
+            <span class="font span3"><h5>cupon 3</h5></span>
             <span class="font span4"><h5>cupon 9</h5></span>
             <span class="font span5"><h5>cupon 10</h5></span>
         </div>
@@ -250,6 +250,7 @@ controls="controls"
 id="wheel"
 src="/static/audio/ruleta.mp3">
 </audio>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function shuffle(array){
         var currentIndex = array.length,
@@ -272,47 +273,55 @@ function spin(){
         const element = document.getElementById("mainbox");
         let SelectItem = "";
 
-        let AC = shuffle([1890, 2250, 2610]);
-        let Camera = shuffle([1850, 2210, 2570]) ;
-        let Zonk= shuffle([1770, 2130, 2490]);
-        let PS = shuffle([1810, 2170, 2530])
-        let Headset = shuffle ( [1750, 2110, 2470]) ;
-        let Drone = shuffle ([1630, 1990, 2350]);
-        let ROG = shuffle([1570, 1930, 2290]) ;
+        let tres = shuffle([1890, 2250, 2610]);
+        let nueve = shuffle([1850, 2210, 2570]) ;
+        let seis= shuffle([1770, 2130, 2490]);
+        let cinco = shuffle([1810, 2170, 2530])
+        let siete = shuffle ( [1750, 2110, 2470]) ;
+        let diez = shuffle ([1630, 1990, 2350]);
+        let dos = shuffle([1570, 1930, 2290]) ;
 
         let results = shuffle([
-            AC[0],
-            Camera[0],
-            Zonk[0],
-            PS[0],
-            Headset[0],
-            Drone[0],
-            ROG[0],
+            tres[0],
+            nueve[0],
+            seis[0],
+            cinco[0],
+            siete[0],
+            diez[0],
+            dos[0],
         ]);
 
-    if(AC.includes(results[0])) SelectedItem = "1";
-    if(Camera.includes(results[0])) SelectedItem = "2";
-    if(Zonk.includes(results[0])) SelectedItem = "bomb";
-    if(PS.includes(results[0])) SelectedItem = "3";
-    if(Headset.includes(results[0])) SelectedItem = "4";
-    if(Drone.includes(results[0])) SelectedItem = "5";
-    if(ROG.includes(results[0])) SelectedItem = "6";
+    if(tres.includes(results[0])) SelectedItem = "3";
+    if(nueve.includes(results[0])) SelectedItem = "9";
+    if(seis.includes(results[0])) SelectedItem = "6";
+    if(cinco.includes(results[0])) SelectedItem = "5";
+    if(siete.includes(results[0])) SelectedItem = "7";
+    if(diez.includes(results[0])) SelectedItem = "10";
+    if(dos.includes(results[0])) SelectedItem = "2";
 
-    box.style.setProperty("transition","all ease 10s");
+    box.style.setProperty("transition","all ease 8s");
     box.style.transform = "rotate(" + results[0] + "deg)";
     element.classList.remove("animate");
     setTimeout(function (){
         element.classList.add("animate");
-    }, 10000);
+    }, 8000);
 
     setTimeout(function(){
-
-    })
+        Swal.fire({
+            title: 'Felicidades!',
+            html: "Ganaste el " + SelectedItem,
+            imageUrl: 'https://unsplash.it/400/200',
+            imageWidth: 350,
+            imageHeight: 150,
+            imageAlt: 'Custom image',
+        });
+        document.body.style.backgroundImage.repeat(0);
+    },8500 )
 
     setTimeout(function (){
         box.style.setProperty("transition", "initial");
         box.style.transform = "rotate(90deg)";
-    }, 11000);
+    }, 10000);
 }
 </script>
 
