@@ -122,7 +122,7 @@ public class HistorialReservaController {
             return "/exitoReserva.html";
 
         }else {
-            return "falloReserva.html";
+            return "/falloReserva.html";
         }
 
 

@@ -32,7 +32,7 @@ public class UtilidadesFakerComentario {
                 //(int)(Math.random()*10+1),
                 estrellas,
                 faker.weather().description(),
-                UtilidadesFakerUsuario.crearUsuario(),
+                UtilidadesFakerUsuario.crearUsuari0(),
                 UtilidadesFaker.crearHotel()
                 );
     }

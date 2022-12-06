@@ -3,7 +3,7 @@ package com.app.atlasultimate.Reserva;
 
 import com.app.atlasultimate.Utilidades.UtilidadesFakerRegistro;
 import com.app.atlasultimate.model.Registro;
-import com.app.atlasultimate.repository.RegistroPasadoRepository;
+import com.app.atlasultimate.repository.ReservaRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +27,15 @@ import static org.springframework.test.util.AssertionErrors.assertNotNull;
 public class PruebaReservaRepository {
 
     @Autowired
-    RegistroPasadoRepository registroPasadoRepository;
+    ReservaRepository reservaRepository;
 
     @Test
     public void guardarReservaTest(){
         Registro registroEsperado = UtilidadesFakerRegistro.crearRegistroTest();
+        Registro registroObtenido = reservaRepository.save(registroEsperado);
 
-        //Registro registroObtenido = registroPasadoRepository.save(registroEsperado);
-
-       // assertNotNull("No se ha guardado la reserva",registroEsperado);
-       // assertEquals("Las reservas no coinciden",registroEsperado.getCodigo(), registroObtenido.getCodigo());
+        assertNotNull("No se ha guardado la reserva",registroEsperado);
+        assertEquals("Las reservas no coinciden",registroEsperado.getCodigo(), registroObtenido.getCodigo());
 
     }
 

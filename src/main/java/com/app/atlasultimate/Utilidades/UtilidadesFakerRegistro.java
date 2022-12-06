@@ -16,7 +16,7 @@ public class UtilidadesFakerRegistro {
                 tipo_pension.ad,
                 10.0,
                 1,
-                UtilidadesFakerUsuario.crearUsuario(),
+                UtilidadesFakerUsuario.crearUsuari0(),
                 UtilidadesFakerHabitacion.crearHabitacion(),
                 true
         );
