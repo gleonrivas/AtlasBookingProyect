@@ -2,20 +2,255 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Atlas Booking</title>
 </head>
+<body class="images-container">
+
 <style>
-    body{
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
         display: flex;
-        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
         text-align: center;
-        flex-direction: column;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 10px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial,sans-serif;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
 
     }
-    img{
-        width: 50%;
-        height: 400px;
-        margin-left: 25%;
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: Arial, sans-serif;
+    }
+    body::-webkit-scrollbar{
+        display: none;
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMIENZA FINDER ------------------------------------------*/
+    .intro{
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        display: flex;
+        width: 60%;
+        margin: 16% auto;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 2% 3%;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.66);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        color: black;
+        border-radius: 20px;
+    }
+    .entry-group{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .entry-group > label{
+        width: available;
+        justify-content: center;
+        align-content: center;
+        text-shadow: 0 0 20px #ffffff;
+    }
+    input{
+        border-color: rgba(0, 0, 0, 0.8);
+        font-size: 13px;
+    }
+    .inputciudad{
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        width: 130px;
+        height: 50px;
+        padding-left: 20px;
+        margin-top: 10%;
+
+    }
+
+    .fecha{
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        margin-top: 10%;
+        width: 150px;
+        height: 50px;
+        justify-content: center;
+        border-radius: 15px;
+    }
+
+    .inputn_personas{
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        margin-top: 10%;
+        width: 80px;
+        height: 50px;
+        justify-content: center;
+        padding-left: 70px;
+    }
+
+    .buscar{
+        width: 56px;
+        height: 56px;
+        margin: auto 0 0 2%;
+        border: solid 2px rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        padding: 10px;
+        background-color: #ffffff;
+        background-position: center;
+    }
+    /* FINALIZA FINDER ------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    .error{
+        left: 0;
+        right: 0;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: max-content;
+        margin: -25% auto 0 auto;
+
+    }
+    .error > p{
+        background-color: #f9f3ff;
+        width: max-content;
+        margin: auto 5px;
+        padding: 20px;
+        color: #ff0000;
+        text-align: center;
+        font-size: 15px;
+        border-radius: 20px;
     }
     button {
         min-width: 130px;
@@ -54,11 +289,85 @@
         }
     }
 
+
 </style>
-<body>
-    <h1>Realiza el pago de la reserva para completarla</h1>
-    <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061131_960_720.png" style="height: auto; width: 30%; margin-left: 35%">
-    <br>
+
+<header class="mainh">
+
+    <div class="lheader">
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
+    </div>
+
+    <div class="cheader">
+        <h1>Atlas</h1>
+        <p>BOOKING</p>
+    </div>
+
+    <div class="lheader">
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/descubre}">Descubre</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+
+    </div>
+
+</header>
+<br>
+<div style="display: flex; justify-content: center;width: 100%">
+    <div class="cheader">
+        <h1 style="color: black">Debes pagar realizar una reserva</h1>
+    </div>
+</div>
+<br>
+<img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061131_960_720.png" style="height: auto; width: 30%; margin-left: 35%">
+<br>
+<div style="display: flex; justify-content: center;width: 100%">
     <a th:href="@{/}"><button>Volver</button></a>
+</div>
+<br>
+<br>
+
+
+<footer class="lasth">
+
+    <div class="promote-hotel">
+        <p>Forma parte de nosotros</p>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" >Registra tus alojamientos</button>
+        </form>
+    </div>
+
+    <div class="middle-footer">
+        <div class="cheader">
+            <h1>Atlas</h1>
+            <p>BOOKING</p>
+        </div>
+        <div class="nets">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
+        </div>
+        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="index.html">Comunidad.</a>
+        <a href="index.html">Sobre nosotros.</a>
+        <a href="index.html">Uso de cookies.</a>
+        <a href="index.html">Politica de privacidad.</a>
+        <a href="index.html">Condiciones de uso.</a>
+    </div>
+
+</footer>
+
+<script>
+    document.body.style.backgroundImage = "url('/img/venecia.jpg')";
+</script>
+
 </body>
+
 </html>
