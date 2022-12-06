@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Atlas Booking</title>
@@ -305,6 +305,7 @@
             <div class="noprint">
             <p class="ticket__route">Pago</p>
             <br>
+                <p style="color: orangered"><b>*Rellena los datos de tu usuario <a style="color: blue" th:href="@{/usuario/perfil}">aquí</a> para realizar el pago*</b></p>
             <form method="post" id="pagoForm" th:object="${pago}">
                 <input type="hidden" id="pago" th:field="*{detalles}">
                 <div id="paypal-button-container"></div>

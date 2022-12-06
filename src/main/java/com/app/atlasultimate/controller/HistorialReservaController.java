@@ -10,6 +10,7 @@ import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.security.Oauth2User;
 import com.app.atlasultimate.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -82,7 +83,7 @@ public class HistorialReservaController {
 
 
     @PostMapping("historial")
-    public String aceptarReserva(@ModelAttribute("pago") Pago pago){
+    public String aceptarReserva(@ModelAttribute("pago") Pago pago, Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
         Rol rol = Rol.anonimo;
@@ -115,6 +116,7 @@ public class HistorialReservaController {
         }
 
         Registro registro = reservaRepository.findFirstByUsuarioOrderByIdDesc(usuario);
+
 
 
         if (pago.getDetalles().equals("COMPLETED")){

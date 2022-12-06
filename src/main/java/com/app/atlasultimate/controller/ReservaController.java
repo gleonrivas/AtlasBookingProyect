@@ -112,8 +112,12 @@ public class ReservaController {
         modelo.addAttribute("tarjeta" ,tipo_pago.tarjeta);
         modelo.addAttribute("efectivo" ,tipo_pago.efectivo);
 
+        if(pension == null){
+            return "/reservasSinPension.html";
+        }else{
+            return "/reservas.html";
+        }
 
-        return "/reservas.html";
 
 
 
@@ -210,6 +214,7 @@ public class ReservaController {
                 );
 
         CambiarReservasInactivas();
+
         reservaRepository.save(registroFinal);
         return "redirect:/historial?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
         }

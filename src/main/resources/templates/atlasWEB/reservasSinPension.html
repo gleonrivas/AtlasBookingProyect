@@ -207,7 +207,7 @@
         margin: 0 auto;
     }
     .margenAuto5{
-         margin:  5% auto;
+        margin:  5% auto;
     }
     .hcard{
         display: flex;
@@ -277,43 +277,43 @@
 </header>
 
 <h1> Reservas</h1>
-    <div class="hcard">
+<div class="hcard">
 
-        <div class="vcard rebordes difuminado">
-            <div class="imagen-div">
-                <img th:src="@{/img/imgHab/{id}/{img}(id=${habitacion.id},img=${habitacion.img})}">
-            </div>
-            <h2 th:text="${'Datos de reserva en ' + hotel.nombre}">Datos de reserva en Magia</h2>
+    <div class="vcard rebordes difuminado">
+        <div class="imagen-div">
+            <img th:src="@{/img/imgHab/{id}/{img}(id=${habitacion.id},img=${habitacion.img})}">
+        </div>
+        <h2 th:text="${'Datos de reserva en ' + hotel.nombre}">Datos de reserva en Magia</h2>
 
-            <div class="ancho-card">
-                <div class="small-card">
-                    <h5>Entrada</h5>
-                    <p th:text="${fecha_inicio}" id="fecha_inicio"></p>
-                </div>
-                <div class="small-card">
-                    <h5>Salida</h5>
-                    <p th:text="${fecha_fin}" id="fecha_fin"></p>
-                </div>
-            </div>
-
-            <div class="ancho-card">
-                <div class="small-card">
-                    <h5 class="card-title">Duración</h5>
-                    <p th:text="${duracion} + ' Días'" id="duracion"></p>
-                </div>
-                <div class="small-card">
-                    <h5>Número de huéspedes:</h5>
-                    <p th:text="${num_personas + ' Personas'}"></p>
-                </div>
-            </div>
-
-
+        <div class="ancho-card">
             <div class="small-card">
-                <h4>Precio</h4>
-                <p th:text="${precio} + ' € / persona '"></p>
-                <small style="color: indianred">* sujeto a las modificaciones de elección de pensión</small>
+                <h5>Entrada</h5>
+                <p th:text="${fecha_inicio}" id="fecha_inicio"></p>
+            </div>
+            <div class="small-card">
+                <h5>Salida</h5>
+                <p th:text="${fecha_fin}" id="fecha_fin"></p>
             </div>
         </div>
+
+        <div class="ancho-card">
+            <div class="small-card">
+                <h5 class="card-title">Duración</h5>
+                <p th:text="${duracion} + ' Días'" id="duracion"></p>
+            </div>
+            <div class="small-card">
+                <h5>Número de huéspedes:</h5>
+                <p th:text="${num_personas + ' Personas'}"></p>
+            </div>
+        </div>
+
+
+        <div class="small-card">
+            <h4>Precio</h4>
+            <p th:text="${precio} + ' € / persona '"></p>
+            <small style="color: indianred">* sujeto a las modificaciones de elección de pensión</small>
+        </div>
+    </div>
 
     <div class="vcard">
         <div class="vcard rebordes difuminado margenAuto5">
@@ -334,12 +334,11 @@
                 <div class="small-card" style="margin: 2% auto">
                     <label for="pension">Selecciona el tipo de pension</label>
                     <select id="pension" th:field="*{t_pension}">
-                        <option th:if="${pensiondto.booleanPc} != null" th:value="pc">Pensión Completa <span th:text="${pensiondto.pc}"></span>€</option>
-                        <option th:if="${pensiondto.booleanMp} != null" th:value="mp">Media Pensión <span th:text="${pensiondto.mp}"></span>€</option>
-                        <option th:if="${pensiondto.booleanAd} != null" th:value="ad">Almuerzo y desayuno <span th:text="${pensiondto.ad}"></span>€</option>
-                        <option th:if="${pensiondto.booleanSa} != null" th:value="sa">Solo alojamiento <span th:text="${pensiondto.sa}"></span>€</option>
+                        <option th:each="pension : ${T(com.app.atlasultimate.model.tipo_pension).values()}"
+                                th:value="${pension}" th:text="${pension}"></option>
                     </select>
                 </div>
+
                 <div class="small-card" style="margin: 1% auto 5% auto; justify-content: center">
                     <label for="pago">Selecciona el tipo de pago</label>
                     <select id="pago" th:field="*{t_pago}">

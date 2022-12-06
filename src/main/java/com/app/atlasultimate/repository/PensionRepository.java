@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface PensionRepository extends JpaRepository<Pension, Integer> {
-    @Query(value="select p.id from pension p where id_hotel = :id", nativeQuery = true)
+    @Query(value="select p.id from pension p where id_hotel = :id limit 1", nativeQuery = true)
     Integer pensionPorIdHotel(@Param("id") Integer id);
 
 

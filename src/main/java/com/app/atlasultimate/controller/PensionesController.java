@@ -49,8 +49,6 @@ public class PensionesController {
         }
 
         Hotel hotel = hotelRepository.findTopById(id);
-        Integer id_pension = pensionRepository.idUltimaPension() +1;
-        pension.setId(id_pension);
         pension.setId_hotel(hotel);
         pensionRepository.save(pension);
         return "/crearPension.html";
