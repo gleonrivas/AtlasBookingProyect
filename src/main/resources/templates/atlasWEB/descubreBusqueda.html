@@ -81,6 +81,7 @@
     /* COMIENZA BODY --------------------------------------------*/
     body {
         min-height: 100vh;
+        background-image: url("https://www.xtrafondos.com/wallpapers/recepcion-del-hotel-the-venetian-2108.jpg");
         margin: 0;
         display: flex;
         flex-direction: column;
@@ -101,39 +102,21 @@
     .intro{
         border: solid 2px rgba(255, 255, 255, 0.2);
         display: flex;
-        width: 55%;
         justify-content: space-evenly;
         align-items: center;
         font-size: 14px;
+        border-radius: 25px;
+        width: 55%;
         margin: 5% auto;
         padding: 1.5% 2%;
-        border-radius: 25px;
         background-color: rgba(255, 255, 255, 0.4);
         box-shadow: 0 25px 40px rgba(0, 0, 0, 0.30);
         -webkit-backdrop-filter: blur(50px);
         backdrop-filter: blur(50px);
+
         animation: busqueda2 1.5s ease-in-out;
     }
-    @keyframes busqueda2 {
-        from {
-            width: 60%;
-            margin: 16% auto;
-            padding: 2% 3%;
-            background-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.66);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-        }
-        to {
-            width: 55%;
-            margin: 5% auto;
-            padding: 1.5% 2%;
-            background-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.30);
-            -webkit-backdrop-filter: blur(50px);
-            backdrop-filter: blur(50px);
-        }
-    }
+
     .entry-group{
         display: flex;
         flex-direction: column;
@@ -253,11 +236,15 @@
 
     /* COMINZA MUESTRA DE HOTEL ---------------------------------*/
     .nombreCiudad{
-        margin: 1% auto;
-        font-family: Georgia, sans-serif;
-        font-size: 170px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 85%;
+        margin: 5% auto;
+        font-family: Arial, sans-serif;
+        font-size: 30px;
         text-align: center;
-        color: white;
+        justify-content: center;
+        color: #ffffff;
         text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
         position: relative;
         animation: nciudad 1.5s ease-in-out;
@@ -265,27 +252,16 @@
     .nombreCiudad:first-letter{
         text-transform: uppercase;
     }
-    @keyframes nciudad {
-        from {
-            font-size: 100px;
-            text-shadow: none;
-            margin: 22%;
-        }
-        to {
-            font-size: 170px;
-            text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
-            margin: 1% auto;
-        }
-    }
 
     .hotelSlider{
-        overflow-x: scroll;
+        overflow-y: scroll;
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
         margin: 0 auto;
-        width: 95%;
-        padding: 50px 0 0 0;
+        width: 350px;
+        height: 500px;
+        padding: 0;
     }
     .hotelSlider::-webkit-scrollbar{
         display: none;
@@ -293,10 +269,9 @@
 
     .hotel-container{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
-        margin-bottom: 50px;
-        overflow-x: scroll;
+        margin: 10px auto;
     }
 
     .hotelCard{
@@ -307,12 +282,12 @@
         padding: 0 0 40px 0;
         width: 250px;
         height: 350px;
-        margin: 2%;
+        margin: 25px auto;
         background-color: rgba(255, 255, 255, 0.64);
         border-radius: 30px;
         border: none 2px rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         transition: all 0.2s ease-in-out;
     }
 
@@ -350,6 +325,7 @@
     .ubicacionHotel{
         margin: 1% auto 4% 0;
         padding-left: 7%;
+        font-size: 13px;
     }
     .estrellasHotel{
         background-color: black;
@@ -411,17 +387,37 @@
         border-radius: 20px;
     }
 
+    .hStack{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    .vStack{
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        background-color: rgba(31, 30, 30, 0.53);
+        padding: 10px;
+        border: solid 2px rgba(110, 109, 109, 0.19);
+        border-radius: 25px;
+        backdrop-filter: blur(50px);
+        -webkit-backdrop-filter: blur(50px);
+
+    }
     /* FINALIZA MUESTRA DE HOTEL ---------------------------------*/
 
 </style>
-
 
 <header class="mainh">
 
     <div class="lheader">
         <a sec:authorize="isAnonymous()" style="color: transparent" href="#">Descubre</a>
         <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
-        <a sec:authorize="hasAuthority('usuario')" th:href="@{/}">Descubre</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
         <a th:href="@{/}">Buscar destino</a>
     </div>
 
@@ -431,11 +427,10 @@
     </div>
 
     <div class="lheader">
-        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
-        <a sec:authorize="isAnonymous()" th:href="@{/descubre}">Descubre</a>
         <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+        <a sec:authorize="isAnonymous()" style="color: transparent" href="#">Descubre</a>
 
     </div>
 
@@ -466,13 +461,15 @@
     </div>
     <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
 </form>
+<div class="hStack">
+    <div class="vStack">
 
 <div class="nombreCiudad">Mejores valorados por los clientes</div>
 <div class="hotelSlider">
     <div class="hotel-container">
         <div class="hotelCard" th:each="h : ${hoteles}">
             <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
-         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="${h.img}" alt=""></a>
+         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></a>
             <div class="estrellasHotel">
                 <p th:if="${h.estrellas} == 1">⭐</p>
                 <p th:if="${h.estrellas} == 2">⭐⭐</p>
@@ -488,13 +485,15 @@
         </div>
     </div>
 </div>
+    </div>
+    <div class="vStack">
 
-<div class="nombreCiudad">Hoteles más lujosos</div>
+    <div class="nombreCiudad">Hoteles más lujosos</div>
 <div class="hotelSlider">
     <div class="hotel-container">
         <div class="hotelCard" th:each="h : ${hotelesLujosos}">
             <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
-         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="${h.img}" alt=""></a>
+         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></a>
             <div class="estrellasHotel">
                 <p th:if="${h.estrellas} == 1">⭐</p>
                 <p th:if="${h.estrellas} == 2">⭐⭐</p>
@@ -510,13 +509,14 @@
         </div>
     </div>
 </div>
+    </div>
+    <div class="vStack">
 
-<div class="nombreCiudad">Encuentra el hotel perfecto en <span th:text="${ciudadRandom}"></span></div>
+    <div class="nombreCiudad">Encuentra el hotel perfecto en <span th:text="${ciudadRandom}"></span></div>
 <div class="hotelSlider">
     <div class="hotel-container">
         <div class="hotelCard" th:each="h : ${hotelesCiudad}">
-            <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
-         fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="${h.img}" alt=""></a>
+            <a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio}, fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}" class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></a>
             <div class="estrellasHotel">
                 <p th:if="${h.estrellas} == 1">⭐</p>
                 <p th:if="${h.estrellas} == 2">⭐⭐</p>
@@ -532,8 +532,8 @@
         </div>
     </div>
 </div>
-
-
+    </div>
+</div>
 <footer class="lasth">
 
     <div class="promote-hotel" sec:authorize="isAnonymous()">

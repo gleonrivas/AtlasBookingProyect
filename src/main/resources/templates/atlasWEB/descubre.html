@@ -81,6 +81,7 @@
     /* COMIENZA BODY --------------------------------------------*/
     body {
         min-height: 100vh;
+        background-image: url("https://www.xtrafondos.com/wallpapers/recepcion-del-hotel-the-venetian-2108.jpg");
         margin: 0;
         display: flex;
         flex-direction: column;
@@ -237,12 +238,13 @@
     .nombreCiudad{
         display: flex;
         flex-wrap: wrap;
-        width: 70%;
-        margin: 1% auto;
-        font-family: Georgia, sans-serif;
+        width: 85%;
+        margin: 5% auto;
+        font-family: Arial, sans-serif;
         font-size: 30px;
         text-align: center;
-        color: white;
+        justify-content: center;
+        color: #ffffff;
         text-shadow: 0 30px 40px rgba(0, 0, 0, 0.8);
         position: relative;
         animation: nciudad 1.5s ease-in-out;
@@ -257,7 +259,7 @@
         flex-wrap: nowrap;
         flex-direction: row;
         margin: 0 auto;
-        width: 400px;
+        width: 350px;
         height: 500px;
         padding: 0;
     }
@@ -269,7 +271,7 @@
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        margin: 50px auto;
+        margin: 10px auto;
     }
 
     .hotelCard{
@@ -284,8 +286,8 @@
         background-color: rgba(255, 255, 255, 0.64);
         border-radius: 30px;
         border: none 2px rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         transition: all 0.2s ease-in-out;
     }
 
@@ -323,6 +325,7 @@
     .ubicacionHotel{
         margin: 1% auto 4% 0;
         padding-left: 7%;
+        font-size: 13px;
     }
     .estrellasHotel{
         background-color: black;
@@ -392,10 +395,18 @@
     }
 
     .vStack{
+        max-width: 350px;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: center;
+        background-color: rgba(31, 30, 30, 0.53);
+        padding: 10px;
+        border: solid 2px rgba(110, 109, 109, 0.19);
+        border-radius: 25px;
+        backdrop-filter: blur(50px);
+        -webkit-backdrop-filter: blur(50px);
+
     }
     /* FINALIZA MUESTRA DE HOTEL ---------------------------------*/
 
@@ -406,7 +417,7 @@
     <div class="lheader">
         <a sec:authorize="isAnonymous()" style="color: transparent" href="#">Descubre</a>
         <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
-        <a sec:authorize="hasAuthority('usuario')" th:href="@{/}">Descubre</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
         <a th:href="@{/}">Buscar destino</a>
     </div>
 
@@ -416,11 +427,10 @@
     </div>
 
     <div class="lheader">
-        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
-        <a sec:authorize="isAnonymous()" th:href="@{/descubre}">Descubre</a>
         <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+        <a sec:authorize="isAnonymous()" style="color: transparent" href="#">Descubre</a>
 
     </div>
 
@@ -500,7 +510,7 @@
     </div>
 
 
-    <div class="vStack">
+   <!-- <div class="vStack">
         <div class="nombreCiudad" th:text="${'Encuentra el hotel perfecto en '+ciudadRandom}">
             <div class="hotelSlider">
                 <div class="hotel-container">
@@ -514,12 +524,32 @@
                             <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
                         </div>
                         <p class="nombreHotel" th:text="${h.nombre}"></p>
-                        <p class="nombreHotel" th:text="${h.ciudad}"></p>
+                        <p class="ubicacionHotel" th:text="${h.ciudad}"></p>
                         <p class="ubicacionHotel" th:text="${h.direccion}"></p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>-->
+    <div class="vStack">
+    <div class="nombreCiudad">Encuentra el hotel perfecto en <span th:text="${ciudadRandom}"></span></div>
+    <div class="hotelSlider">
+        <div class="hotel-container">
+            <div class="hotelCard" th:each="h : ${hotelesCiudad}">
+                <div class="linkhotel"><img th:src="@{/img/imgHot/{id}/{img}(id=${h.id},img=${h.img})}"></div>
+                <div class="estrellasHotel">
+                    <p th:if="${h.estrellas} == 1">⭐</p>
+                    <p th:if="${h.estrellas} == 2">⭐⭐</p>
+                    <p th:if="${h.estrellas} == 3">⭐⭐⭐</p>
+                    <p th:if="${h.estrellas} == 4">⭐⭐⭐⭐</p>
+                    <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                </div>
+                <p class="nombreHotel" th:text="${h.nombre}"></p>
+                <p class="nombreHotel" th:text="${h.ciudad}"></p>
+                <p class="ubicacionHotel" th:text="${h.direccion}"></p>
+            </div>
+        </div>
+    </div>
     </div>
 
 </div>
