@@ -322,8 +322,15 @@
         width: 189px;
         padding-left: 17.5px;
     }
+
+    .nombreCiudadcard{
+        margin: 1% auto 3% 0;
+        padding-left: 7%;
+        font-size: 13px;
+    }
+
     .ubicacionHotel{
-        margin: 1% auto 4% 0;
+        margin: 1% auto 35px 0;
         padding-left: 7%;
         font-size: 13px;
     }
@@ -459,7 +466,7 @@
         <label for="n_personas">¿Cuantas personas?</label>
         <input type="number" id="n_personas" th:field="*{n_max_personas}" value="0" class="inputn_personas">
     </div>
-    <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
+    <button type="submit" class="buscar"><img src="https://cdn-icons-png.flaticon.com/512/25/25313.png" alt="" style="width: 25px"></button>
 </form>
 
 
@@ -480,7 +487,7 @@
                         <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
                     </div>
                     <p class="nombreHotel" th:text="${h.nombre}"></p>
-                    <p class="nombreHotel" th:text="${h.ciudad}"></p>
+                    <p class="nombreCiudadcard" th:text="${h.ciudad}"></p>
                     <p class="ubicacionHotel" th:text="${h.direccion}"></p>
                 </div>
             </div>
@@ -502,7 +509,7 @@
                         <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
                     </div>
                     <p class="nombreHotel" th:text="${h.nombre}"></p>
-                    <p class="nombreHotel" th:text="${h.ciudad}"></p>
+                    <p class="nombreCiudadcard" th:text="${h.ciudad}"></p>
                     <p class="ubicacionHotel" th:text="${h.direccion}"></p>
                 </div>
             </div>
@@ -545,7 +552,7 @@
                     <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
                 </div>
                 <p class="nombreHotel" th:text="${h.nombre}"></p>
-                <p class="nombreHotel" th:text="${h.ciudad}"></p>
+                <p class="nombreCiudadcard" th:text="${h.ciudad}"></p>
                 <p class="ubicacionHotel" th:text="${h.direccion}"></p>
             </div>
         </div>

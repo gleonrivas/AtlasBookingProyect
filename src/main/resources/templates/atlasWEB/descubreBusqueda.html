@@ -459,7 +459,7 @@
         <label for="n_personas">¿Cuantas personas?</label>
         <input type="number" id="n_personas" th:field="*{n_max_personas}" value="0" class="inputn_personas">
     </div>
-    <button type="submit" class="buscar"><img src="/img/buscarLogo.svg" alt="" style="width: 30px"></button>
+    <button type="submit" class="buscar"><img src="https://cdn-icons-png.flaticon.com/512/25/25313.png" alt="" style="width: 25px"></button>
 </form>
 <div class="hStack">
     <div class="vStack">
@@ -478,7 +478,7 @@
                 <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
             </div>
             <p class="nombreHotel" th:text="${h.nombre}"></p>
-            <p class="nombreHotel" th:text="${h.ciudad}"></p>
+            <p class="ubicacionHotel" th:text="${h.ciudad}"></p>
             <p class="ubicacionHotel" th:text="${h.direccion}"></p>
             <button type="submit"><a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
          fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>
@@ -502,7 +502,7 @@
                 <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
             </div>
             <p class="nombreHotel" th:text="${h.nombre}"></p>
-            <p class="nombreHotel" th:text="${h.ciudad}"></p>
+            <p class="ubicacionHotel" th:text="${h.ciudad}"></p>
             <p class="ubicacionHotel" th:text="${h.direccion}"></p>
             <button type="submit"><a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
          fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>
@@ -525,7 +525,7 @@
                 <p th:if="${h.estrellas} == 5">⭐⭐⭐⭐⭐</p>
             </div>
             <p class="nombreHotel" th:text="${h.nombre}"></p>
-            <p class="nombreHotel" th:text="${h.ciudad}"></p>
+            <p class="ubicacionHotel" th:text="${h.ciudad}"></p>
             <p class="ubicacionHotel" th:text="${h.direccion}"></p>
             <button type="submit"><a th:href="@{/hotel/habitaciones/(id=${h.id} , fecha_inicio=${hotelDTO.fecha_inicio},
          fecha_fin=${hotelDTO.fecha_fin}, num_personas=${hotelDTO.n_max_personas})}">Ver más</a></button>
