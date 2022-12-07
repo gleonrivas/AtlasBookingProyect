@@ -303,12 +303,8 @@
             </div>
             <br>
             <div class="noprint">
-            <p class="ticket__route">Pago</p>
             <br>
-                <p style="color: orangered"><b>*Rellena los datos de tu usuario <a style="color: blue" th:href="@{/usuario/perfil}">aquí</a> para realizar el pago*</b></p>
-            <form method="post" id="pagoForm" th:object="${pago}">
-                <input type="hidden" id="pago" th:field="*{detalles}">
-                <div id="paypal-button-container"></div>
+            <form method="post" id="pagoForm">
                 <button class="btn-material" type="submit">Completar reserva</button>
                 <button class="btn-material" onclick="imprimir()" type="submit">Reservar e imprimir</button>
             </form>
@@ -321,54 +317,6 @@
     <a  class="volver" th:href="@{/}">Volver al Inicio</a>
     </div>
 </div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=AVsuNza9TrO50qSoqhLzEum_fjlI4kR3apiuxWhTEjAH_eR_V0ZHMUAgpe3QkFojvIzv3TsYiQ0HONNA&components=buttons"></script>
-<script>
-paypal.Buttons({
-    createOrder: function (data, actions) {
-        return actions.order.create({
-            intent: 'CAPTURE',
-            payer: {
-                name: {
-                    given_name: "[[${usuario.nombre}]]",
-                    surname: "[[${usuario.apellido}]]"
-                },
-                address: {
-                    address_line_1: "-----------",
-                    address_line_2: "-----------",
-                    admin_area_2: "España",
-                    admin_area_1: "Madrid",
-                    postal_code: "41770",
-                    country_code: "EU"
-                },
-                email_address: "[[${usuario.email}]]",
-
-                phone: {
-                    phone_type: "MOBILE",
-                    phone_number: {
-                        national_number: "[[${usuario.telefono}]]"
-                    }
-                }
-            },
-
-            purchase_units: [{
-                amount:{
-                    value: "[[${registro.precio_total_dias}]]",
-                    currency_code: "USD"
-                }
-            }]
-        });
-    },
-    onApprove: function(data, actions){
-        return actions.order.capture().then(function(details) {
-            console.log(details);
-            alert("Su pago se ha realizado correctamente");
-            document.getElementById("pago").value = details.status;
-
-        })
-    }
-}).render("#paypal-button-container")
-</script>
 <script>
     function imprimir() {
         window.print();

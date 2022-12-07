@@ -46,7 +46,8 @@ public class ReservaController {
     private PensionRepository pensionRepository;
     @Autowired
     private TemporadaRepository temporadaRepository;
-
+    @Autowired
+    private CuponRepository cuponRepository;
 
     @GetMapping("datos")
     public String registroreserva(@ModelAttribute(value = "id_hab") Integer idHab,
@@ -111,9 +112,15 @@ public class ReservaController {
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("tarjeta" ,tipo_pago.tarjeta);
         modelo.addAttribute("efectivo" ,tipo_pago.efectivo);
+        List<Cupon> cupones = cuponRepository.findAllByUsuario(usuario);
+        modelo.addAttribute("cupones", cupones);
 
+        if(pension == null){
+            return "/reservasSinPension.html";
+        }else{
+            return "/reservas.html";
+        }
 
-        return "/reservas.html";
 
 
 
@@ -189,6 +196,9 @@ public class ReservaController {
             precioFinal = precio + (pension.getMp() * duracion);
         }
         precioFinal = precioFinal * num_personas;
+        if (registroDTO.getDescuento()!=null){
+            precioFinal = precioFinal * registroDTO.getDescuento() /100;
+        }
         Integer num_codigo = 0;
         if (reservaRepository.ultimoRegistro() == null){
             num_codigo = 0;
@@ -210,9 +220,16 @@ public class ReservaController {
                 );
 
         CambiarReservasInactivas();
+
         reservaRepository.save(registroFinal);
-        return "redirect:/historial?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
+        if (registroFinal.getT_pago().equals(tipo_pago.tarjeta)){
+            return "redirect:/historial?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
+
+        }else {
+            return "redirect:/historialEfectivo?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
+
         }
+    }
 
 
 

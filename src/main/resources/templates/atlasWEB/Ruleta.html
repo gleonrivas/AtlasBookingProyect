@@ -244,6 +244,9 @@
         </div>
     </div>
     <button class="spin" onclick="spin()">GIRA</button>
+    <form method="post" th:object="${spin}" id="formularioRuleta">
+        <input type="hidden" id="ruleta" th:field="*{descuento}">
+    </form>
 </div>
 <audio
 controls="controls"
@@ -267,62 +270,87 @@ src="/static/audio/ruleta.mp3">
     return array;
 }
 
-function spin(){
-        wheel.play();
-        const box = document.getElementById("box");
-        const element = document.getElementById("mainbox");
-        let SelectItem = "";
 
-        let tres = shuffle([1890, 2250, 2610]);
-        let nueve = shuffle([1850, 2210, 2570]) ;
-        let seis= shuffle([1770, 2130, 2490]);
-        let cinco = shuffle([1810, 2170, 2530])
-        let siete = shuffle ( [1750, 2110, 2470]) ;
-        let diez = shuffle ([1630, 1990, 2350]);
-        let dos = shuffle([1570, 1930, 2290]) ;
+    var firstClick = false;
+    function spin(){
+        if([[${tirada}]]){
+            wheel.play();
+            const box = document.getElementById("box");
+            const element = document.getElementById("mainbox");
+            let SelectItem = "";
 
-        let results = shuffle([
-            tres[0],
-            nueve[0],
-            seis[0],
-            cinco[0],
-            siete[0],
-            diez[0],
-            dos[0],
-        ]);
+            let tres = shuffle([1890, 2250, 2610]);
+            let nueve = shuffle([1850, 2210, 2570]) ;
+            let seis= shuffle([1770, 2130, 2490]);
+            let cinco = shuffle([1810, 2170, 2530])
+            let siete = shuffle ( [1750, 2110, 2470]) ;
+            let diez = shuffle ([1630, 1990, 2350]);
+            let dos = shuffle([1570, 1930, 2290]) ;
 
-    if(tres.includes(results[0])) SelectedItem = "3";
-    if(nueve.includes(results[0])) SelectedItem = "9";
-    if(seis.includes(results[0])) SelectedItem = "6";
-    if(cinco.includes(results[0])) SelectedItem = "5";
-    if(siete.includes(results[0])) SelectedItem = "7";
-    if(diez.includes(results[0])) SelectedItem = "10";
-    if(dos.includes(results[0])) SelectedItem = "2";
+            let results = shuffle([
+                tres[0],
+                nueve[0],
+                seis[0],
+                cinco[0],
+                siete[0],
+                diez[0],
+                dos[0],
+            ]);
 
-    box.style.setProperty("transition","all ease 8s");
-    box.style.transform = "rotate(" + results[0] + "deg)";
-    element.classList.remove("animate");
-    setTimeout(function (){
-        element.classList.add("animate");
-    }, 8000);
+            if(tres.includes(results[0])) SelectedItem = "30";
+            if(nueve.includes(results[0])) SelectedItem = "90";
+            if(seis.includes(results[0])) SelectedItem = "60";
+            if(cinco.includes(results[0])) SelectedItem = "50";
+            if(siete.includes(results[0])) SelectedItem = "70";
+            if(diez.includes(results[0])) SelectedItem = "10";
+            if(dos.includes(results[0])) SelectedItem = "20";
 
-    setTimeout(function(){
-        Swal.fire({
-            title: 'Felicidades!',
-            html: "Ganaste el " + SelectedItem,
-            imageUrl: 'https://unsplash.it/400/200',
-            imageWidth: 350,
-            imageHeight: 150,
-            imageAlt: 'Custom image',
-        });
-        document.body.style.backgroundImage.repeat(0);
-    },8500 )
+            box.style.setProperty("transition","all ease 8s");
+            box.style.transform = "rotate(" + results[0] + "deg)";
+            element.classList.remove("animate");
 
-    setTimeout(function (){
-        box.style.setProperty("transition", "initial");
-        box.style.transform = "rotate(90deg)";
-    }, 10000);
+            setTimeout(function (){
+                element.classList.add("animate");
+            }, 8000);
+
+            setTimeout(function(){
+                Swal.fire({
+                    title: 'Felicidades!',
+                    html: "Ganaste un " + SelectedItem +"%" +" de descuento en nuestros hoteles",
+                    imageUrl: 'https://unsplash.it/400/200',
+                    imageWidth: 200,
+                    imageHeight: 150,
+                    imageAlt: 'Custom image',
+                });
+
+                document.getElementById("ruleta").value = SelectedItem;
+
+            },8500 )
+
+            setTimeout(function (){
+                box.style.setProperty("transition", "initial");
+                box.style.transform = "rotate(90deg)";
+            }, 10000);
+
+            setTimeout(function (){
+                document.getElementById("formularioRuleta").submit()
+            }, 13000);
+
+
+            firstClick = true;
+        }else {
+            Swal.fire({
+                title: '¡No tienes mas Spins!',
+                html: "¡Vuelve mañana!",
+                imageUrl: 'https://www.hostingplus.com.es/wp-content/uploads/2020/02/error.jpg',
+                imageWidth: 350,
+                imageHeight: 150,
+                imageAlt: 'Custom image',
+            });
+        }
+
 }
+
 </script>
 
 
