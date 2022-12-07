@@ -1,7 +1,7 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.HabitacionDTO;
-import com.app.atlasultimate.controller.DTO.UsuarioRegistroDTO;
+import com.app.atlasultimate.controller.DTO.Spin;
 import com.app.atlasultimate.model.*;
 import com.app.atlasultimate.repository.*;
 import com.app.atlasultimate.security.Oauth2User;
@@ -13,17 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
-import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Controller
 @RequestMapping("usuario")
@@ -86,6 +83,13 @@ public class UsuarioController {
     public Usuario retornarNuevoUsuario(){
             return new Usuario();
     }
+
+    @ModelAttribute("spin")
+    public Spin verificarSpin(){
+        return new Spin();
+    }
+
+
 
     //ENVIAR A FORMULARIO REGISTRO
     @GetMapping("registro")
@@ -221,6 +225,66 @@ public class UsuarioController {
         registroPasadoRepository.save(registroPasado);
         reservaRepository.delete(r);
         return "redirect:/usuario/perfil";
+    }
+
+    @GetMapping("ruleta")
+    public String cargarRuleta( Model model){
+        List<LocalDate> ListaDias2= new ArrayList<>();
+        Boolean tirada = true;
+
+        if (ListaDias2.contains(LocalDate.now())){
+            tirada = false;
+        }else {
+            tirada = true;
+            ListaDias2.add(LocalDate.now());
+        }
+
+
+        model.addAttribute("tirada", tirada);
+
+        return "/Ruleta.html";
+    }
+
+    @Autowired
+    CuponRepository cuponRepository;
+
+
+    @PostMapping("ruleta")
+    public String guardarRuleta(@ModelAttribute("spin") Spin spin){
+        Cupon cupon = new Cupon();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.usuario;
+
+        Oauth2User oauth2User = null;
+        if (usuario == null) {
+            oauth2User = (Oauth2User) auth.getPrincipal();
+            if (oauth2User != null) {
+                if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                    Usuario insertUser = new Usuario();
+                    insertUser.setNombre(oauth2User.getFullName());
+                    insertUser.setEmail(oauth2User.getEmail());
+                    insertUser.setRol(Rol.usuario);
+                    usuario = usuarioRepository.save(insertUser);
+                    rol = usuario.getRol();
+
+                } else {
+                    usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+
+                }
+            }
+
+
+        }else {
+            rol = usuario.getRol();
+        }
+        cupon.setUsuario(usuario);
+        cupon.setDescripcion(spin.getDescripcion());
+        cupon.setDescuento(spin.getDescuento());
+        cuponRepository.save(cupon);
+
+        return "/Ruleta.html";
+
     }
 }
 

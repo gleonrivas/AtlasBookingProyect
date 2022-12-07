@@ -1,10 +1,8 @@
 package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.Pago;
-import com.app.atlasultimate.model.Hotel;
-import com.app.atlasultimate.model.Registro;
-import com.app.atlasultimate.model.Rol;
-import com.app.atlasultimate.model.Usuario;
+import com.app.atlasultimate.model.*;
+import com.app.atlasultimate.repository.CuponRepository;
 import com.app.atlasultimate.repository.ReservaRepository;
 import com.app.atlasultimate.repository.UsuarioRepository;
 import com.app.atlasultimate.security.Oauth2User;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class HistorialReservaController {
@@ -131,6 +131,9 @@ public class HistorialReservaController {
     }
 
 
+    @Autowired
+    CuponRepository cuponRepository;
+
     @GetMapping("historialEfectivo")
     public String obtenerHistorialReservaEfectivo(@RequestParam(value = "id_hab") Integer idHab,
                                           Model model){
@@ -165,6 +168,8 @@ public class HistorialReservaController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         Registro registro = reservaRepository.findFirstByUsuarioOrderByIdDesc(usuario);
         Integer idHotel = servicioHotel.obtenerIdHotel(idHab);
         Hotel hotel = servicioHotel.obtenerHotelporId(idHotel);

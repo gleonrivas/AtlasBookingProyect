@@ -357,7 +357,6 @@
         <input type="file" name="file" id="file" accept="image/png, image/jpeg, image/jpg"/>
 
     </div>
-
     <div class="container">
         <h2>Ubicación</h2>
         <div class="julieta">
@@ -394,65 +393,61 @@
     <div class="container">
         <h2>Instalaciones y servicios</h2>
         <div>
-            <input class="notmy" type="checkbox" id="multilengua" name="multilengua"
-                   th:field="*{multilengua}"/>
+            <input class="notmy"  type="checkbox" id="multilengua" name="multilengua"  th:field="*{multilengua}"/>
             <label class="form-label" for="multilengua">¿Se habla más de una lengua?</label>
         </div>
         <div>
-            <input class="notmy" type="checkbox" id="accesibilidad" name="accesibilidad"
-                   th:field="*{accesibilidad}"/>
+            <input class="notmy"  type="checkbox" id="accesibilidad" name="accesibilidad"  th:field="*{accesibilidad} "/>
             <label class="form-label" for="accesibilidad">Accesibilidad para silla de ruedas</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="espectaculos" name="espectaculos"  th:field="*{espectaculos}"/>
+            <input class="notmy"   type="checkbox" id="espectaculos" name="espectaculos" th:field="*{espectaculos}" />
             <label class="form-label" for="espectaculos">Espectáculos</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="piscina" name="piscina"  th:field="*{piscina}"/>
+            <input class="notmy"  type="checkbox" id="piscina" name="piscina" th:field="*{piscina}" />
             <label class="form-label" for="piscina">Piscina</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="patioInterior" name="patio"  th:field="*{patio}"/>
+            <input class="notmy"   type="checkbox" id="patioInterior" name="patio" th:field="*{patio}"/>
             <label class="form-label" for="patioInterior">Patio</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="tours" name="tours"  th:field="*{tours}"/>
+            <input class="notmy"  type="checkbox" id="tours" name="tours" th:field="*{tours}" />
             <label class="form-label" for="tours">Tours</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones"
-                   th:field="*{s_habitacion}"/>
+            <input class="notmy" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones" th:field="*{s_habitacion}"/>
             <label class="form-label" for="servicioHabitaciones">Servicio de habitaciones</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="comedor" name="comedor"  th:field="*{comedor}"/>
+            <input class="notmy"  type="checkbox" id="comedor" name="comedor" th:field="*{comedor}"/>
             <label class="form-label" for="comedor">Comedor</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="terraza" name="terraza"  th:field="*{terraza}"/>
+            <input class="notmy"  type="checkbox" id="terraza" name="terraza" th:field="*{terraza}" />
             <label class="form-label" for="terraza">Terraza</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="servicioTransporte" name="servicioTransporte"
-                   th:field="*{s_transporte}"/>
+            <input class="notmy"  type="checkbox" id="servicioTransporte" name="servicioTransporte" th:field="*{s_transporte}" />
             <label class="form-label" for="servicioTransporte">Servicio de transporte</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="aparcamiento" name="aparcamiento"  th:field="*{parking}"/>
+            <input class="notmy" type="checkbox" id="aparcamiento" name="aparcamiento" th:field="*{parking}" />
             <label class="form-label" for="aparcamiento">Parking</label>
         </div>
 
         <div>
-            <input class="notmy" type="checkbox" id="mascotas" name="mascotas"  th:field="*{mascotas}"/>
+            <input class="notmy" type="checkbox" id="mascotas" name="mascotas" th:field="*{mascotas}"/>
             <label class="form-label" for="mascotas">Mascotas</label>
         </div>
 
@@ -460,7 +455,9 @@
 
     <div class="abss">
         <button class="link-buttom" type="submit">Guardar</button>
-        <a class="link-buttom" href="/usuario/inicio">Volver</a>
+        <a th:href="@{/usuario/inicio}">
+            <button class="link-buttom">Volver</button>
+        </a>
     </div>
 
 </form>

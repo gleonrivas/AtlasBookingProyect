@@ -30,4 +30,5 @@ public class RegistroDTO {
     private Integer n_dias;
     private Usuario usuario;
     private Habitacion habitacion;
+    private Integer descuento;
 }

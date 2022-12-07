@@ -85,7 +85,6 @@ public class HotelController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
         Rol rol = Rol.usuario;
-
         Oauth2User oauth2User = null;
         if (usuario == null) {
             oauth2User = (Oauth2User) auth.getPrincipal();
@@ -124,7 +123,6 @@ public class HotelController {
         } catch (IOException e) {
             throw new IOException("No se puede guardar"+ fileName);
         }
-
 
         return "redirect:/hotel/nuevo?exito";
     }

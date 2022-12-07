@@ -347,6 +347,14 @@
                                 th:value="${pago}" th:text="${pago}"></option>
                     </select>
                 </div>
+                <h2>¿Quieres aplicar un descuento?</h2>
+                <div class="small-card" style="margin: 1% auto 5% auto; justify-content: center">
+                    <label for="pago2">Selecciona el Cupon</label>
+                    <select id="pago2" th:field="*{descuento}">
+                        <option th:each="cupon : ${cupones}"
+                                th:value="${cupon.descuento}" th:text="${cupon.descuento}"><span>% de descuento</span></option>
+                    </select>
+                </div>
                 <button class="link-buttom" style="color: white; background-color: black; margin: 0 auto" type="submit">Siguiente</button>
             </form>
         </div>

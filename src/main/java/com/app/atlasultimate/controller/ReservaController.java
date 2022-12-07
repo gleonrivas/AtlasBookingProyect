@@ -46,7 +46,8 @@ public class ReservaController {
     private PensionRepository pensionRepository;
     @Autowired
     private TemporadaRepository temporadaRepository;
-
+    @Autowired
+    private CuponRepository cuponRepository;
 
     @GetMapping("datos")
     public String registroreserva(@ModelAttribute(value = "id_hab") Integer idHab,
@@ -111,6 +112,8 @@ public class ReservaController {
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("tarjeta" ,tipo_pago.tarjeta);
         modelo.addAttribute("efectivo" ,tipo_pago.efectivo);
+        List<Cupon> cupones = cuponRepository.findAllByUsuario(usuario);
+        modelo.addAttribute("cupones", cupones);
 
         if(pension == null){
             return "/reservasSinPension.html";
@@ -193,6 +196,9 @@ public class ReservaController {
             precioFinal = precio + (pension.getMp() * duracion);
         }
         precioFinal = precioFinal * num_personas;
+        if (registroDTO.getDescuento()!=null){
+            precioFinal = precioFinal * registroDTO.getDescuento() /100;
+        }
         Integer num_codigo = 0;
         if (reservaRepository.ultimoRegistro() == null){
             num_codigo = 0;

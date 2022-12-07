@@ -49,5 +49,9 @@ public interface ReservaRepository  extends JpaRepository< Registro,Integer> {
 
     @Query(value = "UPDATE registro SET activa = 1 WHERE id = :id", nativeQuery = true)
     Registro updateById(@Param("id") Integer id);
+    @Query(value = "UPDATE registro SET precio_total_dias = :precio WHERE id = :id", nativeQuery = true)
+    Registro updateByIdPrecio(@Param("precio")Double precio, @Param("id") Integer id);
+
+
 
 }
