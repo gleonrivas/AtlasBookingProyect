@@ -339,7 +339,7 @@
                     <label for="pension">Selecciona el tipo de pension</label>
                     <select id="pension" th:field="*{t_pension}">
                         <option th:each="pension : ${T(com.app.atlasultimate.model.tipo_pension).values()}"
-                                th:value="${pension}" th:text="${pension}"></option>
+                                th:value="${pension}" th:text="${pension.displayValue}"></option>
                     </select>
                 </div>
 
