@@ -130,4 +130,91 @@ public class HistorialReservaController {
 
     }
 
+
+    @GetMapping("historialEfectivo")
+    public String obtenerHistorialReservaEfectivo(@RequestParam(value = "id_hab") Integer idHab,
+                                          Model model){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.anonimo;
+        Oauth2User oauth2User = null;
+        try {
+            if (usuario == null) {
+                oauth2User = (Oauth2User) auth.getPrincipal();
+                if (oauth2User != null) {
+                    if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                        Usuario insertUser = new Usuario();
+                        insertUser.setNombre(oauth2User.getFullName());
+                        insertUser.setEmail(oauth2User.getEmail());
+                        insertUser.setRol(Rol.usuario);
+                        usuario = usuarioRepository.save(insertUser);
+                        rol = usuario.getRol();
+
+                    } else {
+                        usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+                        rol = usuario.getRol();
+
+                    }
+                }
+
+
+            }else {
+                rol = usuario.getRol();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Registro registro = reservaRepository.findFirstByUsuarioOrderByIdDesc(usuario);
+        Integer idHotel = servicioHotel.obtenerIdHotel(idHab);
+        Hotel hotel = servicioHotel.obtenerHotelporId(idHotel);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("hotel", hotel);
+        model.addAttribute("registro" ,registro);
+        return "/HistorialReservaEfectivo.html";
+
+    }
+
+
+
+    @PostMapping("historialEfectivo")
+    public String aceptarReservaEfectivo(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.anonimo;
+        Oauth2User oauth2User = null;
+        try {
+            if (usuario == null) {
+                oauth2User = (Oauth2User) auth.getPrincipal();
+                if (oauth2User != null) {
+                    if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                        Usuario insertUser = new Usuario();
+                        insertUser.setNombre(oauth2User.getFullName());
+                        insertUser.setEmail(oauth2User.getEmail());
+                        insertUser.setRol(Rol.usuario);
+                        usuario = usuarioRepository.save(insertUser);
+                        rol = usuario.getRol();
+
+                    } else {
+                        usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+                        rol = usuario.getRol();
+
+                    }
+                }
+
+
+            }else {
+                rol = usuario.getRol();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Registro registro = reservaRepository.findFirstByUsuarioOrderByIdDesc(usuario);
+        reservaRepository.updateById(registro.getId());
+        return "/exitoReserva.html";
+
+
+    }
+
 }

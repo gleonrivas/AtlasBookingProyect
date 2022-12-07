@@ -216,8 +216,14 @@ public class ReservaController {
         CambiarReservasInactivas();
 
         reservaRepository.save(registroFinal);
-        return "redirect:/historial?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
+        if (registroFinal.getT_pago().equals(tipo_pago.tarjeta)){
+            return "redirect:/historial?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
+
+        }else {
+            return "redirect:/historialEfectivo?id_hab=" + idHab + "&" + "fecha_inicio=" + fechaInicio + "&" + "fecha_fin=" + fechaFin + "&" + "num_personas=" + num_personas;
+
         }
+    }
 
 
 
