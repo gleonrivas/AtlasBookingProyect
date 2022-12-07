@@ -419,10 +419,10 @@
 <header class="mainh">
 
     <div class="lheader">
+        <a sec:authorize="isAnonymous()" style="color: transparent" href="#">Descubre</a>
         <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/}">Descubre</a>
         <a th:href="@{/}">Buscar destino</a>
-        <a sec:authorize="hasAuthority('usuario')"th:href="@{/}">Descubre</a>
-        <a sec:authorize="isAnonymous()" th:href="@{/}">Descubre</a>
     </div>
 
     <div class="cheader">
