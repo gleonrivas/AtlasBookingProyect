@@ -295,6 +295,26 @@
 <header class="mainh">
 
     <div class="lheader">
+        <a sec:authorize="hasAuthority('usuario')"  th:href="@{/usuario/ruleta}">Prueba suerte</a>
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
+        <a th:href="@{/}">Buscar destino</a>
+    </div>
+
+    <div class="cheader">
+        <h1>Atlas</h1>
+        <p>BOOKING</p>
+    </div>
+
+    <div class="lheader">
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+    </div>
+
+</header>
+
+    <div class="lheader">
         <a sec:authorize="isAnonymous()" style="color: transparent" href="#">Descubre</a>
         <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
         <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
