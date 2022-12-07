@@ -28,7 +28,7 @@
         position: relative;
         width: 500px;
         height: 500px;
-        margin-top: 50px;
+
     }
 
     .mainbox:after{
@@ -216,6 +216,30 @@
     audio{
         display: none;
     }
+    .button {
+        min-width: 130px;
+        height: 40px;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border-radius: 5px;
+        border: none;
+        background: #3d348b;
+        box-shadow: 0 5px #2c0b8e;
+    }
+    .button:hover {
+        box-shadow: 0 3px #2c0b8e;
+        top: 1px;
+    }
+    .button:active {
+        box-shadow: 0 0 #2c0b8e;
+        top: 5px;
+    }
 
     @keyframes animateArrow {
         50%{
@@ -247,6 +271,10 @@
     <form method="post" th:object="${spin}" id="formularioRuleta">
         <input type="hidden" id="ruleta" th:field="*{descuento}">
     </form>
+    <br>
+    <div style="display: flex; justify-content: center;width: 100%">
+        <a th:href="@{/}"><button class="button">Volver</button></a>
+    </div>
 </div>
 <audio
 controls="controls"
