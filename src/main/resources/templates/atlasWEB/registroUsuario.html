@@ -326,8 +326,18 @@
             </div>
             <div class="componente-registro">
                 <label class="parform" for="rol">Rol</label>
-                <input class="parform"  type="text" id="rol"  th:field="*{rol}"/>
-                <!--<select name="selectorRol" class="selector" id="rol"  th:field="*{rol}">
+
+
+                <input class="parform"  type="text" id="rol"  th:field="*{rol}" placeholder="usuario o administrador"/>
+
+                <!-- <select name="selectorRol" class="selector" id="rol"  th:field="*{rol}">
+                    <option th:each="rol : ${T(com.app.atlasultimate.model.Rol).values()}"
+                            th:value="${rol}" th:text="${rol}"></option>
+                </select>
+
+
+
+                <select name="selectorRol" class="selector" id="rol"  th:field="*{rol}">
                     <option value="0">usuario</option>
                     <option value="1">administrador</option>
                 </select>-->
