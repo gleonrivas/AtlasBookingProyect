@@ -175,6 +175,7 @@ public class ReservaController {
             e.printStackTrace();
         }
 
+        Double descuento =  registroDTO.getDescuento().doubleValue() /100;
 
         Double precioFinal = 0.0;
         if (pension==null){
@@ -197,7 +198,9 @@ public class ReservaController {
         }
         precioFinal = precioFinal * num_personas;
         if (registroDTO.getDescuento()!=null){
-            precioFinal = precioFinal * registroDTO.getDescuento() /100;
+            Double restar = precioFinal * descuento;
+            precioFinal = precioFinal - restar;
+
         }
         Integer num_codigo = 0;
         if (reservaRepository.ultimoRegistro() == null){
