@@ -84,9 +84,9 @@ public class UsuarioController {
             return new Usuario();
     }
 
-    @ModelAttribute("spin")
-    public Spin verificarSpin(){
-        return new Spin();
+    @ModelAttribute("cupon")
+    public Cupon verificarSpin(){
+        return new Cupon();
     }
 
 
@@ -229,14 +229,43 @@ public class UsuarioController {
 
     @GetMapping("ruleta")
     public String cargarRuleta( Model model){
-        List<LocalDate> ListaDias2= new ArrayList<>();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.usuario;
+
+        Oauth2User oauth2User = null;
+        if (usuario == null) {
+            oauth2User = (Oauth2User) auth.getPrincipal();
+            if (oauth2User != null) {
+                if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                    Usuario insertUser = new Usuario();
+                    insertUser.setNombre(oauth2User.getFullName());
+                    insertUser.setEmail(oauth2User.getEmail());
+                    insertUser.setRol(Rol.usuario);
+                    usuario = usuarioRepository.save(insertUser);
+                    rol = usuario.getRol();
+
+                } else {
+                    usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+
+                }
+            }
+
+
+        }else {
+            rol = usuario.getRol();
+        }
+        List<Cupon> listaCupones = cuponRepository.findByFechaAndUsuario(usuario.getId(), java.sql.Date.valueOf(LocalDate.now()));
         Boolean tirada = true;
 
-        if (ListaDias2.contains(LocalDate.now())){
+        if (listaCupones.contains(java.sql.Date.valueOf(LocalDate.now()))){
             tirada = false;
         }else {
-            tirada = true;
-            ListaDias2.add(LocalDate.now());
+            if (listaCupones.isEmpty()){
+                tirada = true;
+            } else {
+                tirada = false;
+            }
         }
 
 
@@ -250,7 +279,7 @@ public class UsuarioController {
 
 
     @PostMapping("ruleta")
-    public String guardarRuleta(@ModelAttribute("spin") Spin spin){
+    public String guardarRuleta(@ModelAttribute("cupon") Cupon cuponDTO){
         Cupon cupon = new Cupon();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
@@ -278,9 +307,11 @@ public class UsuarioController {
         }else {
             rol = usuario.getRol();
         }
+
         cupon.setUsuario(usuario);
-        cupon.setDescripcion(spin.getDescripcion());
-        cupon.setDescuento(spin.getDescuento());
+        cupon.setDescuento(cuponDTO.getDescuento());
+        cupon.setActivo(cuponDTO.getActivo());
+        cupon.setFecha_conseguido(java.sql.Date.valueOf(LocalDate.now()).toString());
         cuponRepository.save(cupon);
 
         return "/Ruleta.html";

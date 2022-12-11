@@ -259,9 +259,9 @@
 <header class="mainh">
 
   <div class="lheader">
-    <a sec:authorize="hasAuthority('usuario')"  th:href="@{/usuario/ruleta}">Prueba suerte</a>
-    <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
-    <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
+    <a th:if="${rol} == 'usuario'"  th:href="@{/usuario/ruleta}">Prueba suerte</a>
+    <a th:if="${rol} == 'administrador'" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+    <a th:if="${rol} == 'usuario'" th:href="@{/descubre}">Descubre</a>
     <a th:href="@{/}">Buscar destino</a>
   </div>
 
