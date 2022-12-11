@@ -112,7 +112,7 @@ public class ReservaController {
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("tarjeta" ,tipo_pago.tarjeta);
         modelo.addAttribute("efectivo" ,tipo_pago.efectivo);
-        List<Cupon> cupones = cuponRepository.findAllByUsuario(usuario);
+        List<Cupon> cupones = cuponRepository.findByActivoAndUsuario(usuario.getId(), true);
         modelo.addAttribute("cupones", cupones);
 
         if(pension == null){
@@ -196,8 +196,10 @@ public class ReservaController {
             precioFinal = precio + (pension.getMp() * duracion);
         }
         precioFinal = precioFinal * num_personas;
+
         if (registroDTO.getDescuento()!=null){
             precioFinal = precioFinal * registroDTO.getDescuento() /100;
+            cuponRepository.updateCuponActivo(false, usuario.getId(), registroDTO.getDescuento());
         }
         Integer num_codigo = 0;
         if (reservaRepository.ultimoRegistro() == null){

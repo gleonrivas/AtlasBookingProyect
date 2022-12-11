@@ -268,8 +268,9 @@
         </div>
     </div>
     <button class="spin" onclick="spin()">GIRA</button>
-    <form method="post" th:object="${spin}" id="formularioRuleta">
+    <form method="post" th:object="${cupon}" id="formularioRuleta">
         <input type="hidden" id="ruleta" th:field="*{descuento}">
+        <input type="hidden" id="activo" th:field="*{activo}">
     </form>
     <br>
     <div style="display: flex; justify-content: center;width: 100%">
@@ -350,8 +351,10 @@ src="/static/audio/ruleta.mp3">
                     imageHeight: 150,
                     imageAlt: 'Custom image',
                 });
-
+                const d = Date.now();
+                let text = d.toString();
                 document.getElementById("ruleta").value = SelectedItem;
+                document.getElementById("activo").value = true;
 
             },8500 )
 
