@@ -2,11 +2,17 @@ package com.app.atlasultimate.controller;
 
 import com.app.atlasultimate.controller.DTO.HotelBusquedaDTO;
 import com.app.atlasultimate.model.Hotel;
+import com.app.atlasultimate.model.Rol;
+import com.app.atlasultimate.model.Usuario;
 import com.app.atlasultimate.repository.HotelRepository;
+import com.app.atlasultimate.repository.UsuarioRepository;
+import com.app.atlasultimate.security.Oauth2User;
 import com.app.atlasultimate.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +40,9 @@ public class MyController {
     @Autowired
     private HotelService hotelService;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
 
     @ModelAttribute("hotel")
     public HotelBusquedaDTO devolverNuevoHotelDTO() {
@@ -42,8 +51,38 @@ public class MyController {
 
     @GetMapping("")
     public String index(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findTopByEmail(auth.getName());
+        Rol rol = Rol.anonimo;
+        Oauth2User oauth2User = null;
+        try {
+            if (usuario == null) {
+                oauth2User = (Oauth2User) auth.getPrincipal();
+                if (oauth2User != null) {
+                    if (usuarioRepository.findTopByEmail(oauth2User.getEmail()) == null) {
+                        Usuario insertUser = new Usuario();
+                        insertUser.setNombre(oauth2User.getFullName());
+                        insertUser.setEmail(oauth2User.getEmail());
+                        insertUser.setRol(Rol.usuario);
+                        usuario = usuarioRepository.save(insertUser);
+                        rol = usuario.getRol();
+
+                    } else {
+                        usuario = usuarioRepository.findTopByEmail(oauth2User.getEmail());
+                        rol = usuario.getRol();
+
+                    }
+                }
 
 
+            }else {
+                rol = usuario.getRol();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("rol", rol.toString());
         String fecha = LocalDate.now().toString();
         String fecha2 = LocalDate.now().plusDays(1).toString();
         model.addAttribute("fecha", fecha);

@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/usuario/inicio/**").hasAuthority(Rol.administrador.toString())
-                .antMatchers("/usuario/ruleta/**").hasAuthority(Rol.usuario.toString())
+                .antMatchers("/usuario/ruleta/**").permitAll()
                 .antMatchers("/hotel/habitacion/").hasAuthority(Rol.administrador.toString())
                 .antMatchers("/hotel/nuevo").hasAuthority(Rol.administrador.toString())
                 .antMatchers("/hotel/editar").hasAuthority(Rol.administrador.toString())
