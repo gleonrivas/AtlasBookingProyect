@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas Booking</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+    img{
+        width: 50%;
+        height: 400px;
+        margin-left: 25%;
+    }
+    button {
+        min-width: 130px;
+        height: 40px;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border-radius: 5px;
+        border: none;
+        background: #3d348b;
+        box-shadow: 0 5px #2c0b8e;
+    }
+    button:hover {
+        box-shadow: 0 3px #2c0b8e;
+        top: 1px;
+    }
+    button:active {
+        box-shadow: 0 0 #2c0b8e;
+        top: 5px;
+    }
+    h1{
+        animation: rebota 1s alternate infinite ease-in;
+    }
+
+
+    @keyframes rebota{
+
+        100%{
+            transform: translateY(10px);
+
+        }
+    }
+
+</style>
+<body>
+    <h1>¡ Lo sentimos !</h1>
+    <h2>no disponemos de un hotel que corresponda con su busqueda</h2>
+    <img src="https://static.vecteezy.com/system/resources/previews/003/510/881/non_2x/world-map-continuous-one-line-drawing-of-world-atlas-minimalist-illustration-design-on-white-background-isolated-simple-line-modern-graphic-style-hand-drawn-graphic-concept-for-education-vector.jpg" alt="">
+    <a th:href="@{/}"><button>Volver</button></a>
+</body>
+</html>

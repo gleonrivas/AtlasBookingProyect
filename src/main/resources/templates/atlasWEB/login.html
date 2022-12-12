@@ -1,32 +1,372 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Atlas Booking</title>
-    <link rel="stylesheet" href="/styles/sesion.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inicio de sesión</title>
 </head>
 <body>
 
-<div class="colunm-content">
-    <div class="barra">
-        <div class="colunm-content">
-            <h1>Atlas</h1>
-            <p style="margin: 0 auto">BOOKING</p>
-        </div>
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 10px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial,sans-serif;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-position: center;
+        background-size: cover;
+        background-image: url("https://www.xtrafondos.com/wallpapers/torre-en-ciudad-frente-al-mar-10648.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: Arial, sans-serif;
+    }
+    body::-webkit-scrollbar{
+        display: none;
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* LOGIN-BOX Y HEREDEROS ------------------------*/
+    .colunm-registro{
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        margin: 8% auto;
+        justify-content: center;
+        align-items: center;
+        padding: 29px;
+        background-color: rgba(255, 255, 255, 0.62);
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        box-shadow: 0 20px 70px rgba(0, 0, 0, 0.73);
+
+    }
+    .colunm-registro >a{
+        padding-top: 10px;
+    }
+    .box-input{
+        display: flex;
+        flex-wrap: wrap;
+        width: 250px;
+        flex-direction: column;
+        margin: auto auto 30px auto;
+    }
+    .box-input > label{
+        width: auto;
+        margin-bottom: 5px;
+    }
+    .titulo{
+        margin: 20px;
+        font-family: 'PT Sans', sans-serif;
+        font-size: 40px;
+    }
+    input{
+        width: 240px;
+        height: 30px;
+        margin: 0;
+        padding: 0 2% 0 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 15px;
+    }
+    .boton{
+        display: flex;
+        width: 200px;
+        max-width: 200px;
+        height: 45px;
+        max-height: 45px;
+        border-radius: 15px;
+        border-style: none;
+        padding: 0;
+        font-size: 14px;
+        margin: 5px  20px ;
+        background-color: #000000;
+        color: white;
+        justify-content: space-around;
+    }
+    /* LOGIN-BOX Y HEREDEROS ------------------------*/
+
+    .error{
+        left: 0;
+        right: 0;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: max-content;
+        margin: -40% auto 0 auto;
+
+    }
+    .error > p{
+        background-color: #f9f3ff;
+        width: max-content;
+        margin: auto 5px;
+        padding: 20px;
+        color: #ff0000;
+        text-align: center;
+        font-size: 15px;
+        border-radius: 20px;
+    }
+
+    .google-btn {
+        width: 184px;
+        height: 42px;
+        background-color: blue;
+        border-radius: 2px;
+        box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+    }
+    .google-icon-wrapper {
+        position: absolute;
+        margin-top: 1px;
+        margin-left: 1px;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background-color: white;
+    }
+    .google-icon {
+        position: absolute;
+        margin-top: 11px;
+        margin-left: 11px;
+        width: 18px;
+        height: 18px;
+    }
+    .btn-text {
+        float: right;
+        margin: 11px 11px 0 0;
+        color: white;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+        font-family: "Roboto";
+    }
+
+</style>
+
+<header class="mainh">
+
+    <div class="lheader">
+        <a sec:authorize="hasAuthority('usuario')"  th:href="@{/usuario/ruleta}">Prueba suerte</a>
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
+        <a th:href="@{/}">Buscar destino</a>
     </div>
-    <div class="contenedor">
-        <div class="row-content">
-            <form th:action="@{/log}" method="post" class="colunm-registro">
-                <h2 class="titulo">Inicia Sesión</h2>
-                <label class="label" for="correo">Email</label>
-                <input class="imput" type="text" name="email" id="correo" th:field="*{email}" required autofocus="autofocus"/>
-                <label for="contrasena">Introduce tu contraseña</label>
-                <input class="imput" type="password" name="contrasena" id="contrasena" th:field="*{contrasena}" required autofocus="autofocus"/>
-                <button class="boton" type ="submit" >siguiente</button>
-            </form>
-        </div>
+
+    <div class="cheader">
+        <h1>Atlas</h1>
+        <p>BOOKING</p>
     </div>
+
+    <div class="lheader">
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+    </div>
+
+</header>
+
+
+<div class="error" th:if="${error}">
+    <p>🚫 Usuario o contraseña erroneos</p>
 </div>
+
+
+
+<div class="contenedor">
+
+    <form th:action="@{/login}" method="post" class="colunm-registro" >
+        <h2 class="titulo">Inicia Sesión</h2>
+        <div class="box-input">
+            <label class="label" for="username">Email</label>
+            <input type="text" name="username" id="username"  required autofocus="autofocus"/>
+        </div>
+        <div class="box-input">
+            <label for="password">Introduce tu contraseña</label>
+            <input type="password" name="password" id="password"  required autofocus="autofocus"/>
+        </div>
+        <button class="boton" type ="submit" ><p style="height: max-content; margin: auto">Entrar</p></button>
+
+        <div class="boton" style="background-color: white; color: black">
+            <div style="margin: auto 0 auto auto; height: 24px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+            </div>
+            <a style="height: max-content; width: max-content; margin: auto; text-decoration: none; color: black" th:href="@{/oauth2/authorization/google}">Accede con google</a>
+        </div>
+
+        <a th:href="@{/usuario/registro}">¿No tienes cuenta?, Regístrate</a>
+
+    </form>
+</div>
+
+<footer class="lasth">
+
+    <div class="promote-hotel" sec:authorize="isAnonymous()">
+        <p>Forma parte de nosotros</p>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" th:href="@{/usuario/registro}">Registra tus alojamientos</button>
+        </form>
+    </div>
+
+    <div class="middle-footer">
+        <div class="cheader">
+            <h1>Atlas</h1>
+            <p>BOOKING</p>
+        </div>
+        <div class="nets">
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTExLjUsNmMtMy4wMTk3NywwIC01LjUsMi40ODAyMyAtNS41LDUuNXYyNWMwLDMuMDE5NzcgMi40ODAyMyw1LjUgNS41LDUuNWgyNWMzLjAxOTc3LDAgNS41LC0yLjQ4MDIzIDUuNSwtNS41di0yNWMwLC0zLjAxOTc3IC0yLjQ4MDIzLC01LjUgLTUuNSwtNS41ek0xMS41LDloMjVjMS4zOTgyMywwIDIuNSwxLjEwMTc3IDIuNSwyLjV2MjVjMCwxLjM5ODIzIC0xLjEwMTc3LDIuNSAtMi41LDIuNWgtNi41di0xMGgzLjYyNWMwLjUwNCwwIDAuOTMwMTksLTAuMzc2OTUgMC45OTIxOSwtMC44NzY5NWwwLjM3NSwtM2MwLjAzNiwtMC4yODQgLTAuMDU0MTQsLTAuNTY5MTYgLTAuMjQ0MTQsLTAuNzg1MTZjLTAuMTg5LC0wLjIxNSAtMC40NjEwNSwtMC4zMzc4OSAtMC43NDgwNSwtMC4zMzc4OWgtNHYtMy41YzAsLTEuMTAzIDAuODk3LC0yIDIsLTJoMmMwLjU1MiwwIDEsLTAuNDQ3IDEsLTF2LTMuMzc1YzAsLTAuNTE4IC0wLjM5NTE2LC0wLjk1MDA5IC0wLjkxMDE2LC0wLjk5NjA5Yy0wLjA1OSwtMC4wMDUgLTEuNDY5ODYsLTAuMTI4OTEgLTMuMjU1ODYsLTAuMTI4OTFjLTQuNDA3LDAgLTYuODMzOTgsMi42MTYxOSAtNi44MzM5OCw3LjM2NzE5djMuNjMyODFoLTRjLTAuNTUyLDAgLTEsMC40NDcgLTEsMXYzYzAsMC41NTMgMC40NDgsMSAxLDFoNHYxMGgtMTIuNWMtMS4zOTgyMywwIC0yLjUsLTEuMTAxNzcgLTIuNSwtMi41di0yNWMwLC0xLjM5ODIzIDEuMTAxNzcsLTIuNSAyLjUsLTIuNXoiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTE2LjUsNWMtNi4zMzM2MSwwIC0xMS41LDUuMTY2MzkgLTExLjUsMTEuNXYxNWMwLDYuMzMyNzYgNS4xNjYyMSwxMS41IDExLjUsMTEuNWgxNWM2LjMzMjk0LDAgMTEuNSwtNS4xNjcwNiAxMS41LC0xMS41di0xNWMwLC02LjMzMzc5IC01LjE2NzI0LC0xMS41IC0xMS41LC0xMS41ek0xNi41LDhoMTVjNC43MTEyNCwwIDguNSwzLjc4Nzc5IDguNSw4LjV2MTVjMCw0LjcxMTA2IC0zLjc4ODk0LDguNSAtOC41LDguNWgtMTVjLTQuNzEyMjEsMCAtOC41LC0zLjc4ODc2IC04LjUsLTguNXYtMTVjMCwtNC43MTIzOSAzLjc4NzYxLC04LjUgOC41LC04LjV6TTM0LDEyYy0xLjEwNSwwIC0yLDAuODk1IC0yLDJjMCwxLjEwNSAwLjg5NSwyIDIsMmMxLjEwNSwwIDIsLTAuODk1IDIsLTJjMCwtMS4xMDUgLTAuODk1LC0yIC0yLC0yek0yNCwxNGMtNS41MDQ4MiwwIC0xMCw0LjQ5NTE4IC0xMCwxMGMwLDUuNTA0ODIgNC40OTUxOCwxMCAxMCwxMGM1LjUwNDgyLDAgMTAsLTQuNDk1MTggMTAsLTEwYzAsLTUuNTA0ODIgLTQuNDk1MTgsLTEwIC0xMCwtMTB6TTI0LDE3YzMuODgzMTgsMCA3LDMuMTE2ODIgNyw3YzAsMy44ODMxOCAtMy4xMTY4Miw3IC03LDdjLTMuODgzMTgsMCAtNywtMy4xMTY4MiAtNywtN2MwLC0zLjg4MzE4IDMuMTE2ODIsLTcgNywtN3oiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjQiIGhlaWdodD0iMjQiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTAuNjY2NjcsMTAuNjY2NjcpIj48cGF0aCBkPSJNMjIsMy45OTljLTAuNzgsMC40NjMgLTIuMzQ1LDEuMDk0IC0zLjI2NSwxLjI3NmMtMC4wMjcsMC4wMDcgLTAuMDQ5LDAuMDE2IC0wLjA3NSwwLjAyM2MtMC44MTMsLTAuODAyIC0xLjkyNywtMS4yOTkgLTMuMTYsLTEuMjk5Yy0yLjQ4NSwwIC00LjUsMi4wMTUgLTQuNSw0LjVjMCwwLjEzMSAtMC4wMTEsMC4zNzIgMCwwLjVjLTMuMzUzLDAgLTUuOTA1LC0xLjc1NiAtNy43MzUsLTRjLTAuMTk5LDAuNSAtMC4yODYsMS4yOSAtMC4yODYsMi4wMzJjMCwxLjQwMSAxLjA5NSwyLjc3NyAyLjgsMy42M2MtMC4zMTQsMC4wODEgLTAuNjYsMC4xMzkgLTEuMDIsMC4xMzljLTAuNTgxLDAgLTEuMTk2LC0wLjE1MyAtMS43NTksLTAuNjE3YzAsMC4wMTcgMCwwLjAzMyAwLDAuMDUxYzAsMS45NTggMi4wNzgsMy4yOTEgMy45MjYsMy42NjJjLTAuMzc1LDAuMjIxIC0xLjEzMSwwLjI0MyAtMS41LDAuMjQzYy0wLjI2LDAgLTEuMTgsLTAuMTE5IC0xLjQyNiwtMC4xNjVjMC41MTQsMS42MDUgMi4zNjgsMi41MDcgNC4xMzUsMi41MzljLTEuMzgyLDEuMDg0IC0yLjM0MSwxLjQ4NiAtNS4xNzEsMS40ODZoLTAuOTY0YzEuNzg4LDEuMTQ2IDQuMDY1LDIuMDAxIDYuMzQ3LDIuMDAxYzcuNDMsMCAxMS42NTMsLTUuNjYzIDExLjY1MywtMTEuMDAxYzAsLTAuMDg2IC0wLjAwMiwtMC4yNjYgLTAuMDA1LC0wLjQ0N2MwLC0wLjAxOCAwLjAwNSwtMC4wMzUgMC4wMDUsLTAuMDUzYzAsLTAuMDI3IC0wLjAwOCwtMC4wNTMgLTAuMDA4LC0wLjA4Yy0wLjAwMywtMC4xMzYgLTAuMDA2LC0wLjI2MyAtMC4wMDksLTAuMzI5YzAuNzksLTAuNTcgMS40NzUsLTEuMjgxIDIuMDE3LC0yLjA5MWMtMC43MjUsMC4zMjIgLTEuNTAzLDAuNTM4IC0yLjMyLDAuNjM2YzAuODM0LC0wLjUgMi4wMTksLTEuNjkyIDIuMzIsLTIuNjM2ek0xOCw4Ljk5OWMwLDQuMDggLTIuOTU3LDguMzk5IC04LjQ2Niw4Ljk0M2MwLjc0NiwtMC41MjkgMS40NjYsLTEuMjggMS40NjYsLTEuMjhjMCwwIC0zLC0yLjY2MiAtMy4yMjUsLTYuMTRjMS4wMzUsMC4zMTYgMi4xMTMsMC40NzcgMy4yMjUsMC40NzdoMnYtMi41YzAsLTAuMDAxIDAsLTAuMDAxIDAsLTAuMDAxYzAuMDAyLC0xLjM4IDEuMTIsLTIuNDk4IDIuNSwtMi40OThjMS4zODEsMCAyLjUsMS4xMTkgMi41LDIuNWMwLDAgMCwwLjQyIDAsMC40OTl6Ij48L3BhdGg+PC9nPjwvZz4KPC9zdmc+"/>
+        </div>
+        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="#">Comunidad.</a>
+        <a href="#">Sobre nosotros.</a>
+        <a href="#">Uso de cookies.</a>
+        <a href="#">Politica de privacidad.</a>
+        <a href="#">Condiciones de uso.</a>
+    </div>
+
+</footer>
+
 </body>
 </html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas Booking</title>
+</head>
+<body>
+<form class="formulario" name="form" th:action="@{/review/comentario}" th:object="${review}" method="post">
+  <div class="componente-registro">
+    <label class="parform" for="comentario">Comentario</label>
+    <input class="parform" type="text" name="comentario" id="comentario"  th:field="*{comentario}"/>
+  </div>
+  <div class="componente-registro">
+    <label class="parform" for="estrellas">Estrellas</label>
+    <input class="parform" type="number" name="estrellas" id="estrellas"  th:field="*{estrellas}" />
+  </div>
+
+  <button class="submit" type ="submit" text="Siguiente">Siguiente</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas Booking</title>
+</head>
+<body class="images-container">
+
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh {
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+
+    .cheader {
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+
+    .cheader > h1 {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+
+    .cheader > p {
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 10px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .lheader {
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+
+    .lheader > a {
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+
+    .link-buttom {
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+
+    .login-singup > a {
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        background-color: #e5dbdb;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='church-on-sunday' fill='%23ac9292' fill-opacity='0.23'%3E%3Cpath d='M77.17 0H80v2.83l-.1.1A39.9 39.9 0 0 1 74.64 20a39.9 39.9 0 0 1 5.24 17.06l.11.11v2.89c-.01 6.9-1.8 13.79-5.35 19.94A39.96 39.96 0 0 1 80 79.94V80h-2.83L66.84 69.66a39.83 39.83 0 0 1-24.1 10.25l.09.09h-5.66l.1-.1c-8.7-.58-17.22-4-24.1-10.23L2.82 80H0V79.94c.01-6.9 1.8-13.8 5.35-19.94A39.96 39.96 0 0 1 0 40.06V37.17l.1-.1A39.9 39.9 0 0 1 5.36 20 39.9 39.9 0 0 1 .1 2.94L0 2.83V0h2.83l-.1.1a39.83 39.83 0 0 1 24.1 10.24L37.18 0H40c0 6.92-1.78 13.83-5.35 20A39.96 39.96 0 0 1 40 40c0-6.92 1.78-13.83 5.35-20A39.96 39.96 0 0 1 40 0h2.83l10.33 10.34A39.83 39.83 0 0 1 77.26.09L77.17 0zm.77 77.94c-.3-5.52-1.8-11-4.49-16a40.18 40.18 0 0 1-5.17 6.34l9.66 9.66zm-12.52-9.7l-6.83-6.83-5.46 5.46-1.41 1.41-9.66 9.66c8.4-.45 16.69-3.68 23.36-9.7zm-23.07 6.58l7.99-7.98a40.05 40.05 0 0 1-3.79-4.9 37.88 37.88 0 0 0-4.2 12.88zM47.68 60a37.98 37.98 0 0 0 4.07 5.42L57.17 60l-5.42-5.42A38 38 0 0 0 47.68 60zm2.66-6.84a40.06 40.06 0 0 0-3.79 4.9 37.88 37.88 0 0 1-4.2-12.88l7.99 7.98zm1.38-1.44l1.41 1.41 5.46 5.46 6.83-6.84a37.85 37.85 0 0 0-23.36-9.7l9.66 9.67zM60 60l6.87 6.87A38.1 38.1 0 0 0 72.32 60a38.11 38.11 0 0 0-5.45-6.87L60 60zm-14.65 0a39.9 39.9 0 0 0-5.24 17.06l-.11.11-.1-.1A39.9 39.9 0 0 0 34.64 60a39.9 39.9 0 0 0 5.24-17.06l.11-.11.1.1A39.9 39.9 0 0 0 45.36 60zm9.23-48.25a37.85 37.85 0 0 1 23.36-9.7l-9.66 9.67-1.41 1.41-5.46 5.46-6.83-6.84zm13.67 13.67L62.83 20l5.42-5.42A38 38 0 0 1 72.32 20a37.98 37.98 0 0 1-4.07 5.42zm5.2-3.47a40.05 40.05 0 0 1-3.79 4.89l7.99 7.98c-.61-4.45-2.01-8.82-4.2-12.87zm-6.58 4.92l1.41 1.41 9.66 9.66a37.85 37.85 0 0 1-23.36-9.7l6.83-6.83 5.46 5.46zM53.13 13.13L60 20l-6.87 6.87A38.11 38.11 0 0 1 47.68 20a38.1 38.1 0 0 1 5.45-6.87zm-1.41-1.41l-9.66-9.66c.3 5.52 1.8 11 4.49 16a40.18 40.18 0 0 1 5.17-6.34zm-9.66 26.22c.3-5.52 1.8-11 4.49-16a40.18 40.18 0 0 0 5.17 6.34l-9.66 9.66zm26.22 13.78l9.66-9.66c-.3 5.52-1.8 11-4.49 16a40.18 40.18 0 0 0-5.17-6.34zm8.98-11.81L66.84 50.34a39.83 39.83 0 0 0-24.1-10.25l10.42-10.43a39.83 39.83 0 0 0 24.1 10.25zm-7.6-26.75a40.06 40.06 0 0 1 3.79 4.9 37.88 37.88 0 0 0 4.2-12.88l-7.99 7.98zm-31.72 28.9c-8.4.45-16.69 3.68-23.36 9.7l6.83 6.83 5.46-5.46 1.41-1.41 9.66-9.66zM22.83 60l5.42 5.42c1.54-1.7 2.9-3.52 4.07-5.42a38 38 0 0 0-4.07-5.42L22.83 60zm5.45 8.28l-1.41-1.41-5.46-5.46-6.83 6.84a37.85 37.85 0 0 0 23.36 9.7l-9.66-9.67zm9.37 6.54l-7.99-7.98a40.05 40.05 0 0 0 3.79-4.9 37.88 37.88 0 0 1 4.2 12.88zM20 60l-6.87-6.87A38.11 38.11 0 0 0 7.68 60a38.11 38.11 0 0 0 5.45 6.87L20 60zm17.26-19.9L26.84 29.65a39.83 39.83 0 0 1-24.1 10.25l10.42 10.43a39.83 39.83 0 0 1 24.1-10.25zm-35.2 1.96l9.66 9.66a40.18 40.18 0 0 0-5.17 6.33c-2.7-5-4.2-10.47-4.5-16zm4.49 19.89c-2.7 5-4.2 10.47-4.5 16l9.67-9.67a40.18 40.18 0 0 1-5.17-6.33zm31.1-16.77c-.61 4.45-2.01 8.82-4.2 12.87a40.06 40.06 0 0 0-3.79-4.89l7.99-7.98zm-4.2-23.23c2.7 5 4.2 10.47 4.5 16l-9.67-9.67c1.97-1.97 3.7-4.1 5.17-6.33zm-14.86-.54l6.83 6.84a37.85 37.85 0 0 1-23.36 9.7l9.66-9.67 1.41-1.41 5.46-5.46zm-8.25 5.43l-7.99 7.98c.61-4.45 2.01-8.82 4.2-12.87a40.04 40.04 0 0 0 3.79 4.89zm1.41-1.42A37.99 37.99 0 0 1 7.68 20a38 38 0 0 1 4.07-5.42L17.17 20l-5.42 5.42zm-5.2-7.37a40.04 40.04 0 0 1 3.79-4.89L2.35 5.18c.61 4.45 2.01 8.82 4.2 12.87zm6.58-4.92l-1.41-1.41-9.66-9.66a37.85 37.85 0 0 1 23.36 9.7l-6.83 6.83-5.46-5.46zm13.74 13.74L20 20l6.87-6.87A38.1 38.1 0 0 1 32.32 20a38.1 38.1 0 0 1-5.45 6.87zm6.58-8.82a40.18 40.18 0 0 0-5.17-6.33l9.66-9.66c-.3 5.52-1.8 11-4.49 16z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: repeat;
+    }
+
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    h1 {
+        font-family: 'PT Sans', sans-serif;
+    }
+
+    h2 {
+        font-family: 'PT Sans', sans-serif;
+
+    }
+
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+
+    .middle-footer {
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+
+    .middle-footer > p {
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+
+    .nets {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .nets > img {
+        width: 15%;
+    }
+
+    .promote-hotel {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .promote-hotel > p {
+        color: azure;
+    }
+
+    .registra {
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+
+    .footer-links {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .footer-links > a {
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+
+    }
+
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMIENZA BODY PERFIL -------------------------------------*/
+    h1 {
+        margin: 0 auto 25px auto;
+        width: max-content;
+    }
+
+    .formulario {
+        display: flex;
+        margin: 0 auto;
+        width: 350px;
+        justify-content: center;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.52);
+        border-radius: 25px;
+        border: solid 2px rgba(255, 255, 255, 0.47);
+        padding: 25px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        -webkit-backdrop-filter: blur(100px);
+        backdrop-filter: blur(100px);
+    }
+
+    .componente-registro {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin: 10px auto;
+        width: 85%;
+    }
+
+    label {
+        height: min-content;
+        margin: auto 0;
+    }
+
+    input {
+        margin-right: 0;
+        margin-left: auto;
+        padding: 5px 5px 5px 10px;
+        border-radius: 8px;
+        border: none;
+        font-size: 14px;
+        width: 60%;
+    }
+
+    button {
+        width: max-content;
+        margin: 20px auto 0 auto;
+        padding: 10px 25px;
+        border-radius: 10px;
+        background-color: white;
+        border: none;
+        font-size: 14px;
+
+    }
+
+    .container {
+        width: available;
+        padding: 5% 10%;
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .maria {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        width: max-content;
+
+    }
+
+    .maria::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollDown {
+        width: 100%;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 400px;
+
+    }
+    .primera-reserva-card {
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        background-color: white;
+        border-radius: 25px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    .primera-reserva-card2 {
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        background-color: #ffffff;
+        border-radius: 25px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .reserva-card {
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        background-color: white;
+        border-radius: 25px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    .reserva-card-row {
+        width: max-content;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background-color: white;
+        border-radius: 25px;
+        padding: 15px;
+        margin-bottom: 10px;
+        justify-content: center;
+        text-align: center;
+        align-content: center;
+    }
+
+    .reserva-card2 {
+        margin: auto;
+        width: 100%;
+    }
+    .sonia {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        width: max-content;
+        margin-left: 10px;
+    }
+    .sonia2 {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        width: 100%;
+        margin-left: 10px;
+        justify-content: space-around;
+    }
+    .codigo{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+    }
+    .sonia > p {
+        margin: 5px 0;
+    }
+
+    .botonEliminar {
+        background-color: brown;
+        color: #e5dbdb;
+        border-radius: 25px;
+        text-align: center;
+        padding: 2%;
+        width: 100%;
+        align-self: center;
+    }
+
+    .botonEliminar2 {
+        background-color: #969696;
+        color: #000000;
+        border-radius: 25px;
+        text-align: center;
+        padding: 2%;
+        width: 100%;
+        align-self: center;
+    }
+
+    .form2 {
+        width: 50%;
+    }
+
+    .eliminar {
+        text-decoration: none;
+        color: #e5dbdb;
+        font-size: 90%;
+    }
+
+    /* FINALIZA BODY PERFIL -------------------------------------*/
+
+</style>
+
+<header class="mainh">
+
+    <div class="lheader">
+        <a sec:authorize="hasAuthority('usuario')"  th:href="@{/usuario/ruleta}">Prueba suerte</a>
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
+        <a th:href="@{/}">Buscar destino</a>
+    </div>
+
+    <div class="cheader">
+        <h1>Atlas</h1>
+        <p>BOOKING</p>
+    </div>
+
+    <div class="lheader">
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+    </div>
+
+</header>
+
+<div class="container">
+    <form class="formulario" name="form" th:action="@{/usuario/perfil}" th:object="${usuario}" method="post">
+        <h1>Tu perfil</h1>
+        <div class="componente-registro">
+            <label class="parform" for="nombre">Nombre</label>
+            <input class="parform" type="text" id="nombre" th:value="${usuario.nombre}" th:field="*{nombre}"/>
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="correo">Email</label>
+            <input class="parform" type="email" id="correo" th:value="${usuario.email}" th:field="*{email}"/>
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="apellido">Apellidos</label>
+            <input class="parform" type="text" id="apellido" th:value="${usuario.apellido}" th:field="*{apellido}"/>
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="dni">DNI</label>
+            <input class="parform" type="text" id="dni" th:value="${usuario.dni}" th:field="*{dni}"/>
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="tel">Teléfono</label>
+            <input class="parform" type="tel" id="tel" th:value="${usuario.telefono}" th:field="*{telefono}"/>
+        </div>
+        <div class="componente-registro">
+            <label class="parform" for="contrasena">Contraseña:</label>
+            <input class="parform" type="text" id="contrasena" th:value="${usuario.contrasena}"
+                   th:field="*{contrasena}"/>
+        </div>
+        <button class="submit" type="submit" text="Siguiente">Actualizar datos</button>
+    </form>
+    <div th:if="${rol} != 'administrador' " class="formulario maria">
+        <h1>Reservas realizadas</h1>
+        <div class="scrollDown">
+            <div class="primera-reserva-card" th:each="m : ${mapa}">
+                <div th:if="${m.value.activa == true}" class="primera-reserva-card">
+                    <div class="reserva-card" >
+                        <h2 style="color: black; margin-left: 10%" th:text="${m.key.nombreHotel}" ></h2>
+                        <div style="width: 400px; height: auto; margin-left: 10%; border: black 2px">
+                            <img  style="width: 100%" th:src="@{/img/imgHab/{id}/{img}(id=${m.key.id},img=${m.key.img})}">
+                        </div>
+                        <div class="reserva-card-row">
+                            <div class="sonia">
+                                <p th:text="${'Entrada: ' + m.value.f_entrada}"></p>
+                                <p th:text="${'Salida: ' + m.value.f_salida}"></p>
+                            </div>
+                            <div class="sonia">
+                                <p th:text="${'Dias totales: ' + m.value.n_dias}"></p>
+                                <p th:text="${'Numero de personas: ' + m.value.n_personas}"></p>
+                            </div>
+                            <div class="sonia">
+                                <p th:text="${'Tipo de pensión: ' + m.value.t_pension}"></p>
+                                <p th:text="${'Precio final: ' + m.value.precio_total_dias + ' €'}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reserva-card2">
+                        <div class="sonia2">
+                            <div class="codigo">
+                                <p th:text="${'Código de reserva: '}"></p>
+                                <p th:text="${m.value.codigo}"></p>
+                            </div>
+                            <form class="form2" name="form2" th:action="@{/usuario/cancelar_reserva/(reserva=${m.value.codigo})}" method="POST">
+                                    <button class="botonEliminar" type="submit">
+                                        Cancelar Reserva
+                                    </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${m.value.activa == false}" class="primera-reserva-card2">
+                    <div class="reserva-card" >
+                        <h2 style="color: black; margin-left: 10%" th:text="${m.key.nombreHotel}" ></h2>
+                        <div style="width: 400px; height: auto; margin-left: 10%; border: black 2px">
+                            <img  style="width: 100%" th:src="@{/img/imgHab/{id}/{img}(id=${m.key.id},img=${m.key.img})}">
+                        </div>
+                        <div class="reserva-card-row">
+                            <div class="sonia">
+                                <p th:text="${'Entrada: ' + m.value.f_entrada}"></p>
+                                <p th:text="${'Salida: ' + m.value.f_salida}"></p>
+                            </div>
+                            <div class="sonia">
+                                <p th:text="${'Dias totales: ' + m.value.n_dias}"></p>
+                                <p th:text="${'Numero de personas: ' + m.value.n_personas}"></p>
+                            </div>
+                            <div class="sonia">
+                                <p th:text="${'Tipo de pensión: ' + m.value.t_pension}"></p>
+                                <p th:text="${'Precio final: ' + m.value.precio_total_dias + ' €'}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reserva-card2">
+                        <div class="sonia2">
+                            <div class="codigo">
+                                <p th:text="${'Código de reserva: '}"></p>
+                                <p th:text="${m.value.codigo}"></p>
+                            </div>
+                            <form class="form2" name="form2" th:action="@{/usuario/cancelar_reserva/(reserva=${m.value.codigo})}" method="POST">
+                                <button class="botonEliminar2"  type="submit" disabled>
+                                    Cancelada
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="lasth">
+
+    <div class="promote-hotel">
+        <p>Forma parte de nosotros</p>
+        <form method="get" action="registro_admin.html">
+            <button class="registra">Registra tus alojamientos</button>
+        </form>
+    </div>
+
+    <div class="middle-footer">
+        <div class="cheader">
+            <h1>Atlas</h1>
+            <p>BOOKING</p>
+        </div>
+        <div class="nets">
+            <img src="/img/face.svg" alt="">
+            <img src="/img/insta.svg" alt="">
+            <img src="/img/twitter.svg" alt="">
+        </div>
+        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="index.html">Comunidad.</a>
+        <a href="index.html">Sobre nosotros.</a>
+        <a href="index.html">Uso de cookies.</a>
+        <a href="index.html">Politica de privacidad.</a>
+        <a href="index.html">Condiciones de uso.</a>
+    </div>
+
+</footer>
+
+
+</body>
+</html>

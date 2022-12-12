@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas Booking</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        outline: none;
+
+    }
+
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        background: url("https://images5.alphacoders.com/456/456536.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .mainbox{
+        position: relative;
+        width: 500px;
+        height: 500px;
+
+    }
+
+    .mainbox:after{
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: url("https://thypix.com/wp-content/uploads/2020/04/white-arrow-99-700x471.png") no-repeat;
+        background-size: 15%;
+        left: 93%;
+        top: 43%;
+        transform: rotate(0deg);
+
+
+    }
+    .box{
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        position: relative;
+        border-radius: 50%;
+        border: 10px solid gray;
+        overflow: hidden;
+        transition: all ease-in-out 5s;
+        transform: rotate(90deg);
+        box-shadow: 0 5px 30px #ffffff;
+    }
+
+    span{
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        position: absolute;
+    }
+
+    .span1{
+        clip-path: polygon(0 17%,0 50%,50% 50%);
+        background-color: rgba(33, 94, 112, 0.62);
+    }
+    .span2{
+        clip-path: polygon(0 17%,30% 0,50% 50%);
+        background-color: #0ececb;
+    }
+
+    .span3{
+        clip-path: polygon(30% 0,71% 0,50% 50%);
+        background-color: #dd5d26;
+    }
+
+
+    .span4{
+        clip-path: polygon(71% 0,100% 18%,50% 50%);
+        background-color: #ef7f37;
+    }
+
+    .span5{
+        clip-path: polygon(100% 18%,100% 50%,50% 50%);
+        background-color: #ffedbe;
+    }
+    .box2 .span3{
+        background-color: #50232e;
+    }
+    .box2 {
+       width: 100%;
+        height: 100%;
+        transform: rotate(180deg);
+    }
+    .box2 .span1{
+        background: #333;
+    }
+    .font{
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .box1 .span1 h5{
+        position: absolute;
+        top: 42%;
+        right: 63%;
+        transform: rotate(200deg);
+        text-align: center;
+    }
+
+    .box1 .span2 h5{
+        position: absolute;
+        top: 33%;
+        right: 57%;
+        transform: rotate(-130deg);
+        text-align: center;
+    }
+
+    .box1 .span3 h5{
+        position: absolute;
+        top: 28%;
+        right: 45%;
+        transform: rotate(-90deg);
+        text-align: center;
+    }
+
+    .box1 .span4 h5{
+        position: absolute;
+        top: 34%;
+        right: 32%;
+        transform: rotate(-45deg);
+        text-align: center;
+    }
+
+    .box1 .span5 h5{
+        position: absolute;
+        top: 43%;
+        right: 26%;
+        transform: rotate(-15deg);
+        text-align: center;
+    }
+
+    .box2 .span1 h5{
+
+        position: absolute;
+        top: 42%;
+        right: 63%;
+        transform: rotate(200deg);
+        text-align: center;
+    }
+
+    .box2 .span2 h5{
+        position: absolute;
+        top: 33%;
+        right: 57%;
+        transform: rotate(-130deg);
+        text-align: center;
+    }
+
+    .box2 .span3 h5{
+        position: absolute;
+        top: 28%;
+        right: 45%;
+        transform: rotate(-279deg);
+        text-align: center;
+    }
+
+    .box2 .span4 h5{
+        position: absolute;
+        top: 34%;
+        right: 32%;
+        transform: rotate(310deg);
+        text-align: center;
+    }
+
+    .box2 .span5 h5{
+        position: absolute;
+        top: 43%;
+        right: 26%;
+        transform: rotate(-20deg);
+        text-align: center;
+    }
+
+    .spin{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width:75px;
+        height: 75px;
+        border-radius: 50%;
+        border: 4px solid white;
+        background: #1D76E5;
+        color: #fff;
+        box-shadow: 0 5px 20px #000;
+        font-weight: bold;
+        font-size: 22px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .spin:active{
+        width: 70px;
+        height: 70px;
+        font-size: 20px;
+    }
+
+    .mainbox.animate:after{
+        animation:animateArrow 0.7s ease infinite;
+    }
+
+    audio{
+        display: none;
+    }
+    .button {
+        min-width: 130px;
+        height: 40px;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border-radius: 5px;
+        border: none;
+        background: #3d348b;
+        box-shadow: 0 5px #2c0b8e;
+    }
+    .button:hover {
+        box-shadow: 0 3px #2c0b8e;
+        top: 1px;
+    }
+    .button:active {
+        box-shadow: 0 0 #2c0b8e;
+        top: 5px;
+    }
+
+    @keyframes animateArrow {
+        50%{
+            right: -50px;
+        }
+
+    }
+
+</style>
+<body>
+<div class="mainbox" id="mainbox">
+    <div class="box" id="box">
+        <div class="box1">
+            <span class="font span1"><h5>cupon 6</h5></span>
+            <span class="font span2"><h5>cupon 2</h5></span>
+            <span class="font span3"><h5>cupon 3</h5></span>
+            <span class="font span4"><h5>cupon 9</h5></span>
+            <span class="font span5"><h5>cupon 5</h5></span>
+        </div>
+        <div class="box2">
+            <span class="font span1"><h5>cupon 6</h5></span>
+            <span class="font span2"><h5>cupon 7</h5></span>
+            <span class="font span3"><h5>cupon 3</h5></span>
+            <span class="font span4"><h5>cupon 9</h5></span>
+            <span class="font span5"><h5>cupon 10</h5></span>
+        </div>
+    </div>
+    <button class="spin" onclick="spin()">GIRA</button>
+    <form method="post" th:object="${cupon}" id="formularioRuleta">
+        <input type="hidden" id="ruleta" th:field="*{descuento}">
+        <input type="hidden" id="activo" th:field="*{activo}">
+    </form>
+    <br>
+    <div style="display: flex; justify-content: center;width: 100%">
+        <a th:href="@{/}"><button class="button">Volver</button></a>
+    </div>
+</div>
+<audio
+controls="controls"
+id="wheel"
+src="/static/audio/ruleta.mp3">
+</audio>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function shuffle(array){
+        var currentIndex = array.length,
+        randomIndex;
+
+    while (0 !== currentIndex){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [
+            array[currentIndex],
+            array[currentIndex],
+        ];
+    }
+    return array;
+}
+
+
+    var firstClick = false;
+    function spin(){
+        if([[${tirada}]]){
+            wheel.play();
+            const box = document.getElementById("box");
+            const element = document.getElementById("mainbox");
+            let SelectItem = "";
+
+            let tres = shuffle([1890, 2250, 2610]);
+            let nueve = shuffle([1850, 2210, 2570]) ;
+            let seis= shuffle([1770, 2130, 2490]);
+            let cinco = shuffle([1810, 2170, 2530])
+            let siete = shuffle ( [1750, 2110, 2470]) ;
+            let diez = shuffle ([1630, 1990, 2350]);
+            let dos = shuffle([1570, 1930, 2290]) ;
+
+            let results = shuffle([
+                tres[0],
+                nueve[0],
+                seis[0],
+                cinco[0],
+                siete[0],
+                diez[0],
+                dos[0],
+            ]);
+
+            if(tres.includes(results[0])) SelectedItem = "30";
+            if(nueve.includes(results[0])) SelectedItem = "90";
+            if(seis.includes(results[0])) SelectedItem = "60";
+            if(cinco.includes(results[0])) SelectedItem = "50";
+            if(siete.includes(results[0])) SelectedItem = "70";
+            if(diez.includes(results[0])) SelectedItem = "10";
+            if(dos.includes(results[0])) SelectedItem = "20";
+
+            box.style.setProperty("transition","all ease 8s");
+            box.style.transform = "rotate(" + results[0] + "deg)";
+            element.classList.remove("animate");
+
+            setTimeout(function (){
+                element.classList.add("animate");
+            }, 8000);
+
+            setTimeout(function(){
+                Swal.fire({
+                    title: 'Felicidades!',
+                    html: "Ganaste un " + SelectedItem +"%" +" de descuento en nuestros hoteles",
+                    imageUrl: 'https://unsplash.it/400/200',
+                    imageWidth: 200,
+                    imageHeight: 150,
+                    imageAlt: 'Custom image',
+                });
+                const d = Date.now();
+                let text = d.toString();
+                document.getElementById("ruleta").value = SelectedItem;
+                document.getElementById("activo").value = true;
+
+            },8500 )
+
+            setTimeout(function (){
+                box.style.setProperty("transition", "initial");
+                box.style.transform = "rotate(90deg)";
+            }, 10000);
+
+            setTimeout(function (){
+                document.getElementById("formularioRuleta").submit()
+            }, 10400);
+
+
+            firstClick = true;
+        }else {
+            Swal.fire({
+                title: '¡No tienes mas Spins!',
+                html: "¡Vuelve mañana!",
+                imageUrl: 'https://www.hostingplus.com.es/wp-content/uploads/2020/02/error.jpg',
+                imageWidth: 350,
+                imageHeight: 150,
+                imageAlt: 'Custom image',
+            });
+        }
+
+}
+
+</script>
+
+
+</body>
+</html>

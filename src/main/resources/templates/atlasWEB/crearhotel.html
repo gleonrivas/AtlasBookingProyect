@@ -1,173 +1,533 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Crear Hotel</title>
-    <link rel="stylesheet" href="/styles/FacturasAdmin.css">
-    <link rel="stylesheet" href="/styles/finder.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/footer.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atlas Booking</title>
 </head>
-<body>
+<body class="images-container">
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh {
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+
+    .cheader {
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+
+    .cheader > h1 {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+
+    .cheader > p {
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 20px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .lheader {
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+
+    .lheader > a {
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+
+    .link-buttom {
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+        text-align: center;
+        text-decoration: none;
+
+    }
+
+    .login-singup > a {
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        background-color: #e5dbdb;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='church-on-sunday' fill='%23ac9292' fill-opacity='0.23'%3E%3Cpath d='M77.17 0H80v2.83l-.1.1A39.9 39.9 0 0 1 74.64 20a39.9 39.9 0 0 1 5.24 17.06l.11.11v2.89c-.01 6.9-1.8 13.79-5.35 19.94A39.96 39.96 0 0 1 80 79.94V80h-2.83L66.84 69.66a39.83 39.83 0 0 1-24.1 10.25l.09.09h-5.66l.1-.1c-8.7-.58-17.22-4-24.1-10.23L2.82 80H0V79.94c.01-6.9 1.8-13.8 5.35-19.94A39.96 39.96 0 0 1 0 40.06V37.17l.1-.1A39.9 39.9 0 0 1 5.36 20 39.9 39.9 0 0 1 .1 2.94L0 2.83V0h2.83l-.1.1a39.83 39.83 0 0 1 24.1 10.24L37.18 0H40c0 6.92-1.78 13.83-5.35 20A39.96 39.96 0 0 1 40 40c0-6.92 1.78-13.83 5.35-20A39.96 39.96 0 0 1 40 0h2.83l10.33 10.34A39.83 39.83 0 0 1 77.26.09L77.17 0zm.77 77.94c-.3-5.52-1.8-11-4.49-16a40.18 40.18 0 0 1-5.17 6.34l9.66 9.66zm-12.52-9.7l-6.83-6.83-5.46 5.46-1.41 1.41-9.66 9.66c8.4-.45 16.69-3.68 23.36-9.7zm-23.07 6.58l7.99-7.98a40.05 40.05 0 0 1-3.79-4.9 37.88 37.88 0 0 0-4.2 12.88zM47.68 60a37.98 37.98 0 0 0 4.07 5.42L57.17 60l-5.42-5.42A38 38 0 0 0 47.68 60zm2.66-6.84a40.06 40.06 0 0 0-3.79 4.9 37.88 37.88 0 0 1-4.2-12.88l7.99 7.98zm1.38-1.44l1.41 1.41 5.46 5.46 6.83-6.84a37.85 37.85 0 0 0-23.36-9.7l9.66 9.67zM60 60l6.87 6.87A38.1 38.1 0 0 0 72.32 60a38.11 38.11 0 0 0-5.45-6.87L60 60zm-14.65 0a39.9 39.9 0 0 0-5.24 17.06l-.11.11-.1-.1A39.9 39.9 0 0 0 34.64 60a39.9 39.9 0 0 0 5.24-17.06l.11-.11.1.1A39.9 39.9 0 0 0 45.36 60zm9.23-48.25a37.85 37.85 0 0 1 23.36-9.7l-9.66 9.67-1.41 1.41-5.46 5.46-6.83-6.84zm13.67 13.67L62.83 20l5.42-5.42A38 38 0 0 1 72.32 20a37.98 37.98 0 0 1-4.07 5.42zm5.2-3.47a40.05 40.05 0 0 1-3.79 4.89l7.99 7.98c-.61-4.45-2.01-8.82-4.2-12.87zm-6.58 4.92l1.41 1.41 9.66 9.66a37.85 37.85 0 0 1-23.36-9.7l6.83-6.83 5.46 5.46zM53.13 13.13L60 20l-6.87 6.87A38.11 38.11 0 0 1 47.68 20a38.1 38.1 0 0 1 5.45-6.87zm-1.41-1.41l-9.66-9.66c.3 5.52 1.8 11 4.49 16a40.18 40.18 0 0 1 5.17-6.34zm-9.66 26.22c.3-5.52 1.8-11 4.49-16a40.18 40.18 0 0 0 5.17 6.34l-9.66 9.66zm26.22 13.78l9.66-9.66c-.3 5.52-1.8 11-4.49 16a40.18 40.18 0 0 0-5.17-6.34zm8.98-11.81L66.84 50.34a39.83 39.83 0 0 0-24.1-10.25l10.42-10.43a39.83 39.83 0 0 0 24.1 10.25zm-7.6-26.75a40.06 40.06 0 0 1 3.79 4.9 37.88 37.88 0 0 0 4.2-12.88l-7.99 7.98zm-31.72 28.9c-8.4.45-16.69 3.68-23.36 9.7l6.83 6.83 5.46-5.46 1.41-1.41 9.66-9.66zM22.83 60l5.42 5.42c1.54-1.7 2.9-3.52 4.07-5.42a38 38 0 0 0-4.07-5.42L22.83 60zm5.45 8.28l-1.41-1.41-5.46-5.46-6.83 6.84a37.85 37.85 0 0 0 23.36 9.7l-9.66-9.67zm9.37 6.54l-7.99-7.98a40.05 40.05 0 0 0 3.79-4.9 37.88 37.88 0 0 1 4.2 12.88zM20 60l-6.87-6.87A38.11 38.11 0 0 0 7.68 60a38.11 38.11 0 0 0 5.45 6.87L20 60zm17.26-19.9L26.84 29.65a39.83 39.83 0 0 1-24.1 10.25l10.42 10.43a39.83 39.83 0 0 1 24.1-10.25zm-35.2 1.96l9.66 9.66a40.18 40.18 0 0 0-5.17 6.33c-2.7-5-4.2-10.47-4.5-16zm4.49 19.89c-2.7 5-4.2 10.47-4.5 16l9.67-9.67a40.18 40.18 0 0 1-5.17-6.33zm31.1-16.77c-.61 4.45-2.01 8.82-4.2 12.87a40.06 40.06 0 0 0-3.79-4.89l7.99-7.98zm-4.2-23.23c2.7 5 4.2 10.47 4.5 16l-9.67-9.67c1.97-1.97 3.7-4.1 5.17-6.33zm-14.86-.54l6.83 6.84a37.85 37.85 0 0 1-23.36 9.7l9.66-9.67 1.41-1.41 5.46-5.46zm-8.25 5.43l-7.99 7.98c.61-4.45 2.01-8.82 4.2-12.87a40.04 40.04 0 0 0 3.79 4.89zm1.41-1.42A37.99 37.99 0 0 1 7.68 20a38 38 0 0 1 4.07-5.42L17.17 20l-5.42 5.42zm-5.2-7.37a40.04 40.04 0 0 1 3.79-4.89L2.35 5.18c.61 4.45 2.01 8.82 4.2 12.87zm6.58-4.92l-1.41-1.41-9.66-9.66a37.85 37.85 0 0 1 23.36 9.7l-6.83 6.83-5.46-5.46zm13.74 13.74L20 20l6.87-6.87A38.1 38.1 0 0 1 32.32 20a38.1 38.1 0 0 1-5.45 6.87zm6.58-8.82a40.18 40.18 0 0 0-5.17-6.33l9.66-9.66c-.3 5.52-1.8 11-4.49 16z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");        background-repeat: repeat;
+    }
+
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    h1 {
+        font-family: 'PT Sans', sans-serif;
+    }
+
+    h2 {
+        font-family: 'PT Sans', sans-serif;
+
+    }
+
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+
+    .middle-footer {
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+
+    .middle-footer > p {
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+
+    .nets {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .nets > img {
+        width: 15%;
+    }
+
+    .promote-hotel {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .promote-hotel > p {
+        color: azure;
+    }
+
+    .registra {
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+
+    .footer-links {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .footer-links > a {
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+
+    }
+
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMINEZA HOTEL-EDIT --------------------------------------*/
+    .titulo {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-evenly;
+        margin-top: 4%;
+    }
+
+    .titulo > h1 {
+        margin: 0;
+    }
+
+
+    .container {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        margin: 1% auto;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+        padding: 20px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.48);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+
+    .card {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: 2% auto;
+    }
+
+
+    .correcto {
+        left: 0;
+        right: 0;
+        margin-top: -45%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .correcto > p {
+        padding: 15px;
+        background-color: #e6ffe6;
+        font-size: 14px;
+        color: green;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+
+    }
+
+    .notmy {
+        margin: 10px auto 10px 0;
+
+    }
+
+    .myinput {
+        height: 20px;
+        padding: 1% 1% 1% 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 13px;
+        margin: 5px 0;
+        width: auto;
+    }
+
+    h2 {
+        margin: 1rem 0;
+    }
+
+    label {
+        margin: 0;
+    }
+
+    .julieta {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .julieta > label {
+        margin: auto 10px auto 0;
+        width: max-content;
+    }
+
+    .abss {
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        margin-top: 5%;
+        margin-left: 75%;
+    }
+    #mapa{
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+    }
+
+
+    /* FINALIZA HOTEL-EDIT --------------------------------------*/
+
+</style>
 
 <header class="mainh">
-
     <div class="cheader">
         <h1>Atlas</h1>
-        <p>BOOKING</p>
+        <p>ADMIN</p>
     </div>
-
     <div class="lheader">
-        <a href="InicioAdministrador.html">Inicio</a>
-        <a href="ComentariosAdmin.html">Comentarios</a>
-        <a href="FacturasAdmin.html">Administración</a>
-        <a href="ofertas_servicios_admin.html">Ofertas y Servicios</a>
-        <a href="InformesAdmin.html">Informes</a>
-        <div class="login-singup">
-            <button href="index.html">Hola Paco</button>
-            <a href="index.html">Crear cuenta</a>
-        </div>
+        <a th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
+        <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
     </div>
-
 
 </header>
 
-<h1>¡Hola ...ADMIN!</h1>
-<div>
+<div class="titulo">
 
-    <form class="formulario" name="form" method="post">
-        <h2>Información de alojamiento</h2>
-        <label class="parform" for="nombre">¿Cómo se llama tu hotel?</label>
-        <input class="parform" type="text" id="nombre" name="correo"/>
-        <label class="parform" for="apellido">¿Cuántas estrellas tiene tu hotel?</label>
-        <input class="parform" type="number" id="apellido" name="correo"/>
-        <label class="parform" for="web">Web de tu alojamiento</label>
-        <input class="parform" type="text" id="web" name="correo"/>
-        <label class="parform" for="tel" type="tel">Número de teléfono</label>
-        <input class="parform" type="tel" id="tel" name="correo"/>
-
-        <h2>Ubicación</h2>
-        <label class="parform" for="direccion">Dirección</label>
-        <input class="parform" type="text" id="direccion" name="correo"/>
-        <label class="parform" for="pais">País</label>
-        <select class="parform" type="text" id="pais" name="Países">
-            <option>España</option>
-            <option>Francia</option>
-            <option>Hungría</option>
-            <option>Italia</option>
-            <option>Alemania</option>
-        </select>
-        <select class="parform" for="tel" type="ciudad">Ciudad</select>
-        <select class="parform" type="text" id="ciudad" name="Ciudades">
-            <option>Córdoba</option>
-            <option>Sevilla</option>
-            <option>Madrid</option>
-        </select>
-        <label class="parform" for="cp">Código Postal</label>
-        <input class="parform" type="number" id="cp" name="correo"/>
-
-        <h2>Instalaciones y servicios</h2>
-        <label class="parform" for="idioma" type="ciudad">Idiomas</label>
-        <select class="parform" type="text" id="idioma" name="Idiomas">
-            <option>Inglés</option>
-            <option>Español</option>
-            <option>Italiano</option>
-        </select>
-        <label class="parform" for="acc">Accesibilidad para silla de ruedas</label>
-        <input class="parform" type="checkbox" id="acc" name="correo"/>
-
-        <label class="parform" for="esp">Espectáculos</label>
-        <input class="parform" type="checkbox" id="esp" name="correo"/>
-
-        <label class="parform" for="des">Desayuno</label>
-        <input class="parform" type="checkbox" id="des" name="correo"/>
-
-        <label class="parform" for="pisc">Piscina</label>
-        <input class="parform" type="checkbox" id="pisc" name="correo"/>
-
-        <label class="parform" for="pat">Patio</label>
-        <input class="parform" type="checkbox" id="pat" name="correo"/>
-
-        <label class="parform" for="tour">Tours</label>
-        <input class="parform" type="checkbox" id="tour" name="correo"/>
-
-        <label class="parform" for="sl">Servicio Limpieza</label>
-        <input class="parform" type="checkbox" id="sl" name="correo"/>
-
-        <label class="parform" for="wi">Wifi</label>
-        <input class="parform" type="checkbox" id="wi" name="correo"/>
-
-        <label class="parform" for="rest">Restaurante</label>
-        <input class="parform" type="checkbox" id="rest" name="correo"/>
-
-        <label class="parform" for="shab">Servicio de habitaciones</label>
-        <input class="parform" type="checkbox" id="shab" name="correo"/>
-
-        <label class="parform" for="com">Comedor</label>
-        <input class="parform" type="checkbox" id="com" name="correo"/>
-
-        <label class="parform" for="rec">Recepción</label>
-        <input class="parform" type="checkbox" id="rec" name="correo"/>
-
-        <label class="parform" for="terr">Terraza</label>
-        <input class="parform" type="checkbox" id="terr" name="correo"/>
-
-        <label class="parform" for="trans">Servicio de transporte</label>
-        <input class="parform" type="checkbox" id="trans" name="correo"/>
-
-        <label class="parform" for="mas">Mascotas</label>
-        <input class="parform" type="checkbox" id="mas" name="correo"/>
-
-        <h2>Fecha de cierre</h2>
-        <label class="parform" for="desde">Desde</label>
-        <input class="parform" type="date" id="desde" name="correo"/>
-        <label class="parform" for="hasta">Hasta</label>
-        <input class="parform" type="date" id="hasta" name="correo"/>
-
-        <h2>Imágenes del alojamiento</h2>
-
-        <h2>Condiciones</h2>
-        <label class="parform" for="cg">Cancelación gratuita</label>
-        <input class="parform" type="checkbox" id="cg" name="correo"/>
-        <label class="parform" for="he">Hora de entrada</label>
-        <input class="parform" type="time" id="he" name="correo"/>
-        <label class="parform" for="hs">Hora de salida</label>
-        <input class="parform" type="time" id="hs" name="correo"/>
-        <label class="parform" for="pago" type="ciudad">Escoge la preferencia de pago</label>
-        <select class="parform" type="text" id="pago" name="correo">
-            <option>En Recepción</option>
-            <option>By Atlas</option>
-        </select>
-        <button class="submit">Guardar</button>
-    </form>
+    <h1>Creando un nuevo hotel</h1>
 
 </div>
+<div class="correcto" th:if="${param.exito}">
+    <p>✅ Se ha creado el hotel correctamente.</p>
+</div>
+
+<h2 style="margin-left: 10%">Ubicación del hotel</h2>
+<div id="mapa" style="margin: 0 auto; width: 85%; height: 400px;">
+</div>
+
+
+
+<form class="card" name="form" th:action="@{/hotel/nuevo}" th:object="${hotel}" method="post"
+      enctype="multipart/form-data">
+    <div class="container">
+        <h2>Información del hotel</h2>
+        <label class="form-label" for="nombre">¿Cómo se llama tu hotel?</label>
+        <input class="myinput" type="text" id="nombre" name="nombre" th:field="*{nombre}"/>
+        <label class="form-label" for="estrellas">¿Cuántas estrellas tiene tu hotel?</label>
+        <input class="myinput" type="number" id="estrellas" name="estrellas" th:field="*{estrellas}"/>
+        <label class="form-label" for="tel">Número de teléfono</label>
+        <input class="myinput" type="text" id="tel" name="tel" th:field="*{telefono}"/>
+        <h2>Condiciones</h2>
+        <div>
+            <input class="notmy" type="checkbox" id="cancelacionGratuita" name="cancelacionGratuita"
+                   th:field="*{cancelacion_g}"/>
+            <label class="form-label" for="cancelacionGratuita">Cancelación gratuita</label>
+        </div>
+        <h2>Imágenes del alojamiento</h2>
+        <label>Foto: </label>
+        <input type="file" name="file" id="file" accept="image/png, image/jpeg, image/jpg"/>
+
+    </div>
+
+    <div class="container">
+        <h2>Ubicación</h2>
+        <div class="julieta">
+            <label class="form-label" for="direccion">Dirección</label>
+            <input class="myinput" type="text" id="direccion" name="direccion" th:field="*{direccion}"/>
+        </div>
+        <div class="julieta">
+            <label class="form-label" for="pais">País</label>
+            <input class="myinput" type="text" id="pais" name="Países" th:field="*{pais}">
+        </div>
+            <input class="myinput" type="hidden" id="latitud" name="latitud" th:field="*{latitud}"/>
+            <input class="myinput" type="hidden" id="longitud" name="longitud" th:field="*{longitud}">
+        <div class="julieta">
+            <label class="form-label" for="ciudad">Ciudad</label>
+            <input class="myinput" type="text" id="ciudad" name="Ciudades" th:field="*{ciudad}">
+        </div>
+        <div class="julieta">
+            <label class="form-label" for="cp">Email</label>
+            <input class="myinput" type="email" id="cp" name="cod" th:field="*{email}"/>
+        </div>
+        <h2>Horarios de recepción</h2>
+        <div class="julieta">
+            <label class="form-label" for="recepcion">Apertura de recepción: (HH:MM:SS)</label>
+            <input class="myinput" style="width: max-content" type="time" step="1" id="recepcion" name="recepcion"
+                   th:field="*{hc_recepcion}"/>
+        </div>
+        <div class="julieta">
+            <label class="form-label" for="recepcion1">Cierre de recepción: (HH:MM:SS)</label>
+            <input class="myinput" style="width: max-content" type="time" step="1" id="recepcion1" name="recepcion"
+                   th:field="*{hf_recepcion}"/>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Instalaciones y servicios</h2>
+        <div>
+            <input class="notmy" type="checkbox" id="multilengua" name="multilengua"
+                   th:field="*{multilengua}"/>
+            <label class="form-label" for="multilengua">¿Se habla más de una lengua?</label>
+        </div>
+        <div>
+            <input class="notmy" type="checkbox" id="accesibilidad" name="accesibilidad"
+                   th:field="*{accesibilidad}"/>
+            <label class="form-label" for="accesibilidad">Accesibilidad para silla de ruedas</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="espectaculos" name="espectaculos"  th:field="*{espectaculos}"/>
+            <label class="form-label" for="espectaculos">Espectáculos</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="piscina" name="piscina"  th:field="*{piscina}"/>
+            <label class="form-label" for="piscina">Piscina</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="patioInterior" name="patio"  th:field="*{patio}"/>
+            <label class="form-label" for="patioInterior">Patio</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="tours" name="tours"  th:field="*{tours}"/>
+            <label class="form-label" for="tours">Tours</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="servicioHabitaciones" name="servicioHabitaciones"
+                   th:field="*{s_habitacion}"/>
+            <label class="form-label" for="servicioHabitaciones">Servicio de habitaciones</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="comedor" name="comedor"  th:field="*{comedor}"/>
+            <label class="form-label" for="comedor">Comedor</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="terraza" name="terraza"  th:field="*{terraza}"/>
+            <label class="form-label" for="terraza">Terraza</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="servicioTransporte" name="servicioTransporte"
+                   th:field="*{s_transporte}"/>
+            <label class="form-label" for="servicioTransporte">Servicio de transporte</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="aparcamiento" name="aparcamiento"  th:field="*{parking}"/>
+            <label class="form-label" for="aparcamiento">Parking</label>
+        </div>
+
+        <div>
+            <input class="notmy" type="checkbox" id="mascotas" name="mascotas"  th:field="*{mascotas}"/>
+            <label class="form-label" for="mascotas">Mascotas</label>
+        </div>
+
+    </div>
+
+    <div class="abss">
+        <button class="link-buttom" type="submit">Guardar</button>
+        <a class="link-buttom" th:href="@{/usuario/inicio}">Volver</a>
+    </div>
+
+</form>
+
+</div>
+<script th:inline="javascript">
+    function iniciarMapa(){
+
+        var latitud = 37.5442706;
+        var longitud = -4.7277528;
+
+        coordenadas= {
+            lng: longitud,
+            lat: latitud
+        }
+
+        generarMapa(coordenadas);
+
+    }
+
+    function generarMapa(coordenadas){
+        var mapa = new google.maps.Map(document.getElementById("mapa"),
+            {
+                zoom: 10,
+                center : new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+            });
+        marcador = new google.maps.Marker({
+            map: mapa,
+            draggable : true,
+            position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+        });
+        marcador.addListener("dragend",function (event){
+            document.getElementById("latitud").value = this.getPosition().lat();
+            document.getElementById("longitud").value = this.getPosition().lng();
+
+        })
+
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTq3rz8EYg7akX8PrNfvkr6Yh39c-d67g&callback=iniciarMapa"></script>
+
+
 <footer class="lasth">
 
-    <div class="promote-hotel">
+    <div class="promote-hotel" sec:authorize="isAnonymous()">
         <p>Forma parte de nosotros</p>
-        <button>Registra tus alojamientos</button>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" th:href="@{/usuario/registro}">Registra tus alojamientos</button>
+        </form>
     </div>
 
     <div class="middle-footer">
         <div class="cheader">
             <h1>Atlas</h1>
-            <p>BOOKING</p>
+            <p>ADMIN</p>
         </div>
         <div class="nets">
-            <img src="img/face.svg" alt="">
-            <img src="img/insta.svg" alt="">
-            <img src="img/twitter.svg" alt="">
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTExLjUsNmMtMy4wMTk3NywwIC01LjUsMi40ODAyMyAtNS41LDUuNXYyNWMwLDMuMDE5NzcgMi40ODAyMyw1LjUgNS41LDUuNWgyNWMzLjAxOTc3LDAgNS41LC0yLjQ4MDIzIDUuNSwtNS41di0yNWMwLC0zLjAxOTc3IC0yLjQ4MDIzLC01LjUgLTUuNSwtNS41ek0xMS41LDloMjVjMS4zOTgyMywwIDIuNSwxLjEwMTc3IDIuNSwyLjV2MjVjMCwxLjM5ODIzIC0xLjEwMTc3LDIuNSAtMi41LDIuNWgtNi41di0xMGgzLjYyNWMwLjUwNCwwIDAuOTMwMTksLTAuMzc2OTUgMC45OTIxOSwtMC44NzY5NWwwLjM3NSwtM2MwLjAzNiwtMC4yODQgLTAuMDU0MTQsLTAuNTY5MTYgLTAuMjQ0MTQsLTAuNzg1MTZjLTAuMTg5LC0wLjIxNSAtMC40NjEwNSwtMC4zMzc4OSAtMC43NDgwNSwtMC4zMzc4OWgtNHYtMy41YzAsLTEuMTAzIDAuODk3LC0yIDIsLTJoMmMwLjU1MiwwIDEsLTAuNDQ3IDEsLTF2LTMuMzc1YzAsLTAuNTE4IC0wLjM5NTE2LC0wLjk1MDA5IC0wLjkxMDE2LC0wLjk5NjA5Yy0wLjA1OSwtMC4wMDUgLTEuNDY5ODYsLTAuMTI4OTEgLTMuMjU1ODYsLTAuMTI4OTFjLTQuNDA3LDAgLTYuODMzOTgsMi42MTYxOSAtNi44MzM5OCw3LjM2NzE5djMuNjMyODFoLTRjLTAuNTUyLDAgLTEsMC40NDcgLTEsMXYzYzAsMC41NTMgMC40NDgsMSAxLDFoNHYxMGgtMTIuNWMtMS4zOTgyMywwIC0yLjUsLTEuMTAxNzcgLTIuNSwtMi41di0yNWMwLC0xLjM5ODIzIDEuMTAxNzcsLTIuNSAyLjUsLTIuNXoiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTE2LjUsNWMtNi4zMzM2MSwwIC0xMS41LDUuMTY2MzkgLTExLjUsMTEuNXYxNWMwLDYuMzMyNzYgNS4xNjYyMSwxMS41IDExLjUsMTEuNWgxNWM2LjMzMjk0LDAgMTEuNSwtNS4xNjcwNiAxMS41LC0xMS41di0xNWMwLC02LjMzMzc5IC01LjE2NzI0LC0xMS41IC0xMS41LC0xMS41ek0xNi41LDhoMTVjNC43MTEyNCwwIDguNSwzLjc4Nzc5IDguNSw4LjV2MTVjMCw0LjcxMTA2IC0zLjc4ODk0LDguNSAtOC41LDguNWgtMTVjLTQuNzEyMjEsMCAtOC41LC0zLjc4ODc2IC04LjUsLTguNXYtMTVjMCwtNC43MTIzOSAzLjc4NzYxLC04LjUgOC41LC04LjV6TTM0LDEyYy0xLjEwNSwwIC0yLDAuODk1IC0yLDJjMCwxLjEwNSAwLjg5NSwyIDIsMmMxLjEwNSwwIDIsLTAuODk1IDIsLTJjMCwtMS4xMDUgLTAuODk1LC0yIC0yLC0yek0yNCwxNGMtNS41MDQ4MiwwIC0xMCw0LjQ5NTE4IC0xMCwxMGMwLDUuNTA0ODIgNC40OTUxOCwxMCAxMCwxMGM1LjUwNDgyLDAgMTAsLTQuNDk1MTggMTAsLTEwYzAsLTUuNTA0ODIgLTQuNDk1MTgsLTEwIC0xMCwtMTB6TTI0LDE3YzMuODgzMTgsMCA3LDMuMTE2ODIgNyw3YzAsMy44ODMxOCAtMy4xMTY4Miw3IC03LDdjLTMuODgzMTgsMCAtNywtMy4xMTY4MiAtNywtN2MwLC0zLjg4MzE4IDMuMTE2ODIsLTcgNywtN3oiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjQiIGhlaWdodD0iMjQiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTAuNjY2NjcsMTAuNjY2NjcpIj48cGF0aCBkPSJNMjIsMy45OTljLTAuNzgsMC40NjMgLTIuMzQ1LDEuMDk0IC0zLjI2NSwxLjI3NmMtMC4wMjcsMC4wMDcgLTAuMDQ5LDAuMDE2IC0wLjA3NSwwLjAyM2MtMC44MTMsLTAuODAyIC0xLjkyNywtMS4yOTkgLTMuMTYsLTEuMjk5Yy0yLjQ4NSwwIC00LjUsMi4wMTUgLTQuNSw0LjVjMCwwLjEzMSAtMC4wMTEsMC4zNzIgMCwwLjVjLTMuMzUzLDAgLTUuOTA1LC0xLjc1NiAtNy43MzUsLTRjLTAuMTk5LDAuNSAtMC4yODYsMS4yOSAtMC4yODYsMi4wMzJjMCwxLjQwMSAxLjA5NSwyLjc3NyAyLjgsMy42M2MtMC4zMTQsMC4wODEgLTAuNjYsMC4xMzkgLTEuMDIsMC4xMzljLTAuNTgxLDAgLTEuMTk2LC0wLjE1MyAtMS43NTksLTAuNjE3YzAsMC4wMTcgMCwwLjAzMyAwLDAuMDUxYzAsMS45NTggMi4wNzgsMy4yOTEgMy45MjYsMy42NjJjLTAuMzc1LDAuMjIxIC0xLjEzMSwwLjI0MyAtMS41LDAuMjQzYy0wLjI2LDAgLTEuMTgsLTAuMTE5IC0xLjQyNiwtMC4xNjVjMC41MTQsMS42MDUgMi4zNjgsMi41MDcgNC4xMzUsMi41MzljLTEuMzgyLDEuMDg0IC0yLjM0MSwxLjQ4NiAtNS4xNzEsMS40ODZoLTAuOTY0YzEuNzg4LDEuMTQ2IDQuMDY1LDIuMDAxIDYuMzQ3LDIuMDAxYzcuNDMsMCAxMS42NTMsLTUuNjYzIDExLjY1MywtMTEuMDAxYzAsLTAuMDg2IC0wLjAwMiwtMC4yNjYgLTAuMDA1LC0wLjQ0N2MwLC0wLjAxOCAwLjAwNSwtMC4wMzUgMC4wMDUsLTAuMDUzYzAsLTAuMDI3IC0wLjAwOCwtMC4wNTMgLTAuMDA4LC0wLjA4Yy0wLjAwMywtMC4xMzYgLTAuMDA2LC0wLjI2MyAtMC4wMDksLTAuMzI5YzAuNzksLTAuNTcgMS40NzUsLTEuMjgxIDIuMDE3LC0yLjA5MWMtMC43MjUsMC4zMjIgLTEuNTAzLDAuNTM4IC0yLjMyLDAuNjM2YzAuODM0LC0wLjUgMi4wMTksLTEuNjkyIDIuMzIsLTIuNjM2ek0xOCw4Ljk5OWMwLDQuMDggLTIuOTU3LDguMzk5IC04LjQ2Niw4Ljk0M2MwLjc0NiwtMC41MjkgMS40NjYsLTEuMjggMS40NjYsLTEuMjhjMCwwIC0zLC0yLjY2MiAtMy4yMjUsLTYuMTRjMS4wMzUsMC4zMTYgMi4xMTMsMC40NzcgMy4yMjUsMC40NzdoMnYtMi41YzAsLTAuMDAxIDAsLTAuMDAxIDAsLTAuMDAxYzAuMDAyLC0xLjM4IDEuMTIsLTIuNDk4IDIuNSwtMi40OThjMS4zODEsMCAyLjUsMS4xMTkgMi41LDIuNWMwLDAgMCwwLjQyIDAsMC40OTl6Ij48L3BhdGg+PC9nPjwvZz4KPC9zdmc+"/>
         </div>
         <p>Copyrigth © 2022 Atlas Booking S.L.</p>
     </div>
 
     <div class="footer-links">
-        <a href="index.html">Sobre nosotros.</a>
-        <a href="index.html">Comunidad.</a>
-        <a href="index.html">Uso de cookies.</a>
-        <a href="index.html">Politica de privacidad.</a>
-        <a href="index.html">Condiciones de uso.</a>
+        <a href="#">Comunidad.</a>
+        <a href="#">Sobre nosotros.</a>
+        <a href="#">Uso de cookies.</a>
+        <a href="#">Politica de privacidad.</a>
+        <a href="#">Condiciones de uso.</a>
     </div>
 
 </footer>

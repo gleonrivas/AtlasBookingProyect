@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atlas Booking</title>
+</head>
+<body class="images-container">
+
+
+
+<style>
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 20px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial,sans-serif;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        background-color: #e5dbdb;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='church-on-sunday' fill='%23ac9292' fill-opacity='0.23'%3E%3Cpath d='M77.17 0H80v2.83l-.1.1A39.9 39.9 0 0 1 74.64 20a39.9 39.9 0 0 1 5.24 17.06l.11.11v2.89c-.01 6.9-1.8 13.79-5.35 19.94A39.96 39.96 0 0 1 80 79.94V80h-2.83L66.84 69.66a39.83 39.83 0 0 1-24.1 10.25l.09.09h-5.66l.1-.1c-8.7-.58-17.22-4-24.1-10.23L2.82 80H0V79.94c.01-6.9 1.8-13.8 5.35-19.94A39.96 39.96 0 0 1 0 40.06V37.17l.1-.1A39.9 39.9 0 0 1 5.36 20 39.9 39.9 0 0 1 .1 2.94L0 2.83V0h2.83l-.1.1a39.83 39.83 0 0 1 24.1 10.24L37.18 0H40c0 6.92-1.78 13.83-5.35 20A39.96 39.96 0 0 1 40 40c0-6.92 1.78-13.83 5.35-20A39.96 39.96 0 0 1 40 0h2.83l10.33 10.34A39.83 39.83 0 0 1 77.26.09L77.17 0zm.77 77.94c-.3-5.52-1.8-11-4.49-16a40.18 40.18 0 0 1-5.17 6.34l9.66 9.66zm-12.52-9.7l-6.83-6.83-5.46 5.46-1.41 1.41-9.66 9.66c8.4-.45 16.69-3.68 23.36-9.7zm-23.07 6.58l7.99-7.98a40.05 40.05 0 0 1-3.79-4.9 37.88 37.88 0 0 0-4.2 12.88zM47.68 60a37.98 37.98 0 0 0 4.07 5.42L57.17 60l-5.42-5.42A38 38 0 0 0 47.68 60zm2.66-6.84a40.06 40.06 0 0 0-3.79 4.9 37.88 37.88 0 0 1-4.2-12.88l7.99 7.98zm1.38-1.44l1.41 1.41 5.46 5.46 6.83-6.84a37.85 37.85 0 0 0-23.36-9.7l9.66 9.67zM60 60l6.87 6.87A38.1 38.1 0 0 0 72.32 60a38.11 38.11 0 0 0-5.45-6.87L60 60zm-14.65 0a39.9 39.9 0 0 0-5.24 17.06l-.11.11-.1-.1A39.9 39.9 0 0 0 34.64 60a39.9 39.9 0 0 0 5.24-17.06l.11-.11.1.1A39.9 39.9 0 0 0 45.36 60zm9.23-48.25a37.85 37.85 0 0 1 23.36-9.7l-9.66 9.67-1.41 1.41-5.46 5.46-6.83-6.84zm13.67 13.67L62.83 20l5.42-5.42A38 38 0 0 1 72.32 20a37.98 37.98 0 0 1-4.07 5.42zm5.2-3.47a40.05 40.05 0 0 1-3.79 4.89l7.99 7.98c-.61-4.45-2.01-8.82-4.2-12.87zm-6.58 4.92l1.41 1.41 9.66 9.66a37.85 37.85 0 0 1-23.36-9.7l6.83-6.83 5.46 5.46zM53.13 13.13L60 20l-6.87 6.87A38.11 38.11 0 0 1 47.68 20a38.1 38.1 0 0 1 5.45-6.87zm-1.41-1.41l-9.66-9.66c.3 5.52 1.8 11 4.49 16a40.18 40.18 0 0 1 5.17-6.34zm-9.66 26.22c.3-5.52 1.8-11 4.49-16a40.18 40.18 0 0 0 5.17 6.34l-9.66 9.66zm26.22 13.78l9.66-9.66c-.3 5.52-1.8 11-4.49 16a40.18 40.18 0 0 0-5.17-6.34zm8.98-11.81L66.84 50.34a39.83 39.83 0 0 0-24.1-10.25l10.42-10.43a39.83 39.83 0 0 0 24.1 10.25zm-7.6-26.75a40.06 40.06 0 0 1 3.79 4.9 37.88 37.88 0 0 0 4.2-12.88l-7.99 7.98zm-31.72 28.9c-8.4.45-16.69 3.68-23.36 9.7l6.83 6.83 5.46-5.46 1.41-1.41 9.66-9.66zM22.83 60l5.42 5.42c1.54-1.7 2.9-3.52 4.07-5.42a38 38 0 0 0-4.07-5.42L22.83 60zm5.45 8.28l-1.41-1.41-5.46-5.46-6.83 6.84a37.85 37.85 0 0 0 23.36 9.7l-9.66-9.67zm9.37 6.54l-7.99-7.98a40.05 40.05 0 0 0 3.79-4.9 37.88 37.88 0 0 1 4.2 12.88zM20 60l-6.87-6.87A38.11 38.11 0 0 0 7.68 60a38.11 38.11 0 0 0 5.45 6.87L20 60zm17.26-19.9L26.84 29.65a39.83 39.83 0 0 1-24.1 10.25l10.42 10.43a39.83 39.83 0 0 1 24.1-10.25zm-35.2 1.96l9.66 9.66a40.18 40.18 0 0 0-5.17 6.33c-2.7-5-4.2-10.47-4.5-16zm4.49 19.89c-2.7 5-4.2 10.47-4.5 16l9.67-9.67a40.18 40.18 0 0 1-5.17-6.33zm31.1-16.77c-.61 4.45-2.01 8.82-4.2 12.87a40.06 40.06 0 0 0-3.79-4.89l7.99-7.98zm-4.2-23.23c2.7 5 4.2 10.47 4.5 16l-9.67-9.67c1.97-1.97 3.7-4.1 5.17-6.33zm-14.86-.54l6.83 6.84a37.85 37.85 0 0 1-23.36 9.7l9.66-9.67 1.41-1.41 5.46-5.46zm-8.25 5.43l-7.99 7.98c.61-4.45 2.01-8.82 4.2-12.87a40.04 40.04 0 0 0 3.79 4.89zm1.41-1.42A37.99 37.99 0 0 1 7.68 20a38 38 0 0 1 4.07-5.42L17.17 20l-5.42 5.42zm-5.2-7.37a40.04 40.04 0 0 1 3.79-4.89L2.35 5.18c.61 4.45 2.01 8.82 4.2 12.87zm6.58-4.92l-1.41-1.41-9.66-9.66a37.85 37.85 0 0 1 23.36 9.7l-6.83 6.83-5.46-5.46zm13.74 13.74L20 20l6.87-6.87A38.1 38.1 0 0 1 32.32 20a38.1 38.1 0 0 1-5.45 6.87zm6.58-8.82a40.18 40.18 0 0 0-5.17-6.33l9.66-9.66c-.3 5.52-1.8 11-4.49 16z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");        background-repeat: repeat;
+
+    }
+    body::-webkit-scrollbar{
+        display: none;
+    }
+    h1{
+        font-family: 'PT Sans', sans-serif;
+    }
+    h2{
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMINEZA HOTEL-EDIT --------------------------------------*/
+    .titulo{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-evenly;
+        margin-top: 4%;
+    }
+    h1{
+        margin: 1rem auto;
+        width: max-content;
+    }
+
+
+    .container{
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        margin: 9% auto;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+        padding: 20px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.48);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+
+    .card{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: 2% auto;
+        justify-content: space-evenly;
+    }
+
+
+    .correcto{
+        left: 0;
+        right: 0;
+        margin-top: -45%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .correcto > p{
+        padding: 15px;
+        background-color: #e6ffe6;
+        font-size: 14px;
+        color: green;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+
+    }
+
+    .notmy{
+        margin: 10px auto 10px 0;
+
+    }
+    input{
+        height: 20px;
+        padding: 1% 1% 1% 2%;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.44);
+        background-color: #ffffff;
+        font-size: 13px;
+        margin: 5px 0 ;
+        width: auto;
+    }
+
+
+    label{
+        margin: 0;
+    }
+
+    .julieta{
+        width: 100%;
+        margin: 0 0 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    .julieta > label{
+        margin: auto 10px auto 0;
+        width:max-content;
+    }
+    .abss{
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        position: absolute;
+        right: 0;
+        margin-top: -5%;
+        margin-right: 11%;
+    }
+    /* FINALIZA HOTEL-EDIT --------------------------------------*/
+
+</style>
+
+<header class="mainh">
+    <div class="cheader">
+        <h1>Atlas</h1>
+        <p>ADMIN</p>
+    </div>
+    <div class="lheader">
+        <a th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a th:href="@{/}">Buscar destino</a>
+        <a th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
+    </div>
+
+</header>
+
+<div class="container">
+    <h1>Editar habitación</h1>
+
+    <form  class="card" style="padding:2%" name="form" th:action="@{/hotel/editarhabitacion/{id_habitacion}(id_habitacion=${habitacion.id})}"
+           th:object="${habitacion}" method="post">
+
+
+        <div class="julieta">
+            <label class="form-label" for="num_max">Aforo máximo de la habitación:</label>
+            <input class="form-control" type="number" id="num_max" name="num_max"th:field="*{n_max_personas}"/>
+        </div>
+
+        <div class="julieta">
+            <label class="form-label" for="cama_individual">Número de camas individuales</label>
+            <input class="form-control" type="number" id="cama_individual" name="cama_individual" th:field="*{c_individual}"/>
+        </div>
+
+        <div class="julieta">
+            <label class="form-label" for="cama_doble">Número de camas dobles</label>
+            <input class="form-control" type="number" id="cama_doble" name="cama_doble" th:field="*{c_doble}"/>
+        </div>
+        <div class="julieta">
+            <label class="form-label" for="precio_base">Precio Base</label>
+            <input class="form-control" type="number" id="precio_base" name="precio_base" th:field="*{precio_base}"/>
+        </div>
+
+        <div>
+            <label class="form-label" for="bano">Baño</label>
+            <input class="form-check-label" type="checkbox" id="bano" name="bano" th:checked="*{bano}"/>
+        </div>
+
+        <div>
+            <label class="form-label" for="vistas">Vistas</label>
+            <input class="form-check-label" type="checkbox" id="vistas" name="vistas" th:checked="*{vistas}"/>
+        </div>
+
+
+
+        <div class="julieta" style="margin-top: 25px">
+
+            <button class="link-buttom" type="submit" text="Siguiente">Guardar</button>
+            <a class="link-buttom" style="text-decoration: none; text-align: center;" th:href="@{/hotel/habitacion/{id_hotel}(id_hotel=${idhotel})}">Volver</a>
+
+        </div>
+
+    </form>
+
+
+
+
+</div>
+<footer class="lasth">
+
+    <div class="promote-hotel" sec:authorize="isAnonymous()">
+        <p>Forma parte de nosotros</p>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" th:href="@{/usuario/registro}">Registra tus alojamientos</button>
+        </form>
+    </div>
+
+    <div class="middle-footer">
+        <div class="cheader">
+            <h1>Atlas</h1>
+            <p>ADMIN</p>
+        </div>
+        <div class="nets">
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTExLjUsNmMtMy4wMTk3NywwIC01LjUsMi40ODAyMyAtNS41LDUuNXYyNWMwLDMuMDE5NzcgMi40ODAyMyw1LjUgNS41LDUuNWgyNWMzLjAxOTc3LDAgNS41LC0yLjQ4MDIzIDUuNSwtNS41di0yNWMwLC0zLjAxOTc3IC0yLjQ4MDIzLC01LjUgLTUuNSwtNS41ek0xMS41LDloMjVjMS4zOTgyMywwIDIuNSwxLjEwMTc3IDIuNSwyLjV2MjVjMCwxLjM5ODIzIC0xLjEwMTc3LDIuNSAtMi41LDIuNWgtNi41di0xMGgzLjYyNWMwLjUwNCwwIDAuOTMwMTksLTAuMzc2OTUgMC45OTIxOSwtMC44NzY5NWwwLjM3NSwtM2MwLjAzNiwtMC4yODQgLTAuMDU0MTQsLTAuNTY5MTYgLTAuMjQ0MTQsLTAuNzg1MTZjLTAuMTg5LC0wLjIxNSAtMC40NjEwNSwtMC4zMzc4OSAtMC43NDgwNSwtMC4zMzc4OWgtNHYtMy41YzAsLTEuMTAzIDAuODk3LC0yIDIsLTJoMmMwLjU1MiwwIDEsLTAuNDQ3IDEsLTF2LTMuMzc1YzAsLTAuNTE4IC0wLjM5NTE2LC0wLjk1MDA5IC0wLjkxMDE2LC0wLjk5NjA5Yy0wLjA1OSwtMC4wMDUgLTEuNDY5ODYsLTAuMTI4OTEgLTMuMjU1ODYsLTAuMTI4OTFjLTQuNDA3LDAgLTYuODMzOTgsMi42MTYxOSAtNi44MzM5OCw3LjM2NzE5djMuNjMyODFoLTRjLTAuNTUyLDAgLTEsMC40NDcgLTEsMXYzYzAsMC41NTMgMC40NDgsMSAxLDFoNHYxMGgtMTIuNWMtMS4zOTgyMywwIC0yLjUsLTEuMTAxNzcgLTIuNSwtMi41di0yNWMwLC0xLjM5ODIzIDEuMTAxNzcsLTIuNSAyLjUsLTIuNXoiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTE2LjUsNWMtNi4zMzM2MSwwIC0xMS41LDUuMTY2MzkgLTExLjUsMTEuNXYxNWMwLDYuMzMyNzYgNS4xNjYyMSwxMS41IDExLjUsMTEuNWgxNWM2LjMzMjk0LDAgMTEuNSwtNS4xNjcwNiAxMS41LC0xMS41di0xNWMwLC02LjMzMzc5IC01LjE2NzI0LC0xMS41IC0xMS41LC0xMS41ek0xNi41LDhoMTVjNC43MTEyNCwwIDguNSwzLjc4Nzc5IDguNSw4LjV2MTVjMCw0LjcxMTA2IC0zLjc4ODk0LDguNSAtOC41LDguNWgtMTVjLTQuNzEyMjEsMCAtOC41LC0zLjc4ODc2IC04LjUsLTguNXYtMTVjMCwtNC43MTIzOSAzLjc4NzYxLC04LjUgOC41LC04LjV6TTM0LDEyYy0xLjEwNSwwIC0yLDAuODk1IC0yLDJjMCwxLjEwNSAwLjg5NSwyIDIsMmMxLjEwNSwwIDIsLTAuODk1IDIsLTJjMCwtMS4xMDUgLTAuODk1LC0yIC0yLC0yek0yNCwxNGMtNS41MDQ4MiwwIC0xMCw0LjQ5NTE4IC0xMCwxMGMwLDUuNTA0ODIgNC40OTUxOCwxMCAxMCwxMGM1LjUwNDgyLDAgMTAsLTQuNDk1MTggMTAsLTEwYzAsLTUuNTA0ODIgLTQuNDk1MTgsLTEwIC0xMCwtMTB6TTI0LDE3YzMuODgzMTgsMCA3LDMuMTE2ODIgNyw3YzAsMy44ODMxOCAtMy4xMTY4Miw3IC03LDdjLTMuODgzMTgsMCAtNywtMy4xMTY4MiAtNywtN2MwLC0zLjg4MzE4IDMuMTE2ODIsLTcgNywtN3oiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjQiIGhlaWdodD0iMjQiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTAuNjY2NjcsMTAuNjY2NjcpIj48cGF0aCBkPSJNMjIsMy45OTljLTAuNzgsMC40NjMgLTIuMzQ1LDEuMDk0IC0zLjI2NSwxLjI3NmMtMC4wMjcsMC4wMDcgLTAuMDQ5LDAuMDE2IC0wLjA3NSwwLjAyM2MtMC44MTMsLTAuODAyIC0xLjkyNywtMS4yOTkgLTMuMTYsLTEuMjk5Yy0yLjQ4NSwwIC00LjUsMi4wMTUgLTQuNSw0LjVjMCwwLjEzMSAtMC4wMTEsMC4zNzIgMCwwLjVjLTMuMzUzLDAgLTUuOTA1LC0xLjc1NiAtNy43MzUsLTRjLTAuMTk5LDAuNSAtMC4yODYsMS4yOSAtMC4yODYsMi4wMzJjMCwxLjQwMSAxLjA5NSwyLjc3NyAyLjgsMy42M2MtMC4zMTQsMC4wODEgLTAuNjYsMC4xMzkgLTEuMDIsMC4xMzljLTAuNTgxLDAgLTEuMTk2LC0wLjE1MyAtMS43NTksLTAuNjE3YzAsMC4wMTcgMCwwLjAzMyAwLDAuMDUxYzAsMS45NTggMi4wNzgsMy4yOTEgMy45MjYsMy42NjJjLTAuMzc1LDAuMjIxIC0xLjEzMSwwLjI0MyAtMS41LDAuMjQzYy0wLjI2LDAgLTEuMTgsLTAuMTE5IC0xLjQyNiwtMC4xNjVjMC41MTQsMS42MDUgMi4zNjgsMi41MDcgNC4xMzUsMi41MzljLTEuMzgyLDEuMDg0IC0yLjM0MSwxLjQ4NiAtNS4xNzEsMS40ODZoLTAuOTY0YzEuNzg4LDEuMTQ2IDQuMDY1LDIuMDAxIDYuMzQ3LDIuMDAxYzcuNDMsMCAxMS42NTMsLTUuNjYzIDExLjY1MywtMTEuMDAxYzAsLTAuMDg2IC0wLjAwMiwtMC4yNjYgLTAuMDA1LC0wLjQ0N2MwLC0wLjAxOCAwLjAwNSwtMC4wMzUgMC4wMDUsLTAuMDUzYzAsLTAuMDI3IC0wLjAwOCwtMC4wNTMgLTAuMDA4LC0wLjA4Yy0wLjAwMywtMC4xMzYgLTAuMDA2LC0wLjI2MyAtMC4wMDksLTAuMzI5YzAuNzksLTAuNTcgMS40NzUsLTEuMjgxIDIuMDE3LC0yLjA5MWMtMC43MjUsMC4zMjIgLTEuNTAzLDAuNTM4IC0yLjMyLDAuNjM2YzAuODM0LC0wLjUgMi4wMTksLTEuNjkyIDIuMzIsLTIuNjM2ek0xOCw4Ljk5OWMwLDQuMDggLTIuOTU3LDguMzk5IC04LjQ2Niw4Ljk0M2MwLjc0NiwtMC41MjkgMS40NjYsLTEuMjggMS40NjYsLTEuMjhjMCwwIC0zLC0yLjY2MiAtMy4yMjUsLTYuMTRjMS4wMzUsMC4zMTYgMi4xMTMsMC40NzcgMy4yMjUsMC40NzdoMnYtMi41YzAsLTAuMDAxIDAsLTAuMDAxIDAsLTAuMDAxYzAuMDAyLC0xLjM4IDEuMTIsLTIuNDk4IDIuNSwtMi40OThjMS4zODEsMCAyLjUsMS4xMTkgMi41LDIuNWMwLDAgMCwwLjQyIDAsMC40OTl6Ij48L3BhdGg+PC9nPjwvZz4KPC9zdmc+"/>
+        </div>
+        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="#">Comunidad.</a>
+        <a href="#">Sobre nosotros.</a>
+        <a href="#">Uso de cookies.</a>
+        <a href="#">Politica de privacidad.</a>
+        <a href="#">Condiciones de uso.</a>
+    </div>
+
+</footer>
+
+</body>
+</html>

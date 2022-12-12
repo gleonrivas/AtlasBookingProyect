@@ -1,0 +1,189 @@
+scalar Time
+scalar Date
+enum t_pension{
+    sa
+    ad
+    mp
+    pc
+
+}
+enum t_pago{
+    efectivo
+    tarjeta
+}
+enum Rol{
+    administrador
+    usuario
+}
+type Usuario{
+    id: ID
+    nombre: String
+    apellido: String
+    dni: String
+    rol: Rol!
+    telefono: String
+    email: String!
+    contrasena: String!
+}
+type User{
+    id: ID
+    nombre: String
+    apellido: String
+    dni: String
+    rol: Rol!
+    telefono: String
+    email: String!
+}
+
+type Hotel {
+    id: ID
+    nombre: String
+    ciudad: String
+    pais: String
+    direccion: String
+    estrellas: Int
+    telefono: Int
+    email: String
+    cancelacion_g: Boolean
+    img: String
+    wifi: Boolean
+    mascotas: Boolean
+    multilengua: Boolean
+    accesibilidad: Boolean
+    s_habitacion: Boolean
+    hc_recepcion:  Time
+    hf_recepcion:  Time
+    s_transporte: Boolean
+    tours: Boolean
+    comedor: Boolean
+    espectaculos: Boolean
+    patio: Boolean
+    piscina: Boolean
+    terraza: Boolean
+    parking: Boolean
+    habitacion: [Habitacion]
+
+
+
+}
+type Habitacion{
+    id:ID
+    c_individual: Int
+    c_doble: Int
+    precio_base: Float
+    vistas: Boolean
+    bano: Boolean
+    n_max_personas: Int
+    hotel: Hotel
+
+}
+type Registro{
+    id: ID
+    fecha_entrada: Date
+    fecha_salida: Date
+    num_dias: Int
+    num_personas: Int
+    precio_total: Float
+    tipo_pago: t_pago
+    tipo_pension: t_pension
+    Habitacion: Habitacion
+    id_Usuario: Int
+}
+
+type Query{
+    listarHabitacion(
+        id_hotel:ID!
+    ):[Habitacion]
+
+    listarHotel(
+        id_usuario:ID!
+    ):[Hotel]
+
+    buscadorHotel(
+        fecha_entrada:Date!
+        fecha_salida:Date!
+        num_personas:Int!
+        ciudad:String!):[Hotel]
+
+    mostrarUsuario(
+        email:String!
+    ):User
+}
+
+type Mutation{
+    crearEditarHotel(
+        id_hotel:ID
+        nombre: String!
+        ciudad: String!
+        pais: String!
+        direccion: String!
+        estrellas: Int!
+        telefono: Int!
+        email: String!
+        cancelacion_g: Boolean!
+        img_url: String
+        wifi: Boolean
+        mascotas: Boolean
+        multilengua: Boolean
+        accesibilidad: Boolean
+        servicio_habitacion: Boolean
+        horacomienzo_recepcion:  Time
+        horafin_recepcion:  Time
+        servicio_transporte: Boolean
+        tours: Boolean
+        comedor: Boolean
+        espectaculos: Boolean
+        patio: Boolean
+        piscina: Boolean
+        terraza: Boolean
+        parking: Boolean
+    ):String
+
+    crearEditarHabitacion(
+        id_habitacion:ID
+        id_hotel:Int!
+        cama_individual: Int!
+        cama_doble:Int!
+        precio_base: Float!
+        num_maximo_personas:Int!
+        bano: Boolean
+        vistas: Boolean
+    ):String
+
+    eliminarHabitacion(
+        id_habitacion: ID!
+    ):String
+
+    eliminarHotel(
+        id_hotel: ID!
+    ):String
+
+    crearReserva(
+        fecha_entrada: Date!
+        fecha_salida: Date!
+        num_personas: Int!
+        tipo_pago: t_pago!
+        tipo_pension: t_pension!
+        id_habitacion: Int!
+        email: String!
+    ):String
+
+    crearEditarUsuario(
+        id_usuario:ID
+        nombre: String
+        apellido: String
+        dni: String
+        rol: Rol!
+        telefono: String
+        email: String!
+        contrasena: String!
+    ): String
+
+    eliminarUsuario(
+        email: String!
+    ):String
+
+    cancelarReserva(
+        codigo_reserva: String!
+    ):String
+}

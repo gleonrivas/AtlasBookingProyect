@@ -1,119 +1,591 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Atlas Booking</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/styles/hotel.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/footer.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inicio de sesión</title>
 </head>
+<body>
+
+<style th:inline="text">
+    /*FUENTES EXTERNAS*/
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Playfair+Display:wght@400;500&display=swap');
+
+
+    /* COMIENZA HEADER ------------------------------------------*/
+    .mainh{
+        width: 100%;
+        margin: 0;
+        padding: 1% 0 0.5% 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #000000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.56);
+    }
+    .cheader{
+        margin: 0 3% 0 3%;
+        padding: 0;
+        display: grid;
+        grid-column: 1;
+        font-family: 'Playfair Display', serif;
+        width: auto;
+        color: azure;
+        letter-spacing: 10px;
+    }
+    .cheader > h1{
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 0;
+        margin: 0;
+    }
+    .cheader > p{
+        margin-top: 5px;
+        text-align: center;
+        letter-spacing: 10px;
+        font-size: 12px;
+        padding: 0;
+        font-family: Arial,sans-serif;
+    }
+    .lheader{
+        display: flex;
+        width: 65%;
+        padding: 0;
+        color: azure;
+    }
+    .lheader > a{
+        color: azure;
+        text-decoration: none;
+        margin: auto;
+        font-size: 14px;
+    }
+    .link-buttom{
+        width: 120px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 7px;
+        color: black;
+        font-size: 14px;
+        margin: auto;
+
+    }
+    .login-singup > a{
+        color: azure;
+        text-decoration: none;
+        margin: 5% auto;
+    }
+    /* FINALIZA HEADER ------------------------------------------*/
+    /* COMIENZA BODY --------------------------------------------*/
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-position: center;
+        background-size: cover;
+        background-image: url([[${hotelimagen}]]);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: Arial, sans-serif;
+    }
+    body::-webkit-scrollbar{
+        display: none;
+    }
+    h1{
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    h2{
+        font-family: 'PT Sans', sans-serif;
+
+    }
+    /* FINALIZA BODY --------------------------------------------*/
+    /* COMINEZA FOOTER ------------------------------------------*/
+    .lasth{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: black;
+        padding-top: 1%;
+    }
+    .middle-footer{
+        display: grid;
+        grid-column: 1;
+        grid-gap: 10px;
+    }
+    .middle-footer > p{
+        color: rgba(240, 255, 255, 0.44);
+        text-decoration: none;
+        font-size: 11px;
+    }
+    .nets{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nets > img{
+        width: 15%;
+    }
+    .promote-hotel{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .promote-hotel > p{
+        color: azure;
+    }
+    .registra{
+        align-content: center;
+        width: 190px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: azure;
+        padding: 5%;
+        color: black;
+        font-size: 14px;
+    }
+    .footer-links{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    .footer-links > a{
+        color: azure;
+        text-decoration: none;
+        padding-top: 2%;
+    }
+    /* FINALIZA FOOTER ------------------------------------------*/
+    /* COMIENZA HOTEL BOX ---------------------------------------*/
+
+    .hotel-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: auto;
+        color: black;
+        margin: 5% 0;
+        padding: 50px;
+        justify-content: space-evenly;
+    }
+    .hotel-data{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+        padding: 2% 5% 2% 2%;
+        height: fit-content;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+    }
+    .hotel-data > p{
+        font-size: 15px;
+        margin: 5px 0;
+        font-weight: bold;
+    }
+
+    .firtsMayus{
+        text-transform: capitalize;
+    }
+
+
+    .titulo{
+        font-size: 35px;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .hotel-services{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 45%;
+        gap: 5px 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.73);
+        padding: 2%;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+    }
+
+    .hotel-services > h1{
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .hotel-services > p{
+        align-items: center;
+        margin: 0;
+        width: max-content;
+        height: fit-content;
+        background-color: black;
+        padding: 10px 15px;
+        border-radius: 25px;
+        color: white;
+        font-size: 13px;
+    }
+
+
+
+    .tarjeta{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1.5rem;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
+    }
+
+    .tarjeta > p{
+        width: 100%;
+        margin: 5px;
+    }
+
+    .reservar{
+        width: auto;
+        display: flex;
+        text-decoration: none;
+        margin: 25px auto 0 auto;
+    }
+
+    .reservar > button{
+        width: 100px;
+        color: white;
+        background-color: #000000;
+        margin: auto;
+        padding: 10px;
+        border: none;
+        border-radius: 15px;
+        font-size: 14px;
+    }
+
+    .comentario-slider{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin: 0 auto;
+        width: 95%;
+        padding: 25px 0 50px 0;
+        overflow-x: scroll;
+
+    }
+    .comentario-slider > h2{
+        width: max-content;
+    }
+
+    .comentario-slider::-webkit-scrollbar{
+        display: none;
+    }
+    .comentario-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+    }
+
+    .comentario-tarjeta{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1.5rem;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        width: 300px;
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
+    }
+    .comentario-tarjeta > p{
+        margin: 0 auto 1rem auto;
+        color: rgba(0, 0, 0, 0.51);
+        font-weight: bold;
+    }
+
+    .get-comentario {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    .get-comentario > p{
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .estrellas{
+        background-color: black;
+        font-size: 12px;
+        padding: 5px;
+        border-radius: 20px;
+        width: fit-content;
+        margin: 0 auto;
+    }
+    .estrellas > p{
+        margin: 0;
+    }
+
+    h2{
+        width: max-content;
+        margin: 0 50px;
+        padding: 12.5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        border: solid 2px rgba(255, 255, 255, 0.7);
+
+    }
+    .marga{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .marga input{
+        border-radius: 10px;
+        padding: 5px 5px 5px 10px;
+        width: 40%;
+        font-size: 13px;
+        border: none;
+        margin-bottom: 10px;
+    }
+
+    .marga label{
+        margin: auto 0 ;
+    }
+    button{
+        transition: all 0.2s ease;
+    }
+    button:hover{
+        transform: scale(1.1);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .hotel-img{
+        width: 200px;
+        height: 150px;
+    }
+    .hotel-img >img{
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    #mapa{
+        width: 80%;
+        height: 234px;
+        margin: 50px auto 0 auto;
+        border-radius: 25px;
+        box-shadow: 0 50px 50px rgba(0, 0, 0, 0.46);
+    }
+
+
+
+    /* FINALIZA HOTEL BOX ---------------------------------------*/
+
+</style>
 
 <header class="mainh">
 
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <a href="Descubre">Descubre</a>
+        <a sec:authorize="hasAuthority('usuario')"  th:href="@{/usuario/ruleta}">Prueba suerte</a>
+        <a sec:authorize="hasAuthority('administrador')" th:href="@{/usuario/inicio}">Gestión de hoteles</a>
+        <a sec:authorize="hasAuthority('usuario')" th:href="@{/descubre}">Descubre</a>
+        <a th:href="@{/}">Buscar destino</a>
     </div>
+
     <div class="cheader">
         <h1>Atlas</h1>
         <p>BOOKING</p>
     </div>
+
     <div class="lheader">
-        <a href="Descubre">Descubre</a>
-        <div class="login-singup">
-            <button class="link-buttom" href="index.html">Identifícate</button>
-        </div>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}"><button class="link-buttom">Iniciar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><button class="link-buttom">Cerrar sesión</button></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}"><button class="link-buttom">Ver perfil</button></a>
     </div>
+
 </header>
-<body>
-    <div class="center-container">
-        <div class="column-container">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/img/venecia.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/img/venecia.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/img/venecia.jpg" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <div class="navegacion">
-                <a href=""><i>Descripcion</i></a>
-                <a href=""><i>Habitaciones</i></a>
-                <a href=""><i>Ubicacion</i></a>
-                <a href=""><i>Servicios</i></a>
-                <a href=""><i>Reseñas</i></a>
-            </div>
-        </div>
-    </div>
-    <div class="center-container">
-        <div class="row-container-barra">
-            <div class="tarjeta" th:each="h : ${habitaciones}">
-                <div class="row-container">
-                    <p>tipo de cama:  </p>
-                    <p th:text="${h.tipo_cama}"></p>
-                </div>
-                <div class="row-container">
-                    <p>tipo de habitacion:  </p>
-                    <p th:text="${h.tipo_habitacion}"></p>
-                </div>
-                <div class="row-container">
-                    <p>numero de camas:  </p>
-                    <p th:text="${h.num_camas}"></p>
-                </div>
-                <div class="row-container">
-                    <p>precio:  </p>
-                    <p th:text="${h.precio_base}"></p>
-                    <p>€</p>
-                </div>
-            </div>
-        </div>
+
+<div class="hotel-container">
+
+
+    <div class="hotel-data">
+        <h1 class="titulo" th:text="${hotel.nombre}"></h1>
+        <p class="firtsMayus" th:text="${hotel.ciudad}"></p>
+        <p class="firtsMayus" th:text="${hotel.direccion}"></p>
+        <p th:text="${hotel.telefono}"></p>
+        <p th:text="${hotel.email}"></p>
     </div>
 
+    <div class="hotel-services">
+        <h1>Servicios disponibles</h1>
+        <p th:if="${hotel.wifi} == true">Wifi</p>
+        <p th:if="${hotel.mascotas} == true">Mascotas</p>
+        <p th:if="${hotel.piscina} == true">Piscina</p>
+        <p th:if="${hotel.terraza} == true">Terraza</p>
+        <p th:if="${hotel.parking} == true">Parking</p>
+        <p th:if="${hotel.multilengua} == true">Lengua local e ingles</p>
+        <p th:if="${hotel.accesibilidad} == true">Acceso para minuválidos</p>
+        <p th:if="${hotel.s_habitacion} == true">Servicio de habitaciones</p>
+        <p th:if="${hotel.s_transporte} == true">Servicio de transporte</p>
+        <p th:if="${hotel.tours} == true">Guias turisticos</p>
+        <p th:if="${hotel.comedor} == true">Restaurante</p>
+        <p th:if="${hotel.espectaculos} == true">Espectaculos</p>
+        <p th:if="${hotel.patio} == true">Patio</p>
 
-    <footer class="lasth">
+    </div>
 
-        <div class="promote_hotel">
-            <p>Forma parte de nosotros</p>
-            <button>Registra tus alojamientos</button>
-        </div>
+    <div id="mapa"></div>
 
-        <div class="middle-footer">
-            <div class="cheader">
-                <h1>Atlas</h1>
-                <p>BOOKING</p>
+</div>
+<h2>Habitaciones disponibles para la fecha selecionada.</h2>
+
+<div class="comentario-slider">
+    <div class="comentario-container">
+        <div class="tarjeta" th:each="h : ${habitaciones}">
+            <div class="hotel-img">
+                <img th:src="@{/img/imgHab/{id}/{img}(id=${h.id},img=${h.img})}">
             </div>
-            <div class="nets">
-                <img src="../../static/styles/img/face.svg" alt="">
-                <img src="../../static/styles/img/insta.svg" alt="">
-                <img src="../../static/styles/img/twitter.svg" alt="">
+            <p th:text="'Camas dobles: '+ ${h.c_doble}"></p>
+            <p th:text="'Camas individuales: ' + ${h.c_individual}"></p>
+            <p th:text="'Numero de personas: ' + ${h.n_max_personas}"></p>
+            <p th:text="'Precio/dia: ' + ${h.precio_base} + ' €'"></p>
+            <a class="reservar" th:if="${rol} == 'usuario' " th:href="@{/reserva/datos/(id_hab=${h.id},fecha_inicio=${fecha_inicio},fecha_fin=${fecha_fin},
+            num_personas=${num_personas})}"><button> Reservar</button></a>
+            <a  class="reservar" style="width: 190px;"  th:href="@{/login}" sec:authorize="isAnonymous()"><button style="width: 190px;">Inicia sesion para reservar</button></a>
+        </div>
+    </div>
+</div>
+
+
+<h2>Comentarios mas recientes.</h2>
+<div class="comentario-slider">
+
+    <div class="comentario-container">
+
+        <form class="comentario-tarjeta" method="post" th:if="${rol} == usuario" th:object="${resena}">
+            <p th:text="${'Comente algo, ' + usuario.nombre}"></p>
+            <div class="get-comentario">
+                <div class="marga">
+                    <label for="estrellas">Estrellas</label>
+                    <input id="estrellas" type="number" th:field="*{estrellas}">
+                </div>
+                <div class="marga">
+                    <label for="comentario">Comentario</label>
+                    <input id="comentario" type="text" th:field="*{comentario}">
+                </div>
+                <button class="link-buttom" type="submit">Comentar</button>
             </div>
-            <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+        </form>
+
+        <h2 style="height: max-content; width: max-content; margin: auto 5%;" th:if="${mapa.isEmpty()}">No hay comentarios todavía</h2>
+
+        <div class="comentario-tarjeta" th:each="m : ${mapa}">
+            <p th:text="${'@'+m.key}"></p>
+            <div class="get-comentario" th:each="v : ${m.value}">
+                <div class="estrellas">
+                    <p th:if="${v.estrellas} == 1">⭐</p>
+                    <p th:if="${v.estrellas} == 2">⭐⭐</p>
+                    <p th:if="${v.estrellas} == 3">⭐⭐⭐</p>
+                    <p th:if="${v.estrellas} == 4">⭐⭐⭐⭐</p>
+                    <p th:if="${v.estrellas} == 5">⭐⭐⭐⭐⭐</p>
+                </div>
+                <p th:text="${v.comentario}"></p>
+            </div>
         </div>
 
-        <div class="footer-links">
-            <a href="index.html">Sobre nosotros.</a>
-            <a href="index.html">Comunidad.</a>
-            <a href="index.html">Uso de cookies.</a>
-            <a href="index.html">Politica de privacidad.</a>
-            <a href="index.html">Condiciones de uso.</a>
-        </div>
+    </div>
+</div>
 
-    </footer>
+
+<script th:inline="javascript">
+    function iniciarMapa(){
+
+        var latitud = [[${hotel.latitud}]];
+        var longitud = [[${hotel.longitud}]];
+
+        coordenadas= {
+            lng: longitud,
+            lat: latitud
+        }
+
+        generarMapa(coordenadas);
+
+    }
+
+    function generarMapa(coordenadas){
+        var mapa = new google.maps.Map(document.getElementById("mapa"),
+            {
+                zoom: 15,
+                center : new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+            });
+        marcador = new google.maps.Marker({
+            map: mapa,
+            draggable : false,
+            position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+        });
+
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTq3rz8EYg7akX8PrNfvkr6Yh39c-d67g&callback=iniciarMapa"></script>
+<footer class="lasth">
+
+    <div class="promote-hotel" sec:authorize="isAnonymous()">
+        <p>Forma parte de nosotros</p>
+        <form method="get" action="registro_admin.html">
+            <button class="registra" th:href="@{/usuario/registro}">Registra tus alojamientos</button>
+        </form>
+    </div>
+
+    <div class="middle-footer">
+        <div class="cheader">
+            <h1>Atlas</h1>
+            <p>BOOKING</p>
+        </div>
+        <div class="nets">
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTExLjUsNmMtMy4wMTk3NywwIC01LjUsMi40ODAyMyAtNS41LDUuNXYyNWMwLDMuMDE5NzcgMi40ODAyMyw1LjUgNS41LDUuNWgyNWMzLjAxOTc3LDAgNS41LC0yLjQ4MDIzIDUuNSwtNS41di0yNWMwLC0zLjAxOTc3IC0yLjQ4MDIzLC01LjUgLTUuNSwtNS41ek0xMS41LDloMjVjMS4zOTgyMywwIDIuNSwxLjEwMTc3IDIuNSwyLjV2MjVjMCwxLjM5ODIzIC0xLjEwMTc3LDIuNSAtMi41LDIuNWgtNi41di0xMGgzLjYyNWMwLjUwNCwwIDAuOTMwMTksLTAuMzc2OTUgMC45OTIxOSwtMC44NzY5NWwwLjM3NSwtM2MwLjAzNiwtMC4yODQgLTAuMDU0MTQsLTAuNTY5MTYgLTAuMjQ0MTQsLTAuNzg1MTZjLTAuMTg5LC0wLjIxNSAtMC40NjEwNSwtMC4zMzc4OSAtMC43NDgwNSwtMC4zMzc4OWgtNHYtMy41YzAsLTEuMTAzIDAuODk3LC0yIDIsLTJoMmMwLjU1MiwwIDEsLTAuNDQ3IDEsLTF2LTMuMzc1YzAsLTAuNTE4IC0wLjM5NTE2LC0wLjk1MDA5IC0wLjkxMDE2LC0wLjk5NjA5Yy0wLjA1OSwtMC4wMDUgLTEuNDY5ODYsLTAuMTI4OTEgLTMuMjU1ODYsLTAuMTI4OTFjLTQuNDA3LDAgLTYuODMzOTgsMi42MTYxOSAtNi44MzM5OCw3LjM2NzE5djMuNjMyODFoLTRjLTAuNTUyLDAgLTEsMC40NDcgLTEsMXYzYzAsMC41NTMgMC40NDgsMSAxLDFoNHYxMGgtMTIuNWMtMS4zOTgyMywwIC0yLjUsLTEuMTAxNzcgLTIuNSwtMi41di0yNWMwLC0xLjM5ODIzIDEuMTAxNzcsLTIuNSAyLjUsLTIuNXoiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoNS4zMzMzMyw1LjMzMzMzKSI+PHBhdGggZD0iTTE2LjUsNWMtNi4zMzM2MSwwIC0xMS41LDUuMTY2MzkgLTExLjUsMTEuNXYxNWMwLDYuMzMyNzYgNS4xNjYyMSwxMS41IDExLjUsMTEuNWgxNWM2LjMzMjk0LDAgMTEuNSwtNS4xNjcwNiAxMS41LC0xMS41di0xNWMwLC02LjMzMzc5IC01LjE2NzI0LC0xMS41IC0xMS41LC0xMS41ek0xNi41LDhoMTVjNC43MTEyNCwwIDguNSwzLjc4Nzc5IDguNSw4LjV2MTVjMCw0LjcxMTA2IC0zLjc4ODk0LDguNSAtOC41LDguNWgtMTVjLTQuNzEyMjEsMCAtOC41LC0zLjc4ODc2IC04LjUsLTguNXYtMTVjMCwtNC43MTIzOSAzLjc4NzYxLC04LjUgOC41LC04LjV6TTM0LDEyYy0xLjEwNSwwIC0yLDAuODk1IC0yLDJjMCwxLjEwNSAwLjg5NSwyIDIsMmMxLjEwNSwwIDIsLTAuODk1IDIsLTJjMCwtMS4xMDUgLTAuODk1LC0yIC0yLC0yek0yNCwxNGMtNS41MDQ4MiwwIC0xMCw0LjQ5NTE4IC0xMCwxMGMwLDUuNTA0ODIgNC40OTUxOCwxMCAxMCwxMGM1LjUwNDgyLDAgMTAsLTQuNDk1MTggMTAsLTEwYzAsLTUuNTA0ODIgLTQuNDk1MTgsLTEwIC0xMCwtMTB6TTI0LDE3YzMuODgzMTgsMCA3LDMuMTE2ODIgNyw3YzAsMy44ODMxOCAtMy4xMTY4Miw3IC03LDdjLTMuODgzMTgsMCAtNywtMy4xMTY4MiAtNywtN2MwLC0zLjg4MzE4IDMuMTE2ODIsLTcgNywtN3oiPjwvcGF0aD48L2c+PC9nPgo8L3N2Zz4="/>
+            <img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjQiIGhlaWdodD0iMjQiCnZpZXdCb3g9IjAsMCwyNTYsMjU2IgpzdHlsZT0iZmlsbDojMDAwMDAwOyI+CjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTAuNjY2NjcsMTAuNjY2NjcpIj48cGF0aCBkPSJNMjIsMy45OTljLTAuNzgsMC40NjMgLTIuMzQ1LDEuMDk0IC0zLjI2NSwxLjI3NmMtMC4wMjcsMC4wMDcgLTAuMDQ5LDAuMDE2IC0wLjA3NSwwLjAyM2MtMC44MTMsLTAuODAyIC0xLjkyNywtMS4yOTkgLTMuMTYsLTEuMjk5Yy0yLjQ4NSwwIC00LjUsMi4wMTUgLTQuNSw0LjVjMCwwLjEzMSAtMC4wMTEsMC4zNzIgMCwwLjVjLTMuMzUzLDAgLTUuOTA1LC0xLjc1NiAtNy43MzUsLTRjLTAuMTk5LDAuNSAtMC4yODYsMS4yOSAtMC4yODYsMi4wMzJjMCwxLjQwMSAxLjA5NSwyLjc3NyAyLjgsMy42M2MtMC4zMTQsMC4wODEgLTAuNjYsMC4xMzkgLTEuMDIsMC4xMzljLTAuNTgxLDAgLTEuMTk2LC0wLjE1MyAtMS43NTksLTAuNjE3YzAsMC4wMTcgMCwwLjAzMyAwLDAuMDUxYzAsMS45NTggMi4wNzgsMy4yOTEgMy45MjYsMy42NjJjLTAuMzc1LDAuMjIxIC0xLjEzMSwwLjI0MyAtMS41LDAuMjQzYy0wLjI2LDAgLTEuMTgsLTAuMTE5IC0xLjQyNiwtMC4xNjVjMC41MTQsMS42MDUgMi4zNjgsMi41MDcgNC4xMzUsMi41MzljLTEuMzgyLDEuMDg0IC0yLjM0MSwxLjQ4NiAtNS4xNzEsMS40ODZoLTAuOTY0YzEuNzg4LDEuMTQ2IDQuMDY1LDIuMDAxIDYuMzQ3LDIuMDAxYzcuNDMsMCAxMS42NTMsLTUuNjYzIDExLjY1MywtMTEuMDAxYzAsLTAuMDg2IC0wLjAwMiwtMC4yNjYgLTAuMDA1LC0wLjQ0N2MwLC0wLjAxOCAwLjAwNSwtMC4wMzUgMC4wMDUsLTAuMDUzYzAsLTAuMDI3IC0wLjAwOCwtMC4wNTMgLTAuMDA4LC0wLjA4Yy0wLjAwMywtMC4xMzYgLTAuMDA2LC0wLjI2MyAtMC4wMDksLTAuMzI5YzAuNzksLTAuNTcgMS40NzUsLTEuMjgxIDIuMDE3LC0yLjA5MWMtMC43MjUsMC4zMjIgLTEuNTAzLDAuNTM4IC0yLjMyLDAuNjM2YzAuODM0LC0wLjUgMi4wMTksLTEuNjkyIDIuMzIsLTIuNjM2ek0xOCw4Ljk5OWMwLDQuMDggLTIuOTU3LDguMzk5IC04LjQ2Niw4Ljk0M2MwLjc0NiwtMC41MjkgMS40NjYsLTEuMjggMS40NjYsLTEuMjhjMCwwIC0zLC0yLjY2MiAtMy4yMjUsLTYuMTRjMS4wMzUsMC4zMTYgMi4xMTMsMC40NzcgMy4yMjUsMC40NzdoMnYtMi41YzAsLTAuMDAxIDAsLTAuMDAxIDAsLTAuMDAxYzAuMDAyLC0xLjM4IDEuMTIsLTIuNDk4IDIuNSwtMi40OThjMS4zODEsMCAyLjUsMS4xMTkgMi41LDIuNWMwLDAgMCwwLjQyIDAsMC40OTl6Ij48L3BhdGg+PC9nPjwvZz4KPC9zdmc+"/>
+        </div>
+        <p>Copyrigth © 2022 Atlas Booking S.L.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="#">Comunidad.</a>
+        <a href="#">Sobre nosotros.</a>
+        <a href="#">Uso de cookies.</a>
+        <a href="#">Politica de privacidad.</a>
+        <a href="#">Condiciones de uso.</a>
+    </div>
+
+</footer>
 
 
 </body>
