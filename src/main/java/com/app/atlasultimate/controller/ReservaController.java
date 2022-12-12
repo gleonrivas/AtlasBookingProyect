@@ -198,7 +198,7 @@ public class ReservaController {
         precioFinal = precioFinal * num_personas;
 
         if (registroDTO.getDescuento()!=null){
-            precioFinal = precioFinal * registroDTO.getDescuento() /100;
+            precioFinal = precioFinal - precioFinal * registroDTO.getDescuento() /100;
             cuponRepository.updateCuponActivo(false, usuario.getId(), registroDTO.getDescuento());
         }
         Integer num_codigo = 0;
