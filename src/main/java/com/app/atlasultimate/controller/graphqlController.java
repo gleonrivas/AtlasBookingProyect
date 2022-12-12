@@ -156,7 +156,8 @@ public class graphqlController {
     @GetMapping("/hotel/listar/")
     @SchemaMapping(typeName = "Query", value = "listarHotel")
     public List<Hotel> listarHotel(@RequestParam @Argument Integer id_usuario) {
-        return servicioHotel.listarHotel(id_usuario);
+        List<Hotel> listarHotel = servicioHotel.listarHotel(id_usuario);
+        return listarHotel;
     }
 
     //crear y editar Hotel

@@ -51,8 +51,8 @@ type Hotel {
     multilengua: Boolean
     accesibilidad: Boolean
     s_habitacion: Boolean
-    hc_recepcion:  Time
-    hf_recepcion:  Time
+    hc_recepcion:  String
+    hf_recepcion:  String
     s_transporte: Boolean
     tours: Boolean
     comedor: Boolean
