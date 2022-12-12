@@ -13,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.OffsetTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -63,7 +66,7 @@ public class graphqlController {
     //Crear y editar en graphql
     @PostMapping("/habitacion/crear/graphiql/")
     @SchemaMapping(typeName = "Mutation", value = "crearEditarHabitacion")
-    public String crearEditarHotel(@RequestParam(required = false) @Argument Integer id_habitacion,
+    public String crearEditarHabitacion(@RequestParam(required = false) @Argument Integer id_habitacion,
                                    @RequestParam(required = false) @Argument Integer id_hotel,
                                    @RequestParam @Argument Integer cama_individual,
                                    @RequestParam @Argument Integer cama_doble,
@@ -166,12 +169,16 @@ public class graphqlController {
                                    @RequestParam(required = false) @Argument String img_url, @RequestParam(required = false) @Argument Boolean wifi,
                                    @RequestParam(required = false) @Argument Boolean mascotas, @RequestParam(required = false) @Argument Boolean multilengua,
                                    @RequestParam(required = false) @Argument Boolean accesibilidad, @RequestParam(required = false) @Argument Boolean servicio_habitacion,
-                                   @RequestParam(required = false) @Argument Time horacomienzo_recepcion, @RequestParam(required = false) @Argument java.sql.Time horafin_recepcion,
+                                   @RequestParam(required = false) @Argument OffsetTime horacomienzo_recepcion,
+                                   @RequestParam(required = false) @Argument OffsetTime horafin_recepcion,
                                    @RequestParam(required = false) @Argument Boolean servicio_transporte, @RequestParam(required = false) @Argument Boolean tours,
                                    @RequestParam(required = false) @Argument Boolean comedor, @RequestParam(required = false) @Argument Boolean espectaculos,
                                    @RequestParam(required = false) @Argument Boolean patio, @RequestParam(required = false) @Argument Boolean piscina,
                                    @RequestParam(required = false) @Argument Boolean terraza, @RequestParam(required = false) @Argument Boolean parking
     ) {
+        Time time1 = Time.valueOf(horacomienzo_recepcion.toLocalTime());
+        Time time2 = Time.valueOf(horafin_recepcion.toLocalTime());
+
         Hotel hotel = new Hotel();
         if (id_hotel != null) {
             hotel = hotelRepository.findHotelById(id_hotel);
@@ -193,8 +200,8 @@ public class graphqlController {
                 hotel.setMultilengua(multilengua);
                 hotel.setAccesibilidad(accesibilidad);
                 hotel.setS_habitacion(servicio_habitacion);
-                hotel.setHc_recepcion(horacomienzo_recepcion);
-                hotel.setHf_recepcion(horafin_recepcion);
+                hotel.setHc_recepcion(time1);
+                hotel.setHf_recepcion(time2);
                 hotel.setS_transporte(servicio_transporte);
                 hotel.setTours(tours);
                 hotel.setComedor(comedor);
@@ -223,8 +230,8 @@ public class graphqlController {
             hotel.setMultilengua(multilengua);
             hotel.setAccesibilidad(accesibilidad);
             hotel.setS_habitacion(servicio_habitacion);
-            hotel.setHc_recepcion(horacomienzo_recepcion);
-            hotel.setHf_recepcion(horafin_recepcion);
+            hotel.setHc_recepcion(time1);
+            hotel.setHf_recepcion(time2);
             hotel.setS_transporte(servicio_transporte);
             hotel.setTours(tours);
             hotel.setComedor(comedor);
